@@ -44,7 +44,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFqjtE92NlXITk="
 							},
-							"name": "SequenceDiagram1",
+							"name": "Diagramme de séquence, Capteurs Similaires",
 							"ownedViews": [
 								{
 									"_type": "UMLFrameView",
@@ -65,9 +65,9 @@
 											"font": "Arial;13;0",
 											"left": 94.97900390625,
 											"top": 5,
-											"width": 115.9052734375,
+											"width": 266.17333984375,
 											"height": 13,
-											"text": "SequenceDiagram1"
+											"text": "Diagramme de séquence, Capteurs Similaires"
 										},
 										{
 											"_type": "LabelView",
@@ -1499,7 +1499,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjtE919lWMdU="
 					},
-					"name": "Role1"
+					"name": "Role1",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -1507,7 +1508,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjtE919lWMdU="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -1515,7 +1517,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjtE919lWMdU="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -1523,7 +1526,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjtE919lWMdU="
 					},
-					"name": "Role4"
+					"name": "Role4",
+					"type": ""
 				}
 			]
 		}

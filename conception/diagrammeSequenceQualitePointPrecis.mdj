@@ -1820,7 +1820,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFqjvOlzz8hunM="
 							},
-							"name": "SequenceDiagram1",
+							"name": "Diagramme de séquence, Qualité de l'air Endroit Précis",
 							"ownedViews": [
 								{
 									"_type": "UMLFrameView",
@@ -1840,10 +1840,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 78.97900390625,
-											"top": 10,
-											"width": 115.9052734375,
+											"top": 5,
+											"width": 320.693359375,
 											"height": 13,
-											"text": "SequenceDiagram1"
+											"text": "Diagramme de séquence, Qualité de l'air Endroit Précis"
 										},
 										{
 											"_type": "LabelView",
@@ -1853,7 +1853,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 13,
-											"top": 10,
+											"top": 5,
 											"width": 60.97900390625,
 											"height": 13,
 											"text": "interaction"
@@ -1861,7 +1861,6 @@
 									],
 									"font": "Arial;13;0",
 									"left": 8,
-									"top": 5,
 									"width": 785,
 									"height": 595,
 									"nameLabel": {
@@ -3152,7 +3151,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjvOlzz8gHuc="
 					},
-					"name": "Role1"
+					"name": "Role1",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3160,7 +3160,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjvOlzz8gHuc="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3168,7 +3169,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjvOlzz8gHuc="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3176,7 +3178,8 @@
 					"_parent": {
 						"$ref": "AAAAAAFqjvOlzz8gHuc="
 					},
-					"name": "Role4"
+					"name": "Role4",
+					"type": ""
 				}
 			]
 		}
