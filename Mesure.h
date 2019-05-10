@@ -10,6 +10,7 @@
 #if ! defined ( MESURE_H )
 #define MESURE_H
 
+
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -17,7 +18,7 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
+// Rôle de la classe <Mesure>
 //
 //
 //------------------------------------------------------------------------
@@ -34,6 +35,8 @@ public:
     // Contrat :
     //
 
+    void afficher ();
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Mesure & operator = ( const Mesure & uneMesure );
@@ -49,6 +52,7 @@ public:
     //
     // Contrat :
     //
+    Mesure (double uneValue, string uneDescription, string uneUnit);
 
     Mesure ( );
     // Mode d'emploi :
@@ -68,7 +72,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+double value;
+string description;
+string unit;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
