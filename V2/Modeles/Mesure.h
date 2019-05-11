@@ -39,7 +39,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Mesure & operator = ( const Mesure & uneMesure );
+    // Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
     //
     // Contrat :

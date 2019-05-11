@@ -1,37 +1,36 @@
 /*************************************************************************
- Messages  -  description
+ MesurePM10  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Messages> (fichier Messages.cpp) ------------
+//---------- Réalisation de la classe <MesurePM10> (fichier MesurePM10.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <list>
-#include <map>
 
 //------------------------------------------------------ Include personnel
-#include "Messages.h"
+#include "MesurePM10.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
+// type MesurePM10::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
+// MesurePM10 & MesurePM10::operator = ( const MesurePM10 & uneMesurePM10 )
 // Algorithme :
 //
 // {
@@ -39,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+MesurePM10::MesurePM10 ( const MesurePM10 & uneMesurePM10 )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Messages>" << endl;
+    cout << "Appel au constructeur de copie de <MesurePM10>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de MesurePM10 (constructeur de copie)
 
 
-Messages::Messages ( )
+MesurePM10::MesurePM10 ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
+    cout << "Appel au constructeur de <MesurePM10>" << endl;
 #endif
-} //----- Fin de Messages
+} //----- Fin de MesurePM10
 
 
-Messages::~Messages ( )
+MesurePM10::~MesurePM10 ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Messages>" << endl;
+    cout << "Appel au destructeur de <MesurePM10>" << endl;
 #endif
-} //----- Fin de ~Messages
+} //----- Fin de ~MesurePM10
 
 
 //------------------------------------------------------------------ PRIVE

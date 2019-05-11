@@ -1,37 +1,36 @@
 /*************************************************************************
- Messages  -  description
+ Capteur  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Messages> (fichier Messages.cpp) ------------
+//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <list>
-#include <map>
 
 //------------------------------------------------------ Include personnel
-#include "Messages.h"
+#include "Capteur.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
+// type Xxx::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
+// Capteur & Capteur::operator = ( const Capteur & unCapteur )
 // Algorithme :
 //
 // {
@@ -39,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+// Capteur::Capteur ( const Capteur & unCapteur )
+// Algorithme :
+//
+// {
+// #ifdef MAP
+//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+// #endif
+// } //----- Fin de Capteur (constructeur de copie)
+
+
+Capteur::Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description ) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Messages>" << endl;
+    cout << "Appel au constructeur de <Xxx>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de Xxx
 
 
-Messages::Messages ( )
+Capteur::~Capteur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
+    cout << "Appel au destructeur de <Capteur>" << endl;
 #endif
-} //----- Fin de Messages
-
-
-Messages::~Messages ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Messages>" << endl;
-#endif
-} //----- Fin de ~Messages
+} //----- Fin de ~Capteur
 
 
 //------------------------------------------------------------------ PRIVE

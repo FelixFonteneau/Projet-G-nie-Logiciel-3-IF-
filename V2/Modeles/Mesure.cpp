@@ -1,37 +1,36 @@
 /*************************************************************************
- Messages  -  description
+ Mesure  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Messages> (fichier Messages.cpp) ------------
+//---------- Réalisation de la classe <Mesure> (fichier Mesure.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <list>
-#include <map>
 
 //------------------------------------------------------ Include personnel
-#include "Messages.h"
+#include "Mesure.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
+// type Mesure::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
+// Mesure & Mesure::operator = ( const Mesure & uneMesure )
 // Algorithme :
 //
 // {
@@ -39,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+Mesure::Mesure ( const Mesure & uneMesure )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Messages>" << endl;
+    cout << "Appel au constructeur de copie de <Mesure>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de Mesure (constructeur de copie)
 
 
-Messages::Messages ( )
+Mesure::Mesure ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
+    cout << "Appel au constructeur de <Mesure>" << endl;
 #endif
-} //----- Fin de Messages
+} //----- Fin de Mesure
 
 
-Messages::~Messages ( )
+Mesure::~Mesure ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Messages>" << endl;
+    cout << "Appel au destructeur de <Mesure>" << endl;
 #endif
-} //----- Fin de ~Messages
+} //----- Fin de ~Mesure
 
 
 //------------------------------------------------------------------ PRIVE

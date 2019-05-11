@@ -1,37 +1,36 @@
 /*************************************************************************
- Messages  -  description
+ Service  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Messages> (fichier Messages.cpp) ------------
+//---------- Réalisation de la classe <Service> (fichier Service.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <list>
-#include <map>
 
 //------------------------------------------------------ Include personnel
-#include "Messages.h"
+#include "Service.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
+// type Service::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
+// Service & Service::operator = ( const Service & unXxx )
 // Algorithme :
 //
 // {
@@ -39,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+Service::Service ( const Service & unXxx )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Messages>" << endl;
+    cout << "Appel au constructeur de copie de <Service>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de Service (constructeur de copie)
 
 
-Messages::Messages ( )
+Service::Service ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
+    cout << "Appel au constructeur de <Service>" << endl;
 #endif
-} //----- Fin de Messages
+} //----- Fin de Service
 
 
-Messages::~Messages ( )
+Service::~Service ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Messages>" << endl;
+    cout << "Appel au destructeur de <Service>" << endl;
 #endif
-} //----- Fin de ~Messages
+} //----- Fin de ~Service
 
 
 //------------------------------------------------------------------ PRIVE

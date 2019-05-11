@@ -36,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Capteur & operator = ( const Capteur & unCapteur );
+    // Capteur & operator = ( const Capteur & unCapteur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,16 +44,13 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
+    // Capteur ( const Capteur & unCapteur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description): idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
-    {
-        
-    }
+    Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description);
     // Mode d'emploi :
     //
     // Contrat :

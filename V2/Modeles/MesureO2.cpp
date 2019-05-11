@@ -1,37 +1,36 @@
 /*************************************************************************
- Messages  -  description
+ MesureO2  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Messages> (fichier Messages.cpp) ------------
+//---------- Réalisation de la classe <MesureO2> (fichier MesureO2.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
-#include <list>
-#include <map>
 
 //------------------------------------------------------ Include personnel
-#include "Messages.h"
+#include "MesureO2.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
+// type MesureO2::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
+// MesureO2 & MesureO2::operator = ( const MesureO2 & uneMesureO2 )
 // Algorithme :
 //
 // {
@@ -39,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+MesureO2::MesureO2 ( const MesureO2 & uneMesureO2 )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Messages>" << endl;
+    cout << "Appel au constructeur de copie de <MesureO2>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de MesureO2 (constructeur de copie)
 
 
-Messages::Messages ( )
+MesureO2::MesureO2 ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
+    cout << "Appel au constructeur de <MesureO2>" << endl;
 #endif
-} //----- Fin de Messages
+} //----- Fin de MesureO2
 
 
-Messages::~Messages ( )
+MesureO2::~MesureO2 ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Messages>" << endl;
+    cout << "Appel au destructeur de <MesureO2>" << endl;
 #endif
-} //----- Fin de ~Messages
+} //----- Fin de ~MesureO2
 
 
 //------------------------------------------------------------------ PRIVE

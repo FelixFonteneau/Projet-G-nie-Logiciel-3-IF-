@@ -10,6 +10,8 @@
 #if ! defined ( Moment_H )
 #define Moment_H
 
+
+
 typedef struct Moment{
   int jour;
   int mois;
@@ -30,22 +32,6 @@ typedef struct Moment{
   }
 } Moment;
 
-Moment creerMoment(string s){
-  
-  Moment moment;
-
-  //On récupère le début de la ligne qui correspond à la date
-  string date = s.substr(0, 22); 
-  
-  //On récupère les différents attributs
-  moment.annee = stoi(date.substr(0,4));
-  moment.mois = stoi(date.substr(5,2));
-  moment.jour = stoi(date.substr(8,2));
-  moment.heure = stoi(date.substr(11,2));
-  moment.minute = stoi(date.substr(14,2));
-  moment.seconde = stoi(date.substr(17,2));
-
-  return moment;	
-}
+Moment creerMoment(string s);
 
 #endif // Moment_H
