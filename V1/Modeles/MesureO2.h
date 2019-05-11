@@ -1,29 +1,30 @@
 /*************************************************************************
-                           Xxx  -  description
+                           MesureO2  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( MESURE_H )
-#define MESURE_H
-
+//---------- Interface de la classe <MesureO2> (fichier MesureO2.h) ----------------
+#if ! defined ( MESUREO2_H )
+#define MESUREO2_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Moment.h";
+#include "Mesure.h"
+#include "Moment.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Mesure>
+// Rôle de la classe <MesureO2>
 //
 //
 //------------------------------------------------------------------------
 
-class Mesure
+class MesureO2 : public Mesure
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,11 +36,9 @@ public:
     // Contrat :
     //
 
-    void afficher ();
-
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Mesure & operator = ( const Mesure & uneMesure );
+    MesureO2 & operator = ( const MesureO2 & unMesureO2 );
     // Mode d'emploi :
     //
     // Contrat :
@@ -47,16 +46,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
+    MesureO2 ( const MesureO2 & unMesureO2 );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
-
-
-    Mesure ( );
+    MesureO2 ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Mesure ( );
+    virtual ~MesureO2 ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -66,12 +68,11 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-  Mesure (double uneValue, Moment date);
+  
 //----------------------------------------------------- Attributs protégés
-  double value;
-  Moment date;
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <MesureO2>
 
-#endif // MESURE_H
+#endif // MESUREO2_H
