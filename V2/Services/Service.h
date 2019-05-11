@@ -1,28 +1,28 @@
 /*************************************************************************
-                           Capteur  -  description
+                           Service  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Capteur> (fichier Capteur.h) ----------------
-#if ! defined ( CAPTEUR_H )
-#define CAPTEUR_H
+//---------- Interface de la classe <Service> (fichier Service.h) ----------------
+#if ! defined ( SERVICE_H )
+#define SERVICE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Mesure.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <map>
+
 //------------------------------------------------------------------------
-// Rôle de la classe <Capteur>
+// Rôle de la classe <Service>
 //
 //
 //------------------------------------------------------------------------
 
-class Capteur
+class Service 
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Capteur & operator = ( const Capteur & unCapteur );
+    Service & operator = ( const Service & unService );
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,22 +44,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
+    Service ( const Service & unService );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description): idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
-    {
-        
-    }
+    Service ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Capteur ( );
+    virtual ~Service ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,14 +68,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	multimap< Moment, Mesure >* mesures;
-	const unsigned int idCapteur;
-	double latitude;
-	double longitude;
-	string description;
+    
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <Capteur>
+//-------------------------------- Autres définitions dépendantes de <Service>
 
-#endif // CAPTEUR_H
-
+#endif // SERVICE_H

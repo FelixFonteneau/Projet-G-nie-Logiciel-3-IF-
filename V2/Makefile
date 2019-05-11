@@ -1,12 +1,12 @@
 ECHO=@echo
 COMP=g++
 CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11
-INT= Mesure.h 
+INT= Util/Algo.h Util/Factory.h Util/Messages.h
 REAL=$(INT:.h=.cpp)
-BINAIRE=$(INT:.h=.o)
+BINAIRE= Algo.o Factory.o 
 EXE=qualiteAir
 
-$(EXE): $(BINAIRE) main.o
+$(EXE): $(BINAIRE) Vue/main.o
 	$(ECHO) "Editions des liens, création de <$<>"
 	$(COMP) -o $(EXE) $(BINAIRE) main.o
 

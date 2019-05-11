@@ -12,7 +12,7 @@
 
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Moment.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -35,7 +35,7 @@ public:
     // Contrat :
     //
 
-    void afficher ();
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -43,7 +43,7 @@ public:
     // Mode d'emploi :
     //
     // Contrat :
-    //
+    ///Users/Aymeric/Desktop/Projet-Genie-Logiciel-3IF/V1/Modeles/Mesure.h
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -52,7 +52,7 @@ public:
     //
     // Contrat :
     //
-    Mesure (double uneValue, string uneDescription, string uneUnit);
+    Mesure (double uneValue, Moment uneDate);
 
     Mesure ( );
     // Mode d'emploi :
@@ -72,12 +72,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-double value;
-string description;
-string unit;
+  double value;
+  Moment date;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>
 
 #endif // MESURE_H
-

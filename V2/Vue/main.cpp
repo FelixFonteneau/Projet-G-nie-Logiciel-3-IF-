@@ -3,7 +3,21 @@
 
 using namespace std;
 
-#include "Mesure.h"
+#include "../Modeles/Mesure.h"
+#include "../Modeles/MesureNO2.h"
+#include "../Modeles/MesureO2.h"
+#include "../Modeles/MesureSO2.h"
+#include "../Modeles/MesurePM10.h"
+#include "../Modeles/Moment.h"
+#include "../Modeles/Capteur.h"
+#include "../Services/Service.h"
+#include "../Util/Algo.h"
+#include "../Util/Factory.h"
+#include "../Util/Messages.h"
+
+
+
+
 void afficherMenu()
 {
     cout << "Choisir" << endl;
@@ -16,7 +30,6 @@ void afficherMenu()
 int main()
 {
     afficherMenu();
-    Mesure uneMesure = Mesure(2,"voici la des","microgr par mcube");
-    uneMesure.afficher();
+
    return 0;
 }
