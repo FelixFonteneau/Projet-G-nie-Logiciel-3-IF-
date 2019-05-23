@@ -28,6 +28,14 @@ typedef struct Moment{
       minute(stoi(s.substr(0, 22).substr(14,2))),
       seconde(stoi(s.substr(0, 22).substr(17,2))) {}
 
+  Moment(int j, int m, int a, int h, int min, int sec) :
+      jour(j),
+      mois(m),
+      annee(a),
+      heure(h),
+      minute(min),
+      seconde(sec) {}
+
   bool operator > (const Moment m) {
       bool ans =  (annee>m.annee)
                 ||(annee==m.annee && mois>m.mois)
