@@ -13,7 +13,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "../Modeles/Moment.h"
 #include "../Modeles/Capteur.h"
-#include "../Modeles/Mesure.h"
+//#include "../Modeles/Mesure.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -44,7 +44,7 @@ public:
     Moment recupererMoment();
     void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
-    void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
+    //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
     
     
     
