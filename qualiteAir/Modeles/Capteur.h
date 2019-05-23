@@ -15,7 +15,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <map>
+#include <set>
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
 //
@@ -68,7 +68,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	multimap< Moment, Mesure >* mesures;
+        set< Moment, Mesure >* mesures;
 	const unsigned int idCapteur;
 	double latitude;
 	double longitude;
