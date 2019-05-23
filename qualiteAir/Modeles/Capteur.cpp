@@ -48,17 +48,17 @@ using namespace std;
 // } //----- Fin de Capteur (constructeur de copie)
 
 
-Capteur::Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description ) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
+Capteur::Capteur(const unsigned int idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
+    cout << "Appel au constructeur de <Capteur>" << endl;
 #endif
 } //----- Fin de Xxx
 
 
-Capteur::~Capteur ( )
+Capteur::~Capteur()
 // Algorithme :
 //
 {

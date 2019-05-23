@@ -12,6 +12,11 @@
 
 //--------------------------------------------------- Interfaces utilisées
 
+#include "../Util/Algo.h"
+#include "../Util/Messages.h"
+#include "../Util/Factory.h"
+#include "../Modeles/Capteur.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -28,15 +33,20 @@ class Service
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    int calculMoyenneLocalise();
     // Mode d'emploi :
     //
     // Contrat :
     //
-
-
+	
+    int qualiteAir();
+	
+    list<Capteur> capteursSimilaires();
+	
+    list<Capteur> capteursDefectueux();
+	
 //------------------------------------------------- Surcharge d'opérateurs
-    Service & operator = ( const Service & unService );
+    Service & operator = (const Service & unService);
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,19 +54,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service ( const Service & unService );
+    Service(const Service & unService);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Service ( );
+    Service();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Service ( );
+    virtual ~Service();
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,7 +78,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    
+	list<Capteur> capteurs;
+	Algo algo;
+	Messages messages;
+	Factory factory;
 
 };
 

@@ -12,6 +12,10 @@
 
 //--------------------------------------------------- Interfaces utilisées
 
+#include "../Modeles/Capteur.h"
+#include "../Modeles/Moment.h"
+#include "../Modeles/Mesure.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -28,12 +32,23 @@ class Algo
     
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    Mesure* moyenne(Moment intervaleTemps[2], double radius, double coordonees[2], list<Capteur> capteurs);
     // Mode d'emploi :
     //
     // Contrat :
     //
     
+    double qualiteAir(list<Capteur> capteurs, double coordonees[2]);
+
+    list<Capteur> capteurTerritoire(double radius, double coordonees[2]);
+
+    list<Capteur> capteurDefaillants(list<Capteur> capteurs);
+
+    bool similitude(Capteur c1, Capteur c2);
+
+    double ecartTypeRelatif(list<Mesure> mesures);
+
+    list<Capteur> capteursProches(double latitude, double  longitude, list<Capteur> capteurs);
     
     //------------------------------------------------- Surcharge d'opérateurs
     // Algo & operator = ( const Algo & unAlgo );
@@ -44,19 +59,19 @@ public:
     
     
     //-------------------------------------------- Constructeurs - destructeur
-    Algo ( const Algo & unAlgo );
+    Algo(const Algo & unAlgo);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
     
-    Algo ( );
+    Algo();
     // Mode d'emploi :
     //
     // Contrat :
     //
     
-    virtual ~Algo ( );
+    virtual ~Algo();
     // Mode d'emploi :
     //
     // Contrat :

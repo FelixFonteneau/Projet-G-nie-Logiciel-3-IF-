@@ -22,12 +22,34 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Service::Méthode ( liste des paramètres )
+int calculMoyenneLocalise() {}
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
+int qualiteAir() {}
+
+void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
+    //...
+    for(Capteur c1 : capteurs) {
+        for(Capteur c2 : capteurs) {
+            if(similitude(c1, c2)) {
+                //...
+            }
+        }
+    }
+}
+
+list<Capteur> capteursDefectueux() {
+    list<Capteur> capteursDefectueux;
+    for(Capteur c1 : capteurs) {
+        if(capteursDefaillants(c)) {
+                capteursDefectueux.add(c);
+        }
+    }
+    return capteursDefectueux;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )
@@ -38,7 +60,7 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service ( const Service & unXxx )
+Service::Service(const Service & unService)
 // Algorithme :
 //
 {
@@ -48,7 +70,7 @@ Service::Service ( const Service & unXxx )
 } //----- Fin de Service (constructeur de copie)
 
 
-Service::Service ( )
+Service::Service()
 // Algorithme :
 //
 {
@@ -58,7 +80,7 @@ Service::Service ( )
 } //----- Fin de Service
 
 
-Service::~Service ( )
+Service::~Service()
 // Algorithme :
 //
 {
