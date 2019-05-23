@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Mesure.h"
+#include "Moment.h"
 
 //------------------------------------------------------------- Constantes
 
