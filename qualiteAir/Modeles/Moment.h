@@ -20,18 +20,37 @@ typedef struct Moment{
   int minute;
   int seconde;
 
-  inline bool operator > (Moment m) {
-    bool ans =  (annee<m.annee)
-              ||(annee==m.annee && mois<m.mois)
-	      ||(annee==m.annee && mois==m.mois && jour<m.jour)
-	      ||(annee==m.annee && mois==m.mois && jour==m.jour && heure<m.heure)
-	      ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute<m.minute)
-	      ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute==m.minute && seconde<m.seconde);
-	
-    return ans;
-  }
-} Moment;
+  Moment(string s) :
+      jour(stoi(s.substr(0, 22).substr(8,2))),
+      mois(stoi(s.substr(0, 22).substr(5,2))),
+      annee(stoi(s.substr(0, 22).substr(0,4))),
+      heure(stoi(s.substr(0, 22).substr(11,2))),
+      minute(stoi(s.substr(0, 22).substr(14,2))),
+      seconde(stoi(s.substr(0, 22).substr(17,2))) {}
 
-Moment creerMoment(string s);
+  bool operator > (const Moment m) {
+      bool ans =  (annee>m.annee)
+                ||(annee==m.annee && mois>m.mois)
+                ||(annee==m.annee && mois==m.mois && jour>m.jour)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure>m.heure)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute>m.minute)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute==m.minute && seconde>m.seconde);
+
+      return ans;
+  }
+
+  bool operator < (const Moment m) {
+      bool ans =  (annee<m.annee)
+                ||(annee==m.annee && mois<m.mois)
+                ||(annee==m.annee && mois==m.mois && jour<m.jour)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure<m.heure)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute<m.minute)
+                ||(annee==m.annee && mois==m.mois && jour==m.jour && heure==m.heure && minute==m.minute && seconde<m.seconde);
+
+      return ans;
+  }
+
+}Moment;
+
 
 #endif // Moment_H
