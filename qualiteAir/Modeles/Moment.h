@@ -58,7 +58,31 @@ typedef struct Moment{
       return ans;
   }
 
+  bool operator == (const Moment m) {
+      return (!(*this<m) && !(*this>m));
+  }
+
+
+
 }Moment;
+
+std::ostream& operator<<(std::ostream &strm, const Moment &m) {
+
+    string annee = std::to_string(m.annee);
+    string mois = std::to_string(m.mois);
+    if(mois.length()==1){mois = "0" + mois;}
+    string jour = std::to_string(m.jour);
+    if(jour.length()==1){jour = "0" + jour;}
+    string heure = std::to_string(m.heure);
+    if(heure.length()==1){heure = "0" + heure;}
+    string minute = std::to_string(m.minute);
+    if(minute.length()==1){minute = "0" + minute;}
+    string seconde = std::to_string(m.seconde);
+    if(seconde.length()==1){seconde = "0" + seconde;}
+
+    return strm << jour << "/" << mois << "/" << annee << " " << heure << ":" << minute << ":" << seconde;
+
+}
 
 
 #endif // Moment_H
