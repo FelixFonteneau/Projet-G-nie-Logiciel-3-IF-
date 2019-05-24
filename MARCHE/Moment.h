@@ -45,7 +45,8 @@ public:
 
     bool operator < (const Moment &m);
 
-    bool operator == (const Moment &m) {
+    bool operator == (const Moment &m)
+    {
         return (!(*this<m) && !(*this>m));
     }
 

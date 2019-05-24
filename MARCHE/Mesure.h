@@ -50,6 +50,30 @@ public:
     //
     // Contrat :
 
+    
+    bool operator > (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+      return date >  m.date;
+    }
+
+    bool operator < (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+      return date < m.date;
+    }
+
+    bool operator == (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+        return date == m.date;
+    }
+
+
+
     //Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
     //

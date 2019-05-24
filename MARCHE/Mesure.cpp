@@ -41,17 +41,6 @@ ostream& operator <<(ostream& out, const Mesure& uneMesure)
     return out; // N'oubliez pas de renvoyer le flux, afin de pouvoir chaîner les appels
 }
 
-/*
-Mesure & Mesure::operator = ( const Mesure & unMesure )
-// Algorithme :
-//
-{
-  this->value = unMesure.value;
-  this->description = unMesure.description;
-  this->unite = unMesure.unite ;
-  this->date = unMesure.date;
-  return unMesure;
-} //----- Fin de operator = */
 
 
 //-------------------------------------------- Constructeurs - destructeur
