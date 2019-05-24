@@ -1,13 +1,13 @@
 ECHO=@echo
 COMP=g++
-CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11
+CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11 -D MAP
 INT= Factory.h Messages.h Algo.h
 REAL=$(INT:.h=.cpp)
 BINAIRE=$(INT:.h=.o)
 
 all: $(BINAIRE)
 
-%.o: %.cpp 
+%.o: %.cpp
 	$(ECHO) "Compilation du fichier <$<>"
 	$(COMP) -c  $(CPPFLAGS) $<
 

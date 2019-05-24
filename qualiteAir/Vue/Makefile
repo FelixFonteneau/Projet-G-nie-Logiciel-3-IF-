@@ -1,7 +1,7 @@
 ECHO=@echo
 COMP=g++
-CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11
-INT= 
+CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11 -D MAP
+INT=
 REAL=$(INT:.h=.cpp)
 BINAIRE=$(INT:.h=.o)
 

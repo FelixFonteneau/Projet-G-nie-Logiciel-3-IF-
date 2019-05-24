@@ -13,6 +13,8 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Moment.h"
+#include <string>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -35,30 +37,36 @@ public:
     // Contrat :
     //
 
+    double Valeur () const;
+    // Mode d'emploi :
+    //
+    // Contrat :
 
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    // Mesure & operator = ( const Mesure & uneMesure );
+    friend ostream& operator <<(ostream& out, const Mesure& mesure);
     // Mode d'emploi :
     //
     // Contrat :
-    ///Users/Aymeric/Desktop/Projet-Genie-Logiciel-3IF/V1/Modeles/Mesure.h
+
+    //Mesure & operator = ( const Mesure & uneMesure );
+    // Mode d'emploi :
+    //
+    // Contrat :
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Mesure ( const Mesure & uneMesure );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-    Mesure (double uneValue, Moment uneDate);
+  Mesure ( const Mesure & unMesure );
+  // Mode d'emploi (constructeur de copie) :
+  //
+  // Contrat :
+  //
 
-    Mesure ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
+    Mesure (double uneValue, Moment uneDate, string uneDescription,
+            string uneUnite);
+
 
     virtual ~Mesure ( );
     // Mode d'emploi :
@@ -72,6 +80,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+  string description;
+  string unite;
+  string type;
   double value;
   Moment date;
 };

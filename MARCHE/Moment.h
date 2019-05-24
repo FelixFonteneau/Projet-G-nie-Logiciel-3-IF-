@@ -1,31 +1,30 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Moment  -  Décrit un moment
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 10 mai 2019
+    copyright            : (C) Mathis GUILHIN
+    e-mail               : mathis.guilhin@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( MESURE_H )
-#define MESURE_H
 
+
+//---------- Interface de la classe <Moment> (fichier Moment.h) ----------------
+#if ! defined ( MOMENT_H )
+#define MOMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Moment.h"
-#include <string>
-using namespace std;
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Mesure>
+// Rôle de la classe <Moment>
 //
 //
 //------------------------------------------------------------------------
 
-class Mesure
+class Moment
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -37,38 +36,31 @@ public:
     // Contrat :
     //
 
-    //double Valeur () const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    //friend ostream& operator <<(ostream& out, const Mesure& mesure);
-    // Mode d'emploi :
-    //
-    // Contrat :
+    friend ostream& operator<<(ostream &strm, const Moment &m);
 
-    //Mesure & operator = ( const Mesure & uneMesure );
-    // Mode d'emploi :
-    //
-    // Contrat :
+    bool operator > (const Moment &m);
 
+    bool operator < (const Moment &m);
+
+    bool operator == (const Moment &m) {
+        return (!(*this<m) && !(*this>m));
+    }
 
 //-------------------------------------------- Constructeurs - destructeur
-  Mesure ( const Mesure & unMesure );
-  // Mode d'emploi (constructeur de copie) :
-  //
-  // Contrat :
-  //
+    Moment ( const Moment & unMoment );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
+    Moment(int j, int m, int a, int h, int min, int sec);
 
-    Mesure (double uneValue, Moment uneDate, string uneDescription,
-            string uneUnite);
+    Moment(string s);
 
-
-    virtual ~Mesure ( );
+    virtual ~Moment ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,12 +72,14 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  string description;
-  string unite;
-  double value;
-  Moment date;
+  unsigned int jour;
+  unsigned int mois;
+  unsigned int annee;
+  unsigned int heure;
+  unsigned int minute;
+  unsigned int seconde;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <Moment>
 
-#endif // MESURE_H
+#endif // MOMENT_H

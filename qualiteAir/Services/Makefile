@@ -1,6 +1,6 @@
 ECHO=@echo
 COMP=g++
-CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11
+CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11 -D MAP
 INT= Service.h
 REAL=$(INT:.h=.cpp)
 BINAIRE=$(INT:.h=.o)

@@ -12,6 +12,8 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
+#include <string>
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -25,53 +27,49 @@
 class MesureNO2 : public Mesure
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    virtual double Valeur () const;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
+
     //------------------------------------------------- Surcharge d'opérateurs
     // MesureNO2 & operator = ( const MesureNO2 & uneMesureNO2 );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
+
     //-------------------------------------------- Constructeurs - destructeur
-    MesureNO2 ( const MesureNO2 & uneMesureNO2 );
+    MesureNO2 (double uneValue, Moment uneDate, string description,
+                string unite );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
-    MesureNO2 ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-    
+
+
     virtual ~MesureNO2 ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+
+
     //----------------------------------------------------- Attributs protégés
-    
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <MesureNO2>
 
 #endif // MESURENO2_H
-

@@ -25,7 +25,7 @@
 class MesureO2 : public Mesure
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -33,45 +33,52 @@ public:
     //
     // Contrat :
     //
-    
-    
-    //------------------------------------------------- Surcharge d'opérateurs
-    // MesureO2 & operator = ( const MesureO2 & uneMesureO2 );
+
+    double Valeur () const;
     // Mode d'emploi :
     //
     // Contrat :
+
+
+    //------------------------------------------------- Surcharge d'opérateurs
+    friend ostream& operator <<(ostream& out, const Mesure& mesure);
     //
-    
-    
+    // Contrat :
+    //
+
+
     //-------------------------------------------- Constructeurs - destructeur
     MesureO2 ( const MesureO2 & uneMesureO2 );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
-    MesureO2 ( );
+
+    MesureO2 ( double uneValue, Moment uneDate, string uneDescription,
+            string uneUnite):
+            Mesure(double uneValue, Moment uneDate, string uneDescription,
+                    string uneUnite)
+            {}
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~MesureO2 ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+
     //----------------------------------------------------- Attributs protégés
-    
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <MesureO2>
 
 #endif // MESUREO2_H
-

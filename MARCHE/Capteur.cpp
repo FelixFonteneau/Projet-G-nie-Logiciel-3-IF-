@@ -1,12 +1,12 @@
 /*************************************************************************
- MesureO2  -  description
+ Capteur  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <MesureO2> (fichier MesureO2.cpp) ------------
+//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "MesureO2.h"
+#include "Capteur.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type MesureO2::Méthode ( liste des paramètres )
+// type Xxx::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-// MesureO2 & MesureO2::operator = ( const MesureO2 & uneMesureO2 )
+// Capteur & Capteur::operator = ( const Capteur & unCapteur )
 // Algorithme :
 //
 // {
@@ -38,34 +38,34 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-MesureO2::MesureO2 ( const MesureO2 & uneMesureO2 )
+// Capteur::Capteur ( const Capteur & unCapteur )
+// Algorithme :
+//
+// {
+// #ifdef MAP
+//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+// #endif
+// } //----- Fin de Capteur (constructeur de copie)
+
+
+Capteur::Capteur(const unsigned int idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <MesureO2>" << endl;
+    cout << "Appel au constructeur de <Capteur>" << endl;
 #endif
-} //----- Fin de MesureO2 (constructeur de copie)
+} //----- Fin de Xxx
 
 
-MesureO2::MesureO2 ( )
+Capteur::~Capteur()
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <MesureO2>" << endl;
+    cout << "Appel au destructeur de <Capteur>" << endl;
 #endif
-} //----- Fin de MesureO2
-
-
-MesureO2::~MesureO2 ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <MesureO2>" << endl;
-#endif
-} //----- Fin de ~MesureO2
+} //----- Fin de ~Capteur
 
 
 //------------------------------------------------------------------ PRIVE
