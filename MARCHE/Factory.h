@@ -11,11 +11,13 @@
 #define FACTORY_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Capteur.h"
+#include "Mesure.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-
+#include <list>
+#include <map>
 //------------------------------------------------------------------------
 // Rôle de la classe <Factory>
 //
@@ -33,7 +35,7 @@ public:
     //
     // Contrat :
     //
-    
+    void recupererInfos(list<Capteur> capteurs);
     
     //------------------------------------------------- Surcharge d'opérateurs
     Factory & operator = ( const Factory & uneFactory );
@@ -66,9 +68,12 @@ public:
     
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+    void analyserCapteurs();
+    void analyserMesures();
+    void analyserTypeMesures();
     //----------------------------------------------------- Attributs protégés
-    
+    list<Capteur> capteurs;
+    map<unsigned int, Mesure> mesuresDefaillantes;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Factory>

@@ -31,7 +31,9 @@ void testFactory()
 void testMessages()
 {
     Messages unMessage;
+    unMessage.affiche();
     unMessage.messageMenu();
+    unMessage.affiche();
 }
 
 
@@ -47,10 +49,13 @@ void testMoment()
     bool a = m1>m3 ;
     bool b = m1<m3 ;
     bool c = m1==m3;
+    
+    m1 = m3;
 
     cout << "m1 > m3 ? : " << a << endl;
     cout << "m1 < m3 ? : " << b << endl;
     cout << "m1 = m3 ? : " << c << endl;
+    cout << m1 << endl;
 }
 
 void testMesure()
@@ -98,6 +103,8 @@ int main()
     testMesure(); */
     
     testMessages();
+    
+    // testMoment();
     
     return 0;
 }

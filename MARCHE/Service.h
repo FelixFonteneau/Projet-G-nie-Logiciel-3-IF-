@@ -1,42 +1,52 @@
 /*************************************************************************
-                           Capteur  -  description
+                           Service  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Capteur> (fichier Capteur.h) ----------------
-#if ! defined ( CAPTEUR_H )
-#define CAPTEUR_H
+//---------- Interface de la classe <Service> (fichier Service.h) ----------------
+#if ! defined ( SERVICE_H )
+#define SERVICE_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Mesure.h"
+
+#include "Algo.h"
+#include "Messages.h"
+#include "Factory.h"
+#include "Capteur.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <set>
+
 //------------------------------------------------------------------------
-// Rôle de la classe <Capteur>
+// Rôle de la classe <Service>
 //
 //
 //------------------------------------------------------------------------
 
-class Capteur
+class Service 
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    int calculMoyenneLocalise();
     // Mode d'emploi :
     //
     // Contrat :
     //
-
-
+	
+    int qualiteAir();
+	
+    list<Capteur> capteursSimilaires();
+	
+    list<Capteur> capteursDefectueux(); 
+	
 //------------------------------------------------- Surcharge d'opérateurs
-    // Capteur & operator = ( const Capteur & unCapteur );
+    // Service & operator = (const Service & unService);
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,13 +54,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur (const string idCapt, const double lat, const double lon, const string description);
+    Service(const Service & unService);
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Service();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Capteur ( );
+    virtual ~Service();
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,13 +78,13 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    set<Mesure>* mesures;
-	const string idCapteur;
-	double latitude;
-	double longitude;
-	string description;
+	list<Capteur> capteurs;
+	Algo algo;
+	Messages messages;
+	Factory factory;
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <Capteur>
+//-------------------------------- Autres définitions dépendantes de <Service>
 
-#endif // CAPTEUR_H
+#endif // SERVICE_H

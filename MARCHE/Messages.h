@@ -45,6 +45,12 @@ public:
     void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
     //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
+    void setCoords();
+    void setRayon();
+    void setCapteur();
+    void setIntervalleTemps();
+    void setDate();
+    void affiche();
     
     
     
@@ -57,7 +63,7 @@ public:
     
     
     //-------------------------------------------- Constructeurs - destructeur
-    Messages ( const Messages & desMessages );
+    // Messages ( const Messages & desMessages );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -81,7 +87,12 @@ protected:
     //----------------------------------------------------- Méthodes protégées
     
     //----------------------------------------------------- Attributs protégés
-    
+    double coords[2];
+    double rayon;
+    Capteur capteur;
+    Moment* intervalleTemps[2];
+    Moment date;
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <Messages>

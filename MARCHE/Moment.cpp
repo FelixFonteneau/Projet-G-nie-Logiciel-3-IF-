@@ -70,28 +70,39 @@ bool Moment::operator > (const Moment &m) {
 
     return ans;
 }
+
+Moment& Moment::operator = (const Moment& m)
+{
+    jour = m.getJour();
+    mois = m.getMois();
+    annee = m.getAnnee();
+    heure = m.getHeure();
+    minute = m.getMinute();
+    seconde = m.getSeconde();
+    return *this;
+}
 //-------------------------------------------- Constructeurs - destructeur
 Moment::Moment ( const Moment & unMoment )
 // Algorithme :
 //
 {
-  jour = unMoment.jour;
-  mois = unMoment.mois;
-  annee = unMoment.annee;
-  heure = unMoment.heure;
-  minute = unMoment.minute;
-  seconde = unMoment.seconde;
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Moment>" << endl;
-#endif
+      jour = unMoment.jour;
+      mois = unMoment.mois;
+      annee = unMoment.annee;
+      heure = unMoment.heure;
+      minute = unMoment.minute;
+      seconde = unMoment.seconde;
+    #ifdef MAP
+        cout << "Appel au constructeur de copie de <Moment>" << endl;
+    #endif
 } //----- Fin de Moment (constructeur de copie)
 
 Moment::Moment(int j, int m, int a, int h, int min, int sec) :
     jour(j), mois(m), annee(a), heure(h), minute(min), seconde(sec)
 {
-  #ifdef MAP
+    #ifdef MAP
       cout << "Appel au constructeur de <Moment>" << endl;
-  #endif
+    #endif
 }
 
 Moment::Moment(string s) :

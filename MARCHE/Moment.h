@@ -36,12 +36,38 @@ public:
     // Contrat :
     //
 
+    unsigned int getJour() const
+    {
+        return jour;
+    }
+    unsigned int getMois() const
+    {
+        return mois;
+    }
+    unsigned int getAnnee() const
+    {
+        return annee;
+    }
+    unsigned int getHeure() const
+    {
+        return heure;
+    }
+    unsigned int getMinute() const
+    {
+        return minute;
+    }
+    unsigned int getSeconde() const
+    {
+        return seconde;
+    }
 
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator<<(ostream &strm, const Moment &m);
 
     bool operator > (const Moment &m);
+    
+    Moment& operator = (const Moment &m);
 
     bool operator < (const Moment &m);
 

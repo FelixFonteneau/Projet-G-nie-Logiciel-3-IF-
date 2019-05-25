@@ -1,12 +1,12 @@
 /*************************************************************************
- Capteur  -  description
+ Service  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Service> (fichier Service.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,26 +15,44 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Capteur.h"
+#include "Service.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+/* int calculMoyenneLocalise() {}
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
-void AjouterMesure(Mesure & mesure)
-{
+int qualiteAir() {}
 
+void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
+    //...
+    for(Capteur c1 : capteurs) {
+        for(Capteur c2 : capteurs) {
+            if(similitude(c1, c2)) {
+                //...
+            }
+        }
+    }
 }
 
+ list<Capteur> capteursDefectueux() {
+    list<Capteur> capteursDefectueux;
+    for(Capteur c1 : capteurs) {
+        if(capteursDefaillants(c)) {
+                capteursDefectueux.add(c);
+        }
+    }
+    return capteursDefectueux;
+} */
+
 //------------------------------------------------- Surcharge d'opérateurs
-// Capteur & Capteur::operator = ( const Capteur & unCapteur )
+// Service & Service::operator = ( const Service & unXxx )
 // Algorithme :
 //
 // {
@@ -42,38 +60,37 @@ void AjouterMesure(Mesure & mesure)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Capteur::Capteur ( const Capteur & unCapteur )
-// Algorithme :
-//
-// {
-// #ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-// #endif
-// } //----- Fin de Capteur (constructeur de copie)
-
-
-Capteur::Capteur(const string idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
+Service::Service(const Service & unService)
 // Algorithme :
 //
 {
-    #ifdef MAP
-        cout << "Appel au constructeur de <Capteur>" << endl;
-    #endif
-    mesures = new set<Mesure>[4];
-} //----- Fin de Xxx
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Service>" << endl;
+#endif
+} //----- Fin de Service (constructeur de copie)
 
 
-Capteur::~Capteur()
+Service::Service()
 // Algorithme :
 //
 {
-    #ifdef MAP
-        cout << "Appel au destructeur de <Capteur>" << endl;
-    #endif
-    delete[] mesures;
-} //----- Fin de ~Capteur
+#ifdef MAP
+    cout << "Appel au constructeur de <Service>" << endl;
+#endif
+} //----- Fin de Service
+
+
+Service::~Service()
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Service>" << endl;
+#endif
+} //----- Fin de ~Service
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+

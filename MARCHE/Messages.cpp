@@ -16,6 +16,7 @@ using namespace std;
 #include <list>
 #include <map>
 #include <ctime>
+#include <unistd.h>
 
 //------------------------------------------------------ Include personnel
 #include "Messages.h"
@@ -41,46 +42,38 @@ void Messages::messageMenu()
     cout << "6 - Quitter" << endl;
     int num;
     cin >> num;
-    double* coords = nullptr;
-    // double rayon;
-    
+   
     switch (num)
     {
+        
         case 1:
         {
-            coords = recupererLocalisation();
-            // rayon = recupererRadius();
-            // Moment date = recupererMoment();
+            recupererLocalisation();
+            recupererRadius();
+            recupererMoment();
             break;
         }
         case 2:
         {
-            // coords = recupererLocalisation();
-            // rayon = recupererRadius();
-            // Moment* intervalleTemps = recupererIntervalleTemps();
+            recupererLocalisation();
+            recupererRadius();
+            recupererIntervalleTemps();
             break;
         }
+        
         case 3:
         {
-            cout << "Latitude centrale du lieu souhaité" << endl;
-            cout << "Longitude centrale du lieu souhaité" << endl;
-            cout << "Rayon (en km)" << endl;
-            cout << "Date de début" << endl;
-            cout << "Date de fin" << endl;
+            recupererLocalisation();
+            recupererRadius();
+            recupererIntervalleTemps();
             break;
         }
         case 4:
         {
-            cout << "Latitude" << endl;
-            cout << "Longitude" << endl;
-            
+            recupererLocalisation();
             break;
         }
         case 5:
-        {
-            break;
-        }
-        case 6:
         {
             break;
         }
@@ -101,28 +94,49 @@ double* Messages::recupererLocalisation()
     cin >> longitude;
     double* coord = &latitude;
     coord[1] = longitude;
+    
+    // On fixe les attributs
+    coords[0] = latitude;
+    coords[1] = longitude;
+    
     return coord;
 }
 
-double recupererRadius()
+void Messages::affiche() // Pour les tests élémentaires
+{
+    cout << coords[0] << endl;
+    cout << coords[1] << endl;
+    cout << rayon << endl;
+    cout << *intervalleTemps[0] << endl;
+    cout << *intervalleTemps[1] << endl;
+    cout << date << endl;
+}
+
+double Messages::recupererRadius()
 {
     double radius;
     cout << "Quel est le rayon (en km) ?" << endl;
     cin >> radius;
+    
+    // On fixe les attributs
+    rayon = radius;
+    
     return radius;
 }
 
 Moment* Messages::recupererIntervalleTemps()
 {
     // Au format JJ/MM/AAAA HH:MM
-    string dateDebut;
-    string dateFin;
+    string dateDebut = "01/01/2019 10:10";
+    string dateFin = "01/01/2019 10:10";
     cout << "Quelle est la date de début (Au format JJ/MM/AAAA HH:MM) ?" << endl;
     getline(cin, dateDebut);
     while (! (dateDebut[2] == '/' && dateDebut[5] == '/' && dateDebut[10] == ' ' && dateDebut[13] == ':' && dateDebut.length() == 16))
     {
-        cout << "Date au mauvais format (JJ/MM/AAAA HH:MM attendu). Quelle est la date de début ?" << endl;
         getline(cin, dateDebut);
+        if (! (dateDebut[2] == '/' && dateDebut[5] == '/' && dateDebut[10] == ' ' && dateDebut[13] == ':' && dateDebut.length() == 16))
+        cout << "Date au mauvais format (JJ/MM/AAAA HH:MM attendu). Quelle est la date de début ?" << endl;
+        
     }
     
 
@@ -130,11 +144,12 @@ Moment* Messages::recupererIntervalleTemps()
     getline(cin, dateFin);
     while (! (dateFin[2] == '/' && dateFin[5] == '/' && dateFin[10] == ' ' && dateFin[13] == ':' && dateFin.length() == 16) )
     {
-        cout << "Date au mauvais format (JJ/MM/AAAA HH:MM attendu). Quelle est la date de fin ?" << endl;
         getline(cin, dateFin);
+        if (! (dateFin[2] == '/' && dateFin[5] == '/' && dateFin[10] == ' ' && dateFin[13] == ':' && dateFin.length() == 16) )
+        cout << "Date au mauvais format (JJ/MM/AAAA HH:MM attendu). Quelle est la date de fin ?" << endl;
     }
     
-    Moment* intervalleTemps = nullptr;
+    Moment* intervalleTempsDemande = nullptr;
     int jourDebut = stoi(dateDebut.substr(0, 2));
     int moisDebut = stoi(dateDebut.substr(3, 2));
     int anneeDebut = stoi(dateDebut.substr(6, 4));
@@ -143,38 +158,51 @@ Moment* Messages::recupererIntervalleTemps()
     // 01/01/2019 10:10
     int jourFin = stoi(dateFin.substr(0, 2));
     int moisFin = stoi(dateFin.substr(3, 2));
-    int anneeFin = stoi(dateFin.substr(6, 2));
+    int anneeFin = stoi(dateFin.substr(6, 4));
     int heureFin = stoi(dateFin.substr(11, 2));
     int minuteFin = stoi(dateFin.substr(14, 2));
     Moment momentDebut(jourDebut, moisDebut, anneeDebut, heureDebut, minuteDebut, 0);
     Moment momentFin = Moment(jourFin, moisFin, anneeFin, heureFin, minuteFin, 0);
-    intervalleTemps = &momentDebut;
-    intervalleTemps[1] = momentFin;
-    return intervalleTemps;
+    
+    cout << momentFin;
+    intervalleTempsDemande = &momentDebut;
+    intervalleTempsDemande[1] = momentFin;
+
+    // On fixe les attributs
+    *intervalleTemps[0] = momentDebut;
+    *intervalleTemps[1] = momentFin;
+    return intervalleTempsDemande;
 }
 
 Moment Messages::recupererMoment()
 {
-    string date;
+    string dateDemande = "01/01/2019 10:10";
     
     cout << "Quelle est la date (Au format JJ/MM/AAAA HH:MM) ?" << endl;
-    getline(cin, date);
-    while (! (date[2] == '/' && date[5] == '/' && date[10] == ' ' && date[13] == ':' && date.length() == 16))
+    getline(cin, dateDemande);
+    while (! (dateDemande[2] == '/' && dateDemande[5] == '/' && dateDemande[10] == ' ' && dateDemande[13] == ':' && dateDemande.length() == 16))
     {
-        cout << "Date au mauvais format (JJ/MM/AAAA HH:MM attendu). Quelle est la date ?" << endl;
-        getline(cin, date);
+        getline(cin, dateDemande);
+        if (! (dateDemande[2] == '/' && dateDemande[5] == '/' && dateDemande[10] == ' ' && dateDemande[13] == ':' && dateDemande.length() == 16))
+            cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl;
+        
     }
 
-    int jour = stoi(date.substr(0, 2));
-    int mois = stoi(date.substr(3, 2));
-    int annee = stoi(date.substr(6, 4));
-    int heure = stoi(date.substr(11, 2));
-    int minute = stoi(date.substr(14, 2));
+    int jour = stoi(dateDemande.substr(0, 2));
+    int mois = stoi(dateDemande.substr(3, 2));
+    int annee = stoi(dateDemande.substr(6, 4));
+    int heure = stoi(dateDemande.substr(11, 2));
+    int minute = stoi(dateDemande.substr(14, 2));
 
-    Moment moment(jour, mois, annee, heure, minute, 0);
-
+    Moment moment = Moment(jour, mois, annee, heure, minute, 0);
+    
+    // On fixe les attributs
+    date = moment;
+    
     return moment;
 }
+
+
 
 
 
@@ -187,23 +215,29 @@ Moment Messages::recupererMoment()
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Messages::Messages ( const Messages & desMessages )
+/* Messages::Messages ( const Messages & desMessages )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Messages>" << endl;
 #endif
-} //----- Fin de Messages (constructeur de copie)
+} //----- Fin de Messages (constructeur de copie) */
 
 
-Messages::Messages ( )
+Messages::Messages ( ) : capteur(Capteur("capteurNull", 0, 0, "descriptionNull")), date(Moment(0, 0, 0, 0, 0, 0))
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Messages>" << endl;
-#endif
+    // capteur = Capteur("capteurNull", 0, 0, "descriptionNull");
+    
+    intervalleTemps[0] = new Moment(0, 0, 0, 0, 0, 0);
+    intervalleTemps[1] = new Moment(0, 0, 0, 0, 0, 0);
+    
+    
+    #ifdef MAP
+        cout << "Appel au constructeur de <Messages>" << endl;
+    #endif
 } //----- Fin de Messages
 
 
@@ -211,6 +245,8 @@ Messages::~Messages ( )
 // Algorithme :
 //
 {
+    delete intervalleTemps[1];
+    delete intervalleTemps[0];
 #ifdef MAP
     cout << "Appel au destructeur de <Messages>" << endl;
 #endif
