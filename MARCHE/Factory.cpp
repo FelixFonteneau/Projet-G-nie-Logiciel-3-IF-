@@ -1,12 +1,12 @@
 /*************************************************************************
- Service  -  description
+ Factory  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Service> (fichier Service.cpp) ------------
+//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,44 +15,22 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Service.h"
+#include "Factory.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-/* int calculMoyenneLocalise() {}
+// type Xxx::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
-int qualiteAir() {}
-
-void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
-    //...
-    for(Capteur c1 : capteurs) {
-        for(Capteur c2 : capteurs) {
-            if(similitude(c1, c2)) {
-                //...
-            }
-        }
-    }
-}
-
- list<Capteur> capteursDefectueux() {
-    list<Capteur> capteursDefectueux;
-    for(Capteur c1 : capteurs) {
-        if(capteursDefaillants(c)) {
-                capteursDefectueux.add(c);
-        }
-    }
-    return capteursDefectueux;
-} */
 
 //------------------------------------------------- Surcharge d'opérateurs
-// Service & Service::operator = ( const Service & unXxx )
+// Factory & Factory::operator = ( const Factory & uneFactory )
 // Algorithme :
 //
 // {
@@ -60,34 +38,34 @@ void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service(const Service & unService)
+Factory::Factory ( const Factory & uneFactory )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Service>" << endl;
+    cout << "Appel au constructeur de copie de <Factory>" << endl;
 #endif
-} //----- Fin de Service (constructeur de copie)
+} //----- Fin de Factory (constructeur de copie)
 
 
-Service::Service()
+Factory::Factory ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Service>" << endl;
+    cout << "Appel au constructeur de <Factory>" << endl;
 #endif
-} //----- Fin de Service
+} //----- Fin de Factory
 
 
-Service::~Service()
+Factory::~Factory ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Service>" << endl;
+    cout << "Appel au destructeur de <Factory>" << endl;
 #endif
-} //----- Fin de ~Service
+} //----- Fin de ~Factory
 
 
 //------------------------------------------------------------------ PRIVE

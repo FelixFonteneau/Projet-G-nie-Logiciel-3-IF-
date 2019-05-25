@@ -15,13 +15,25 @@ using namespace std;
 #include "../Util/Factory.h"
 #include "../Util/Messages.h"
 
+void testAlgo()
+{
+    
+}
 
+void testFactory()
+{
+    
+}
 
+void testMessages()
+{
+    Messages unMessage;
+    unMessage.recupererIntervalleTemps();
+}
 
 int main()
 {
-    Messages unMessage;
-    
+    testMessages();
     return 0;
 }
 

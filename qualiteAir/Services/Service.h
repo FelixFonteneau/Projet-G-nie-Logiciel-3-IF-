@@ -33,7 +33,7 @@ class Service
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int calculMoyenneLocalise();
+    /* int calculMoyenneLocalise();
     // Mode d'emploi :
     //
     // Contrat :
@@ -43,10 +43,10 @@ public:
 	
     list<Capteur> capteursSimilaires();
 	
-    list<Capteur> capteursDefectueux();
+    list<Capteur> capteursDefectueux(); */
 	
 //------------------------------------------------- Surcharge d'opérateurs
-    Service & operator = (const Service & unService);
+    // Service & operator = (const Service & unService);
     // Mode d'emploi :
     //
     // Contrat :

@@ -1,20 +1,38 @@
-ECHO=@echo
-COMP=g++
-CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11 -D MAP
-INT= Factory.h Messages.h Algo.h
-REAL=$(INT:.h=.cpp) test.cpp
-BINAIRE=$(INT:.h=.o) test.o
-EXE= testOut
+#Outils
+CPP=g++
+LD=g++
+ECHO=echo
 
-$(EXE): $(BINAIRE) 
-	$(ECHO) "Editions des liens, création de <$<>"
-	$(COMP) -o $(EXE) $(BINAIRE) 
+#Options
+CPPFLAGS=-ansi -pedantic -Wall -std=c++11 -g -D MAP#-DMAP2
+RMFLAGS=-rf
+RM=rm
 
-all: $(BINAIRE) test.o
+#Fichiers
+HEAD=$(wildcard *.h)
+SRC=$(wildcard *.cpp)
+OBJ=$(SRC:.cpp=.o)
 
-%.o: %.cpp
-	$(ECHO) "Compilation du fichier <$<>"
-	$(COMP) -c  $(CPPFLAGS) $<
+#Cibles spéciales
+EXE=out
+RUN=run
+CLEAN=clean
 
-clean:
-	@rm -rf *.o run test
+.PHONY: $(CLEAN) $(RUN)
+
+#Cibles
+$(EXE): $(OBJ)
+	@$(ECHO) "Edition des liens"
+	@$(LD) $^ -o $@
+
+$(RUN): $(EXE)
+	@$(ECHO) "Execution de $^"
+	@$../$(EXE)
+
+$(CLEAN):
+	@$(RM) $(RMFLAGS) $(EXE) $(OBJ)
+
+#Regles d'inférences
+%.o: %.cpp %.h
+	@$(ECHO) "Compilation de $<"
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
