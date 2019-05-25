@@ -28,10 +28,15 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
-double Mesure::Valeur () const{
+double Mesure::Valeur () const
+{
   return value;
 }
 
+string Mesure::Type () const
+{
+  return type;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
@@ -46,7 +51,7 @@ ostream& operator <<(ostream& out, const Mesure& uneMesure)
 //-------------------------------------------- Constructeurs - destructeur
 Mesure::Mesure ( const Mesure & unMesure ) :
  description(unMesure.description), unite(unMesure.unite),
- value(unMesure.value), date(unMesure.date)
+ type(unMesure.type), value(unMesure.value), date(unMesure.date)
 // Algorithme :
 //
 {
@@ -56,8 +61,8 @@ Mesure::Mesure ( const Mesure & unMesure ) :
 } //----- Fin de Mesure (constructeur de copie)
 
 
-Mesure::Mesure (double uneValue, Moment uneDate, string uneDescription, string uneUnite ) :
-        description(uneDescription), unite(uneUnite), value(uneValue), date(uneDate)
+Mesure::Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite ) :
+        description(uneDescription), unite(uneUnite), type(unType), value(uneValue), date(uneDate)
 {
   #ifdef MAP
       cout << "Appel au constructeur de <Mesure>" << endl;

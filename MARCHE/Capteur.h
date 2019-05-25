@@ -44,12 +44,6 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description);
     // Mode d'emploi :
     //

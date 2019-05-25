@@ -42,6 +42,11 @@ public:
     //
     // Contrat :
 
+    string Type () const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -50,7 +55,7 @@ public:
     //
     // Contrat :
 
-    
+
     bool operator > (const Mesure &m)
     // Mode d'emploi :
     // compare des mesures selon la date
@@ -89,7 +94,7 @@ public:
 
 
     Mesure (double uneValue, Moment uneDate, string uneDescription,
-            string uneUnite);
+            string unType, string uneUnite);
 
 
     virtual ~Mesure ( );
