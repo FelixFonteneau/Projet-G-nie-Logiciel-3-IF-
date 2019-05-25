@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-Mesure* moyenne(Moment intervaleTemps[2], double radius, double coordonees[2], list<Capteur> capteurs) {
+/*Mesure* moyenne(Moment intervaleTemps[2], double radius, double coordonees[2], list<Capteur> capteurs) {
     Mesure mesures[4];
     sumNO2 = 0;
     sumCO2 = 0;
@@ -95,7 +95,7 @@ double ecartTypeRelatif(list<Mesure> mesures) {
 
 list<Capteur> capteursProches(double latitude, double  longitude, list<Capteur> capteurs) {
     return nullptr;
-}
+}*/
 //------------------------------------------------- Surcharge d'opérateurs
 // Algo & Algo::operator = ( const Algo & unAlgo )
 // Algorithme :

@@ -62,7 +62,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  set<Mesure >* mesures;
+    set<Mesure>* mesures;
 	const unsigned int idCapteur;
 	double latitude;
 	double longitude;

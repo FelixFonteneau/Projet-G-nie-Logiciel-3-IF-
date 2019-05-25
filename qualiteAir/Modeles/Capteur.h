@@ -44,12 +44,6 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description);
     // Mode d'emploi :
     //
@@ -68,7 +62,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-        set< Moment, Mesure >* mesures;
+    set<Mesure>* mesures;
 	const unsigned int idCapteur;
 	double latitude;
 	double longitude;
@@ -78,4 +72,3 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <Capteur>
 
 #endif // CAPTEUR_H
-

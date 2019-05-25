@@ -42,6 +42,11 @@ public:
     //
     // Contrat :
 
+    string Type () const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -50,6 +55,30 @@ public:
     //
     // Contrat :
 
+
+    bool operator > (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+      return date >  m.date;
+    }
+
+    bool operator < (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+      return date < m.date;
+    }
+
+    bool operator == (const Mesure &m)
+    // Mode d'emploi :
+    // compare des mesures selon la date
+    {
+        return date == m.date;
+    }
+
+
+
     //Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
     //
@@ -57,15 +86,14 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-  Mesure ( const Mesure & unMesure );
-  // Mode d'emploi (constructeur de copie) :
-  //
-  // Contrat :
-  //
+    // Mesure ( const Mesure & unMesure );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
 
-    Mesure (double uneValue, Moment uneDate, string uneDescription,
-            string uneUnite);
+    Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
 
 
     virtual ~Mesure ( );
@@ -80,11 +108,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  string description;
-  string unite;
-  string type;
-  double value;
-  Moment date;
+    double value;
+    Moment date;
+    string description;
+    string type;
+    string unite;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>

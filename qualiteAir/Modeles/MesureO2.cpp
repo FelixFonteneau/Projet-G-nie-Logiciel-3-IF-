@@ -1,12 +1,12 @@
 /*************************************************************************
- Capteur  -  description
+ MesureO2  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <MesureO2> (fichier MesureO2.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,26 +15,22 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "Capteur.h"
+#include "MesureO2.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type MesureO2::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
-void AjouterMesure(Mesure & mesure)
-{
-
-}
 
 //------------------------------------------------- Surcharge d'opérateurs
-// Capteur & Capteur::operator = ( const Capteur & unCapteur )
+// MesureO2 & MesureO2::operator = ( const MesureO2 & uneMesureO2 )
 // Algorithme :
 //
 // {
@@ -42,38 +38,39 @@ void AjouterMesure(Mesure & mesure)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Capteur::Capteur ( const Capteur & unCapteur )
-// Algorithme :
-//
-// {
-// #ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-// #endif
-// } //----- Fin de Capteur (constructeur de copie)
-
-
-Capteur::Capteur(const unsigned int idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
+/* MesureO2::MesureO2 ( const MesureO2 & uneMesureO2 )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Capteur>" << endl;
+    cout << "Appel au constructeur de copie de <MesureO2>" << endl;
 #endif
+} //----- Fin de MesureO2 (constructeur de copie) */
 
-  mesures = new set<Mesure>[4];
-} //----- Fin de Xxx
-
-
-Capteur::~Capteur()
+MesureO2::MesureO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
+Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Capteur>" << endl;
+    cout << "Appel au constructeur de <MesureO2>" << endl;
 #endif
-} //----- Fin de ~Capteur
+} //----- Fin de MesureO2
+
+
+
+
+/* MesureO2::~MesureO2 ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <MesureO2>" << endl;
+#endif
+} //----- Fin de ~MesureO2 */
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+

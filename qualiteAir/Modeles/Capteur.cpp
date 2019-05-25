@@ -28,6 +28,10 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+void AjouterMesure(Mesure & mesure)
+{
+
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Capteur & Capteur::operator = ( const Capteur & unCapteur )
@@ -55,6 +59,8 @@ Capteur::Capteur(const unsigned int idCapt, const double lat, const double lon, 
 #ifdef MAP
     cout << "Appel au constructeur de <Capteur>" << endl;
 #endif
+
+  mesures = new set<Mesure>[4];
 } //----- Fin de Xxx
 
 
@@ -71,4 +77,3 @@ Capteur::~Capteur()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
