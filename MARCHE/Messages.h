@@ -45,11 +45,7 @@ public:
     void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
     //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
-    void setCoords();
-    void setRayon();
-    void setCapteur();
-    void setIntervalleTemps();
-    void setDate();
+  
     void affiche();
     
     

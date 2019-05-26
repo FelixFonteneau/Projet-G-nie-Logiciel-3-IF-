@@ -18,6 +18,7 @@
 //------------------------------------------------------------------ Types
 #include <list>
 #include <map>
+#include <fstream>
 //------------------------------------------------------------------------
 // Rôle de la classe <Factory>
 //
@@ -35,10 +36,10 @@ public:
     //
     // Contrat :
     //
-    void recupererInfos(list<Capteur> capteurs);
+    list<Capteur> recupererInfos();
     
     //------------------------------------------------- Surcharge d'opérateurs
-    Factory & operator = ( const Factory & uneFactory );
+    // Factory & operator = ( const Factory & uneFactory );
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,9 +69,9 @@ public:
     
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void analyserCapteurs();
-    void analyserMesures();
-    void analyserTypeMesures();
+    void analyserCapteur();
+    void analyserMesure(string ligne);
+    void analyserTypeMesure();
     //----------------------------------------------------- Attributs protégés
     list<Capteur> capteurs;
     map<unsigned int, Mesure> mesuresDefaillantes;

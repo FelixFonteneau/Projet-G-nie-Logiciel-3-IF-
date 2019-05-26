@@ -36,6 +36,28 @@ using namespace std;
 // {
 // } //----- Fin de operator =
 
+list<Capteur> Factory::recupererInfos()
+{
+    ifstream file ("donneesCapteurs.csv");
+    string ligne;
+    for (int i = 1; i < 14; i++)
+    {
+        getline(file,ligne);
+    }
+    // On arrive à la première ligne intéressante
+   
+    analyserMesure(ligne);
+    // Capteur capteur = Capteur("youhou",0,0,"");
+    list<Capteur> liste = {};
+    return liste;
+}
+
+void Factory::analyserMesure(string ligne)
+{
+    cout << endl;
+    cout << ligne;
+    cout << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Factory::Factory ( const Factory & uneFactory )

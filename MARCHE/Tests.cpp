@@ -25,7 +25,8 @@ void testAlgo()
 
 void testFactory()
 {
-    
+    Factory uneFactory;
+    uneFactory.recupererInfos();
 }
 
 void testMessages()
@@ -102,7 +103,7 @@ int main()
     cout << endl << "******" << endl << endl;
     testMesure(); */
     
-    testMessages();
+    testFactory();
     
     // testMoment();
     
