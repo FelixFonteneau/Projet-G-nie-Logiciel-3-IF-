@@ -27,6 +27,7 @@ void testFactory()
 {
     Factory uneFactory;
     uneFactory.recupererInfos();
+    uneFactory.analyserCapteurs();
 }
 
 void testMessages()

@@ -94,6 +94,36 @@ void Factory::analyserMesure(string ligne)
     // cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
 }
 
+void Factory::analyserCapteurs()
+{
+    // Sensor0;-8.15758888291083;-34.7692487876719;;
+    ifstream file ("descriptionsCapteurs.csv");
+    string ligne;
+    
+    // Premiere ligne inutile
+    getline(file,ligne);
+    
+    while (!file.eof())
+    {
+
+        getline(file,ligne);
+        // cout << ligne;
+        // On arrive à la première ligne intéressante
+        string idCapt = decompose(';', ligne);
+        ligne = ligne.replace(0, idCapt.size() + 1, "");
+        const double latitude = stod(decompose(';', ligne));
+        ligne = ligne.replace(0, ligne.find(';') + 1, "");
+        const double longitude = stod(decompose(';', ligne));
+        ligne = ligne.replace(0, ligne.find(';') + 1, "");
+        
+        Capteur capteur = Capteur(idCapt, latitude, longitude, "");
+        cout << idCapt << " " << longitude << " " << latitude << endl;
+        capteurs.push_back(&capteur);
+    }
+    // capteurs = liste;
+   
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Factory::Factory ( const Factory & uneFactory )
 // Algorithme :

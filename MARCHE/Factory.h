@@ -67,14 +67,14 @@ public:
     //
     
     //------------------------------------------------------------------ PRIVE
-    
+    void analyserCapteurs();
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void analyserCapteur();
+    
     void analyserMesure(string ligne);
     void analyserTypeMesure();
     //----------------------------------------------------- Attributs protégés
-    list<Capteur> capteurs;
+    list<Capteur*> capteurs;
     map<unsigned int, Mesure> mesuresDefaillantes;
 };
 
