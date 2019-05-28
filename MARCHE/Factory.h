@@ -37,6 +37,7 @@ public:
     // Contrat :
     //
     list<Capteur> recupererInfos();
+    string decompose(char const sep, string uneLigne);
     
     //------------------------------------------------- Surcharge d'opérateurs
     // Factory & operator = ( const Factory & uneFactory );

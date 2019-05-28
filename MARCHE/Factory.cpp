@@ -52,11 +52,46 @@ list<Capteur> Factory::recupererInfos()
     return liste;
 }
 
+string Factory::decompose(char const sep, string uneLigne)
+{
+    int i = 0;
+    char a = uneLigne[i];
+    string retour = "";
+    while (a != sep)
+    {
+        retour += a;
+        a = uneLigne[++i];
+    }
+    return retour;
+}
+
 void Factory::analyserMesure(string ligne)
 {
-    cout << endl;
-    cout << ligne;
-    cout << endl;
+    // 2017-01-01T00:01:20.6090000;Sensor0;O3;17.8902017543936;
+    // cout << endl << ligne << endl;
+
+    string annee = decompose('-', ligne);
+    ligne = ligne.replace(0, annee.size() + 1, "");
+    string mois = decompose('-', ligne);
+    ligne = ligne.replace(0, mois.size() + 1, "");
+    string jour = decompose('T', ligne);
+    ligne = ligne.replace(0, jour.size() + 1, "");
+    string heure = decompose(':', ligne);
+    ligne = ligne.replace(0, heure.size() + 1, "");
+    string minute = decompose(':', ligne);
+    ligne = ligne.replace(0, minute.size() + 1, "");
+    string seconde = decompose('.', ligne);
+    ligne = ligne.replace(0, ligne.find(';') + 1 , "");
+    string idCapt = decompose(';', ligne);
+    ligne = ligne.replace(0, idCapt.size() + 1, "");
+    string typeMesure = decompose(';', ligne);
+    ligne = ligne.replace(0, typeMesure.size() + 1, "");
+    string valeur = decompose(';', ligne);
+    ligne = ligne.replace(0, valeur.size() + 1, "");
+                     
+
+
+    // cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
