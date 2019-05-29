@@ -77,7 +77,10 @@ public:
         return date == m.date;
     }
 
-
+    Moment getDate() const
+    {
+        return date;
+    }
 
     //Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
@@ -86,14 +89,14 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Mesure ( const Mesure & unMesure );
+    Mesure ( const Mesure & uneMesure );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
 
-    Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
+    Mesure (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
 
 
     virtual ~Mesure ( );

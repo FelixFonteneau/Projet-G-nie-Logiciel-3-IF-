@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
     
-    MesurePM10 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
+    MesurePM10 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
     // Mode d'emploi :
     //
     // Contrat :

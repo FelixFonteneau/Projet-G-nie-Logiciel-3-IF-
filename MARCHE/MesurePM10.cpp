@@ -48,7 +48,7 @@ using namespace std;
 } //----- Fin de MesurePM10 (constructeur de copie) */
 
 
-MesurePM10::MesurePM10 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
+MesurePM10::MesurePM10 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
 Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
 // Algorithme :
 //

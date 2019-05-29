@@ -61,7 +61,7 @@ void testMoment()
     cout << m1 << endl;
 }
 
-void testMesure()
+/*void testMesure()
 {
     Moment m1 ("2016-01-01T00:01:20.609000");
     Moment m2 ("2016-01-01T00:01:20.6090000");
@@ -90,7 +90,7 @@ void testMesure()
 
     cout << "Type m1 : " << mesure.Type() << endl;
     cout << "Type m2 : " << mesure2.Type() << endl;
-}
+}*/
 
 int main()
 {

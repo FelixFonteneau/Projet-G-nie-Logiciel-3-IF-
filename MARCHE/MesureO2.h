@@ -54,7 +54,7 @@ public:
     // Contrat :
     //
     
-    MesureO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
+    MesureO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
  
     // Mode d'emploi :
     //

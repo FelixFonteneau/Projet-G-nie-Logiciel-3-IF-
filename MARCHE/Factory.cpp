@@ -88,11 +88,11 @@ vector<Capteur> Factory::recupererInfos()
     
     cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
     
-    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+    // Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
     // Mesure mesure = Mesure(valeur, moment, "", typeMesure, "");
     // premier "" description ; second "" unite
     
-    // capteurs[0]->addMesuresO2(mesure);
+    capteurs[0]->addMesureO2(jour, mois, annee, heure, minute, seconde, valeur, typeMesure);
 
     vector<Capteur> liste = {};
     return liste;

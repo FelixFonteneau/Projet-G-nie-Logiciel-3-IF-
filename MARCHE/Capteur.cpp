@@ -28,10 +28,14 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void AjouterMesure(Mesure & mesure)
+void Capteur::addMesureO2(int jour, int mois, int annee, int heure, int minute, int seconde, double valeur, string typeMesure)
 {
-
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+    Mesure mesure = Mesure(valeur, moment, "", typeMesure, "");
+    cout << mesure << endl;
+    // mesuresO2.push_back(mesure);
 }
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Capteur & Capteur::operator = ( const Capteur & unCapteur )
@@ -59,7 +63,6 @@ Capteur::Capteur(const string idCapt, const double lat, const double lon, const 
     #ifdef MAP
         cout << "Appel au constructeur de <Capteur>" << endl;
     #endif
-   
 } //----- Fin de Xxx
 
 

@@ -41,28 +41,28 @@ string Mesure::Type () const
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
 {
-    out << "Le "<< uneMesure.date <<" : " << uneMesure.value << uneMesure.unite
-    << " "<< typeid(uneMesure).name();
+    out << "Le " << uneMesure.date << " : " << uneMesure.value << " " << uneMesure.unite
+    << " " /*<< typeid(uneMesure).name()*/;
     return out; // N'oubliez pas de renvoyer le flux, afin de pouvoir chaîner les appels
 }
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Le constructeur de copie présenté ici ne fonctionne pas, il faudrait rajouter les getters
-/* Mesure::Mesure ( const Mesure & unMesure ) :
- description(unMesure.description), unite(unMesure.unite),
- type(unMesure.type), value(unMesure.value), date(unMesure.date)
+
+Mesure::Mesure ( const Mesure & uneMesure ) : date(uneMesure.getDate())
+
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Mesure>" << endl;
 #endif
-} //----- Fin de Mesure (constructeur de copie) */
+
+} //----- Fin de Mesure (constructeur de copie)
 
 
-Mesure::Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
+Mesure::Mesure (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
        value(uneValue), date(uneDate), description(uneDescription), type(unType), unite(uneUnite)
 {
   #ifdef MAP

@@ -47,7 +47,7 @@ using namespace std;
 #endif
 } //----- Fin de MesureO2 (constructeur de copie) */
 
-MesureO2::MesureO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
+MesureO2::MesureO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
 Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
 // Algorithme :
 //

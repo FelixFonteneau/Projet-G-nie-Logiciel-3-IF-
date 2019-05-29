@@ -50,7 +50,7 @@ public:
     // Contrat :
     //
     
-    MesureSO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
+    MesureSO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
     // Mode d'emploi :
     //
     // Contrat :

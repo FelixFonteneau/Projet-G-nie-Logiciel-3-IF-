@@ -37,10 +37,8 @@ public:
     //
     // Contrat :
     //
-    void addMesuresO2(Mesure& uneMesure)
-    {
-        mesuresO2.emplace_back(uneMesure);
-    }
+    void addMesureO2(int jour, int mois, int annee, int heure, int minute, int seconde, double valeur, string typeMesure);
+
     /*vector<Mesure> getMesuresNO2()
     {
         return mesuresNO2;

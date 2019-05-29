@@ -48,7 +48,7 @@ using namespace std;
 } //----- Fin de MesureNO2 (constructeur de copie) */
 
 
-MesureNO2::MesureNO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
+MesureNO2::MesureNO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
 Mesure (uneValue, uneDate, uneDescription, unType, uneUnite)
 // Algorithme :
 //

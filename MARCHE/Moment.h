@@ -75,7 +75,8 @@ public:
     {
         return (!(*this<m) && !(*this>m));
     }
-
+    
+    
 //-------------------------------------------- Constructeurs - destructeur
     Moment ( const Moment & unMoment );
     // Mode d'emploi (constructeur de copie) :
