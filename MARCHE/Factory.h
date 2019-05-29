@@ -16,7 +16,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <list>
+#include <vector>
 #include <map>
 #include <fstream>
 //------------------------------------------------------------------------
@@ -36,7 +36,7 @@ public:
     //
     // Contrat :
     //
-    list<Capteur> recupererInfos();
+    vector<Capteur> recupererInfos();
     string decompose(char const sep, string uneLigne);
     
     //------------------------------------------------- Surcharge d'opérateurs
@@ -71,10 +71,10 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     
-    void analyserMesure(string ligne);
+    const string analyserMesure(string ligne);
     void analyserTypeMesure();
     //----------------------------------------------------- Attributs protégés
-    list<Capteur*> capteurs;
+    vector<Capteur*> capteurs;
     map<unsigned int, Mesure> mesuresDefaillantes;
 };
 

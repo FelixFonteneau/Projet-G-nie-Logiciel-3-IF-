@@ -59,7 +59,7 @@ Capteur::Capteur(const string idCapt, const double lat, const double lon, const 
     #ifdef MAP
         cout << "Appel au constructeur de <Capteur>" << endl;
     #endif
-    mesures = new set<Mesure>[4];
+   
 } //----- Fin de Xxx
 
 
@@ -70,7 +70,7 @@ Capteur::~Capteur()
     #ifdef MAP
         cout << "Appel au destructeur de <Capteur>" << endl;
     #endif
-    delete[] mesures;
+
 } //----- Fin de ~Capteur
 
 

@@ -12,10 +12,14 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
+#include "MesureNO2.h"
+#include "MesureO2.h"
+#include "MesureSO2.h"
+#include "MesurePM10.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <set>
+#include <vector>
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
 //
@@ -33,7 +37,22 @@ public:
     //
     // Contrat :
     //
-
+    void addMesuresO2(Mesure& uneMesure)
+    {
+        mesuresO2.emplace_back(uneMesure);
+    }
+    /*vector<Mesure> getMesuresNO2()
+    {
+        return mesuresNO2;
+    }
+    vector<Mesure> getMesuresSO2()
+    {
+        return mesuresSO2;
+    }
+    vector<Mesure> getMesuresPM10()
+    {
+        return mesuresPM10;
+    }*/
 
 //------------------------------------------------- Surcharge d'opérateurs
     // Capteur & operator = ( const Capteur & unCapteur );
@@ -62,7 +81,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    set<Mesure>* mesures;
+    vector<Mesure> mesuresO2;
+    vector<Mesure> mesuresNO2;
+    vector<Mesure> mesuresSO2;
+    vector<Mesure> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;

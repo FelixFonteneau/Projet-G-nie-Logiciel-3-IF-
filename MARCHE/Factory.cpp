@@ -6,7 +6,7 @@
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Factory> (fichier Factory.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -36,8 +36,9 @@ using namespace std;
 // {
 // } //----- Fin de operator =
 
-list<Capteur> Factory::recupererInfos()
+vector<Capteur> Factory::recupererInfos()
 {
+    cout << "début de la methode recupererInfos" << endl;
     ifstream file ("donneesCapteurs.csv");
     string ligne;
     for (int i = 1; i < 14; i++)
@@ -45,10 +46,55 @@ list<Capteur> Factory::recupererInfos()
         getline(file,ligne);
     }
     // On arrive à la première ligne intéressante
-   
-    analyserMesure(ligne);
-    // Capteur capteur = Capteur("youhou",0,0,"");
-    list<Capteur> liste = {};
+    
+    
+    // Commentaire de grande importance : le string ligne que l'on obtient ci-dessus a une structure extrêmement bizzare : entre chaque caratère visible, il y a un caractère null, ce qui fait qu'un string de taille n à l'écran a en réalité une taille (2*n + 1). Le problème est corrigé avec la fonction décompose, indispensable pour pouvoir utiliser stoi.
+    
+    
+    cout << ligne << endl;
+    string uneAnnee = decompose('-', ligne);
+    ligne = ligne.replace(0, 9 + 1, "");
+    int annee = stoi(uneAnnee);
+    
+    string unMois = decompose('-', ligne);
+    ligne = ligne.replace(0, 5 + 1, "");
+    int mois = stoi(unMois);
+    
+    string unJour = decompose('T', ligne);
+    ligne = ligne.replace(0, 5 + 1, "");
+    int jour = stoi(unJour);
+    
+    string uneHeure = decompose(':', ligne);
+    ligne = ligne.replace(0, 5 + 1, "");
+    int heure = stoi(uneHeure);
+    
+    string uneMinute = decompose(':', ligne);
+    ligne = ligne.replace(0, 5 + 1, "");
+    int minute = stoi(uneMinute);
+    
+    string uneSeconde = decompose('.', ligne);
+    ligne = ligne.replace(0, ligne.find(';') + 1 , "");
+    int seconde = stoi(uneSeconde);
+    
+    const string idCapt = decompose(';', ligne);
+    ligne = ligne.replace(0, ligne.find(';') + 1, "");
+    
+    string typeMesure = decompose(';', ligne);
+    ligne = ligne.replace(0, ligne.find(';') + 1, "");
+    
+    double valeur = stod(decompose(';', ligne));
+
+    
+    
+    cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
+    
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+    // Mesure mesure = Mesure(valeur, moment, "", typeMesure, "");
+    // premier "" description ; second "" unite
+    
+    // capteurs[0]->addMesuresO2(mesure);
+
+    vector<Capteur> liste = {};
     return liste;
 }
 
@@ -59,13 +105,17 @@ string Factory::decompose(char const sep, string uneLigne)
     string retour = "";
     while (a != sep)
     {
-        retour += a;
+        
+        if (a != 0)
+        {
+            retour += a;
+        }
         a = uneLigne[++i];
     }
     return retour;
 }
 
-void Factory::analyserMesure(string ligne)
+const string Factory::analyserMesure(string ligne)
 {
     // 2017-01-01T00:01:20.6090000;Sensor0;O3;17.8902017543936;
     // cout << endl << ligne << endl;
@@ -82,7 +132,7 @@ void Factory::analyserMesure(string ligne)
     ligne = ligne.replace(0, minute.size() + 1, "");
     string seconde = decompose('.', ligne);
     ligne = ligne.replace(0, ligne.find(';') + 1 , "");
-    string idCapt = decompose(';', ligne);
+    const string idCapt = decompose(';', ligne);
     ligne = ligne.replace(0, idCapt.size() + 1, "");
     string typeMesure = decompose(';', ligne);
     ligne = ligne.replace(0, typeMesure.size() + 1, "");
@@ -90,7 +140,7 @@ void Factory::analyserMesure(string ligne)
     ligne = ligne.replace(0, valeur.size() + 1, "");
                      
 
-
+    return idCapt;
     // cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
 }
 
@@ -120,7 +170,7 @@ void Factory::analyserCapteurs()
         cout << idCapt << " " << longitude << " " << latitude << endl;
         capteurs.push_back(&capteur);
     }
-    // capteurs = liste;
+
    
 }
 

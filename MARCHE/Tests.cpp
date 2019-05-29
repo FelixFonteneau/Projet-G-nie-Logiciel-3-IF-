@@ -26,8 +26,9 @@ void testAlgo()
 void testFactory()
 {
     Factory uneFactory;
-    uneFactory.recupererInfos();
     uneFactory.analyserCapteurs();
+    uneFactory.recupererInfos();
+    
 }
 
 void testMessages()
