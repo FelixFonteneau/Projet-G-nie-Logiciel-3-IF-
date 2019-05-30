@@ -20,15 +20,15 @@ using namespace std;
 
 void testAlgo()
 {
-    
+
 }
 
 void testFactory()
 {
     Factory uneFactory;
     uneFactory.analyserCapteurs();
-     uneFactory.recupererInfos();
-    
+    uneFactory.recupererInfos();
+
 }
 
 void testMessages()
@@ -52,7 +52,7 @@ void testMoment()
     bool a = m1>m3 ;
     bool b = m1<m3 ;
     bool c = m1==m3;
-    
+
     m1 = m3;
 
     cout << "m1 > m3 ? : " << a << endl;
@@ -98,16 +98,16 @@ int main()
     cout << "Voici les tests Moments";
     cout << endl << "******" << endl << endl;
     testMoment();
-    
-    
+
+
     cout << endl << "******" << endl;
     cout << "Voici les tests Mesure";
     cout << endl << "******" << endl << endl;
     testMesure(); */
-    
+
     testFactory();
-    
+
     // testMoment();
-    
+
     return 0;
 }
