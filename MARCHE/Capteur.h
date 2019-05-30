@@ -19,6 +19,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+#include <set>
 #include <vector>
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
@@ -51,6 +52,8 @@ public:
     {
         return mesuresPM10;
     }*/
+	
+	string getDescription();
 
 //------------------------------------------------- Surcharge d'opérateurs
     // Capteur & operator = ( const Capteur & unCapteur );
@@ -79,10 +82,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    vector<Mesure> mesuresO2;
-    vector<Mesure> mesuresNO2;
-    vector<Mesure> mesuresSO2;
-    vector<Mesure> mesuresPM10;
+    vector<Mesure*> mesuresO2;
+    vector<Mesure*> mesuresNO2;
+    vector<Mesure*> mesuresSO2;
+    vector<Mesure*> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;

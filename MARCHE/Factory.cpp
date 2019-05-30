@@ -86,13 +86,14 @@ vector<Capteur> Factory::recupererInfos()
 
     
     
-    cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
-    
     // Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
     // Mesure mesure = Mesure(valeur, moment, "", typeMesure, "");
     // premier "" description ; second "" unite
     
+	
+	
     capteurs[0]->addMesureO2(jour, mois, annee, heure, minute, seconde, valeur, typeMesure);
+	
 
     vector<Capteur> liste = {};
     return liste;
@@ -166,9 +167,9 @@ void Factory::analyserCapteurs()
         const double longitude = stod(decompose(';', ligne));
         ligne = ligne.replace(0, ligne.find(';') + 1, "");
         
-        Capteur capteur = Capteur(idCapt, latitude, longitude, "");
+        Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
         cout << idCapt << " " << longitude << " " << latitude << endl;
-        capteurs.push_back(&capteur);
+        capteurs.push_back(capteur);
     }
 
    
@@ -199,9 +200,14 @@ Factory::~Factory ( )
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Factory>" << endl;
-#endif
+		
+	#ifdef MAP
+		cout << "Appel au destructeur de <Factory>" << endl;
+	#endif
+	for(unsigned int i = 0; i <  capteurs.size() ; i++) {
+		delete capteurs[i];
+	}
+
 } //----- Fin de ~Factory
 
 

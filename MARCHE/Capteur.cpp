@@ -31,11 +31,14 @@ using namespace std;
 void Capteur::addMesureO2(int jour, int mois, int annee, int heure, int minute, int seconde, double valeur, string typeMesure)
 {
     Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
-    Mesure mesure = Mesure(valeur, moment, "", typeMesure, "");
-    cout << mesure << endl;
-    // mesuresO2.push_back(mesure);
+    Mesure *mesure = new Mesure(valeur, moment, "", typeMesure, "");
+    cout << "Mesure  : " << *mesure << endl;
+    mesuresO2.push_back(mesure);
 }
 
+string Capteur::getDescription(){
+	return description;
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Capteur & Capteur::operator = ( const Capteur & unCapteur )
@@ -70,6 +73,18 @@ Capteur::~Capteur()
 // Algorithme :
 //
 {
+	for(unsigned int i = 0; i < mesuresO2.size() ; i++){
+		delete mesuresO2[i];
+	}
+	for(unsigned int i = 0; i < mesuresNO2.size() ; i++){
+		delete mesuresNO2[i];
+	}
+	for(unsigned int i = 0; i < mesuresSO2.size() ; i++){
+		delete mesuresSO2[i];
+	}
+	for(unsigned int i = 0; i < mesuresPM10.size() ; i++){
+		delete mesuresPM10[i];
+	}
     #ifdef MAP
         cout << "Appel au destructeur de <Capteur>" << endl;
     #endif

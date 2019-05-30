@@ -68,7 +68,7 @@ Mesure::Mesure (double uneValue, Moment& uneDate, string uneDescription, string 
   #ifdef MAP
       cout << "Appel au constructeur de <Mesure>" << endl;
   #endif
-};
+} 
 
 
 
