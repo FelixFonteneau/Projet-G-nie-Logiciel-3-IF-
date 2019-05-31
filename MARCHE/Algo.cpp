@@ -18,7 +18,8 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Algo.h"
-const double PI = 3.141592653589793238463;
+#define PI  3.141592653589793238463
+#define earthRadiusKm 6371000.0
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -27,32 +28,70 @@ const double PI = 3.141592653589793238463;
 
 double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
 {
-    double distanceMini = DBL_MAX;
+    double distanceMini1 = DBL_MAX, distanceMini2 = DBL_MAX, distanceMini3 = DBL_MAX;
     
-    
-    vector<MesureSO2>* MesuresSO2;
-    vector<MesureO3>* MesuresO3;
-    vector<MesurePM10>* MesuresPM10;
-    vector<MesureNO2>* MesuresNO2;
+    vector<MesureSO2> *MesuresSO2Capt1, *MesuresSO2Capt2, *MesuresSO2Capt3;
+    vector<MesureO3> *MesuresO3Capt1, *MesuresO3Capt2, *MesuresO3Capt3;
+    vector<MesurePM10> *MesuresPM10Capt1, *MesuresPM10Capt2, *MesuresPM10Capt3;
+    vector<MesureNO2> *MesuresNO2Capt1, *MesuresNO2Capt2, *MesuresNO2Capt3;
     
     for (Capteur* capteur : *capteurs)
     {
         vector<double> coordsCapteur = capteur->getCoords();
-        double distanceCourante = obtenirDistance(coordsCapteur, coordonees);
-        if (distanceCourante < distanceMini)
+        double distanceCourante = obtenirDistance(coordsCapteur[0], coordsCapteur[1], coordonees[0], coordonees[1]);
+        if (distanceCourante < distanceMini1)
         {
-            distanceMini = distanceCourante;
+            distanceMini1 = distanceCourante;
             
-            MesuresSO2 = (*capteur).RecupererMesuresSO2();
-            MesuresO3 = (*capteur).RecupererMesuresO3();
-            MesuresPM10 = (*capteur).RecupererMesuresPM10();
-            MesuresNO2 = (*capteur).RecupererMesuresNO2();
+            MesuresSO2Capt1 = (*capteur).RecupererMesuresSO2();
+            MesuresO3Capt1 = (*capteur).RecupererMesuresO3();
+            MesuresPM10Capt1 = (*capteur).RecupererMesuresPM10();
+            MesuresNO2Capt1 = (*capteur).RecupererMesuresNO2();
+        }
+        if (distanceMini1 < distanceCourante && distanceCourante < distanceMini2)
+        {
+            distanceMini2 = distanceCourante;
+            
+            MesuresSO2Capt2 = (*capteur).RecupererMesuresSO2();
+            MesuresO3Capt2 = (*capteur).RecupererMesuresO3();
+            MesuresPM10Capt2 = (*capteur).RecupererMesuresPM10();
+            MesuresNO2Capt2 = (*capteur).RecupererMesuresNO2();
+        }
+        if (distanceMini2 < distanceCourante && distanceCourante < distanceMini3)
+        {
+            distanceMini3 = distanceCourante;
+            
+            MesuresSO2Capt3 = (*capteur).RecupererMesuresSO2();
+            MesuresO3Capt3 = (*capteur).RecupererMesuresO3();
+            MesuresPM10Capt3 = (*capteur).RecupererMesuresPM10();
+            MesuresNO2Capt3 = (*capteur).RecupererMesuresNO2();
         }
     }
     
-    int derniereMesure = (*MesuresSO2).size() - 1;
-    // cout << MesuresSO2->at(0) << endl;
-    double atmo = calculAtmo(MesuresNO2->at(derniereMesure).Valeur(), MesuresO3->at(derniereMesure).Valeur(), MesuresPM10->at(derniereMesure).Valeur(), MesuresSO2->at(derniereMesure).Valeur());
+  
+
+    
+    int derniereMesureCapt1 = (*MesuresSO2Capt1).size() - 1, derniereMesureCapt2 = (*MesuresSO2Capt2).size() - 1, derniereMesureCapt3 = (*MesuresSO2Capt3).size() - 1;
+  
+    
+    int atmo = calculAtmoPondere(MesuresNO2Capt1->at(derniereMesureCapt1).Valeur(),
+                                MesuresO3Capt1->at(derniereMesureCapt1).Valeur(),
+                                MesuresPM10Capt1->at(derniereMesureCapt1).Valeur(),
+                                MesuresSO2Capt1->at(derniereMesureCapt1).Valeur(),
+                                    
+                                MesuresNO2Capt2->at(derniereMesureCapt2).Valeur(),
+                                MesuresO3Capt2->at(derniereMesureCapt2).Valeur(),
+                                MesuresPM10Capt2->at(derniereMesureCapt2).Valeur(),
+                                MesuresSO2Capt2->at(derniereMesureCapt2).Valeur(),
+                                    
+                                MesuresNO2Capt3->at(derniereMesureCapt3).Valeur(),
+                                MesuresO3Capt3->at(derniereMesureCapt3).Valeur(),
+                                MesuresPM10Capt3->at(derniereMesureCapt3).Valeur(),
+                                MesuresSO2Capt3->at(derniereMesureCapt3).Valeur(),
+                                
+                                distanceMini1,
+                                distanceMini2,
+                                distanceMini3);
     
     return atmo;
 }
@@ -179,111 +218,139 @@ double Algo::enRadians(double latitude)
     return latitude * PI / 180;
 }
 
-double Algo::obtenirDistance(vector<double> coordonees1, double coordonees2[2])
+// retourne la distance en metres
+double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d)
 {
-    double lat1 = coordonees1[0];
-    double lon1 = coordonees1[1];
-    double lat2 = coordonees2[0];
-    double lon2 = coordonees2[1];
-    
-    int R = 6371000; // metres
-    double phi1 = enRadians(lat1);
-    double phi2 = enRadians(lat2);
-    double deltaPhi = enRadians(lat2-lat1);
-    double deltaLambda = enRadians(lon2-lon1);
-    
-    double a = sin(deltaPhi/2) * sin(deltaPhi/2) + cos(phi1) * cos(phi2) * sin(deltaLambda/2) * sin(deltaLambda/2);
-    double c = 2 * atan2(sqrt(a),sqrt(1-a));
-    double d = R * c;
-    return d;
+    double lat1r, lon1r, lat2r, lon2r, u, v;
+    lat1r = enRadians(lat1d);
+    lon1r = enRadians(lon1d);
+    lat2r = enRadians(lat2d);
+    lon2r = enRadians(lon2d);
+    u = sin((lat2r - lat1r)/2);
+    v = sin((lon2r - lon1r)/2);
+    return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v));
 }
 
-int Algo::calculAtmo(double valeurNO2, double valeurO3, double valeurPM10, double valeurSO2)
+int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
+                            double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
+                            double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
+                            double distanceMini1, double distanceMini2, double distanceMini3)
 {
-    int atmoNO2;
-    int atmoO3;
-    int atmoPM10;
-    int atmoSO2;
+    int atmoNO2, atmoO3, atmoPM10, atmoSO2;
+    double somme = distanceMini1 + distanceMini2 + distanceMini3;
+    string NO2 = "NO2", O3 = "O3", PM10 = "PM10", SO2 = "SO2";
     
-    if (0 <= valeurNO2 && valeurNO2 <= 29) {
-        atmoNO2 = 1;
-    } else if (30 <= valeurNO2 && valeurNO2 <= 54) {
-        atmoNO2 = 2;
-    } else if (55 <= valeurNO2 && valeurNO2 <= 84) {
-        atmoNO2 = 3;
-    } else if (85 <= valeurNO2 && valeurNO2 <= 109) {
-        atmoNO2 = 4;
-    } else if (110 <= valeurNO2 && valeurNO2 <= 134) {
-        atmoNO2 = 5;
-    } else if (135 <= valeurNO2 && valeurNO2 <= 164) {
-        atmoNO2 = 6;
-    } else if (165 <= valeurNO2 && valeurNO2 <= 199) {
-        atmoNO2 = 7;
-    } else if (200 <= valeurNO2 && valeurNO2 <= 274) {
-        atmoNO2 = 8;
-    } else if (275 <= valeurNO2 && valeurNO2 <= 399) {
-        atmoNO2 = 9;
-    } else atmoNO2 = 9;
-
-    if (0 <= valeurO3 && valeurO3 <= 29) {
-        atmoO3 = 1;
-    } else if (30 <= valeurO3 && valeurO3 <= 54) {
-        atmoO3 = 2;
-    } else if (55 <= valeurO3 && valeurO3 <= 79) {
-        atmoO3 = 3;
-    } else if (80 <= valeurO3 && valeurO3 <= 104) {
-        atmoO3 = 4;
-    } else if (105 <= valeurO3 && valeurO3 <= 129) {
-        atmoO3 = 5;
-    } else if (130 <= valeurO3 && valeurO3 <= 149) {
-        atmoO3 = 6;
-    } else if (150 <= valeurO3 && valeurO3 <= 179) {
-        atmoO3 = 7;
-    } else if (180 <= valeurO3 && valeurO3 <= 209) {
-        atmoO3 = 8;
-    } else if (210 <= valeurO3 && valeurO3 <= 239) {
-        atmoO3 = 9;
-    } else atmoO3 = 10;
-
-    if (0 <= valeurPM10 && valeurPM10 <= 6) {
-        atmoPM10 = 1;
-    } else if (7 <= valeurPM10 && valeurPM10 <= 13) {
-        atmoPM10 = 2;
-    } else if (14 <= valeurPM10 && valeurPM10 <= 20) {
-        atmoPM10 = 3;
-    } else if (21 <= valeurPM10 && valeurPM10 <= 27) {
-        atmoPM10 = 4;
-    } else if (28 <= valeurPM10 && valeurPM10 <= 34) {
-        atmoPM10 = 5;
-    } else if (35 <= valeurPM10 && valeurPM10 <= 41) {
-        atmoPM10 = 6;
-    } else if (42 <= valeurPM10 && valeurPM10 <= 49) {
-        atmoPM10 = 7;
-    } else if (50 <= valeurPM10 && valeurPM10 <= 64) {
-        atmoPM10 = 8;
-    } else if (65 <= valeurPM10 && valeurPM10 <= 79) {
-        atmoPM10 = 9;
-    } else atmoPM10 = 10;
-
-    if (0 <= valeurSO2 && valeurSO2 <= 39) {
-        atmoSO2 = 1;
-    } else if (40 <= valeurSO2 && valeurSO2 <= 79) {
-        atmoSO2 = 2;
-    } else if (80 <= valeurSO2 && valeurSO2 <= 119) {
-        atmoSO2 = 3;
-    } else if (120 <= valeurSO2 && valeurSO2 <= 159) {
-        atmoSO2 = 4;
-    } else if (160 <= valeurSO2 && valeurSO2 <= 199) {
-        atmoSO2 = 5;
-    } else if (200 <= valeurSO2 && valeurSO2 <= 249) {
-        atmoSO2 = 6;
-    } else if (250 <= valeurSO2 && valeurSO2 <= 299) {
-        atmoSO2 = 7;
-    } else if (300 <= valeurSO2 && valeurSO2 <= 399) {
-        atmoSO2 = 8;
-    } else if (400 <= valeurSO2 && valeurSO2 <= 499) {
-        atmoSO2 = 9;
-    } else atmoSO2 = 10;
-
-    return max(max(atmoNO2, atmoO3), max(atmoPM10, atmoSO2));
+    atmoNO2 = distanceMini1*calculAtmo(valeurNO2Capt1, NO2) + distanceMini2*calculAtmo(valeurNO2Capt2, NO2) +distanceMini3*calculAtmo(valeurNO2Capt3, NO2);
+    atmoNO2 /= somme;
+    
+    atmoO3 = distanceMini1*calculAtmo(valeurO3Capt1, O3) + distanceMini2*calculAtmo(valeurO3Capt2, O3) + distanceMini3*calculAtmo(valeurO3Capt3, O3);
+    atmoO3 /= somme;
+    
+    atmoPM10 = distanceMini1*calculAtmo(valeurPM10Capt1, PM10) + distanceMini2*calculAtmo(valeurPM10Capt2, PM10) + distanceMini3*calculAtmo(valeurPM10Capt3, PM10);
+    atmoPM10 /= somme;
+    
+    atmoSO2 = distanceMini1*calculAtmo(valeurSO2Capt1, SO2) + distanceMini2*calculAtmo(valeurSO2Capt2, SO2) + distanceMini3*calculAtmo(valeurSO2Capt3, SO2);
+    atmoSO2 /= somme;
+    
+    cout << distanceMini1 << " " << distanceMini2 << " " << distanceMini3 << endl;
+    // Incohérent : quand je mets les coordonnées exates du premier capteur, la distance mini est bien trop élevée
+    
+    return max(max(atmoNO2,atmoO3), max(atmoPM10,atmoSO2));
+    
 }
+
+int Algo::calculAtmo(double valeur, string type)
+{
+    string NO2 ="NO2";
+    int result = 0;
+    if (type.compare(NO2) == 0)
+    {
+        if (0 <= valeur && valeur <= 29) {
+            result = 1;
+        } else if (30 <= valeur && valeur <= 54) {
+            result = 2;
+        } else if (55 <= valeur && valeur <= 84) {
+            result = 3;
+        } else if (85 <= valeur && valeur <= 109) {
+            result = 4;
+        } else if (110 <= valeur && valeur <= 134) {
+            result = 5;
+        } else if (135 <= valeur && valeur <= 164) {
+            result = 6;
+        } else if (165 <= valeur && valeur <= 199) {
+            result = 7;
+        } else if (200 <= valeur && valeur <= 274) {
+            result = 8;
+        } else if (275 <= valeur && valeur <= 399) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("O3") == 0)
+    {
+        if (0 <= valeur && valeur <= 29) {
+            result = 1;
+        } else if (30 <= valeur && valeur <= 54) {
+            result = 2;
+        } else if (55 <= valeur && valeur <= 79) {
+            result = 3;
+        } else if (80 <= valeur && valeur <= 104) {
+            result = 4;
+        } else if (105 <= valeur && valeur <= 129) {
+            result = 5;
+        } else if (130 <= valeur && valeur <= 149) {
+            result = 6;
+        } else if (150 <= valeur && valeur <= 179) {
+            result = 7;
+        } else if (180 <= valeur && valeur <= 209) {
+            result = 8;
+        } else if (210 <= valeur && valeur <= 239) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("PM10") == 0)
+    {
+        if (0 <= valeur && valeur <= 6) {
+            result = 1;
+        } else if (7 <= valeur && valeur <= 13) {
+            result = 2;
+        } else if (14 <= valeur && valeur <= 20) {
+            result = 3;
+        } else if (21 <= valeur && valeur <= 27) {
+            result = 4;
+        } else if (28 <= valeur && valeur <= 34) {
+            result = 5;
+        } else if (35 <= valeur && valeur <= 41) {
+            result = 6;
+        } else if (42 <= valeur && valeur <= 49) {
+            result = 7;
+        } else if (50 <= valeur && valeur <= 64) {
+            result = 8;
+        } else if (65 <= valeur && valeur <= 79) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("SO2") == 0)
+    {
+        if (0 <= valeur && valeur <= 39) {
+            result = 1;
+        } else if (40 <= valeur && valeur <= 79) {
+            result = 2;
+        } else if (80 <= valeur && valeur <= 119) {
+            result = 3;
+        } else if (120 <= valeur && valeur <= 159) {
+            result = 4;
+        } else if (160 <= valeur && valeur <= 199) {
+            result = 5;
+        } else if (200 <= valeur && valeur <= 249) {
+            result = 6;
+        } else if (250 <= valeur && valeur <= 299) {
+            result = 7;
+        } else if (300 <= valeur && valeur <= 399) {
+            result = 8;
+        } else if (400 <= valeur && valeur <= 499) {
+            result = 9;
+        } else result = 10;
+    }
+    return result;
+}
+                            

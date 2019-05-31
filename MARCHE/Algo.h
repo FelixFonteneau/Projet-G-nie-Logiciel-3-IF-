@@ -83,8 +83,12 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     double enRadians(double latitude);
-    double obtenirDistance(vector<double> coordonees1, double coordonees2[2]);
-    int calculAtmo(double valeurNO2, double valeurO3, double valeurPM10, double valeurSO2);
+    double obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d);
+    int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
+                                double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
+                                double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
+                          double distanceMini1, double distanceMini2, double distanceMini3);
+    int calculAtmo(double valeur, string type);
     //----------------------------------------------------- Attributs protégés
     
 };
