@@ -143,7 +143,7 @@ int main()
     cout << endl << "******" << endl << endl;
     testMesure(); */
 
-    //testFactory();
+    testFactory();
     // testMoment();
 
     return 0;

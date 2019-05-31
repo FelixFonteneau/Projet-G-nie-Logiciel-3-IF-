@@ -49,7 +49,6 @@ string Mesure::Capteur() const
 
 
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
 {

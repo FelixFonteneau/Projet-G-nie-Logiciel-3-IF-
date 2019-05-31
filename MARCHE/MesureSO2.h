@@ -34,7 +34,7 @@ public:
     // Contrat :
     //
 
-	//virtual void ajout(Capteur* capteur);
+	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
 
 
     //------------------------------------------------- Surcharge d'opérateurs

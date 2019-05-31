@@ -254,12 +254,12 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
         ++i;
         getline(file,ligne);
         Mesure *mesure = analyserLigne(ligne);
-		//cout << mesure->quiSuisJe() << endl;
+		cout << mesure->Type() << endl;
         for (Capteur* capteur : *listeCapteurs)
         {
           if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
           {
-            capteur->AjouterMesure(*mesure);
+            capteur->AjouterMesure(mesure);
           }
         }
     }

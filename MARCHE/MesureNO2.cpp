@@ -30,7 +30,9 @@ using namespace std;
 
 
 
-//void MesureNO2::ajout(Capteur* capteur){}
+void MesureNO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10){
+	mesuresNO2->push_back(*this);
+}
 
 
 //------------------------------------------------- Surcharge d'opérateurs

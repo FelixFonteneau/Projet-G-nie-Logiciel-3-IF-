@@ -14,6 +14,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include "Moment.h"
+#include <vector>
 using namespace std;
 //------------------------------------------------------------- Constantes
 //------------------------------------------------------------------ Types
@@ -24,8 +25,10 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-class Capteur;
-
+class MesureO3;
+class MesureSO2;
+class MesureNO2;
+class MesurePM10;
 
 
 class Mesure
@@ -60,9 +63,9 @@ public:
         return date;
     }
 	
-	//J'ai besoin d'une méthode ajout virtual (que je redifinis dans les sous classes pour ajouter la mesure au bon vector en fonction de la nature
-	//Du coup j'ai besoin du capteur en parametre pour remplir son vecteur mais ça ne marche pas
-	//void ajout(Capteur* capteur) ;
+	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10)=0;
+	
+	
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator <<(ostream& out, const Mesure& mesure);

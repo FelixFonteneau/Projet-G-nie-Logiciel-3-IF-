@@ -37,7 +37,7 @@ public:
     //
     // Contrat :
     //
-    void AjouterMesure(Mesure & mesure);
+    void AjouterMesure(Mesure *mesure);
     // Mode d'emploi :
     //
     // Contrat :
@@ -49,22 +49,22 @@ public:
     // Contrat :
     //
 
-    vector<Mesure>* RecupererMesuresO3()
+    vector<MesureO3>* RecupererMesuresO3()
     {
         return & mesuresO3;
     }
 
-    vector<Mesure>* RecupererMesuresNO2()
+    vector<MesureNO2>* RecupererMesuresNO2()
     {
         return & mesuresNO2;
     }
 
-    vector<Mesure>* RecupererMesuresSO2()
+    vector<MesureSO2>* RecupererMesuresSO2()
     {
         return & mesuresSO2;
     }
 
-    vector<Mesure>* RecupererMesuresPM10()
+    vector<MesurePM10>* RecupererMesuresPM10()
     {
         return & mesuresPM10;
     }
@@ -98,10 +98,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  vector<Mesure> mesuresO3;
-  vector<Mesure> mesuresNO2;
-  vector<Mesure> mesuresSO2;
-  vector<Mesure> mesuresPM10;
+  vector<MesureO3> mesuresO3;
+  vector<MesureNO2> mesuresNO2;
+  vector<MesureSO2> mesuresSO2;
+  vector<MesurePM10> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;
