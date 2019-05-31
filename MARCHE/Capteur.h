@@ -13,13 +13,12 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
 #include "MesureNO2.h"
-#include "MesureO2.h"
+#include "MesureO3.h"
 #include "MesureSO2.h"
 #include "MesurePM10.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <set>
 #include <vector>
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
@@ -38,21 +37,38 @@ public:
     //
     // Contrat :
     //
-    void addMesureO2(int jour, int mois, int annee, int heure, int minute, int seconde, double valeur, string typeMesure);
+    void AjouterMesure(Mesure & mesure);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
-    /*vector<Mesure> getMesuresNO2()
+    string RecupererId() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Mesure>* RecupererMesuresO3()
     {
-        return mesuresNO2;
+        return & mesuresO3;
     }
-    vector<Mesure> getMesuresSO2()
+
+    vector<Mesure>* RecupererMesuresNO2()
     {
-        return mesuresSO2;
+        return & mesuresNO2;
     }
-    vector<Mesure> getMesuresPM10()
+
+    vector<Mesure>* RecupererMesuresSO2()
     {
-        return mesuresPM10;
-    }*/
-	
+        return & mesuresSO2;
+    }
+
+    vector<Mesure>* RecupererMesuresPM10()
+    {
+        return & mesuresPM10;
+    }
+
 	string getDescription();
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -82,10 +98,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    vector<Mesure*> mesuresO2;
-    vector<Mesure*> mesuresNO2;
-    vector<Mesure*> mesuresSO2;
-    vector<Mesure*> mesuresPM10;
+  vector<Mesure> mesuresO3;
+  vector<Mesure> mesuresNO2;
+  vector<Mesure> mesuresSO2;
+  vector<Mesure> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;

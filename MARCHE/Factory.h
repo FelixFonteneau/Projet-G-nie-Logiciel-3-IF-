@@ -28,7 +28,7 @@
 class Factory
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -36,49 +36,76 @@ public:
     //
     // Contrat :
     //
-    vector<Capteur> recupererInfos();
-    string decompose(char const sep, string uneLigne);
-    
+
+
+    vector<Capteur*>* AnalyserMesure();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+
     //------------------------------------------------- Surcharge d'opérateurs
     // Factory & operator = ( const Factory & uneFactory );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
+
     //-------------------------------------------- Constructeurs - destructeur
-    Factory ( const Factory & uneFactory );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-    
     Factory ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~Factory ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
+
+
     //------------------------------------------------------------------ PRIVE
-    void analyserCapteurs();
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
-    const string analyserMesure(string ligne);
-    void analyserTypeMesure();
+    void analyserCapteurs(vector<Capteur*>* listeCapteurs);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    string decompose(char const sep, string uneLigne);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    Mesure analyserMesure(string ligne);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    Mesure analyserLigne(string ligne);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void remplirCapteurs(vector<Capteur*>* listeCapteurs);
+    // Mode d'emploi :
+    //
+    // Contrat : doit etre appelee apres analyseCapteurs
+    // car la liste de capteurs doit etre initialisee
+
     //----------------------------------------------------- Attributs protégés
-    vector<Capteur*> capteurs;
-    map<unsigned int, Mesure> mesuresDefaillantes;
+    // vector<Capteur*> capteurs;
+    // map<unsigned int, Mesure> mesuresDefaillantes;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Factory>
 
 #endif // FACTORY_H
-

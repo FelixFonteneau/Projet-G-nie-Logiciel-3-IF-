@@ -1,12 +1,12 @@
 /*************************************************************************
- MesureO2  -  description
+ MesureO3  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <MesureO2> (fichier MesureO2.cpp) ------------
+//---------- Réalisation de la classe <MesureO3> (fichier MesureO3.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "MesureO2.h"
+#include "MesureO3.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type MesureO2::Méthode ( liste des paramètres )
+// type MesureO3::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-// MesureO2 & MesureO2::operator = ( const MesureO2 & uneMesureO2 )
+// MesureO3 & MesureO3::operator = ( const MesureO3 & uneMesureO3 )
 // Algorithme :
 //
 // {
@@ -38,39 +38,39 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-/* MesureO2::MesureO2 ( const MesureO2 & uneMesureO2 )
+/* MesureO3::MesureO3 ( const MesureO3 & uneMesureO3 )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <MesureO2>" << endl;
+    cout << "Appel au constructeur de copie de <MesureO3>" << endl;
 #endif
-} //----- Fin de MesureO2 (constructeur de copie) */
+} //----- Fin de MesureO3 (constructeur de copie) */
 
-MesureO2::MesureO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
-Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
+MesureO3::MesureO3 ( double uneValue, Moment& uneDate, string uneDescription,
+         string unType, string uneUnite, string unCapteurid ) :
+Mesure(uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <MesureO2>" << endl;
+    cout << "Appel au constructeur de <MesureO3>" << endl;
 #endif
-} //----- Fin de MesureO2
+} //----- Fin de MesureO3
 
 
 
 
-/* MesureO2::~MesureO2 ( )
+/* MesureO3::~MesureO3 ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <MesureO2>" << endl;
+    cout << "Appel au destructeur de <MesureO3>" << endl;
 #endif
-} //----- Fin de ~MesureO2 */
+} //----- Fin de ~MesureO3 */
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

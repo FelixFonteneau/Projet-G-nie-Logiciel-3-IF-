@@ -25,7 +25,7 @@
 class MesurePM10 : public Mesure
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -33,45 +33,45 @@ public:
     //
     // Contrat :
     //
-    
-    
+
+
     //------------------------------------------------- Surcharge d'opérateurs
     // MesurePM10 & operator = ( const MesurePM10 & uneMesurePM10 );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
+
     //-------------------------------------------- Constructeurs - destructeur
     // MesurePM10 ( const MesurePM10 & uneMesurePM10 );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
-    MesurePM10 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
+
+    MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription,
+             string unType, string uneUnite, string unCapteurid );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~MesurePM10 ( ) = default;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+
     //----------------------------------------------------- Attributs protégés
-    
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <MesurePM10>
 
 #endif // MESUREPM10_H
-

@@ -6,7 +6,7 @@
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Capteur> (fichier Capteur.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -22,21 +22,46 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type Capteur::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
-
-void Capteur::addMesureO2(int jour, int mois, int annee, int heure, int minute, int seconde, double valeur, string typeMesure)
+string Capteur::RecupererId() const
 {
-    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
-    Mesure *mesure = new Mesure(valeur, moment, "", typeMesure, "");
-    cout << "Mesure  : " << *mesure << endl;
-    mesuresO2.push_back(mesure);
+  return idCapteur;
 }
 
-string Capteur::getDescription(){
+
+void Capteur::AjouterMesure(Mesure & mesure)
+{
+    if(mesure.Type().compare("O3") == 0)
+    {
+      mesuresO3.push_back(mesure);
+
+    }
+    else if ( mesure.Type().compare("NO2") == 0)
+    {
+      mesuresNO2.push_back(mesure);
+
+    }
+    else if ( mesure.Type().compare("SO2") == 0)
+    {
+      mesuresSO2.push_back(mesure);
+
+    }
+    else if ( mesure.Type().compare("PM10") == 0)
+    {
+      mesuresPM10.push_back(mesure);
+    }
+    else
+    {
+      cerr << "Mesure : "<< mesure <<" ne rentre pas dans Capteur" << endl;
+    }
+}
+
+string Capteur::getDescription()
+{
 	return description;
 }
 
@@ -54,7 +79,7 @@ string Capteur::getDescription(){
 //
 // {
 // #ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+//    cout << "Appel au constructeur de copie de <Capteur>" << endl;
 // #endif
 // } //----- Fin de Capteur (constructeur de copie)
 
@@ -66,25 +91,13 @@ Capteur::Capteur(const string idCapt, const double lat, const double lon, const 
     #ifdef MAP
         cout << "Appel au constructeur de <Capteur>" << endl;
     #endif
-} //----- Fin de Xxx
+} //----- Fin de Capteur
 
 
 Capteur::~Capteur()
 // Algorithme :
 //
 {
-	for(unsigned int i = 0; i < mesuresO2.size() ; i++){
-		delete mesuresO2[i];
-	}
-	for(unsigned int i = 0; i < mesuresNO2.size() ; i++){
-		delete mesuresNO2[i];
-	}
-	for(unsigned int i = 0; i < mesuresSO2.size() ; i++){
-		delete mesuresSO2[i];
-	}
-	for(unsigned int i = 0; i < mesuresPM10.size() ; i++){
-		delete mesuresPM10[i];
-	}
     #ifdef MAP
         cout << "Appel au destructeur de <Capteur>" << endl;
     #endif

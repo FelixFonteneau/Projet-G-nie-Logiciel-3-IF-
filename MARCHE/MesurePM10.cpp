@@ -48,8 +48,9 @@ using namespace std;
 } //----- Fin de MesurePM10 (constructeur de copie) */
 
 
-MesurePM10::MesurePM10 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite) :
-Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
+MesurePM10::MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription,
+         string unType, string uneUnite, string unCapteurid ) :
+Mesure(uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
 // Algorithme :
 //
 {
@@ -72,4 +73,3 @@ Mesure(uneValue, uneDate, uneDescription, unType, uneUnite)
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

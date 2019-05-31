@@ -52,9 +52,9 @@ public:
     //
     // Contrat :
     //
-    
-    MesureNO2 (double uneValue, Moment& uneDate, string uneDescription,
-                       string unType, string uneUnite);
+
+    MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription,
+             string unType, string uneUnite, string unCapteurid );
 
     virtual ~MesureNO2 ( ) {};
     // Mode d'emploi :

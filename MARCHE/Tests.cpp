@@ -9,7 +9,7 @@ using namespace std;
 
 
 #include "MesureNO2.h"
-#include "MesureO2.h"
+#include "MesureO3.h"
 #include "MesureSO2.h"
 #include "MesurePM10.h"
 
@@ -25,10 +25,40 @@ void testAlgo()
 
 void testFactory()
 {
+    unsigned i = 0;
     Factory uneFactory;
-    uneFactory.analyserCapteurs();
-    uneFactory.recupererInfos();
+    vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure();
+    for(Capteur * capteur : *listCapteur)
+    {
+      cout << "\n\n\n-- valeurs capteur : " << capteur->RecupererId() << endl;
+      cout << "mesures O3 : " << endl;
+      for(Mesure mesure : *capteur->RecupererMesuresO3())
+      {
+        ++i;
+        cout << mesure << endl;
+      }
+      cout << "\nmesures NO2 : " << endl;
+      for(Mesure mesure : *capteur->RecupererMesuresNO2())
+      {
+        ++i;
+        cout << mesure << endl;
+      }
+      cout << "\nmesures SO2 : " << endl;
+      for(Mesure mesure : *capteur->RecupererMesuresSO2())
+      {
+        ++i;
+        cout << mesure << endl;
+      }
+      cout << "\nmesures PM10 : " << endl;
+      for(Mesure mesure : *capteur->RecupererMesuresPM10())
+      {
+        ++i;
+        cout << mesure << endl;
+      }
+    }
 
+    //doit normalement avoir 1000-1 mesures prises dans la factory
+    cout << "\n\n" << i << "mesures sont en mémoire" << endl;
 }
 
 void testMessages()
@@ -61,7 +91,8 @@ void testMoment()
     cout << m1 << endl;
 }
 
-/*void testMesure()
+/*
+void testMesure()
 {
     Moment m1 ("2016-01-01T00:01:20.609000");
     Moment m2 ("2016-01-01T00:01:20.6090000");
@@ -90,7 +121,7 @@ void testMoment()
 
     cout << "Type m1 : " << mesure.Type() << endl;
     cout << "Type m2 : " << mesure2.Type() << endl;
-}*/
+} */
 
 int main()
 {
@@ -106,7 +137,6 @@ int main()
     testMesure(); */
 
     testFactory();
-
     // testMoment();
 
     return 0;

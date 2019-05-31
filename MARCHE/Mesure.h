@@ -38,16 +38,24 @@ public:
     //
 
     double Valeur () const;
-    // Mode d'emploi :
+    // Mode d'emploi : retourne la valeur de la mesure
     //
     // Contrat :
 
     string Type () const;
+    // Mode d'emploi : retour
+    //
+    // Contrat :
+
+    string Capteur() const;
     // Mode d'emploi :
     //
     // Contrat :
 
-
+    Moment getDate() const
+    {
+        return date;
+    }
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator <<(ostream& out, const Mesure& mesure);
@@ -77,10 +85,6 @@ public:
         return date == m.date;
     }
 
-    Moment getDate() const
-    {
-        return date;
-    }
 
     //Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
@@ -89,6 +93,10 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
+    Mesure ( double uneValue, Moment& uneDate, string uneDescription,
+             string unType, string uneUnite, string unCapteurid );
+
+
     Mesure ( const Mesure & uneMesure );
     // Mode d'emploi (constructeur de copie) :
     //
@@ -96,7 +104,6 @@ public:
     //
 
 
-    Mesure (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
 
 
     virtual ~Mesure ( );
@@ -116,6 +123,7 @@ protected:
     string description;
     string type;
     string unite;
+    string capteurid;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>

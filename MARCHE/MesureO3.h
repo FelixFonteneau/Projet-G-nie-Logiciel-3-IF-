@@ -1,12 +1,12 @@
 /*************************************************************************
- MesureO2  -  description
+ MesureO3  -  description
  -------------------
  début                : $DATE$
  copyright            : (C) $YEAR$ par $AUTHOR$
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Interface de la classe <MesureO2> (fichier MesureO2.h) ----------------
+//---------- Interface de la classe <MesureO3> (fichier MesureO3.h) ----------------
 #if ! defined ( MESUREO2_H )
 #define MESUREO2_H
 
@@ -17,12 +17,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <MesureO2>
+// Rôle de la classe <MesureO3>
 //
 //
 //------------------------------------------------------------------------
 
-class MesureO2 : public Mesure
+class MesureO3 : public Mesure
 {
     //----------------------------------------------------------------- PUBLIC
 
@@ -48,20 +48,21 @@ public:
 
 
     //-------------------------------------------- Constructeurs - destructeur
-    // MesureO2 ( const MesureO2 & uneMesureO2 );
+    // MesureO3 ( const MesureO3 & uneMesureO3 );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
-    MesureO2 (double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite);
- 
+
+    MesureO3 ( double uneValue, Moment& uneDate, string uneDescription,
+             string unType, string uneUnite, string unCapteurid );
+
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~MesureO2 ( ) = default;
+    virtual ~MesureO3 ( ) = default;
     // Mode d'emploi :
     //
     // Contrat :
@@ -76,6 +77,6 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <MesureO2>
+//-------------------------------- Autres définitions dépendantes de <MesureO3>
 
 #endif // MESUREO2_H
