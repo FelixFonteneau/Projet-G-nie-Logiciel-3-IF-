@@ -34,31 +34,6 @@ string Capteur::RecupererId() const
 
 void Capteur::AjouterMesure(Mesure *mesure)
 {
-    /*if(mesure->Type().compare("O3") == 0)
-    {
-      mesuresO3.push_back(*mesure);
-
-    }
-    else if ( mesure->Type().compare("NO2") == 0)
-    {
-      mesuresNO2.push_back(*mesure);
-
-    }
-    else if ( mesure->Type().compare("SO2") == 0)
-    {
-      mesuresSO2.push_back(*mesure);
-
-    }
-    else if ( mesure->Type().compare("PM10") == 0)
-    {
-      mesuresPM10.push_back(*mesure);
-    }
-    else
-    {
-#ifdef MAP
-      cerr << "Mesure : "<< mesure <<" ne rentre pas dans Capteur" << endl;
-#endif
-    }*/
 	mesure->ajout(&mesuresO3,&mesuresNO2,&mesuresSO2,&mesuresPM10);
 }
 

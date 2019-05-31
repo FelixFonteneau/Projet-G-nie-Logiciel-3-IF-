@@ -31,26 +31,27 @@ void testFactory()
     for(Capteur * capteur : *listCapteur)
     {
       cout << "\n\n\n-- valeurs capteur : " << capteur->RecupererId() << endl;
+	  
       cout << "mesures O3 : " << endl;
-      for(Mesure mesure : *capteur->RecupererMesuresO3())
+      for(MesureO3 mesure : *capteur->RecupererMesuresO3())
       {
         ++i;
         cout << mesure << endl;
       }
       cout << "\nmesures NO2 : " << endl;
-      for(Mesure mesure : *capteur->RecupererMesuresNO2())
+      for(MesureNO2 mesure : *capteur->RecupererMesuresNO2())
       {
         ++i;
         cout << mesure << endl;
       }
       cout << "\nmesures SO2 : " << endl;
-      for(Mesure mesure : *capteur->RecupererMesuresSO2())
+      for(MesureSO2 mesure : *capteur->RecupererMesuresSO2())
       {
         ++i;
         cout << mesure << endl;
       }
       cout << "\nmesures PM10 : " << endl;
-      for(Mesure mesure : *capteur->RecupererMesuresPM10())
+      for(MesurePM10 mesure : *capteur->RecupererMesuresPM10())
       {
         ++i;
         cout << mesure << endl;

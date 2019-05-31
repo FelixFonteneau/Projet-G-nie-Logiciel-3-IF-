@@ -37,6 +37,8 @@ public:
     //
 
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
+	
+	virtual string type () const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     // MesureNO2 & operator = ( const MesureNO2 & uneMesureNO2 );

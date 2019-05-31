@@ -35,14 +35,16 @@ double Mesure::Valeur () const
   return value;
 }
 
-string Mesure::Type () const
-{
-  return type;
-}
+
 
 string Mesure::Capteur() const
 {
   return capteurid;
+}
+
+string Mesure::type () const
+{
+	return "noType";
 }
 
 
@@ -53,7 +55,7 @@ string Mesure::Capteur() const
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
 {
     out << "Le " << uneMesure.date << " : " << uneMesure.value << " " << uneMesure.unite
-    << " " << uneMesure.type << "; capteur : " << uneMesure.capteurid/*<< typeid(uneMesure).name()*/;
+    << " " << uneMesure.type() << "; capteur : " << uneMesure.capteurid/*<< typeid(uneMesure).name()*/;
     return out; // N'oubliez pas de renvoyer le flux, afin de pouvoir chaîner les appels
 }
 
@@ -63,7 +65,7 @@ ostream& operator <<(ostream& out, const Mesure& uneMesure)
 Mesure::Mesure(){}
 
 Mesure::Mesure ( const Mesure & uneMesure ) : value(uneMesure.value), date(uneMesure.date),
-        description(uneMesure.description), type(uneMesure.type),
+        description(uneMesure.description),
         unite(uneMesure.unite), capteurid(uneMesure.capteurid)
 
 // Algorithme :
@@ -76,10 +78,9 @@ Mesure::Mesure ( const Mesure & uneMesure ) : value(uneMesure.value), date(uneMe
 } //----- Fin de Mesure (constructeur de copie)
 
 
-Mesure::Mesure (double uneValue, Moment& uneDate, string uneDescription, string unType,
+Mesure::Mesure (double uneValue, Moment& uneDate, string uneDescription,
    string uneUnite, string unCapteurid) :
-       value(uneValue), date(uneDate), description(uneDescription), type(unType),
-        unite(uneUnite), capteurid(unCapteurid)
+       value(uneValue), date(uneDate), description(uneDescription), unite(uneUnite), capteurid(unCapteurid)
 {
   #ifdef MAP
       cout << "Appel au constructeur de <Mesure>" << endl;

@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <string>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -32,6 +33,11 @@ using namespace std;
 void MesureSO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10){
 	mesuresSO2->push_back(*this);
 }
+
+string MesureSO2::type() const{
+	return "SO2";
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureSO2 & MesureSO2::operator = ( const MesureSO2 & uneMesureSO2 )
 // Algorithme :
@@ -52,7 +58,7 @@ void MesureSO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO
 
 
 MesureSO2::MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid ):
-Mesure(uneValue, uneDate, uneDescription, "SO2", uneUnite, unCapteurid)
+Mesure(uneValue, uneDate, uneDescription, uneUnite, unCapteurid)
 // Algorithme :
 //
 {

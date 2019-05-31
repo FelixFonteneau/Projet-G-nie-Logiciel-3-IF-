@@ -40,6 +40,8 @@ public:
     // Contrat :
 
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
+	
+	virtual string type () const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     // friend ostream& operator <<(ostream& out, const Mesure& mesure);

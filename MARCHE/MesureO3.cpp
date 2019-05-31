@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <string>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -33,6 +34,10 @@ using namespace std;
 void MesureO3::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10){
 	mesuresO3->push_back(*this);
 }
+
+string MesureO3::type() const{
+	return "O3";
+}
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureO3 & MesureO3::operator = ( const MesureO3 & uneMesureO3 )
 // Algorithme :
@@ -52,7 +57,7 @@ void MesureO3::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2
 } //----- Fin de MesureO3 (constructeur de copie) */
 
 MesureO3::MesureO3 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
-Mesure(uneValue, uneDate, uneDescription, "O3" , uneUnite, unCapteurid)
+Mesure(uneValue, uneDate, uneDescription, uneUnite, unCapteurid)
 // Algorithme :
 //
 {

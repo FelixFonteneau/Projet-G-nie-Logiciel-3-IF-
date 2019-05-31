@@ -34,6 +34,10 @@ void MesureNO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO
 	mesuresNO2->push_back(*this);
 }
 
+string MesureNO2::type() const{
+	return "NO2";
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureNO2 & MesureNO2::operator = ( const MesureNO2 & uneMesureNO2 )
@@ -55,7 +59,7 @@ void MesureNO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO
 
 
 MesureNO2::MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
-Mesure (uneValue, uneDate, uneDescription, "NO2", uneUnite, unCapteurid)
+Mesure (uneValue, uneDate, uneDescription, uneUnite, unCapteurid)
 // Algorithme :
 //
 {

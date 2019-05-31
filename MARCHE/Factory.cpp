@@ -254,14 +254,16 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
         ++i;
         getline(file,ligne);
         Mesure *mesure = analyserLigne(ligne);
-		cout << mesure->Type() << endl;
+		//cout << mesure->type() << endl;
         for (Capteur* capteur : *listeCapteurs)
         {
           if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
           {
             capteur->AjouterMesure(mesure);
+			
           }
         }
+		delete mesure;
     }
 #ifdef MAP
     cout << "nombre de mesures analysees : " << i << endl;

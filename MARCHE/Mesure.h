@@ -48,10 +48,8 @@ public:
     //
     // Contrat :
 
-    string Type () const;
-    // Mode d'emploi : retour
-    //
-    // Contrat :
+    
+    
 
     string Capteur() const;
     // Mode d'emploi :
@@ -62,6 +60,8 @@ public:
     {
         return date;
     }
+	
+	virtual string type () const;
 	
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10)=0;
 	
@@ -104,7 +104,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
 	Mesure();
-    Mesure ( double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite, string unCapteurid );
+    Mesure ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid );
 
 
     Mesure ( const Mesure & uneMesure );
@@ -131,7 +131,6 @@ protected:
     double value;
     Moment date;
     string description;
-    string type;
     string unite;
     string capteurid;
 };
