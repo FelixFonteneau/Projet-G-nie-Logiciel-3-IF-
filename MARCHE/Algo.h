@@ -39,7 +39,7 @@ public:
     // Contrat :
     //
     
-    double qualiteAir(list<Capteur> capteurs, double coordonees[2]);
+    double QualiteAir(vector<Capteur*>* capteurs, double* coordonees);
 
     list<Capteur> capteurTerritoire(double radius, double coordonees[2]);
 
@@ -82,7 +82,9 @@ public:
     
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+    double enRadians(double latitude);
+    double obtenirDistance(vector<double> coordonees1, double coordonees2[2]);
+    int calculAtmo(double valeurNO2, double valeurO3, double valeurPM10, double valeurSO2);
     //----------------------------------------------------- Attributs protégés
     
 };

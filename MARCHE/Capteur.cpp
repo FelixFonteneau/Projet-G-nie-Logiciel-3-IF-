@@ -37,9 +37,17 @@ void Capteur::AjouterMesure(Mesure *mesure)
 	mesure->ajout(&mesuresO3,&mesuresNO2,&mesuresSO2,&mesuresPM10);
 }
 
-string Capteur::getDescription()
+string Capteur::getDescription() const
 {
 	return description;
+}
+
+vector<double> Capteur::getCoords()
+{
+    vector<double> coords;
+    coords.push_back(latitude);
+    coords.push_back(longitude);
+    return coords;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -47,18 +55,27 @@ string Capteur::getDescription()
 // Algorithme :
 //
 // {
+
 // } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Capteur::Capteur ( const Capteur & unCapteur )
-// Algorithme :
+/*Capteur::Capteur ( const Capteur & unCapteur ) :  description(unCapteur.description),
+longitude(unCapteur.longitude),
+latitude(unCapteur.latitude),
+idCapteur(unCapteur.idCapteur),
+mesuresPM10(unCapteur.mesuresPM10),
+mesuresSO2(unCapteur.mesuresSO2),
+mesuresNO2(unCapteur.mesuresNO2),
+mesuresO3(unCapteur.mesuresO3),
+// Algorithme
 //
-// {
-// #ifdef MAP
-//    cout << "Appel au constructeur de copie de <Capteur>" << endl;
-// #endif
-// } //----- Fin de Capteur (constructeur de copie)
+{
+    
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Capteur>" << endl;
+#endif
+} //----- Fin de Capteur (constructeur de copie) */
 
 
 Capteur::Capteur(const string idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)

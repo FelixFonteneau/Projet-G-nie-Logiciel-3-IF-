@@ -45,7 +45,7 @@ public:
     void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
     //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
-  
+    
     void affiche();
     
     
@@ -88,10 +88,9 @@ protected:
     Capteur capteur;
     Moment* intervalleTemps[2];
     Moment date;
-
+    
 };
 
 //-------------------------------- Autres définitions dépendantes de <Messages>
 
 #endif // MESSAGES_H
-

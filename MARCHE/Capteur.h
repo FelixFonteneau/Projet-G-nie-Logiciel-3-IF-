@@ -64,15 +64,19 @@ public:
         return & mesuresSO2;
     }
 
-    vector<MesurePM10>* RecupererMesuresPM10()
+    vector<MesurePM10>* RecupererMesuresPM10() 
     {
         return & mesuresPM10;
     }
+    
 
-	string getDescription();
+
+	string getDescription() const;
+    
+    vector<double> getCoords();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    // Capteur & operator = ( const Capteur & unCapteur );
+    // Capteur & operator = (const Capteur & unCapteur);
     // Mode d'emploi :
     //
     // Contrat :
@@ -80,6 +84,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
+    // Capteur (const Capteur & unCapteur);
     Capteur (const string idCapt, const double lat, const double lon, const string description);
     // Mode d'emploi :
     //
@@ -98,10 +103,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  vector<MesureO3> mesuresO3;
-  vector<MesureNO2> mesuresNO2;
-  vector<MesureSO2> mesuresSO2;
-  vector<MesurePM10> mesuresPM10;
+    vector<MesureO3> mesuresO3;
+    vector<MesureNO2> mesuresNO2;
+    vector<MesureSO2> mesuresSO2;
+    vector<MesurePM10> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;

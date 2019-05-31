@@ -35,12 +35,12 @@ using namespace std;
 
 vector<Capteur*>* Factory::AnalyserMesure()
 {
-  vector<Capteur*>* listeCapteur = new vector<Capteur*>;
-  recupererType();
-  analyserCapteurs(listeCapteur);
-  remplirCapteurs(listeCapteur);
-  //retourne une référence vers la liste de capteur stockée dans le tas
-  return listeCapteur;
+    vector<Capteur*>* listeCapteur = new vector<Capteur*>;
+    recupererType();
+    analyserCapteurs(listeCapteur);
+    remplirCapteurs(listeCapteur);
+    //retourne une référence vers la liste de capteur stockée dans le tas
+    return listeCapteur;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -135,10 +135,6 @@ void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
     }
 }
 
-
-
-
-
 string Factory::decompose(char const sep, string uneLigne)
 {
     int i = 0;
@@ -158,12 +154,12 @@ string Factory::decompose(char const sep, string uneLigne)
 
 Mesure* Factory::analyserLigne(string ligne)
 {
-  // Commentaire de grande importance : le string ligne que l'on obtient
-  // ci-dessus a une structure extrêmement bizzare :
-  // entre chaque caratère visible, il y a un caractère null,
-  // ce qui fait qu'un string de taille n à l'écran a en réalité
-  // une taille (2*n + 1). Le problème est corrigé avec la fonction décompose,
-  // indispensable pour pouvoir utiliser stoi.
+    // Important : le string ligne que l'on obtient
+    // ci-dessus a une structure extrêmement bizzare :
+    // entre chaque caratère visible, il y a un caractère null,
+    // ce qui fait qu'un string de taille n à l'écran a en réalité
+    // une taille (2*n + 1). Le problème est corrigé avec la fonction décompose,
+    // indispensable pour pouvoir utiliser stoi.
 
 
     // 2017-01-01T00:01:20.6090000;Sensor0;O3;17.8902017543936;
@@ -230,7 +226,7 @@ Mesure* Factory::analyserLigne(string ligne)
 		Mesure * mesurePtr = NULL;
 		return mesurePtr;
 	}
-    //Mesure mesure(valeur, moment, description, typeMesure, unite, idCapt);
+    // Mesure mesure(valeur, moment, description, typeMesure, unite, idCapt);
 }
 
 
@@ -240,16 +236,16 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
     ifstream file ("donnees/donneesCapteurs.csv");
     string ligne;
 
-    // on passes les premières 14 lignes inutiles
+    // on passe les premières 14 lignes inutiles
     for (int i = 1; i < 14; i++)
     {
         getline(file,ligne);
     }
 
-    //puis on analyse toutes les lignes
+    // puis on analyse toutes les lignes
     unsigned i = 0;
     for(unsigned y(0); y<1000; y++)
-	//C'est quoi ce 1000?
+	// C'est quoi ce 1000?
     {
         ++i;
         getline(file,ligne);
@@ -257,11 +253,10 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 		//cout << mesure->type() << endl;
         for (Capteur* capteur : *listeCapteurs)
         {
-          if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
-          {
-            capteur->AjouterMesure(mesure);
-			
-          }
+            if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
+            {
+                capteur->AjouterMesure(mesure);
+            }
         }
 		delete mesure;
     }

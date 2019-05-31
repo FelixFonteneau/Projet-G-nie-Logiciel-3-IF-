@@ -51,6 +51,19 @@ void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
     return capteursDefectueux;
 } */
 
+
+void Service::qualiteAir()
+{
+    Messages unMessage;
+    Factory uneFactory;
+    vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure();
+    double* coords = unMessage.recupererLocalisation();
+    Algo unAlgo;
+    double atmo = unAlgo.QualiteAir(listCapteur, coords);
+    cout << atmo << endl;
+}
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )
 // Algorithme :

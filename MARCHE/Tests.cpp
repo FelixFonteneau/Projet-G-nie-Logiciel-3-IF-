@@ -14,6 +14,7 @@ using namespace std;
 #include "MesurePM10.h"
 
 #include "Capteur.h"
+#include "Service.h"
 #include "Algo.h"
 #include "Factory.h"
 #include "Messages.h"
@@ -30,32 +31,32 @@ void testFactory()
     vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure();
     for(Capteur * capteur : *listCapteur)
     {
-      cout << "\n\n\n-- valeurs capteur : " << capteur->RecupererId() << endl;
-	  
-      cout << "mesures O3 : " << endl;
-      for(MesureO3 mesure : *capteur->RecupererMesuresO3())
-      {
-        ++i;
-        cout << mesure << endl;
-      }
-      cout << "\nmesures NO2 : " << endl;
-      for(MesureNO2 mesure : *capteur->RecupererMesuresNO2())
-      {
-        ++i;
-        cout << mesure << endl;
-      }
-      cout << "\nmesures SO2 : " << endl;
-      for(MesureSO2 mesure : *capteur->RecupererMesuresSO2())
-      {
-        ++i;
-        cout << mesure << endl;
-      }
-      cout << "\nmesures PM10 : " << endl;
-      for(MesurePM10 mesure : *capteur->RecupererMesuresPM10())
-      {
-        ++i;
-        cout << mesure << endl;
-      }
+        cout << "\n\n\n-- valeurs capteur : " << capteur->RecupererId() << endl;
+
+        cout << "mesures O3 : " << endl;
+        for(MesureO3 mesure : *capteur->RecupererMesuresO3())
+        {
+            ++i;
+            cout << mesure << endl;
+        }
+        cout << "\nmesures NO2 : " << endl;
+        for(MesureNO2 mesure : *capteur->RecupererMesuresNO2())
+        {
+            ++i;
+            cout << mesure << endl;
+        }
+        cout << "\nmesures SO2 : " << endl;
+        for(MesureSO2 mesure : *capteur->RecupererMesuresSO2())
+        {
+            ++i;
+            cout << mesure << endl;
+        }
+        cout << "\nmesures PM10 : " << endl;
+        for(MesurePM10 mesure : *capteur->RecupererMesuresPM10())
+        {
+            ++i;
+            cout << mesure << endl;
+        }
     }
 
     //doit normalement avoir 1000-1 mesures prises dans la factory
@@ -63,7 +64,7 @@ void testFactory()
 	
 	for(Capteur * capteur : *listCapteur)
     {
-      delete capteur;
+        delete capteur;
     }
 	delete listCapteur;
 	
@@ -75,6 +76,12 @@ void testMessages()
     unMessage.affiche();
     unMessage.messageMenu();
     unMessage.affiche();
+}
+
+void testService()
+{
+    Service unService;
+    unService.qualiteAir();
 }
 
 
@@ -144,8 +151,10 @@ int main()
     cout << endl << "******" << endl << endl;
     testMesure(); */
 
-    testFactory();
+    // testService();
     // testMoment();
+    
+    testService();
 
     return 0;
 }

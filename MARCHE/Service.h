@@ -39,9 +39,9 @@ public:
     // Contrat :
     //
 	
-    int qualiteAir();
+    void qualiteAir();
 	
-    list<Capteur> capteursSimilaires();
+    void capteursSimilaires();
 	
     list<Capteur> capteursDefectueux(); 
 	
