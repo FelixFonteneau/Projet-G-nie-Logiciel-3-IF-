@@ -11,7 +11,7 @@
 //---------- Interface de la classe <Moment> (fichier Moment.h) ----------------
 #if ! defined ( MOMENT_H )
 #define MOMENT_H
-
+ 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -66,7 +66,7 @@ public:
     friend ostream& operator<<(ostream &strm, const Moment &m);
 
     bool operator > (const Moment &m);
-    
+
     Moment& operator = (const Moment &m);
 
     bool operator < (const Moment &m);
@@ -75,8 +75,8 @@ public:
     {
         return (!(*this<m) && !(*this>m));
     }
-    
-    
+
+
 //-------------------------------------------- Constructeurs - destructeur
     Moment ( const Moment & unMoment );
     // Mode d'emploi (constructeur de copie) :
