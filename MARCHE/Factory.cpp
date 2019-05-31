@@ -88,12 +88,11 @@ void Factory::recupererType()
   while (!file.eof())
   {
       getline(file,ligne);
-      string id = decompose(';', ligne);
-      ligne = ligne.replace(0, id.size() + 1, "");
-      string unite = decompose(';', ligne);
-      ligne = ligne.replace(0, unite.size() + 1, "");
-      string description = decompose(';', ligne);
-      ligne = ligne.replace(0, ligne.find(';') + 1, "");
+      string id = ligne.substr(0, ligne.find(";"));
+      ligne.erase(0, ligne.find(";") + 1);
+      string unite = ligne.substr(0, ligne.find(";"));
+      ligne.erase(0, ligne.find(";") + 1);
+      string description = ligne.substr(0, ligne.find(";"));
       typeMesure_t type;
       type.attributeID = id;
       type.unite = unite;
@@ -214,7 +213,7 @@ Mesure Factory::analyserLigne(string ligne)
       }
     }
 
-    Mesure mesure(valeur, moment, unite, typeMesure, description, idCapt);
+    Mesure mesure(valeur, moment, description, typeMesure, unite, idCapt);
     return mesure;
 }
 
