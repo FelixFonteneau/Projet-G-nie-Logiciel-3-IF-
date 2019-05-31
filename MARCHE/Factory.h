@@ -27,6 +27,13 @@
 
 class Factory
 {
+  struct typeMesure_t
+  {
+    // AttributeID;Unit;Description;
+    string attributeID;
+    string unite;
+    string description;
+  };
     //----------------------------------------------------------------- PUBLIC
 
 public:
@@ -71,6 +78,12 @@ public:
     //------------------------------------------------------------------ PRIVE
 protected:
     //----------------------------------------------------- Méthodes protégées
+    void recupererType();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
     void analyserCapteurs(vector<Capteur*>* listeCapteurs);
     // Mode d'emploi :
     //
@@ -83,11 +96,6 @@ protected:
     // Contrat :
     //
 
-    Mesure analyserMesure(string ligne);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     Mesure analyserLigne(string ligne);
     // Mode d'emploi :
@@ -102,8 +110,7 @@ protected:
     // car la liste de capteurs doit etre initialisee
 
     //----------------------------------------------------- Attributs protégés
-    // vector<Capteur*> capteurs;
-    // map<unsigned int, Mesure> mesuresDefaillantes;
+    vector<typeMesure_t> listeType;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Factory>

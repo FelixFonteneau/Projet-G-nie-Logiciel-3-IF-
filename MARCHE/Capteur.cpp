@@ -56,7 +56,9 @@ void Capteur::AjouterMesure(Mesure & mesure)
     }
     else
     {
+#ifdef MAP
       cerr << "Mesure : "<< mesure <<" ne rentre pas dans Capteur" << endl;
+#endif
     }
 }
 

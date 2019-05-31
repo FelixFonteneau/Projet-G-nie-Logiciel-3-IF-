@@ -36,7 +36,7 @@ using namespace std;
 vector<Capteur*>* Factory::AnalyserMesure()
 {
   vector<Capteur*>* listeCapteur = new vector<Capteur*>;
-
+  recupererType();
   analyserCapteurs(listeCapteur);
   remplirCapteurs(listeCapteur);
   //retourne une référence vers la liste de capteur stockée dans le tas
@@ -78,33 +78,67 @@ Factory::~Factory ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
+void Factory::recupererType()
 {
-    cout << "début de la methode recupererInfos" << endl;
-    ifstream file ("donneesCapteurs.csv");
+  ifstream file ("donnees/AttributeType.csv");
+  string ligne;
+
+  // Premiere ligne inutile
+  getline(file,ligne);
+  while (!file.eof())
+  {
+      getline(file,ligne);
+      string id = decompose(';', ligne);
+      ligne = ligne.replace(0, id.size() + 1, "");
+      string unite = decompose(';', ligne);
+      ligne = ligne.replace(0, unite.size() + 1, "");
+      string description = decompose(';', ligne);
+      ligne = ligne.replace(0, ligne.find(';') + 1, "");
+      typeMesure_t type;
+      type.attributeID = id;
+      type.unite = unite;
+      type.description = description;
+#ifdef MAP
+      cout << id << " " << unite << " " << description << endl;
+#endif
+      listeType.push_back(type);
+  }
+}
+
+
+
+void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
+{
+    // Sensor0;-8.15758888291083;-34.7692487876719;;
+    ifstream file ("donnees/descriptionsCapteurs.csv");
     string ligne;
 
-    // on passes les premières 14 lignes inutiles
-    for (int i = 1; i < 14; i++)
-    {
-        getline(file,ligne);
-    }
+    // Premiere ligne inutile
+    getline(file,ligne);
 
-    //puis on analyse 100 lignes
-    for (int i = 1; i < 1000; i++)
+    while (!file.eof())
     {
 
         getline(file,ligne);
-        Mesure mesure = analyserLigne(ligne);
-        for (Capteur* capteur : *listeCapteurs)
-        {
-          if(capteur->RecupererId().compare( mesure.Capteur()) == 0)
-          {
-            capteur->AjouterMesure(mesure);
-          }
-        }
+        // cout << ligne;
+        // On arrive à la première ligne intéressante
+        string idCapt = decompose(';', ligne);
+        ligne = ligne.replace(0, idCapt.size() + 1, "");
+        const double latitude = stod(decompose(';', ligne));
+        ligne = ligne.replace(0, ligne.find(';') + 1, "");
+        const double longitude = stod(decompose(';', ligne));
+        ligne = ligne.replace(0, ligne.find(';') + 1, "");
+        Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
+#ifdef MAP
+        cout << idCapt << " " << longitude << " " << latitude << endl;
+#endif
+        listeCapteurs->push_back(capteur);
     }
 }
+
+
+
+
 
 string Factory::decompose(char const sep, string uneLigne)
 {
@@ -170,34 +204,49 @@ Mesure Factory::analyserLigne(string ligne)
 
     Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
 
-    Mesure mesure(valeur, moment, "", typeMesure, "", idCapt);
+    string unite, description;
+    for (typeMesure_t type : listeType)
+    {
+      if(type.attributeID.compare(typeMesure) == 0)
+      {
+        unite = type.unite;
+        description = type.description;
+      }
+    }
+
+    Mesure mesure(valeur, moment, unite, typeMesure, description, idCapt);
     return mesure;
 }
 
-void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
+
+void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 {
-    // Sensor0;-8.15758888291083;-34.7692487876719;;
-    ifstream file ("descriptionsCapteurs.csv");
+
+    ifstream file ("donnees/donneesCapteurs.csv");
     string ligne;
 
-    // Premiere ligne inutile
-    getline(file,ligne);
-
-    while (!file.eof())
+    // on passes les premières 14 lignes inutiles
+    for (int i = 1; i < 14; i++)
     {
-
         getline(file,ligne);
-        // cout << ligne;
-        // On arrive à la première ligne intéressante
-        string idCapt = decompose(';', ligne);
-        ligne = ligne.replace(0, idCapt.size() + 1, "");
-        const double latitude = stod(decompose(';', ligne));
-        ligne = ligne.replace(0, ligne.find(';') + 1, "");
-        const double longitude = stod(decompose(';', ligne));
-        ligne = ligne.replace(0, ligne.find(';') + 1, "");
-
-        Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
-        cout << idCapt << " " << longitude << " " << latitude << endl;
-        listeCapteurs->push_back(capteur);
     }
+
+    //puis on analyse toutes les lignes
+    unsigned i = 0;
+    for(unsigned y(0); y<1000; y++)
+    {
+        ++i;
+        getline(file,ligne);
+        Mesure mesure = analyserLigne(ligne);
+        for (Capteur* capteur : *listeCapteurs)
+        {
+          if(capteur->RecupererId().compare( mesure.Capteur()) == 0)
+          {
+            capteur->AjouterMesure(mesure);
+          }
+        }
+    }
+#ifdef MAP
+    cout << "nombre de mesures analysees : " << i << endl;
+#endif
 }
