@@ -29,6 +29,9 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
+
+//void MesurePM10::ajout(Capteur* capteur){}
+
 //------------------------------------------------- Surcharge d'opérateurs
 // MesurePM10 & MesurePM10::operator = ( const MesurePM10 & uneMesurePM10 )
 // Algorithme :
@@ -48,9 +51,8 @@ using namespace std;
 } //----- Fin de MesurePM10 (constructeur de copie) */
 
 
-MesurePM10::MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription,
-         string unType, string uneUnite, string unCapteurid ) :
-Mesure(uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
+MesurePM10::MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
+Mesure(uneValue, uneDate, uneDescription, "PM10", uneUnite, unCapteurid)
 // Algorithme :
 //
 {

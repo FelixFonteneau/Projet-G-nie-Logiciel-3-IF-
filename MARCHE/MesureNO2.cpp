@@ -29,6 +29,10 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
+
+//void MesureNO2::ajout(Capteur* capteur){}
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureNO2 & MesureNO2::operator = ( const MesureNO2 & uneMesureNO2 )
 // Algorithme :
@@ -48,9 +52,8 @@ using namespace std;
 } //----- Fin de MesureNO2 (constructeur de copie) */
 
 
-MesureNO2::MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription,
-         string unType, string uneUnite, string unCapteurid ) :
-Mesure (uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
+MesureNO2::MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
+Mesure (uneValue, uneDate, uneDescription, "NO2", uneUnite, unCapteurid)
 // Algorithme :
 //
 {

@@ -29,6 +29,9 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
+
+//void MesureO3::ajout(Capteur* capteur){}
+
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureO3 & MesureO3::operator = ( const MesureO3 & uneMesureO3 )
 // Algorithme :
@@ -47,9 +50,8 @@ using namespace std;
 #endif
 } //----- Fin de MesureO3 (constructeur de copie) */
 
-MesureO3::MesureO3 ( double uneValue, Moment& uneDate, string uneDescription,
-         string unType, string uneUnite, string unCapteurid ) :
-Mesure(uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
+MesureO3::MesureO3 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
+Mesure(uneValue, uneDate, uneDescription, "O3" , uneUnite, unCapteurid)
 // Algorithme :
 //
 {

@@ -39,6 +39,7 @@ public:
     //
     // Contrat :
 
+	//virtual void ajout(Capteur* capteur);
 
     //------------------------------------------------- Surcharge d'opérateurs
     // friend ostream& operator <<(ostream& out, const Mesure& mesure);
@@ -54,8 +55,7 @@ public:
     // Contrat :
     //
 
-    MesureO3 ( double uneValue, Moment& uneDate, string uneDescription,
-             string unType, string uneUnite, string unCapteurid );
+    MesureO3 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
 
     // Mode d'emploi :
     //

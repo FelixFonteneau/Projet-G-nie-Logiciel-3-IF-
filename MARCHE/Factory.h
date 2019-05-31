@@ -97,7 +97,7 @@ protected:
     //
 
 
-    Mesure analyserLigne(string ligne);
+    Mesure* analyserLigne(string ligne);
     // Mode d'emploi :
     //
     // Contrat :

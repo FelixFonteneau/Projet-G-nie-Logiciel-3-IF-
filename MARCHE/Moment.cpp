@@ -82,6 +82,8 @@ Moment& Moment::operator = (const Moment& m)
     return *this;
 }
 //-------------------------------------------- Constructeurs - destructeur
+Moment::Moment(){}
+
 Moment::Moment ( const Moment & unMoment )
 // Algorithme :
 //

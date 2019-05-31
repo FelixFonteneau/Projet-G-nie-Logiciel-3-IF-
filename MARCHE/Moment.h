@@ -78,6 +78,9 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
+	Moment();
+	
     Moment ( const Moment & unMoment );
     // Mode d'emploi (constructeur de copie) :
     //

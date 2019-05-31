@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -34,6 +35,7 @@ public:
     // Contrat :
     //
 
+	//virtual void ajout(Capteur* capteur);
 
     //------------------------------------------------- Surcharge d'opérateurs
     // MesurePM10 & operator = ( const MesurePM10 & uneMesurePM10 );
@@ -50,8 +52,7 @@ public:
     // Contrat :
     //
 
-    MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription,
-             string unType, string uneUnite, string unCapteurid );
+    MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
     // Mode d'emploi :
     //
     // Contrat :

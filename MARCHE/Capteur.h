@@ -10,7 +10,7 @@
 #if ! defined ( CAPTEUR_H )
 #define CAPTEUR_H
 
-//--------------------------------------------------- Interfaces utilisées
+//--------------------------------------------------- Interfaces utilisées	
 #include "Mesure.h"
 #include "MesureNO2.h"
 #include "MesureO3.h"

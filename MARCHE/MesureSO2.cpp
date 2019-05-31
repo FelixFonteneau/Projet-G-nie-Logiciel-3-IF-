@@ -16,7 +16,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "MesureSO2.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -28,6 +27,9 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+
+
+//void MesureSO2::ajout(Capteur* capteur){}
 
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureSO2 & MesureSO2::operator = ( const MesureSO2 & uneMesureSO2 )
@@ -48,9 +50,8 @@ using namespace std;
 } //----- Fin de MesureSO2 (constructeur de copie) */
 
 
-MesureSO2::MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,
-         string unType, string uneUnite, string unCapteurid ):
-Mesure(uneValue, uneDate, uneDescription, unType, uneUnite, unCapteurid)
+MesureSO2::MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid ):
+Mesure(uneValue, uneDate, uneDescription, "SO2", uneUnite, unCapteurid)
 // Algorithme :
 //
 {

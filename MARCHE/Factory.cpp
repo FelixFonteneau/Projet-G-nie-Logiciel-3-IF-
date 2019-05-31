@@ -156,7 +156,7 @@ string Factory::decompose(char const sep, string uneLigne)
     return retour;
 }
 
-Mesure Factory::analyserLigne(string ligne)
+Mesure* Factory::analyserLigne(string ligne)
 {
   // Commentaire de grande importance : le string ligne que l'on obtient
   // ci-dessus a une structure extrêmement bizzare :
@@ -213,8 +213,24 @@ Mesure Factory::analyserLigne(string ligne)
       }
     }
 
-    Mesure mesure(valeur, moment, description, typeMesure, unite, idCapt);
-    return mesure;
+
+	if(typeMesure.compare("O3")==0){
+		MesureO3 *mesure = new MesureO3(valeur, moment, description, unite, idCapt);
+		return mesure;
+	} else if(typeMesure.compare("NO2")==0){
+		MesureNO2 *mesure = new MesureNO2(valeur, moment, description, unite, idCapt);
+		return mesure;
+	} else if(typeMesure.compare("SO2")==0){	
+		MesureSO2 *mesure = new MesureSO2(valeur, moment, description, unite, idCapt);
+		return mesure;
+	} else if(typeMesure.compare("PM10")==0){	
+		MesurePM10 *mesure = new MesurePM10(valeur, moment, description, unite, idCapt);
+		return mesure;
+	} else {
+		Mesure * mesurePtr = NULL;
+		return mesurePtr;
+	}
+    //Mesure mesure(valeur, moment, description, typeMesure, unite, idCapt);
 }
 
 
@@ -233,15 +249,17 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
     //puis on analyse toutes les lignes
     unsigned i = 0;
     for(unsigned y(0); y<1000; y++)
+	//C'est quoi ce 1000?
     {
         ++i;
         getline(file,ligne);
-        Mesure mesure = analyserLigne(ligne);
+        Mesure *mesure = analyserLigne(ligne);
+		//cout << mesure->quiSuisJe() << endl;
         for (Capteur* capteur : *listeCapteurs)
         {
-          if(capteur->RecupererId().compare( mesure.Capteur()) == 0)
+          if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
           {
-            capteur->AjouterMesure(mesure);
+            capteur->AjouterMesure(*mesure);
           }
         }
     }

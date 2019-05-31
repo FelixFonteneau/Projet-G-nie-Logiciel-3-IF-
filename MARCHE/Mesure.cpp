@@ -15,8 +15,10 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
+
 #include "Mesure.h"
 #include "Moment.h"
+#include "Capteur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -44,6 +46,10 @@ string Mesure::Capteur() const
 }
 
 
+
+
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
 {
@@ -55,6 +61,7 @@ ostream& operator <<(ostream& out, const Mesure& uneMesure)
 
 
 //-------------------------------------------- Constructeurs - destructeur
+Mesure::Mesure(){}
 
 Mesure::Mesure ( const Mesure & uneMesure ) : value(uneMesure.value), date(uneMesure.date),
         description(uneMesure.description), type(uneMesure.type),

@@ -4,10 +4,10 @@
 
 using namespace std;
 
+
 #include "Moment.h"
+
 #include "Mesure.h"
-
-
 #include "MesureNO2.h"
 #include "MesureO3.h"
 #include "MesureSO2.h"
@@ -59,6 +59,13 @@ void testFactory()
 
     //doit normalement avoir 1000-1 mesures prises dans la factory
     cout << "\n\n" << i << "mesures sont en mémoire" << endl;
+	
+	for(Capteur * capteur : *listCapteur)
+    {
+      delete capteur;
+    }
+	delete listCapteur;
+	
 }
 
 void testMessages()
@@ -136,7 +143,7 @@ int main()
     cout << endl << "******" << endl << endl;
     testMesure(); */
 
-    testFactory();
+    //testFactory();
     // testMoment();
 
     return 0;

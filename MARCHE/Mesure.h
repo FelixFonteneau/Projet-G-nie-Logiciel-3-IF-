@@ -7,16 +7,15 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( MESURE_H )
-#define MESURE_H
+	#if ! defined ( MESURE_H )
+	#define MESURE_H
 
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Moment.h"
 #include <string>
+#include "Moment.h"
 using namespace std;
 //------------------------------------------------------------- Constantes
-
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
@@ -24,6 +23,10 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+
+class Capteur;
+
+
 
 class Mesure
 {
@@ -56,6 +59,10 @@ public:
     {
         return date;
     }
+	
+	//J'ai besoin d'une méthode ajout virtual (que je redifinis dans les sous classes pour ajouter la mesure au bon vector en fonction de la nature
+	//Du coup j'ai besoin du capteur en parametre pour remplir son vecteur mais ça ne marche pas
+	//void ajout(Capteur* capteur) ;
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator <<(ostream& out, const Mesure& mesure);
@@ -93,8 +100,8 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Mesure ( double uneValue, Moment& uneDate, string uneDescription,
-             string unType, string uneUnite, string unCapteurid );
+	Mesure();
+    Mesure ( double uneValue, Moment& uneDate, string uneDescription, string unType, string uneUnite, string unCapteurid );
 
 
     Mesure ( const Mesure & uneMesure );

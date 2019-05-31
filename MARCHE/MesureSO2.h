@@ -34,6 +34,8 @@ public:
     // Contrat :
     //
 
+	//virtual void ajout(Capteur* capteur);
+
 
     //------------------------------------------------- Surcharge d'opérateurs
     // MesureSO2 & operator = ( const MesureSO2 & uneMesureSO2 );
@@ -50,8 +52,7 @@ public:
     // Contrat :
     //
 
-    MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,
-             string unType, string uneUnite, string unCapteurid );
+    MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid );
     //
     // Contrat :
     //
