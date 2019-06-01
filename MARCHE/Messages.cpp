@@ -93,12 +93,9 @@ double* Messages::recupererLocalisation()
     cout << "Quelle est la longitude centrale du lieu souhaité ?" << endl;
     cin >> longitude;
     double* coord = &latitude;
-    coord[1] = longitude;
     
     // On fixe les attributs
-    coords[0] = latitude;
     coords[1] = longitude;
-    
     return coord;
 }
 
@@ -172,7 +169,7 @@ Moment* Messages::recupererIntervalleTemps()
     Moment momentDebut(jourDebut, moisDebut, anneeDebut, heureDebut, minuteDebut, 0);
     Moment momentFin = Moment(jourFin, moisFin, anneeFin, heureFin, minuteFin, 0);
     
-    cout << momentFin;
+    
     intervalleTempsDemande = &momentDebut;
     intervalleTempsDemande[1] = momentFin;
     
