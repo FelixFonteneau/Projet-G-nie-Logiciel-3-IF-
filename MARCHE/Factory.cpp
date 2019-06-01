@@ -109,25 +109,47 @@ void Factory::recupererType()
 void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
 {
     // Sensor0;-8.15758888291083;-34.7692487876719;;
-    ifstream file ("donnees/descriptionsCapteurs.csv");
+    ifstream file ("donnees/descriptionCapteursTestSimilaire.csv");
     string ligne;
-
+	bool utf8 = 1;
+	
+	getline(file,ligne);
     // Premiere ligne inutile
-    getline(file,ligne);
+    
 
-    while (!file.eof())
+    while (getline(file,ligne))
     {
-
-        getline(file,ligne);
-        // cout << ligne;
-        // On arrive à la première ligne intéressante
-        string idCapt = decompose(';', ligne);
-        ligne = ligne.replace(0, idCapt.size() + 1, "");
-        const double latitude = stod(decompose(';', ligne));
-        ligne = ligne.replace(0, ligne.find(';') + 1, "");
-        const double longitude = stod(decompose(';', ligne));
-        ligne = ligne.replace(0, ligne.find(';') + 1, "");
-        Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
+		double latitude, longitude;
+		string idCapt;
+		if(!utf8){
+			idCapt = decompose(';', ligne);
+			ligne = ligne.replace(0, idCapt.size() + 1, "");
+			latitude = stod(decompose(';', ligne));
+			ligne = ligne.replace(0, ligne.find(';') + 1, "");
+			longitude = stod(decompose(';', ligne));
+			ligne = ligne.replace(0, ligne.find(';') + 1, "");
+		} else {
+			idCapt = ligne.substr(6,1);
+			string sLatitude = "";
+			string sLongitude = "";
+			char a = ligne[8];
+			int i = 8;
+			while(a!=';'){
+				sLatitude += a;
+				a = ligne[++i];
+			}
+			a = ligne[++i];
+			while(a!=';'){
+				sLongitude += a;
+				a = ligne[++i];
+			}
+			latitude = stod(sLatitude);
+			longitude = stod(sLongitude);
+		}
+		cout << "idcapt : " << idCapt << " latitude : " << latitude << " longitude : " << longitude << endl;
+		Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
+        
+        
 #ifdef MAP
         cout << idCapt << " " << longitude << " " << latitude << endl;
 #endif
@@ -258,7 +280,7 @@ Mesure* Factory::analyserLigne(string ligne)
 void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 {
 
-    ifstream file ("donnees/test2.csv");
+    ifstream file ("donnees/donneesCapteursTestSimilaire.csv");
     string ligne;
 
 	unsigned i = 0;

@@ -195,10 +195,7 @@ vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*>* capteurs, double radi
     vector<Capteur*> captTerritoire;
     for(Capteur* c : *capteurs) {
 		vector<double> coords = c->getCoords();
-		cout << coordonees[0] << " " << coordonees[1] << " " << coords[0] << " " << coords[1] << endl;
         double dist = obtenirDistance(coordonees[0],coordonees[1],coords[0],coords[1]);
-		cout << "radius : " << radius << endl;
-		cout << "distance : " << dist << endl;
         if(dist < radius) {
             captTerritoire.push_back(c);
         }
@@ -260,11 +257,11 @@ bool Algo::similitude(vector<double> v1, vector<double> v2) {
 	const double seuilPM10 = 80/2 * 0.1;
 
 	ecartO3 = abs(v1[0] - v2[0]);
-	ecartNO2 = abs(v1[0] - v2[0]);
-	ecartSO2 = abs(v1[0] - v2[0]);
-	ecartPM10 = abs(v1[0] - v2[0]);
-
-	if(ecartO3 <= seuilO3 && ecartNO2 <= seuilNO2 && ecartSO2 <= seuilSO2  && ecartPM10 <= seuilPM10){
+	ecartNO2 = abs(v1[1] - v2[1]);
+	ecartSO2 = abs(v1[2] - v2[2]);
+	ecartPM10 = abs(v1[3] - v2[3]);
+	
+	if((ecartO3 <= seuilO3) && (ecartNO2 <= seuilNO2) && (ecartSO2 <= seuilSO2)  && (ecartPM10 <= seuilPM10)){
 		return true;
 	}
 	else {

@@ -49,11 +49,9 @@ void Service::qualiteAir()
 void Service::capteursSimilaires() {
 
 	vector<double> coords = messages.recupererLocalisation();
-	cout << coords[0] << "|" <<  coords[1] << endl;
 	double radius = messages.recupererRadius();
 	vector<Moment> moments = messages.recupererIntervalleTemps();
 	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
-	cout << "taille : " << capteurConcernes.size() << endl;
 	vector<pair<Capteur,Capteur>> capteurCorreles;
 	vector<vector<double>> moyennesCapteur;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){

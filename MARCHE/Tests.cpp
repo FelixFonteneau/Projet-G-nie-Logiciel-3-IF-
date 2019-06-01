@@ -88,6 +88,12 @@ void testMoyenneeCapteur()
   unService.CalculMoyenneLocalise();
 }
 
+void testCapteurDefaillant()
+{
+	Service unService;
+	unService.capteursSimilaires();
+}
+
 
 void testMoment()
 {
@@ -172,6 +178,7 @@ int main()
     //testService();
     //testMoyenneeCapteur();
 
-    testMessage2();
+    //testMessage2();
+	testCapteurDefaillant();
     return 0;
 }
