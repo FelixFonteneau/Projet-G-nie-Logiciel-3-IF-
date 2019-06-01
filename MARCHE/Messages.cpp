@@ -210,6 +210,17 @@ void Messages::afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCor
 	}
 }
 
+void Messages::afficherCapteursDefaillants(vector<Capteur*> capteurs) {
+	if(capteurs.size() == 0) {
+		cout << "Il n'y a pas de capteur defaillant" << endl;
+	} else {
+		cout << "Les capteurs defaillants sont les capteurs : " << endl;
+		for(Capteur* c : capteurs) {
+			cout << c->RecupererId() << endl;
+		}
+	}
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Messages & Messages::operator = ( const Messages & desMessages )

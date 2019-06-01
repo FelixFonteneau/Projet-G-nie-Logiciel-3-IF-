@@ -44,13 +44,22 @@ public:
     //
 
     vector<double> recupererLocalisation();
+	
     double recupererRadius();
+	
     double recupererCapteur();
+	
     vector<Moment> recupererIntervalleTemps();
+	
     Moment recupererMoment();
+	
     void afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles);
+	
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
-    //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
+	
+    void afficherCapteursDefaillants(vector<Capteur*> capteurs);
+	
+	// Chaque méthode sert au traitement des messages affichées dans lors des appels aux services
 
 
 

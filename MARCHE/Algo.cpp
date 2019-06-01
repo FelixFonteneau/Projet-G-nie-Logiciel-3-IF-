@@ -241,10 +241,7 @@ vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
         }
 		isIn = false;
     }
-	cout << "coucou" << endl;
-	/*for(Capteur* c : capteursDefaillants) {
-		cout << c->RecupererId() << endl;
-	} */ //affichage pour test
+	
     return capteursDefaillants;
 }
 
