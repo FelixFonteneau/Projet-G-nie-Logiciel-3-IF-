@@ -52,17 +52,14 @@ void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
 } */
 
 
-Messages unMessage;
-Algo unAlgo;
-Factory uneFactory;
-vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure();
+
 
 void Service::qualiteAir()
 {
 
-    double* coords = unMessage.recupererLocalisation();
+    double* coords = messages.recupererLocalisation();
     // cout << coords[0] << endl;
-    double atmo = unAlgo.QualiteAir(listCapteur, coords[0], coords[1]);
+    double atmo = algo.QualiteAir(capteurs, coords[0], coords[1]);
     cout << atmo << endl;
 }
 
@@ -76,16 +73,6 @@ void Service::qualiteAir()
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service(const Service & unService)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Service>" << endl;
-#endif
-} //----- Fin de Service (constructeur de copie)
-
-
 Service::Service()
 // Algorithme :
 //
@@ -93,6 +80,11 @@ Service::Service()
 #ifdef MAP
     cout << "Appel au constructeur de <Service>" << endl;
 #endif
+  // Messages messages;
+  // Algo algo;
+  // Factory factory;
+  capteurs = factory.AnalyserMesure();
+
 } //----- Fin de Service
 
 
@@ -100,13 +92,21 @@ Service::~Service()
 // Algorithme :
 //
 {
+
 #ifdef MAP
     cout << "Appel au destructeur de <Service>" << endl;
 #endif
+  //destruction des pointeurs vers capteurs
+  for(Capteur* capteurPtr : *capteurs)
+  {
+    delete capteurPtr;
+  }
+
+  //destruction du vecteur
+  delete capteurs;
 } //----- Fin de ~Service
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

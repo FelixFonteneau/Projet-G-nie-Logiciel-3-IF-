@@ -27,24 +27,24 @@
 //
 //------------------------------------------------------------------------
 
-class Service 
+class Service
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    int calculMoyenneLocalise();
+    void calculMoyenneLocalise();
     // Mode d'emploi :
     //
     // Contrat :
     //
-	
+
     void qualiteAir();
-	
+
     void capteursSimilaires();
-	
-    list<Capteur> capteursDefectueux(); 
-	
+
+    list<Capteur> capteursDefectueux();
+
 //------------------------------------------------- Surcharge d'opérateurs
     // Service & operator = (const Service & unService);
     // Mode d'emploi :
@@ -54,12 +54,6 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service(const Service & unService);
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Service();
     // Mode d'emploi :
     //
@@ -78,7 +72,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	list<Capteur> capteurs;
+	vector<Capteur*>* capteurs;
 	Algo algo;
 	Messages messages;
 	Factory factory;
