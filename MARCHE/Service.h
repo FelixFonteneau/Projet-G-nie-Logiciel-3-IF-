@@ -43,7 +43,7 @@ public:
 
     void capteursSimilaires();
 
-    void capteursDefectueux();
+    void capteursDefaillants();
 
 //------------------------------------------------- Surcharge d'opérateurs
     // Service & operator = (const Service & unService);
@@ -72,6 +72,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+	
 	vector<Capteur*>* capteurs;
 	Algo algo;
 	Messages messages;

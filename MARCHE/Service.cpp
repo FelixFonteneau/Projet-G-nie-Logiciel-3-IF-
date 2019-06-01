@@ -75,6 +75,10 @@ void Service::capteursSimilaires() {
 	messages.afficherCapteursCorreles(capteurCorreles);
 
 }
+
+void Service::capteursDefaillants() {
+	messages.afficherCapteursDefaillants(algo.CapteursDefaillants(*capteurs));
+}
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )
 // Algorithme :
