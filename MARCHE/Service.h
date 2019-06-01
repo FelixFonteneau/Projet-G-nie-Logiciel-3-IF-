@@ -43,7 +43,7 @@ public:
 
     void capteursSimilaires();
 
-    list<Capteur> capteursDefectueux();
+    void capteursDefectueux();
 
 //------------------------------------------------- Surcharge d'opérateurs
     // Service & operator = (const Service & unService);

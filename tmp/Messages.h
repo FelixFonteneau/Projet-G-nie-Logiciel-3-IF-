@@ -48,7 +48,7 @@ public:
     double recupererCapteur();
     vector<Moment> recupererIntervalleTemps();
     Moment recupererMoment();
-    void afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles);
+    void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
     //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
 

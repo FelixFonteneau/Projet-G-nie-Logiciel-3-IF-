@@ -25,6 +25,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
+
 vector<double> Algo::Moyenne(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs)
 // Algorithme : Fait la moyenne des moyenne des capteurs.
 {
@@ -194,59 +195,41 @@ double qualiteAir(list<Capteur> capteurs, double coordonees[2]) {
 vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees) {
     vector<Capteur*> captTerritoire;
     for(Capteur* c : *capteurs) {
-		vector<double> coords = c->getCoords();
-		cout << coordonees[0] << " " << coordonees[1] << " " << coords[0] << " " << coords[1] << endl;
-        double dist = obtenirDistance(coordonees[0],coordonees[1],coords[0],coords[1]);
-		cout << "radius : " << radius << endl;
-		cout << "distance : " << dist << endl;
+		    vector<double> coords = c->getCoords();
+        double dist = pow((coords[0]-coordonees[0]),2)+pow(coords[2]-coordonees[1], 2);
         if(dist < radius) {
             captTerritoire.push_back(c);
         }
     }
     return captTerritoire;
 }
-
-
-vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
-	bool isIn = false;
-    vector<Capteur*> capteursDefaillants;
-    for(Capteur* c : capteurs) {
-        for(MesureO3 m : *c->RecupererMesuresO3()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
-				isIn = true;
-				break;
-			}
-		}
-        for(MesureNO2 m : *c->RecupererMesuresNO2()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
-				isIn = true;
-				break;
+/*
+list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
+    list<Capteur> captDefaillants;
+    for(Capteur c : capteurs) {
+        for(Mesure m : c.getMesures()[0]) {
+            if(m.value < 0){
+                captDefaillants.insert(captDefaillants.end(), c);
             }
         }
-        for(MesureSO2 m : *c->RecupererMesuresSO2()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
-				isIn = true;
-				break;
+        for(Mesure m : c.getMesures()[1]) {
+            if(m.value < 0){
+                captDefaillants.insert(captDefaillants.end(), c);
             }
         }
-        for(MesurePM10 m : *c->RecupererMesuresPM10()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
-				isIn = true;
-				break;
+        for(Mesure m : c.getMesures()[2]) {
+            if(m.value < 0){
+                captDefaillants.insert(captDefaillants.end(), c);
             }
         }
-		isIn = false;
+        for(Mesure m : c.getMesures()[3]) {
+            if(m.value < 0){
+                captDefaillants.insert(captDefaillants.end(), c);
+            }
+        }
     }
-	cout << "coucou" << endl;
-	/*for(Capteur* c : capteursDefaillants) {
-		cout << c->RecupererId() << endl;
-	} */ //affichage pour test
-    return capteursDefaillants;
-}
+    return captDefaillants;
+}*/
 
 
 bool Algo::similitude(vector<double> v1, vector<double> v2) {
@@ -290,16 +273,6 @@ list<Capteur> capteursProches(double latitude, double  longitude, list<Capteur> 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Algo::Algo(const Algo & unAlgo)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Algo>" << endl;
-#endif
-} //----- Fin de Algo (constructeur de copie)
-
-
 Algo::Algo()
 // Algorithme :
 //

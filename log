@@ -1,0 +1,78 @@
+Factory.cpp:170:5: warning: variable 'jour' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:28: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                           ^~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:26: note: initialize the variable 'jour' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+                         ^
+                          = 0
+Factory.cpp:170:5: warning: variable 'mois' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:34: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                                 ^~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:20: note: initialize the variable 'mois' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+                   ^
+                    = 0
+Factory.cpp:170:5: warning: variable 'annee' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:40: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                                       ^~~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:14: note: initialize the variable 'annee' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+             ^
+              = 0
+Factory.cpp:170:5: warning: variable 'heure' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:47: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                                              ^~~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:33: note: initialize the variable 'heure' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+                                ^
+                                 = 0
+Factory.cpp:170:5: warning: variable 'minute' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:54: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                                                     ^~~~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:41: note: initialize the variable 'minute' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+                                        ^
+                                         = 0
+Factory.cpp:170:5: warning: variable 'seconde' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
+        if(utf8){
+           ^~~~
+Factory.cpp:225:62: note: uninitialized use occurs here
+    Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
+                                                             ^~~~~~~
+Factory.cpp:170:2: note: remove the 'if' if its condition is always true
+        if(utf8){
+        ^~~~~~~~
+Factory.cpp:166:50: note: initialize the variable 'seconde' to silence this warning
+    int annee, mois, jour, heure, minute, seconde;
+                                                 ^
+                                                  = 0

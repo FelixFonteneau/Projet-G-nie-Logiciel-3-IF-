@@ -201,14 +201,7 @@ Moment Messages::recupererMoment()
 }
 
 
-void Messages::afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles)
-{
-	for(pair<Capteur,Capteur> p : capteurCorreles){
-		vector<double> coords1 = p.first.getCoords();
-		vector<double> coords2 = p.second.getCoords();
-		cout << "Similarité entre les capteurs " << p.first.RecupererId() << " et " << p.second.RecupererId()<< ", de coordonnées (" << coords1[0] << "," << coords1[1] << ") et (" << coords2[0] << "," << coords2[1] << ")." << endl;
-	}
-}
+
 
 
 //------------------------------------------------- Surcharge d'opérateurs

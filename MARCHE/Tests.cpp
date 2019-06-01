@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string.h>
+#include <regex>
 
 
 using namespace std;
 
 
 #include "Moment.h"
-
 #include "Mesure.h"
 #include "MesureNO2.h"
 #include "MesureO3.h"
@@ -73,9 +73,7 @@ void testFactory()
 void testMessages()
 {
     Messages unMessage;
-    unMessage.affiche();
     unMessage.messageMenu();
-    unMessage.affiche();
 }
 
 void testService()
@@ -111,12 +109,6 @@ void testMoment()
     cout << m1 << endl;
 }
 
-void testCapteurSimilaire()
-{
-	Service unService;
-	unService.capteursSimilaires();
-}
-
 /*
 void testMesure()
 {
@@ -149,6 +141,16 @@ void testMesure()
     cout << "Type m2 : " << mesure2.Type() << endl;
 } */
 
+void testMessage2()
+{
+  Messages unMessage;
+  while (1)
+  {
+    vector<Moment> a = unMessage.recupererIntervalleTemps();
+    cout << a[0] << "," <<a[1] << endl;
+  }
+}
+
 int main()
 {
     /* cout << endl << "******" << endl;
@@ -166,10 +168,10 @@ int main()
     // testMoment();
     // bool a = "SO2".compare("SO2");
     // cout << a << endl;
-    
+
     //testService();
     //testMoyenneeCapteur();
-	//testFactory();
-	testCapteurSimilaire();
+
+    testMessage2();
     return 0;
 }

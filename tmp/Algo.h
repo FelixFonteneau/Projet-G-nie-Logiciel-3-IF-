@@ -19,7 +19,6 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <vector>
 #include <list>
 
 //------------------------------------------------------------------------
@@ -48,17 +47,7 @@ public:
 
     vector<Capteur*> capteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees);
 
-    vector<Capteur*> CapteursDefaillants(vector<Capteur*> capteurs);
-  	// Mode d'emploi :
-  	//
-  	//	Prend une liste de capteurs en paramètre et la parcours afin de
-  	//	trouver si certains capteurs ont des données improbables.
-    //	Dans ce cas, cela signifie que le capteur est défaillant
-  	//	La valeur de max 10^3 est arbitraire
-  	//
-    // Contrat :
-    //
-
+    list<Capteur> capteurDefaillants(list<Capteur> capteurs);
 
     bool similitude(vector<double> v1, vector<double> v2);
 
@@ -77,6 +66,7 @@ public:
     //
 
 
+
     //------------------------------------------------- Surcharge d'opérateurs
     // Algo & operator = ( const Algo & unAlgo );
     // Mode d'emploi :
@@ -85,12 +75,6 @@ public:
     //
 
     //-------------------------------------------- Constructeurs - destructeur
-    Algo(const Algo & unAlgo);
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Algo();
     // Mode d'emploi :
     //
@@ -114,7 +98,6 @@ protected:
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
     int calculAtmo(double valeur, string type);
-
 
 
     //---------------------------------------------------- Attributs protégés

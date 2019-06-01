@@ -30,6 +30,7 @@ void Service::CalculMoyenneLocalise()
   double radius = messages.recupererRadius();
   vector<Moment> moments = messages.recupererIntervalleTemps();
   vector<double> moyenne = algo.Moyenne(moments, radius, coords, capteurs );
+
 } //----- Fin de Méthode
 
 
@@ -44,17 +45,18 @@ void Service::qualiteAir()
     cout << atmo << endl;
 }
 
-
+//Necessaire pour insertion dans la multimap
+bool operator< (const Capteur &c1, const Capteur &c2){
+	return true;
+}
 
 void Service::capteursSimilaires() {
 
 	vector<double> coords = messages.recupererLocalisation();
-	cout << coords[0] << "|" <<  coords[1] << endl;
 	double radius = messages.recupererRadius();
 	vector<Moment> moments = messages.recupererIntervalleTemps();
 	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
-	cout << "taille : " << capteurConcernes.size() << endl;
-	vector<pair<Capteur,Capteur>> capteurCorreles;
+	multimap<Capteur,Capteur> capteurCorreles;
 	vector<vector<double>> moyennesCapteur;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		vector<double> moy = algo.moyenneCapteur(capteurConcernes[i],moments);
@@ -70,11 +72,10 @@ void Service::capteursSimilaires() {
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
 			if(algo.similitude(moyennesCapteur[i],moyennesCapteur[j])){
-				capteurCorreles.push_back({*capteurConcernes[i],*capteurConcernes[j]});
+				capteurCorreles.insert({*capteurConcernes[i],*capteurConcernes[j]});
 			}
 		}
 	}
-	messages.afficherCapteursCorreles(capteurCorreles);
 
 }
 //------------------------------------------------- Surcharge d'opérateurs
