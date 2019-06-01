@@ -61,13 +61,13 @@ void testFactory()
 
     //doit normalement avoir 1000-1 mesures prises dans la factory
     cout << "\n\n" << i << "mesures sont en mémoire" << endl;
-	
+
 	for(Capteur * capteur : *listCapteur)
     {
         delete capteur;
     }
 	delete listCapteur;
-	
+
 }
 
 void testMessages()
@@ -84,6 +84,11 @@ void testService()
     unService.qualiteAir();
 }
 
+void testMoyenneeCapteur()
+{
+  Service unService;
+  unService.CalculMoyenneLocalise();
+}
 
 
 void testMoment()
@@ -155,7 +160,8 @@ int main()
     // testMoment();
     // bool a = "SO2".compare("SO2");
     // cout << a << endl;
-    testService();
-
+    
+    //testService();
+    testMoyenneeCapteur();
     return 0;
 }
