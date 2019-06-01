@@ -41,7 +41,7 @@ public:
 
     double QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
 
-    vector<Capteur*> capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees);
+    vector<Capteur*> capteurTerritoire(vector<Capteur*>* capteurs, double radius, double* coordonees);
 
     list<Capteur> capteurDefaillants(list<Capteur> capteurs);
 

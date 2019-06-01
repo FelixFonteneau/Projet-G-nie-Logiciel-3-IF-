@@ -145,10 +145,10 @@ double qualiteAir(list<Capteur> capteurs, double coordonees[2]) {
 }*/
 
 
-vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees) {
+vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*>* capteurs, double radius, double* coordonees) {
     vector<Capteur*> captTerritoire;
-    for(Capteur* c : capteurs) {
-		vector<double> coords = c->getCoords();
+    for(Capteur* c : *capteurs) {
+		    vector<double> coords = c->getCoords();
         double dist = pow((coords[0]-coordonees[0]),2)+pow(coords[2]-coordonees[1], 2);
         if(dist < radius) {
             captTerritoire.push_back(c);
@@ -186,23 +186,23 @@ list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
 
 
 bool Algo::similitude(vector<double> v1, vector<double> v2) {
-    
+
 	double ecartO3, ecartNO2,ecartSO2,ecartPM10;
-	
+
 	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
 	const double seuilO3 = 240/2 * 0.1;
 	const double seuilNO2 = 400/2 * 0.1;
 	const double seuilSO2 = 500/2 * 0.1;
 	const double seuilPM10 = 80/2 * 0.1;
-	
+
 	ecartO3 = abs(v1[0] - v2[0]);
 	ecartNO2 = abs(v1[0] - v2[0]);
 	ecartSO2 = abs(v1[0] - v2[0]);
 	ecartPM10 = abs(v1[0] - v2[0]);
-	
+
 	if(ecartO3 <= seuilO3 && ecartNO2 <= seuilNO2 && ecartSO2 <= seuilSO2  && ecartPM10 <= seuilPM10){
 		return true;
-	}		
+	}
 	else {
 		return false;
 	}
