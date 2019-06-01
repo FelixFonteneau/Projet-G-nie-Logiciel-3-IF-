@@ -57,7 +57,7 @@ void Service::capteursSimilaires() {
 	double* coords = messages.recupererLocalisation();
 	double radius = messages.recupererRadius();
 	Moment* moments = messages.recupererIntervalleTemps();
-	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(*capteurs,radius,coords);
+	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
 	vector<pair<Capteur,Capteur>> capteurCorreles;
 	vector<vector<double>> moyennesCapteur;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){

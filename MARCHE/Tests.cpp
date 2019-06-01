@@ -111,6 +111,11 @@ void testMoment()
     cout << m1 << endl;
 }
 
+void testCapteurSimilaire()
+{
+	
+}
+
 /*
 void testMesure()
 {
@@ -162,6 +167,7 @@ int main()
     // cout << a << endl;
     
     //testService();
-    testMoyenneeCapteur();
+    //testMoyenneeCapteur();
+	testFactory();
     return 0;
 }
