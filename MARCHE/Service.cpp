@@ -50,10 +50,7 @@ void Service::qualiteAir()
     cout << atmo << endl;
 }
 
-//Necessaire pour insertion dans la multimap
-bool operator< (const Capteur &c1, const Capteur &c2){
-	return true;
-}
+
 
 void Service::capteursSimilaires() {
 
@@ -61,7 +58,7 @@ void Service::capteursSimilaires() {
 	double radius = messages.recupererRadius();
 	Moment* moments = messages.recupererIntervalleTemps();
 	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(*capteurs,radius,coords);
-	multimap<Capteur,Capteur> capteurCorreles;
+	vector<pair<Capteur,Capteur>> capteurCorreles;
 	vector<vector<double>> moyennesCapteur;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		vector<double> moy = algo.moyenneCapteur(*capteurConcernes[i],moments);
@@ -77,10 +74,11 @@ void Service::capteursSimilaires() {
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
 			if(algo.similitude(moyennesCapteur[i],moyennesCapteur[j])){
-				capteurCorreles.insert({*capteurConcernes[i],*capteurConcernes[j]});
+				capteurCorreles.push_back({*capteurConcernes[i],*capteurConcernes[j]});
 			}
 		}
 	}
+	messages.afficherCapteursCorreles(capteurCorreles);
 
 }
 //------------------------------------------------- Surcharge d'opérateurs

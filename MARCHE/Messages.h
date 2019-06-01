@@ -47,9 +47,8 @@ public:
     //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
     
     void affiche();
-    
-    
-    
+    void afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles);
+	
     //------------------------------------------------- Surcharge d'opérateurs
     Messages & operator = ( const Messages & desMessages );
     // Mode d'emploi :
