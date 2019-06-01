@@ -64,10 +64,21 @@ void Service::capteursSimilaires() {
 	Moment* moments = messages.recupererIntervalleTemps();
 	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(*capteurs,radius,coords);
 	multimap<Capteur,Capteur> capteurCorreles;
+	vector<vector<double>> moyennesCapteur;
+	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
+		vector<double> moy = moyenneCapteur(capteurConcernes[i],moments);
+		if(moy[0] != -1 && moy[1]!=-1 && moy[2]!=-1 && moy[3]!=-1){
+			moyennesCapteur.push_back(moy);
+		} else {
+			capteurConcernes.erase(capteurConcernes.begin() + i);
+			if(i!=capteurConcernes.size() - 1){
+				i--;
+			}
+		}
+	}
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			if(algo.similitude(*capteurConcernes[i],*capteurConcernes[j],moments)){
-				
+			if(algo.similitude(moyennesCapteur[i],moyennesCapteur[j])){
 				capteurCorreles.insert({*capteurConcernes[i],*capteurConcernes[j]});
 			}
 		}

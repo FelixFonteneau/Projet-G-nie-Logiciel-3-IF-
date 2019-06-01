@@ -185,13 +185,27 @@ list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
 }*/
 
 
-bool Algo::similitude(Capteur c1, Capteur c2,Moment* trancheHoraire) {
-    //double moyenneNO2_1, moyenneSO2_1, moyenneO3_1, moyennePM10_1;
-	//double moyenneNO2_2, moyenneSO2_2, moyenneO3_2, moyennePM10_2;
-	//double somme;
-	//for(Mesure m1 : c1.RecupererMesuresNO2){
-	//	if(m1.moment
-	return false;
+bool Algo::similitude(vector<double> v1, vector<double> v2) {
+    double ecartO3, ecartNO2,ecartSO2,ecartPM10;
+	const double seuilO3, seuilNO2, seuilSO2, seuilPM10;
+	
+	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
+	seuilO3 = 240/2 * 0.1;
+	seuilNO2 = 400/2 * 0.1;
+	seuilSO2 = 500/2 * 0.1;
+	seuilPM10 = 80/2 * 0.1;
+	
+	ecartO3 = abs(v1[0] - v2[0]);
+	ecartNO2 = abs(v1[0] - v2[0]);
+	ecartSO2 = abs(v1[0] - v2[0]);
+	ecartPM10 = abs(v1[0] - v2[0]);
+	
+	if(ecartO3 <= seuilO3 && ecartNO2 <= seuilNO2 && ecartSO2 <= seuilSO2  && ecartPM10 <= seuilPM10){
+		return true;
+	}		
+	else {
+		return false;
+	}
 }
 
 /*

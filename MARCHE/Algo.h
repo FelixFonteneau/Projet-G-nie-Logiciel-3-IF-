@@ -45,7 +45,7 @@ public:
 
     list<Capteur> capteurDefaillants(list<Capteur> capteurs);
 
-    bool similitude(Capteur c1, Capteur c2,Moment* trancheHoraire);
+    bool similitude(vector<double> v1, vector<double> v2);
 
     double ecartTypeRelatif(list<Mesure> mesures);
 
