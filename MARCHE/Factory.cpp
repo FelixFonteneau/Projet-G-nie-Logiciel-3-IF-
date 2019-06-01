@@ -109,9 +109,9 @@ void Factory::recupererType()
 void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
 {
     // Sensor0;-8.15758888291083;-34.7692487876719;;
-    ifstream file ("donnees/descriptionCapteursTestSimilaire.csv");
+    ifstream file ("donnees/descriptionsCapteurs.csv");
     string ligne;
-	bool utf8 = 1;
+	bool utf8 = 0;
 	
 	getline(file,ligne);
     // Premiere ligne inutile
@@ -188,7 +188,7 @@ Mesure* Factory::analyserLigne(string ligne)
     int annee, mois, jour, heure, minute, seconde;
 	string uneAnnee, unMois, unJour, uneHeure, uneMinute, uneSeconde, idCapt, typeMesure;
 	double valeur;
-	bool utf8 = 1;
+	bool utf8 = 0;
 	if(utf8){
 		uneAnnee = ligne.substr (0,4);
 		annee = stoi(uneAnnee);
@@ -220,19 +220,24 @@ Mesure* Factory::analyserLigne(string ligne)
 	} else {
 		uneAnnee = decompose('-', ligne);
 		ligne = ligne.replace(0, 9 + 1, "");
-
+		annee = stoi(uneAnnee);
 		unMois = decompose('-', ligne);
 		ligne = ligne.replace(0, 5 + 1, "");
+		mois = stoi(unMois);
 		unJour = decompose('T', ligne);
 		ligne = ligne.replace(0, 5 + 1, "");
+		jour = stoi(unJour);
 		uneHeure = decompose(':', ligne);
 		ligne = ligne.replace(0, 5 + 1, "");
+		heure = stoi(uneHeure);
 
 		uneMinute = decompose(':', ligne);
 		ligne = ligne.replace(0, 5 + 1, "");
+		minute = stoi(uneMinute);
 
 		uneSeconde = decompose('.', ligne);
 		ligne = ligne.replace(0, ligne.find(';') + 1 , "");
+		seconde = stoi(uneSeconde);
 
 		idCapt = decompose(';', ligne);
 		ligne = ligne.replace(0, ligne.find(';') + 1, "");
@@ -242,7 +247,7 @@ Mesure* Factory::analyserLigne(string ligne)
 		valeur = stod(decompose(';', ligne));
 	}
 	
-	//cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
+	
 
     Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
 
@@ -280,7 +285,7 @@ Mesure* Factory::analyserLigne(string ligne)
 void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 {
 
-    ifstream file ("donnees/donneesCapteursTestSimilaire.csv");
+    ifstream file ("donnees/donneesCapteurs.csv");
     string ligne;
 
 	unsigned i = 0;
@@ -298,7 +303,6 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 			try {
 				++i;
 				Mesure *mesure = analyserLigne(ligne);
-				//cout << mesure->type() << endl;
 				for (Capteur* capteur : *listeCapteurs)
 				{
 					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)

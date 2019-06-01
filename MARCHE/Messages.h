@@ -53,6 +53,8 @@ public:
 	
     Moment recupererMoment();
 	
+	bool choixZone();
+	
     void afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles);
 	
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);

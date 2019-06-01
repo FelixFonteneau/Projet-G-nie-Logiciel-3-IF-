@@ -469,7 +469,8 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
   double moyO3, moyNO2, moySO2, moyPM10;
   double somme(0);
   double nbMesure(0);
-
+	
+   
 // calcul moyenne O3
   for(MesureO3 mesure : *capteur->RecupererMesuresO3())
   {

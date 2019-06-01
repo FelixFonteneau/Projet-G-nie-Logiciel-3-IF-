@@ -180,5 +180,6 @@ int main()
 
     //testMessage2();
 	testCapteurDefaillant();
+	//testFactory();
     return 0;
 }

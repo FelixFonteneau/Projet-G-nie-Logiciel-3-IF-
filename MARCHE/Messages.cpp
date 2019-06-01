@@ -117,17 +117,33 @@ vector<double> Messages::recupererLocalisation()
     return coord;
 }
 
+bool Messages::choixZone()
+{
+	string tmp;
+	do
+    {
+        cout << "1 - Effectuer la requête sur tous les capteurs" << endl;
+		cout << "2 - Effectuer la requête sur les capteurs d'un territoire délimité" << endl;
+        getline(cin,tmp);
+    } while (tmp.compare("1")!=0 && tmp.compare("2")!=0);
+	if(tmp.compare("1")==0){
+		return false;
+	}else{
+		return true;
+	}
+}
+
 double Messages::recupererRadius()
 {
     double radius;
     string tmp;
-    const regex txt_regex("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
+    const regex txt_regex("^(0|([1-9][0-9]*))(\\.[0-9]+)?$");
     do
     {
         cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl;
         getline(cin, tmp);
-        radius = stod(tmp);
-    } while (! regex_match(tmp, txt_regex) || radius < 0 );
+    } while (! regex_match(tmp, txt_regex));
+    radius = stod(tmp);
 
     return radius;
 }

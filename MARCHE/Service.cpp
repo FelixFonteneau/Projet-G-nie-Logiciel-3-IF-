@@ -48,12 +48,25 @@ void Service::qualiteAir()
 
 void Service::capteursSimilaires() {
 
-	vector<double> coords = messages.recupererLocalisation();
-	double radius = messages.recupererRadius();
+	bool choixZone = messages.choixZone();
+	vector<Capteur*> capteurConcernes;
+	if(choixZone){
+		vector<double> coords = messages.recupererLocalisation();
+		double radius = messages.recupererRadius();
+		capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
+	} else {
+		for(Capteur* c : *capteurs) {
+            capteurConcernes.push_back(c);
+        }
+		
+    }
 	vector<Moment> moments = messages.recupererIntervalleTemps();
-	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
+	//On stockera ici les capteurs ayant des similitudes
 	vector<pair<Capteur,Capteur>> capteurCorreles;
+	//On stock ici les moyennes des différents capteurs pour chaque type de gaz/particule
 	vector<vector<double>> moyennesCapteur;
+	
+	//Calcul des moyennes
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		vector<double> moy = algo.moyenneCapteur(capteurConcernes[i],moments);
 		if(moy[0] != -1 && moy[1]!=-1 && moy[2]!=-1 && moy[3]!=-1){
@@ -65,6 +78,8 @@ void Service::capteursSimilaires() {
 			}
 		}
 	}
+	
+	//Calcul des similitudes entre capteurs
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
 			if(algo.similitude(moyennesCapteur[i],moyennesCapteur[j])){
