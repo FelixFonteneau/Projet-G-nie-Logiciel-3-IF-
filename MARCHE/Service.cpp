@@ -48,7 +48,6 @@ void Service::qualiteAir()
 {
 
     double* coords = messages.recupererLocalisation();
-    // cout << coords[0] << endl;
     double atmo = algo.QualiteAir(capteurs, coords[0], coords[1]);
     cout << atmo << endl;
 }
@@ -60,14 +59,14 @@ bool operator< (const Capteur &c1, const Capteur &c2){
 
 void Service::capteursSimilaires() { 
     
-	double* coords = unMessage.recupererLocalisation();
-	double radius = unMessage.recupererRadius();
-	Moment* moments = unMessage.recupererIntervalleTemps();
-	vector<Capteur*> capteurConcernes = unAlgo.capteurTerritoire(*listCapteur,radius,coords);
+	double* coords = messages.recupererLocalisation();
+	double radius = messages.recupererRadius();
+	Moment* moments = messages.recupererIntervalleTemps();
+	vector<Capteur*> capteurConcernes = algo.capteurTerritoire(*capteurs,radius,coords);
 	multimap<Capteur,Capteur> capteurCorreles;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			if(unAlgo.similitude(*capteurConcernes[i],*capteurConcernes[j],moments)){
+			if(algo.similitude(*capteurConcernes[i],*capteurConcernes[j],moments)){
 				
 				capteurCorreles.insert({*capteurConcernes[i],*capteurConcernes[j]});
 			}

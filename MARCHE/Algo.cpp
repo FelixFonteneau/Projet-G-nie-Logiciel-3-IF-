@@ -186,11 +186,12 @@ list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
 
 
 bool Algo::similitude(Capteur c1, Capteur c2,Moment* trancheHoraire) {
-    double moyenneNO2_1, moyenneSO2_1, moyenneO3_1, moyennePM10_1;
-	double moyenneNO2_2, moyenneSO2_2, moyenneO3_2, moyennePM10_2;
-	double somme;
+    //double moyenneNO2_1, moyenneSO2_1, moyenneO3_1, moyennePM10_1;
+	//double moyenneNO2_2, moyenneSO2_2, moyenneO3_2, moyennePM10_2;
+	//double somme;
 	//for(Mesure m1 : c1.RecupererMesuresNO2){
 	//	if(m1.moment
+	return false;
 }
 
 /*
