@@ -22,24 +22,22 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-/* int calculMoyenneLocalise() {}
+void Service::CalculMoyenneLocalise()
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+  Moment intervaleTemps[2];
+  Moment m1 ("2010-01-01T00:01:20.609000");
+  Moment m2 ("2020-01-01T00:01:20.6090000");
+  intervaleTemps[0] = m2;
+  intervaleTemps[1] = m1;
 
-int qualiteAir() {}
+  for(double d : algo.moyenneCapteur(*( (*capteurs)[0] ), intervaleTemps ) )
+  {
+    cout << " moyenne :" << d <<endl;
+  }
+} //----- Fin de Méthode
 
-
- list<Capteur> capteursDefectueux() {
-    list<Capteur> capteursDefectueux;
-    for(Capteur c1 : capteurs) {
-        if(capteursDefaillants(c)) {
-                capteursDefectueux.add(c);
-        }
-    }
-    return capteursDefectueux;
-} */
 
 
 
@@ -57,8 +55,8 @@ bool operator< (const Capteur &c1, const Capteur &c2){
 	return true;
 }
 
-void Service::capteursSimilaires() { 
-    
+void Service::capteursSimilaires() {
+
 	double* coords = messages.recupererLocalisation();
 	double radius = messages.recupererRadius();
 	Moment* moments = messages.recupererIntervalleTemps();
@@ -66,7 +64,7 @@ void Service::capteursSimilaires() {
 	multimap<Capteur,Capteur> capteurCorreles;
 	vector<vector<double>> moyennesCapteur;
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
-		vector<double> moy = moyenneCapteur(capteurConcernes[i],moments);
+		vector<double> moy = algo.moyenneCapteur(*capteurConcernes[i],moments);
 		if(moy[0] != -1 && moy[1]!=-1 && moy[2]!=-1 && moy[3]!=-1){
 			moyennesCapteur.push_back(moy);
 		} else {
@@ -83,7 +81,7 @@ void Service::capteursSimilaires() {
 			}
 		}
 	}
-	
+
 }
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )

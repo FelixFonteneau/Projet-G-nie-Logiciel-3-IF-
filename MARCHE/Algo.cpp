@@ -31,12 +31,12 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double long
     double rayonMax = 90;
     int nbCapteur = 0;
     double distanceMini1 = DBL_MAX, distanceMini2 = DBL_MAX, distanceMini3 = DBL_MAX;
-    
+
     vector<MesureSO2> *MesuresSO2Capt1, *MesuresSO2Capt2, *MesuresSO2Capt3;
     vector<MesureO3> *MesuresO3Capt1, *MesuresO3Capt2, *MesuresO3Capt3;
     vector<MesurePM10> *MesuresPM10Capt1, *MesuresPM10Capt2, *MesuresPM10Capt3;
     vector<MesureNO2> *MesuresNO2Capt1, *MesuresNO2Capt2, *MesuresNO2Capt3;
-    
+
     for (Capteur* capteur : *capteurs)
     {
         vector<double> coordsCapteur = capteur->getCoords();
@@ -69,10 +69,10 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double long
             MesuresNO2Capt3 = (*capteur).RecupererMesuresNO2();
         }
     }
-    
+
     int derniereMesureCapt1 = 0, derniereMesureCapt2 = 0, derniereMesureCapt3 = 0;
     double NO2Capt1 = 0, O3Capt1 = 0, PM10Capt1 = 0, SO2Capt1 = 0, NO2Capt2 = 0, O3Capt2 = 0, PM10Capt2 = 0, SO2Capt2 = 0, NO2Capt3 = 0, O3Capt3 = 0, PM10Capt3 = 0, SO2Capt3 = 0;
-    
+
     if (nbCapteur >= 1) {
         derniereMesureCapt1 = (*MesuresSO2Capt1).size() - 1;
         NO2Capt1 = MesuresNO2Capt1->at(derniereMesureCapt1).Valeur();
@@ -94,30 +94,30 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double long
         PM10Capt3 = MesuresPM10Capt3->at(derniereMesureCapt3).Valeur();
         SO2Capt3 = MesuresSO2Capt3->at(derniereMesureCapt3).Valeur();
     }
-  
+
     int atmo = 0;
-    
+
     atmo = calculAtmoPondere(NO2Capt1,
                                 O3Capt1,
                                 PM10Capt1,
                                 SO2Capt1,
-                                    
+
                                 NO2Capt2,
                                 O3Capt2,
                                 PM10Capt2,
                                 SO2Capt2,
-                                    
+
                                 NO2Capt3,
                                 O3Capt3,
                                 PM10Capt3,
                                 SO2Capt3,
-                                
+
                                 distanceMini1,
                                 distanceMini2,
                                 distanceMini3,
-                                 
+
                                 nbCapteur);
-    
+
     return atmo;
 }
 
@@ -186,14 +186,14 @@ list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
 
 
 bool Algo::similitude(vector<double> v1, vector<double> v2) {
-    double ecartO3, ecartNO2,ecartSO2,ecartPM10;
-	const double seuilO3, seuilNO2, seuilSO2, seuilPM10;
+    
+	double ecartO3, ecartNO2,ecartSO2,ecartPM10;
 	
 	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
-	seuilO3 = 240/2 * 0.1;
-	seuilNO2 = 400/2 * 0.1;
-	seuilSO2 = 500/2 * 0.1;
-	seuilPM10 = 80/2 * 0.1;
+	const double seuilO3 = 240/2 * 0.1;
+	const double seuilNO2 = 400/2 * 0.1;
+	const double seuilSO2 = 500/2 * 0.1;
+	const double seuilPM10 = 80/2 * 0.1;
 	
 	ecartO3 = abs(v1[0] - v2[0]);
 	ecartNO2 = abs(v1[0] - v2[0]);
@@ -267,7 +267,7 @@ double Algo::enRadians(double latitude)
 // retourne la distance en metres
 double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d)
 {
-    
+
     double lat1r, lon1r, lat2r, lon2r, u, v;
     lat1r = enRadians(lat1d);
     lon1r = enRadians(lon1d);
@@ -292,23 +292,23 @@ int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double 
     } else if (nbCapteur == 2) {
         inv3 = 0;
     }
-    
+
     double somme = inv1 + inv2 + inv3;
-    
+
     atmoNO2 = inv1*valeurNO2Capt1 + inv2*valeurNO2Capt2 + inv3*valeurNO2Capt3;
     atmoNO2 = calculAtmo(atmoNO2/somme,"NO2");
-    
+
     atmoO3 = inv1*valeurO3Capt1 + inv2*valeurO3Capt2 + inv3*valeurO3Capt3;
     atmoO3 = calculAtmo(atmoO3/somme,"O3");
-    
+
     atmoPM10 = inv1*valeurPM10Capt1 + inv2*valeurPM10Capt2 + inv3*valeurPM10Capt3;
     atmoPM10 = calculAtmo(atmoPM10/somme, "PM10");
-    
+
     atmoSO2 = inv1*valeurSO2Capt1 + inv2*valeurSO2Capt2 + inv3*valeurSO2Capt3;
     atmoSO2 = calculAtmo(atmoSO2/somme, "SO2");
 
     return max(max(int(atmoNO2),int(atmoO3)), max(int(atmoPM10),int(atmoSO2)));
-    
+
 }
 
 int Algo::calculAtmo(double valeur, string type)
@@ -404,4 +404,97 @@ int Algo::calculAtmo(double valeur, string type)
     }
     return result;
 }
-                            
+
+vector<double> Algo::moyenneCapteur(Capteur capteur, Moment intervaleTemps[2])
+{
+  vector<double> resultatMoyenne;
+  double moyO3, moyNO2, moySO2, moyPM10;
+  double somme(0);
+  double nbMesure(0);
+
+// calcul moyenne O3
+  for(MesureO3 mesure : *capteur.RecupererMesuresO3())
+  {
+    if(mesure.getDate() > intervaleTemps[0] && mesure.getDate() < intervaleTemps[1])
+    {
+      somme += mesure.Valeur();
+      ++nbMesure;
+    }
+  }
+  if(nbMesure > 0)
+  {
+    moyO3 = somme/nbMesure;
+  }
+  else
+  {
+    moyO3 = -1;
+  }
+
+// calcul moyenne NO2
+  somme = 0;
+  nbMesure = 0;
+  for(MesureNO2 mesure : *capteur.RecupererMesuresNO2())
+  {
+    if(mesure.getDate() > intervaleTemps[0] && mesure.getDate() < intervaleTemps[1])
+    {
+      somme += mesure.Valeur();
+      ++nbMesure;
+    }
+  }
+  if(nbMesure > 0)
+  {
+    moyNO2 = somme/nbMesure;
+  }
+  else
+  {
+    moyNO2 = -1;
+  }
+
+  // calcul moyenne SO2
+    somme = 0;
+    nbMesure = 0;
+    for(MesureSO2 mesure : *capteur.RecupererMesuresSO2())
+    {
+      if(mesure.getDate() > intervaleTemps[0] && mesure.getDate() < intervaleTemps[1])
+      {
+        somme += mesure.Valeur();
+        ++nbMesure;
+      }
+    }
+    if(nbMesure > 0)
+    {
+      moySO2 = somme/nbMesure;
+    }
+    else
+    {
+      moySO2 = -1;
+    }
+
+    // calcul moyenne SO2
+    somme = 0;
+    nbMesure = 0;
+    for(MesurePM10 mesure : *capteur.RecupererMesuresPM10())
+    {
+      if(mesure.getDate() > intervaleTemps[0] && mesure.getDate() < intervaleTemps[1])
+      {
+        somme += mesure.Valeur();
+        ++nbMesure;
+      }
+    }
+    if(nbMesure > 0)
+    {
+      moyPM10 = somme/nbMesure;
+    }
+    else
+    {
+      moyPM10 = -1;
+    }
+
+    resultatMoyenne.push_back(moyO3);
+    resultatMoyenne.push_back(moyNO2);
+    resultatMoyenne.push_back(moySO2);
+    resultatMoyenne.push_back(moyPM10);
+
+    return resultatMoyenne;
+
+}

@@ -30,7 +30,7 @@
 class Algo
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     Mesure* moyenne(Moment intervaleTemps[2], double radius, double coordonees[2], list<Capteur> capteurs);
@@ -38,7 +38,7 @@ public:
     //
     // Contrat :
     //
-    
+
     double QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
 
     vector<Capteur*> capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees);
@@ -50,36 +50,46 @@ public:
     double ecartTypeRelatif(list<Mesure> mesures);
 
     list<Capteur> capteursProches(double latitude, double  longitude, list<Capteur> capteurs);
-    
+
+    vector<double> moyenneCapteur(Capteur capteur, Moment* intervaleTemps);
+    // Mode d'emploi :
+    // Prend un capteur et un interval de temps et retourne la moyenne des mesures
+    // dans l'interval de temps sous forme de tableau de Double.
+    // L'ordre est O3/NO2/SO2/PM10.
+    // Si il n'y a aucune mesure, elle retourne -1 dans la case du tableau.
+    //
+    // Contrat :
+    //
+
+
     //------------------------------------------------- Surcharge d'opérateurs
     // Algo & operator = ( const Algo & unAlgo );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
     //-------------------------------------------- Constructeurs - destructeur
     Algo(const Algo & unAlgo);
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
+
     Algo();
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~Algo();
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
     double enRadians(double latitude);
@@ -89,11 +99,13 @@ protected:
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
     int calculAtmo(double valeur, string type);
-    //----------------------------------------------------- Attributs protégés
-    
+
+
+
+    //---------------------------------------------------- Attributs protégés
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <Algo>
 
 #endif // ALGO_H
-

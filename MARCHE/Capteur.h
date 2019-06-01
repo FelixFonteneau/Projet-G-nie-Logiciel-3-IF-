@@ -10,7 +10,7 @@
 #if ! defined ( CAPTEUR_H )
 #define CAPTEUR_H
 
-//--------------------------------------------------- Interfaces utilisées	
+//--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
 #include "MesureNO2.h"
 #include "MesureO3.h"
@@ -66,15 +66,15 @@ public:
         return & mesuresSO2;
     }
 
-    vector<MesurePM10>* RecupererMesuresPM10() 
+    vector<MesurePM10>* RecupererMesuresPM10()
     {
         return & mesuresPM10;
     }
-    
+
 
 
 	string getDescription() const;
-    
+
     vector<double> getCoords();
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -83,7 +83,7 @@ public:
     //
     // Contrat :
     //
-	
+
 
 //-------------------------------------------- Constructeurs - destructeur
     // Capteur (const Capteur & unCapteur);
@@ -105,10 +105,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    vector<MesureO3> mesuresO3;
-    vector<MesureNO2> mesuresNO2;
-    vector<MesureSO2> mesuresSO2;
-    vector<MesurePM10> mesuresPM10;
+  vector<MesureO3> mesuresO3;
+  vector<MesureNO2> mesuresNO2;
+  vector<MesureSO2> mesuresSO2;
+  vector<MesurePM10> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;
