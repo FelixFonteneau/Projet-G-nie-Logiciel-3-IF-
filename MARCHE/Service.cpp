@@ -61,7 +61,8 @@ void Service::qualiteAir()
 {
 
     double* coords = unMessage.recupererLocalisation();
-    double atmo = unAlgo.QualiteAir(listCapteur, coords);
+    // cout << coords[0] << endl;
+    double atmo = unAlgo.QualiteAir(listCapteur, coords[0], coords[1]);
     cout << atmo << endl;
 }
 
