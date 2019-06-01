@@ -105,10 +105,10 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  vector<MesureO3> mesuresO3;
-  vector<MesureNO2> mesuresNO2;
-  vector<MesureSO2> mesuresSO2;
-  vector<MesurePM10> mesuresPM10;
+	vector<MesureO3> mesuresO3;
+	vector<MesureNO2> mesuresNO2;
+	vector<MesureSO2> mesuresSO2;
+	vector<MesurePM10> mesuresPM10;
 	const string idCapteur;
 	double latitude;
 	double longitude;

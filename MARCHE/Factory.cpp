@@ -232,7 +232,7 @@ Mesure* Factory::analyserLigne(string ligne)
 
 void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 {
-
+	
     ifstream file ("donnees/donneesCapteurs.csv");
     string ligne;
 
@@ -241,7 +241,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
     {
         getline(file,ligne);
     }
-
+	
     // puis on analyse toutes les lignes
     unsigned i = 0;
     for(unsigned y(0); y<1000; y++)

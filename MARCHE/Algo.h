@@ -19,6 +19,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+#include <vector>
 #include <list>
 
 //------------------------------------------------------------------------
@@ -43,7 +44,17 @@ public:
 
     vector<Capteur*> capteurTerritoire(vector<Capteur*>* capteurs, double radius, double* coordonees);
 
-    list<Capteur> capteurDefaillants(list<Capteur> capteurs);
+    vector<Capteur*> CapteursDefaillants(vector<Capteur*> capteurs);
+	// Mode d'emploi :
+	//
+	//	Prend une liste de capteurs en paramètre et la parcours afin de
+	//	trouver si certains capteurs ont des données improbables.
+    //	Dans ce cas, cela signifie que le capteur est défaillant
+	//	La valeur de max 10^3 est arbitraire
+	//
+    // Contrat :
+    //
+
 
     bool similitude(vector<double> v1, vector<double> v2);
 

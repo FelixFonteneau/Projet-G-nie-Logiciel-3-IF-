@@ -156,33 +156,47 @@ vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*>* capteurs, double radi
     }
     return captTerritoire;
 }
-/*
-list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
-    list<Capteur> captDefaillants;
-    for(Capteur c : capteurs) {
-        for(Mesure m : c.getMesures()[0]) {
-            if(m.value < 0){
-                captDefaillants.insert(captDefaillants.end(), c);
+
+vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
+	bool isIn = false;
+    vector<Capteur*> capteursDefaillants;
+    for(Capteur* c : capteurs) {
+        for(MesureO3 m : *c->RecupererMesuresO3()) {
+            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
+                capteursDefaillants.push_back(c);
+				isIn = true;
+				break;
+			}
+        }
+        for(MesureNO2 m : *c->RecupererMesuresNO2()) {
+            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
+                capteursDefaillants.push_back(c);
+				isIn = true;
+				break;
             }
         }
-        for(Mesure m : c.getMesures()[1]) {
-            if(m.value < 0){
-                captDefaillants.insert(captDefaillants.end(), c);
+        for(MesureSO2 m : *c->RecupererMesuresSO2()) {
+            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
+                capteursDefaillants.push_back(c);
+				isIn = true;
+				break;
             }
         }
-        for(Mesure m : c.getMesures()[2]) {
-            if(m.value < 0){
-                captDefaillants.insert(captDefaillants.end(), c);
+        for(MesurePM10 m : *c->RecupererMesuresPM10()) {
+            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
+                capteursDefaillants.push_back(c);
+				isIn = true;
+				break;
             }
         }
-        for(Mesure m : c.getMesures()[3]) {
-            if(m.value < 0){
-                captDefaillants.insert(captDefaillants.end(), c);
-            }
-        }
+		isIn = false;
     }
-    return captDefaillants;
-}*/
+	cout << "coucou" << endl;
+	/*for(Capteur* c : capteursDefaillants) {
+		cout << c->RecupererId() << endl;
+	} */ //affichage pour test
+    return capteursDefaillants;
+}
 
 
 bool Algo::similitude(vector<double> v1, vector<double> v2) {
