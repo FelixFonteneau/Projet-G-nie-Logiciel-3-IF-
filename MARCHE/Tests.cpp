@@ -113,7 +113,8 @@ void testMoment()
 
 void testCapteurSimilaire()
 {
-	
+	Service unService;
+	unService.capteursSimilaires();
 }
 
 /*
@@ -168,6 +169,7 @@ int main()
     
     //testService();
     //testMoyenneeCapteur();
-	testFactory();
+	//testFactory();
+	testCapteurSimilaire();
     return 0;
 }

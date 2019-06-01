@@ -148,14 +148,19 @@ double qualiteAir(list<Capteur> capteurs, double coordonees[2]) {
 vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*>* capteurs, double radius, double* coordonees) {
     vector<Capteur*> captTerritoire;
     for(Capteur* c : *capteurs) {
-		    vector<double> coords = c->getCoords();
-        double dist = pow((coords[0]-coordonees[0]),2)+pow(coords[2]-coordonees[1], 2);
+		vector<double> coords = c->getCoords();
+		cout << coordonees[0] << " " << coordonees[1] << " " << coords[0] << " " << coords[1] << endl;
+        double dist = obtenirDistance(coordonees[0],coordonees[1],coords[0],coords[1]);
+		cout << "radius : " << radius << endl;
+		cout << "distance : " << dist << endl;
         if(dist < radius) {
             captTerritoire.push_back(c);
         }
     }
     return captTerritoire;
 }
+
+
 /*
 list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
     list<Capteur> captDefaillants;

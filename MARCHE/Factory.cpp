@@ -163,39 +163,64 @@ Mesure* Factory::analyserLigne(string ligne)
 
 
     // 2017-01-01T00:01:20.6090000;Sensor0;O3;17.8902017543936;
-    // cout << endl << ligne << endl;
     int annee, mois, jour, heure, minute, seconde;
-    string uneAnnee = decompose('-', ligne);
-    ligne = ligne.replace(0, 9 + 1, "");
-    annee = stoi(uneAnnee);
+	string uneAnnee, unMois, unJour, uneHeure, uneMinute, uneSeconde, idCapt, typeMesure;
+	double valeur;
+	bool utf8 = 1;
+	if(utf8){
+		uneAnnee = ligne.substr (0,4);
+		annee = stoi(uneAnnee);
+		unMois = ligne.substr (5,2);
+		mois = stoi(unMois);
+		unJour = ligne.substr(8,2);
+		jour = stoi(unJour);
+		uneHeure = ligne.substr(11,2);
+		heure = stoi(uneHeure);
+		uneMinute = ligne.substr(14,2);
+		minute = stoi(uneMinute);
+		uneSeconde = ligne.substr(17,2);
+		seconde = stoi(uneSeconde);
+		idCapt = ligne.substr(34,1);
+		typeMesure = "";
+		char a = ligne[36];
+		int i = 36;
+		while(a!=';'){
+			typeMesure += a;
+			a = ligne[++i];
+		}
+		string sValeur ="";
+		a = ligne[++i];
+		while(a!=';'){
+			sValeur += a;
+			a = ligne[++i];
+		}
+		valeur = stod(sValeur);
+	} else {
+		uneAnnee = decompose('-', ligne);
+		ligne = ligne.replace(0, 9 + 1, "");
 
-    string unMois = decompose('-', ligne);
-    ligne = ligne.replace(0, 5 + 1, "");
-    mois = stoi(unMois);
+		unMois = decompose('-', ligne);
+		ligne = ligne.replace(0, 5 + 1, "");
+		unJour = decompose('T', ligne);
+		ligne = ligne.replace(0, 5 + 1, "");
+		uneHeure = decompose(':', ligne);
+		ligne = ligne.replace(0, 5 + 1, "");
 
-    string unJour = decompose('T', ligne);
-    ligne = ligne.replace(0, 5 + 1, "");
-    jour = stoi(unJour);
+		uneMinute = decompose(':', ligne);
+		ligne = ligne.replace(0, 5 + 1, "");
 
-    string uneHeure = decompose(':', ligne);
-    ligne = ligne.replace(0, 5 + 1, "");
-    heure = stoi(uneHeure);
+		uneSeconde = decompose('.', ligne);
+		ligne = ligne.replace(0, ligne.find(';') + 1 , "");
 
-    string uneMinute = decompose(':', ligne);
-    ligne = ligne.replace(0, 5 + 1, "");
-    minute = stoi(uneMinute);
+		idCapt = decompose(';', ligne);
+		ligne = ligne.replace(0, ligne.find(';') + 1, "");
+		typeMesure = decompose(';', ligne);
+		ligne = ligne.replace(0, ligne.find(';') + 1, "");
 
-    string uneSeconde = decompose('.', ligne);
-    ligne = ligne.replace(0, ligne.find(';') + 1 , "");
-    seconde = stoi(uneSeconde);
-
-    // Sensor2
-    string idCapt = decompose(';', ligne);
-    ligne = ligne.replace(0, ligne.find(';') + 1, "");
-    string typeMesure = decompose(';', ligne);
-    ligne = ligne.replace(0, ligne.find(';') + 1, "");
-
-    double valeur = stod(decompose(';', ligne));
+		valeur = stod(decompose(';', ligne));
+	}
+	
+	//cout << annee << " " << mois << " " << jour << " " << heure << " " << minute << " " << seconde << " " << idCapt << " " << typeMesure << " " << valeur << endl;
 
     Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
 
@@ -233,34 +258,44 @@ Mesure* Factory::analyserLigne(string ligne)
 void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 {
 
-    ifstream file ("donnees/donneesCapteurs.csv");
+    ifstream file ("donnees/test2.csv");
     string ligne;
 
-    // on passe les premières 14 lignes inutiles
-    for (int i = 1; i < 14; i++)
-    {
-        getline(file,ligne);
-    }
+	unsigned i = 0;
+	if(file){
+		// on passe les premières 14 lignes inutiles
+		for (int i = 1; i < 13; i++)
+		{
+			getline(file,ligne);
+		}
 
-    // puis on analyse toutes les lignes
-    unsigned i = 0;
-    for(unsigned y(0); y<1000; y++)
-	// C'est quoi ce 1000?
-    {
-        ++i;
-        getline(file,ligne);
-        Mesure *mesure = analyserLigne(ligne);
-		//cout << mesure->type() << endl;
-        for (Capteur* capteur : *listeCapteurs)
-        {
-            if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
-            {
-                capteur->AjouterMesure(mesure);
-            }
-        }
-		delete mesure;
-    }
-#ifdef MAP
+		// puis on analyse toutes les lignes
+		
+		while(getline(file,ligne))
+		{
+			try {
+				++i;
+				Mesure *mesure = analyserLigne(ligne);
+				//cout << mesure->type() << endl;
+				for (Capteur* capteur : *listeCapteurs)
+				{
+					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
+					{
+						capteur->AjouterMesure(mesure);
+					}
+				}
+				delete mesure;
+			} catch (std::exception const &exc)
+			{
+				std::cerr << "Exception caught " << exc.what() << "\n";
+			}
+			
+			
+		}
+	} else {
+		cout << "Impossible d'ouvrir le fichier" << endl;
+	}
+#ifdef MAP2
     cout << "nombre de mesures analysees : " << i << endl;
 #endif
 }
