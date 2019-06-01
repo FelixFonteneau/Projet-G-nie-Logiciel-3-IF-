@@ -243,22 +243,106 @@ vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
 }
 
 
-bool Algo::similitude(vector<double> v1, vector<double> v2) {
+bool Algo::similitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
 
-	double ecartO3, ecartNO2,ecartSO2,ecartPM10;
-
-	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
-	const double seuilO3 = 240/2 * 0.1;
-	const double seuilNO2 = 400/2 * 0.1;
-	const double seuilSO2 = 500/2 * 0.1;
-	const double seuilPM10 = 80/2 * 0.1;
-
-	ecartO3 = abs(v1[0] - v2[0]);
-	ecartNO2 = abs(v1[1] - v2[1]);
-	ecartSO2 = abs(v1[2] - v2[2]);
-	ecartPM10 = abs(v1[3] - v2[3]);
+	double ecartO3, ecartNO2,ecartSO2,ecartPM10,somme = 0,nbMesure = 0	;
 	
-	if((ecartO3 <= seuilO3) && (ecartNO2 <= seuilNO2) && (ecartSO2 <= seuilSO2)  && (ecartPM10 <= seuilPM10)){
+	vector<MesureO3> c1MesuresO3 = *(c1->RecupererMesuresO3());
+	vector<MesureO3> c2MesuresO3 = *(c2->RecupererMesuresO3());
+	
+	for(unsigned int i = 0; i < min(c1MesuresO3.size(),c2MesuresO3.size()) ; i++)
+	{
+		if(c1MesuresO3[i].getDate() > intervaleTemps[0] && c1MesuresO3[i].getDate() < intervaleTemps[1])
+		{
+		  somme += pow(c1MesuresO3[i].Valeur()-c2MesuresO3[i].Valeur(),2.0);
+		  ++nbMesure;
+		}
+	}
+    if(nbMesure > 0)
+    {
+		ecartO3 = sqrt(somme)/nbMesure;
+    }
+    else
+	{
+		ecartO3 = -1;
+    }
+	somme = 0;
+	nbMesure = 0;
+	
+	vector<MesureSO2> c1MesuresSO2 = *(c1->RecupererMesuresSO2());
+	vector<MesureSO2> c2MesuresSO2 = *(c2->RecupererMesuresSO2());
+	for(unsigned int i = 0; i < min(c1MesuresSO2.size(),c2MesuresSO2.size()) ; i++)
+	{
+		if(c1MesuresSO2[i].getDate() > intervaleTemps[0] && c1MesuresSO2[i].getDate() < intervaleTemps[1])
+		{
+		  somme += pow(c1MesuresSO2[i].Valeur()-c2MesuresSO2[i].Valeur(),2.0);
+		  ++nbMesure;
+		}
+	}
+    if(nbMesure > 0)
+    {
+		ecartSO2 = sqrt(somme)/nbMesure;
+    }
+    else
+	{
+		ecartSO2 = -1;
+    }
+	somme = 0;
+	nbMesure = 0;
+	
+	vector<MesureNO2> c1MesuresNO2 = *(c1->RecupererMesuresNO2());
+	vector<MesureNO2> c2MesuresNO2 = *(c2->RecupererMesuresNO2());
+	for(unsigned int i = 0; i < min(c1MesuresNO2.size(),c2MesuresNO2.size()) ; i++)
+	{
+		if(c1MesuresNO2[i].getDate() > intervaleTemps[0] && c1MesuresNO2[i].getDate() < intervaleTemps[1])
+		{
+		  somme += pow(c1MesuresNO2[i].Valeur()-c2MesuresNO2[i].Valeur(),2.0);
+		  ++nbMesure;
+		}
+	}
+    if(nbMesure > 0)
+    {
+		ecartNO2 = sqrt(somme)/nbMesure;
+    }
+    else
+	{
+		ecartNO2 = -1;
+    }
+	somme = 0;
+	nbMesure = 0;
+	
+	vector<MesurePM10> c1MesuresPM10 = *(c1->RecupererMesuresPM10());
+	vector<MesurePM10> c2MesuresPM10 = *(c2->RecupererMesuresPM10());
+	for(unsigned int i = 0; i < min(c1MesuresPM10.size(),c2MesuresPM10.size()) ; i++)
+	{
+		if(c1MesuresPM10[i].getDate() > intervaleTemps[0] && c1MesuresPM10[i].getDate() < intervaleTemps[1])
+		{
+		  somme += pow(c1MesuresPM10[i].Valeur()-c2MesuresPM10[i].Valeur(),2.0);
+		  ++nbMesure;
+		}
+	}
+    if(nbMesure > 0)
+    {
+		ecartPM10 = sqrt(somme)/nbMesure;
+    }
+    else
+	{
+		ecartPM10 = -1;
+    }
+	somme = 0;
+	nbMesure = 0;
+	
+	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
+	const double seuilO3 = 240/2 * 0.05;
+	const double seuilNO2 = 400/2 * 0.05;
+	const double seuilSO2 = 500/2 * 0.05;
+	const double seuilPM10 = 80/2 * 0.05;
+	
+	cout << ecartNO2 << "|" << ecartSO2 << "|" << ecartPM10 << "|" << ecartO3 << endl;
+	
+	if(ecartO3 == -1 || ecartNO2 == -1 || ecartSO2 == -1 || ecartPM10 == -1 ){
+		return false;
+	}else if((ecartO3 <= seuilO3) && (ecartNO2 <= seuilNO2) && (ecartSO2 <= seuilSO2)  && (ecartPM10 <= seuilPM10)){
 		return true;
 	}
 	else {

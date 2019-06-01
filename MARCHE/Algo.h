@@ -60,7 +60,7 @@ public:
     //
 
 
-    bool similitude(vector<double> v1, vector<double> v2);
+    bool similitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps);
 
     double ecartTypeRelatif(list<Mesure> mesures);
 

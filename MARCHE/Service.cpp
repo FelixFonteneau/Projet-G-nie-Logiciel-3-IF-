@@ -63,26 +63,11 @@ void Service::capteursSimilaires() {
 	vector<Moment> moments = messages.recupererIntervalleTemps();
 	//On stockera ici les capteurs ayant des similitudes
 	vector<pair<Capteur,Capteur>> capteurCorreles;
-	//On stock ici les moyennes des différents capteurs pour chaque type de gaz/particule
-	vector<vector<double>> moyennesCapteur;
-	
-	//Calcul des moyennes
-	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
-		vector<double> moy = algo.moyenneCapteur(capteurConcernes[i],moments);
-		if(moy[0] != -1 && moy[1]!=-1 && moy[2]!=-1 && moy[3]!=-1){
-			moyennesCapteur.push_back(moy);
-		} else {
-			capteurConcernes.erase(capteurConcernes.begin() + i);
-			if(i!=capteurConcernes.size() - 1){
-				i--;
-			}
-		}
-	}
 	
 	//Calcul des similitudes entre capteurs
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			if(algo.similitude(moyennesCapteur[i],moyennesCapteur[j])){
+			if(algo.similitude(capteurConcernes[i],capteurConcernes[j],moments)){
 				capteurCorreles.push_back({*capteurConcernes[i],*capteurConcernes[j]});
 			}
 		}
