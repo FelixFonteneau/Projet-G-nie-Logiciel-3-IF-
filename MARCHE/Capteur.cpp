@@ -55,6 +55,7 @@ vector<double> Capteur::getCoords()
 // Algorithme :
 //
 // {
+	
 
 // } //----- Fin de operator =
 

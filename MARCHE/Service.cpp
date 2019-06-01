@@ -12,11 +12,11 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <vector>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Service.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -30,16 +30,6 @@ using namespace std;
 
 int qualiteAir() {}
 
-void capteursSimilaires() {   // Ébauche ! D'où le void -> à modifier
-    //...
-    for(Capteur c1 : capteurs) {
-        for(Capteur c2 : capteurs) {
-            if(similitude(c1, c2)) {
-                //...
-            }
-        }
-    }
-}
 
  list<Capteur> capteursDefectueux() {
     list<Capteur> capteursDefectueux;
@@ -65,7 +55,28 @@ void Service::qualiteAir()
     cout << atmo << endl;
 }
 
+//Necessaire pour insertion dans la multimap
+bool operator< (const Capteur &c1, const Capteur &c2){
+	return true;
+}
 
+void Service::capteursSimilaires() { 
+    
+	double* coords = unMessage.recupererLocalisation();
+	double radius = unMessage.recupererRadius();
+	Moment* moments = unMessage.recupererIntervalleTemps();
+	vector<Capteur*> capteurConcernes = unAlgo.capteurTerritoire(*listCapteur,radius,coords);
+	multimap<Capteur,Capteur> capteurCorreles;
+	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
+		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
+			if(unAlgo.similitude(*capteurConcernes[i],*capteurConcernes[j],moments)){
+				
+				capteurCorreles.insert({*capteurConcernes[i],*capteurConcernes[j]});
+			}
+		}
+	}
+	
+}
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )
 // Algorithme :

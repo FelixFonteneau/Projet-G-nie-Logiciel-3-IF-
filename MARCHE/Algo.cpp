@@ -96,6 +96,8 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
     return atmo;
 }
 
+
+
 /*Mesure* moyenne(Moment intervaleTemps[2], double radius, double coordonees[2], list<Capteur> capteurs) {
     Mesure mesures[4];
     sumNO2 = 0;
@@ -115,20 +117,21 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
 
 double qualiteAir(list<Capteur> capteurs, double coordonees[2]) {
     //à compléter
-}
+}*/
 
 
-list<Capteur> capteurTerritoire(list<Capteur> capteurs, double radius, double coordonees[2]) {
-    list<Capteur> captTerritory;
-    for(Capteur c : capteurs) {
-        double dist = pow((c.getLatitude()-coordonees[0]),2)+pow(c.getLongitude()-coordonees[1], 2);
+vector<Capteur*> Algo::capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees) {
+    vector<Capteur*> captTerritoire;
+    for(Capteur* c : capteurs) {
+		vector<double> coords = c->getCoords();
+        double dist = pow((coords[0]-coordonees[0]),2)+pow(coords[2]-coordonees[1], 2);
         if(dist < radius) {
-            captTerritory.insert(captTerritory.end(), c);
+            captTerritoire.push_back(c);
         }
     }
-    return captTerritory;
+    return captTerritoire;
 }
-
+/*
 list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
     list<Capteur> captDefaillants;
     for(Capteur c : capteurs) {
@@ -154,15 +157,18 @@ list<Capteur> capteurDefaillants(list<Capteur> capteurs) {
         }
     }
     return captDefaillants;
+}*/
+
+
+bool Algo::similitude(Capteur c1, Capteur c2,Moment* trancheHoraire) {
+    double moyenneNO2_1, moyenneSO2_1, moyenneO3_1, moyennePM10_1;
+	double moyenneNO2_2, moyenneSO2_2, moyenneO3_2, moyennePM10_2;
+	double somme;
+	//for(Mesure m1 : c1.RecupererMesuresNO2){
+	//	if(m1.moment
 }
 
-
-bool similitude(Capteur c1, Capteur c2) {
-    for(int i = 0; i < 3; i++) {
-
-    }
-}
-
+/*
 double ecartTypeRelatif(list<Mesure> mesures) {
     return 4;
 }

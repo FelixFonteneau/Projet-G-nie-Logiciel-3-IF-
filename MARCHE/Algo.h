@@ -41,11 +41,11 @@ public:
     
     double QualiteAir(vector<Capteur*>* capteurs, double* coordonees);
 
-    list<Capteur> capteurTerritoire(double radius, double coordonees[2]);
+    vector<Capteur*> capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees);
 
     list<Capteur> capteurDefaillants(list<Capteur> capteurs);
 
-    bool similitude(Capteur c1, Capteur c2);
+    bool similitude(Capteur c1, Capteur c2,Moment* trancheHoraire);
 
     double ecartTypeRelatif(list<Mesure> mesures);
 
