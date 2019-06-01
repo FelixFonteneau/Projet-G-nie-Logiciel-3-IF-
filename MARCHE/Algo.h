@@ -39,7 +39,7 @@ public:
     // Contrat :
     //
     
-    double QualiteAir(vector<Capteur*>* capteurs, double* coordonees);
+    double QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
 
     vector<Capteur*> capteurTerritoire(vector<Capteur*> capteurs, double radius, double* coordonees);
 
@@ -87,7 +87,7 @@ protected:
     int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
                                 double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
-                          double distanceMini1, double distanceMini2, double distanceMini3);
+                          double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
     int calculAtmo(double valeur, string type);
     //----------------------------------------------------- Attributs protégés
     

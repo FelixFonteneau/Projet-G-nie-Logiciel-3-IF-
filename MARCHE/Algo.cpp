@@ -19,15 +19,17 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Algo.h"
 #define PI  3.141592653589793238463
-#define earthRadiusKm 6371000.0
+#define earthRadiusKm 6371.0
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
-double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
+double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
 {
+    double rayonMax = 90;
+    int nbCapteur = 0;
     double distanceMini1 = DBL_MAX, distanceMini2 = DBL_MAX, distanceMini3 = DBL_MAX;
     
     vector<MesureSO2> *MesuresSO2Capt1, *MesuresSO2Capt2, *MesuresSO2Capt3;
@@ -38,29 +40,29 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
     for (Capteur* capteur : *capteurs)
     {
         vector<double> coordsCapteur = capteur->getCoords();
-        double distanceCourante = obtenirDistance(coordsCapteur[0], coordsCapteur[1], coordonees[0], coordonees[1]);
-        if (distanceCourante < distanceMini1)
+        double distanceCourante = obtenirDistance(coordsCapteur[0], coordsCapteur[1], latitude, longitude);
+        if (distanceCourante < distanceMini1 && distanceCourante < rayonMax)
         {
             distanceMini1 = distanceCourante;
-            
+            nbCapteur++;
             MesuresSO2Capt1 = (*capteur).RecupererMesuresSO2();
             MesuresO3Capt1 = (*capteur).RecupererMesuresO3();
             MesuresPM10Capt1 = (*capteur).RecupererMesuresPM10();
             MesuresNO2Capt1 = (*capteur).RecupererMesuresNO2();
         }
-        if (distanceMini1 < distanceCourante && distanceCourante < distanceMini2)
+        if (distanceMini1 < distanceCourante && distanceCourante < distanceMini2  && distanceCourante < rayonMax)
         {
             distanceMini2 = distanceCourante;
-            
+            nbCapteur++;
             MesuresSO2Capt2 = (*capteur).RecupererMesuresSO2();
             MesuresO3Capt2 = (*capteur).RecupererMesuresO3();
             MesuresPM10Capt2 = (*capteur).RecupererMesuresPM10();
             MesuresNO2Capt2 = (*capteur).RecupererMesuresNO2();
         }
-        if (distanceMini2 < distanceCourante && distanceCourante < distanceMini3)
+        if (distanceMini2 < distanceCourante && distanceCourante < distanceMini3  && distanceCourante < rayonMax)
         {
             distanceMini3 = distanceCourante;
-            
+            nbCapteur++;
             MesuresSO2Capt3 = (*capteur).RecupererMesuresSO2();
             MesuresO3Capt3 = (*capteur).RecupererMesuresO3();
             MesuresPM10Capt3 = (*capteur).RecupererMesuresPM10();
@@ -68,30 +70,53 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double* coordonees)
         }
     }
     
-  
-
+    int derniereMesureCapt1 = 0, derniereMesureCapt2 = 0, derniereMesureCapt3 = 0;
+    double NO2Capt1 = 0, O3Capt1 = 0, PM10Capt1 = 0, SO2Capt1 = 0, NO2Capt2 = 0, O3Capt2 = 0, PM10Capt2 = 0, SO2Capt2 = 0, NO2Capt3 = 0, O3Capt3 = 0, PM10Capt3 = 0, SO2Capt3 = 0;
     
-    int derniereMesureCapt1 = (*MesuresSO2Capt1).size() - 1, derniereMesureCapt2 = (*MesuresSO2Capt2).size() - 1, derniereMesureCapt3 = (*MesuresSO2Capt3).size() - 1;
+    if (nbCapteur >= 1) {
+        derniereMesureCapt1 = (*MesuresSO2Capt1).size() - 1;
+        NO2Capt1 = MesuresNO2Capt1->at(derniereMesureCapt1).Valeur();
+        O3Capt1 = MesuresO3Capt1->at(derniereMesureCapt1).Valeur();
+        PM10Capt1 = MesuresPM10Capt1->at(derniereMesureCapt1).Valeur();
+        SO2Capt1 = MesuresSO2Capt1->at(derniereMesureCapt1).Valeur();
+    }
+    if (nbCapteur >= 2) {
+        derniereMesureCapt2 = (*MesuresSO2Capt2).size() - 1;
+        NO2Capt2 = MesuresNO2Capt2->at(derniereMesureCapt2).Valeur();
+        O3Capt2 = MesuresO3Capt2->at(derniereMesureCapt2).Valeur();
+        PM10Capt2 = MesuresPM10Capt2->at(derniereMesureCapt2).Valeur();
+        SO2Capt2 = MesuresSO2Capt2->at(derniereMesureCapt2).Valeur();
+    }
+    if (nbCapteur == 3) {
+        derniereMesureCapt3 = (*MesuresSO2Capt3).size() - 1;
+        NO2Capt3 = MesuresNO2Capt3->at(derniereMesureCapt3).Valeur();
+        O3Capt3 = MesuresO3Capt3->at(derniereMesureCapt3).Valeur();
+        PM10Capt3 = MesuresPM10Capt3->at(derniereMesureCapt3).Valeur();
+        SO2Capt3 = MesuresSO2Capt3->at(derniereMesureCapt3).Valeur();
+    }
   
+    int atmo = 0;
     
-    int atmo = calculAtmoPondere(MesuresNO2Capt1->at(derniereMesureCapt1).Valeur(),
-                                MesuresO3Capt1->at(derniereMesureCapt1).Valeur(),
-                                MesuresPM10Capt1->at(derniereMesureCapt1).Valeur(),
-                                MesuresSO2Capt1->at(derniereMesureCapt1).Valeur(),
+    atmo = calculAtmoPondere(NO2Capt1,
+                                O3Capt1,
+                                PM10Capt1,
+                                SO2Capt1,
                                     
-                                MesuresNO2Capt2->at(derniereMesureCapt2).Valeur(),
-                                MesuresO3Capt2->at(derniereMesureCapt2).Valeur(),
-                                MesuresPM10Capt2->at(derniereMesureCapt2).Valeur(),
-                                MesuresSO2Capt2->at(derniereMesureCapt2).Valeur(),
+                                NO2Capt2,
+                                O3Capt2,
+                                PM10Capt2,
+                                SO2Capt2,
                                     
-                                MesuresNO2Capt3->at(derniereMesureCapt3).Valeur(),
-                                MesuresO3Capt3->at(derniereMesureCapt3).Valeur(),
-                                MesuresPM10Capt3->at(derniereMesureCapt3).Valeur(),
-                                MesuresSO2Capt3->at(derniereMesureCapt3).Valeur(),
+                                NO2Capt3,
+                                O3Capt3,
+                                PM10Capt3,
+                                SO2Capt3,
                                 
                                 distanceMini1,
                                 distanceMini2,
-                                distanceMini3);
+                                distanceMini3,
+                                 
+                                nbCapteur);
     
     return atmo;
 }
@@ -227,6 +252,7 @@ double Algo::enRadians(double latitude)
 // retourne la distance en metres
 double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d)
 {
+    
     double lat1r, lon1r, lat2r, lon2r, u, v;
     lat1r = enRadians(lat1d);
     lon1r = enRadians(lon1d);
@@ -240,36 +266,40 @@ double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lo
 int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
                             double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
                             double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
-                            double distanceMini1, double distanceMini2, double distanceMini3)
+                            double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur)
 {
-    int atmoNO2, atmoO3, atmoPM10, atmoSO2;
-    double somme = distanceMini1 + distanceMini2 + distanceMini3;
-    string NO2 = "NO2", O3 = "O3", PM10 = "PM10", SO2 = "SO2";
+    double atmoNO2, atmoO3, atmoPM10, atmoSO2;
+    double inv1 = pow(distanceMini1, -1), inv2 = pow(distanceMini2, -1), inv3 = pow(distanceMini3, -1);
+    if (nbCapteur == 0) {
+        inv1 = 0; inv2 = 0; inv3 = 0;
+    } else if (nbCapteur == 1) {
+        inv2 = 0; inv3 = 0;
+    } else if (nbCapteur == 2) {
+        inv3 = 0;
+    }
     
-    atmoNO2 = distanceMini1*calculAtmo(valeurNO2Capt1, NO2) + distanceMini2*calculAtmo(valeurNO2Capt2, NO2) +distanceMini3*calculAtmo(valeurNO2Capt3, NO2);
-    atmoNO2 /= somme;
+    double somme = inv1 + inv2 + inv3;
     
-    atmoO3 = distanceMini1*calculAtmo(valeurO3Capt1, O3) + distanceMini2*calculAtmo(valeurO3Capt2, O3) + distanceMini3*calculAtmo(valeurO3Capt3, O3);
-    atmoO3 /= somme;
+    atmoNO2 = inv1*valeurNO2Capt1 + inv2*valeurNO2Capt2 + inv3*valeurNO2Capt3;
+    atmoNO2 = calculAtmo(atmoNO2/somme,"NO2");
     
-    atmoPM10 = distanceMini1*calculAtmo(valeurPM10Capt1, PM10) + distanceMini2*calculAtmo(valeurPM10Capt2, PM10) + distanceMini3*calculAtmo(valeurPM10Capt3, PM10);
-    atmoPM10 /= somme;
+    atmoO3 = inv1*valeurO3Capt1 + inv2*valeurO3Capt2 + inv3*valeurO3Capt3;
+    atmoO3 = calculAtmo(atmoO3/somme,"O3");
     
-    atmoSO2 = distanceMini1*calculAtmo(valeurSO2Capt1, SO2) + distanceMini2*calculAtmo(valeurSO2Capt2, SO2) + distanceMini3*calculAtmo(valeurSO2Capt3, SO2);
-    atmoSO2 /= somme;
+    atmoPM10 = inv1*valeurPM10Capt1 + inv2*valeurPM10Capt2 + inv3*valeurPM10Capt3;
+    atmoPM10 = calculAtmo(atmoPM10/somme, "PM10");
     
-    cout << distanceMini1 << " " << distanceMini2 << " " << distanceMini3 << endl;
-    // Incohérent : quand je mets les coordonnées exates du premier capteur, la distance mini est bien trop élevée
-    
-    return max(max(atmoNO2,atmoO3), max(atmoPM10,atmoSO2));
+    atmoSO2 = inv1*valeurSO2Capt1 + inv2*valeurSO2Capt2 + inv3*valeurSO2Capt3;
+    atmoSO2 = calculAtmo(atmoSO2/somme, "SO2");
+
+    return max(max(int(atmoNO2),int(atmoO3)), max(int(atmoPM10),int(atmoSO2)));
     
 }
 
 int Algo::calculAtmo(double valeur, string type)
 {
-    string NO2 ="NO2";
     int result = 0;
-    if (type.compare(NO2) == 0)
+    if (type.compare("NO2") == 0)
     {
         if (0 <= valeur && valeur <= 29) {
             result = 1;
