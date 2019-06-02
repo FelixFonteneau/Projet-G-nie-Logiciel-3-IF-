@@ -59,12 +59,12 @@ vector<double> Algo::MoyenneDuree(vector<Moment> intervaleTemps, double radius, 
       //on regarde si il y a eu des valeurs
       if(nbValeurs[i] > 0 )
       {
-        moyenne[i] = somme[i]/nbValeurs[i];
+        moyenne.push_back(somme[i]/nbValeurs[i]);
       }
       //sinon on met la valeur à -1, pour aucune valeurs
       else
       {
-        moyenne[i] = -1;
+        moyenne.push_back(-1);
       }
   }
   return moyenne;
@@ -104,12 +104,12 @@ vector<double> Algo::MoyenneInstant(Moment instant, double radius, vector<double
       //on regarde si il y a eu des valeurs
       if(nbValeurs[i] > 0 )
       {
-        moyenne[i] = somme[i]/nbValeurs[i];
+        moyenne.push_back(somme[i]/nbValeurs[i]);
       }
       //sinon on met la valeur à -1, pour aucune valeurs
       else
       {
-        moyenne[i] = -1;
+        moyenne.push_back(-1);
       }
   }
   return moyenne;
