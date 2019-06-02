@@ -220,24 +220,34 @@ Moment Messages::recupererMoment()
 
 void Messages::afficherCapteursCorreles(double** similitudes,int size)
 {
-	cout << "--------- ";
-	for(int i = 0 ; i< size-1 ; i++){
+    int pourcentage;
+    cout << "            ";
+    for (int i = 0; i< size; i++) {
 		cout << "Capteur " << i <<  " | " ;
 	}
-	cout << "Capteur "<< size -1 << endl;
-	for(int i = 0 ; i< size ; i++){
+    cout << endl;
+    for(int l = 0 ; l < size + 1; l++){
+        cout << "------------";
+    }
+    cout << endl;
+	for (int i = 0 ; i < size ; i++) {
 		cout << "Capteur " << i << "  ";
-		for(int k = 0; k<i ; k++)
+		for (int k = 0; k < i; k++)
 			cout << "            ";
-		for(int j = i ; j<size ; j++){
-			if(i==j){
-				cout << "  100%    " << " ";
+		for (int j = i; j < size; j++) {
+			if (i == j){
+				cout << "    100%   ";
 			} else {
-				cout << "   "<< (int)similitudes[i][j] << "%      ";
+                pourcentage = (int)similitudes[i][j];
+                if (pourcentage < 10) {
+                    cout << "       " << pourcentage << "%   ";
+                } else if (pourcentage == 100) {
+                    cout << "     100%  ";
+                } else cout << "      " << pourcentage << "%   ";
 			}
 		}
 		cout << endl;
-		for(int l = 0 ; l < size +1  ; l++){
+		for(int l = 0 ; l < size + 1; l++){
 			cout << "------------";
 		}
 		cout << endl;
