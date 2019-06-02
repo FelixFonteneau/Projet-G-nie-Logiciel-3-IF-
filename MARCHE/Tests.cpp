@@ -159,38 +159,35 @@ void testMessage2()
 
 int main()
 {
-    /*switch (num)
+    /*Messages unMessage;
+    int choix = unMessage.MessageMenu();
+    Service unService = Service();
+    switch (choix)
     {
-            
         case 1:
         {
-            recupererLocalisation();
-            recupererRadius();
-            recupererMoment();
+            unService.CalculMoyenneLocalise();
             break;
         }
         case 2:
         {
-            recupererLocalisation();
-            recupererRadius();
-            recupererIntervalleTemps();
+            unService.CalculMoyenneLocalise();
             break;
         }
             
         case 3:
         {
-            recupererLocalisation();
-            recupererRadius();
-            recupererIntervalleTemps();
+            unService.CapteursSimilaires();
             break;
         }
         case 4:
         {
-            recupererLocalisation();
+            unService.QualiteAir();
             break;
         }
         case 5:
         {
+            unService.CapteursDefaillants();
             break;
         }
         default:
@@ -198,27 +195,6 @@ int main()
             break;
         }
     }*/
-    /* cout << endl << "******" << endl;
-    cout << "Voici les tests Moments";
-    cout << endl << "******" << endl << endl;
-    testMoment();
-
-
-    cout << endl << "******" << endl;
-    cout << "Voici les tests Mesure";
-    cout << endl << "******" << endl << endl;
-    testMesure(); */
-
-    // testService();
-    // testMoment();
-    // bool a = "SO2".compare("SO2");
-    // cout << a << endl;
-
-    // testService();
-    //testMoyenneeCapteur();
-
-    //testMessage2();
-	testCapteurDefaillant();
-	//testFactory();
+    testService();
     return 0;
 }
