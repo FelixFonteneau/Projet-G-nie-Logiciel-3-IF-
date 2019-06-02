@@ -36,7 +36,7 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-void Messages::messageMenu()
+int Messages::messageMenu()
 {
     cout << "Bonjour. Vous souhaitez :" << endl;
     cout << "1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise" << endl;
@@ -48,45 +48,7 @@ void Messages::messageMenu()
     int num;
     cin >> num;
 
-    switch (num)
-    {
-
-        case 1:
-        {
-            recupererLocalisation();
-            recupererRadius();
-            recupererMoment();
-            break;
-        }
-        case 2:
-        {
-            recupererLocalisation();
-            recupererRadius();
-            recupererIntervalleTemps();
-            break;
-        }
-
-        case 3:
-        {
-            recupererLocalisation();
-            recupererRadius();
-            recupererIntervalleTemps();
-            break;
-        }
-        case 4:
-        {
-            recupererLocalisation();
-            break;
-        }
-        case 5:
-        {
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
+    return num;
 }
 
 vector<double> Messages::recupererLocalisation()
@@ -126,8 +88,8 @@ bool Messages::choixZone()
         cout << "1 - Effectuer la requête sur tous les capteurs" << endl;
 		cout << "2 - Effectuer la requête sur les capteurs d'un territoire délimité" << endl;
         getline(cin,tmp);
-    } while (tmp.compare("1")!=0 && tmp.compare("2")!=0);
-	if(tmp.compare("1")==0){
+    } while (tmp.compare("1") != 0 && tmp.compare("2") != 0);
+	if (tmp.compare("1") == 0) {
 		return false;
 	}else{
 		return true;
@@ -191,8 +153,6 @@ vector<Moment> Messages::recupererIntervalleTemps()
 
     return intervalleTempsDemande;
 }
-
-
 
 Moment Messages::recupererMoment()
 {
@@ -266,13 +226,20 @@ void Messages::afficherCapteursCorreles(double** similitudes,int size)
 
 void Messages::afficherCapteursDefaillants(vector<Capteur*> capteurs) {
 	if(capteurs.size() == 0) {
-		cout << "Il n'y a pas de capteur defaillant" << endl;
+		cout << "Il n'y a pas de capteur défaillant." << endl;
 	} else {
-		cout << "Les capteurs defaillants sont les capteurs : " << endl;
+		cout << "Les capteurs défaillants sont les capteurs : " << endl;
 		for(Capteur* c : capteurs) {
 			cout << c->RecupererId() << endl;
 		}
 	}
+}
+
+void Messages::afficherQualiteAir(vector<int> infos)
+{
+    if (infos[2] == 1) {
+    cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteur dans un rayon de " << infos[1] << " km." << endl;
+    } else cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteurs dans un rayon de " << infos[1] << " km." << endl;
 }
 
 

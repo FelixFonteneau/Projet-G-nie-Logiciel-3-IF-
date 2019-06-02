@@ -37,7 +37,7 @@ public:
     //
     // Contrat :
     //
-    void messageMenu();
+    int messageMenu();
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
@@ -61,6 +61,8 @@ public:
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
 	
     void afficherCapteursDefaillants(vector<Capteur*> capteurs);
+    
+    void afficherQualiteAir(vector<int> infos);
 	
 	// Chaque méthode sert au traitement des messages affichées dans lors des appels aux services
 

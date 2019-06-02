@@ -44,7 +44,7 @@ public:
     // Contrat :
     //
 
-    double QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
+    vector<int> QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
 
     vector<Capteur*> capteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees);
 

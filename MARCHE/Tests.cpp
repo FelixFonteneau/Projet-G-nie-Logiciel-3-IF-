@@ -175,11 +175,11 @@ int main()
     // bool a = "SO2".compare("SO2");
     // cout << a << endl;
 
-    //testService();
+    testService();
     //testMoyenneeCapteur();
 
     //testMessage2();
-	testCapteurDefaillant();
+	// testCapteurDefaillant();
 	//testFactory();
     return 0;
 }

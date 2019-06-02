@@ -30,7 +30,7 @@ void Service::CalculMoyenneLocalise()
   vector<double> coords = messages.recupererLocalisation();
   double radius = messages.recupererRadius();
   vector<Moment> moments = messages.recupererIntervalleTemps();
-  vector<double> moyenne = algo.Moyenne(moments, radius, coords, capteurs );
+  vector<double> moyenne = algo.Moyenne(moments, radius, coords, capteurs);
 } //----- Fin de Méthode
 
 
@@ -41,8 +41,8 @@ void Service::qualiteAir()
 {
 
     vector<double> coords = messages.recupererLocalisation();
-    double atmo = algo.QualiteAir(capteurs, coords[0], coords[1]);
-    cout << atmo << endl;
+    vector<int> atmoInfos = algo.QualiteAir(capteurs, coords[0], coords[1]);
+    messages.afficherQualiteAir(atmoInfos);
 }
 
 

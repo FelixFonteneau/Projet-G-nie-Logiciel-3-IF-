@@ -18,10 +18,9 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Algo.h"
-#define PI  3.141592653589793238463
-#define earthRadiusKm 6371.0
 //------------------------------------------------------------- Constantes
-
+#define PI  3.141592653589793238463
+#define rayonTerrestreKm 6371.0
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -72,9 +71,10 @@ vector<double> Algo::Moyenne(vector<Moment> intervaleTemps, double radius, vecto
 }
 
 
-double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
+vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
 {
     double rayonMax = 90;
+    int distanceMax = 0;
     int nbCapteur = 0;
     double distanceMini1 = DBL_MAX, distanceMini2 = DBL_MAX, distanceMini3 = DBL_MAX;
 
@@ -163,8 +163,18 @@ double Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double long
                                 distanceMini3,
 
                                 nbCapteur);
-
-    return atmo;
+    
+    if (nbCapteur == 1) {
+        distanceMax = distanceMini1;
+    } else if (nbCapteur == 2) {
+        distanceMax = distanceMini2;
+    } else distanceMax = distanceMini3;
+    
+    vector<int> infos;
+    infos.push_back(atmo);
+    infos.push_back(distanceMax);
+    infos.push_back(nbCapteur);
+    return infos;
 }
 
 
@@ -402,7 +412,7 @@ double Algo::enRadians(double latitude)
     return latitude * PI / 180;
 }
 
-// retourne la distance en metres
+// retourne la distance en km
 double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d)
 {
 
@@ -413,7 +423,7 @@ double Algo::obtenirDistance(double lat1d, double lon1d, double lat2d, double lo
     lon2r = enRadians(lon2d);
     u = sin((lat2r - lat1r)/2);
     v = sin((lon2r - lon1r)/2);
-    return 2.0 * earthRadiusKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v));
+    return 2.0 * rayonTerrestreKm * asin(sqrt(u * u + cos(lat1r) * cos(lat2r) * v * v));
 }
 
 int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
