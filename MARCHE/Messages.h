@@ -55,7 +55,7 @@ public:
 	
 	bool choixZone();
 	
-    void afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles);
+    void afficherCapteursCorreles(double** similitude, int size);
 	
     void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
 	

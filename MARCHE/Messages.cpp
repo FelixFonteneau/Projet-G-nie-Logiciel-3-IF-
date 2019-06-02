@@ -19,6 +19,7 @@ using namespace std;
 #include <unistd.h>
 #include <regex>
 #include <string>
+#include <algorithm>
 
 //------------------------------------------------------ Include personnel
 #include "Messages.h"
@@ -217,13 +218,40 @@ Moment Messages::recupererMoment()
 }
 
 
-void Messages::afficherCapteursCorreles(vector<pair<Capteur,Capteur>> capteurCorreles)
+void Messages::afficherCapteursCorreles(double** similitudes,int size)
 {
-	for(pair<Capteur,Capteur> p : capteurCorreles){
-		vector<double> coords1 = p.first.getCoords();
-		vector<double> coords2 = p.second.getCoords();
-		cout << "Similarité entre les capteurs " << p.first.RecupererId() << " et " << p.second.RecupererId()<< ", de coordonnées (" << coords1[0] << "," << coords1[1] << ") et (" << coords2[0] << "," << coords2[1] << ")." << endl;
+	cout << "--------- ";
+	for(int i = 0 ; i< size-1 ; i++){
+		cout << "Capteur " << i <<  " | " ;
 	}
+	cout << "Capteur "<< size -1 << endl;
+	for(int i = 0 ; i< size ; i++){
+		cout << "Capteur " << i << "  ";
+		for(int k = 0; k<i ; k++)
+			cout << "            ";
+		for(int j = i ; j<size ; j++){
+			if(i==j){
+				cout << "  100%    " << " ";
+			} else {
+				cout << "   "<< (int)similitudes[i][j] << "%      ";
+			}
+		}
+		cout << endl;
+		for(int l = 0 ; l < size +1  ; l++){
+			cout << "------------";
+		}
+		cout << endl;
+	}
+	/*vector<int> capteurId;
+	for(pair<pair<Capteur,Capteur>,double> p : capteurCorreles){
+		Capteur c1 = p.first.first;
+		Capteur c2 = p.first.second;
+		string id1 = c1.RecupererId();
+		string id2 = c2.RecupererId();
+		
+		
+		cout << "Capteur " << id1 << " et capteur " << id2 << " : " << (int)p.second << "%" <<  endl;
+	}*/
 }
 
 void Messages::afficherCapteursDefaillants(vector<Capteur*> capteurs) {

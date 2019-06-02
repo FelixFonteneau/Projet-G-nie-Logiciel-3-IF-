@@ -109,9 +109,8 @@ void Factory::recupererType()
 void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
 {
     // Sensor0;-8.15758888291083;-34.7692487876719;;
-    ifstream file ("donnees/descriptionsCapteurs.csv");
+    ifstream file ("donnees/descriptionCapteurs.csv");
     string ligne;
-	bool utf8 = 0;
 	
 	getline(file,ligne);
     // Premiere ligne inutile
@@ -121,31 +120,24 @@ void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
     {
 		double latitude, longitude;
 		string idCapt;
-		if(!utf8){
-			idCapt = decompose(';', ligne);
-			ligne = ligne.replace(0, idCapt.size() + 1, "");
-			latitude = stod(decompose(';', ligne));
-			ligne = ligne.replace(0, ligne.find(';') + 1, "");
-			longitude = stod(decompose(';', ligne));
-			ligne = ligne.replace(0, ligne.find(';') + 1, "");
-		} else {
-			idCapt = ligne.substr(6,1);
-			string sLatitude = "";
-			string sLongitude = "";
-			char a = ligne[8];
-			int i = 8;
-			while(a!=';'){
-				sLatitude += a;
-				a = ligne[++i];
-			}
+		
+		idCapt = ligne.substr(6,1);
+		string sLatitude = "";
+		string sLongitude = "";
+		char a = ligne[8];
+		int i = 8;
+		while(a!=';'){
+			sLatitude += a;
 			a = ligne[++i];
-			while(a!=';'){
-				sLongitude += a;
-				a = ligne[++i];
-			}
-			latitude = stod(sLatitude);
-			longitude = stod(sLongitude);
 		}
+		a = ligne[++i];
+		while(a!=';'){
+			sLongitude += a;
+			a = ligne[++i];
+		}
+		latitude = stod(sLatitude);
+		longitude = stod(sLongitude);
+		
 		cout << "idcapt : " << idCapt << " latitude : " << latitude << " longitude : " << longitude << endl;
 		Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
         
@@ -240,6 +232,7 @@ Mesure* Factory::analyserLigne(string ligne)
 		seconde = stoi(uneSeconde);
 
 		idCapt = decompose(';', ligne);
+		idCapt = idCapt.substr(6,1);
 		ligne = ligne.replace(0, ligne.find(';') + 1, "");
 		typeMesure = decompose(';', ligne);
 		ligne = ligne.replace(0, ligne.find(';') + 1, "");

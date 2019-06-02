@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 #include <iostream>
 #include <vector>
+#include <cmath>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -62,17 +63,55 @@ void Service::capteursSimilaires() {
     }
 	vector<Moment> moments = messages.recupererIntervalleTemps();
 	//On stockera ici les capteurs ayant des similitudes
-	vector<pair<Capteur,Capteur>> capteurCorreles;
+	
+	double** capteurCorreles = new double*[capteurConcernes.size()];
+	for(unsigned int i = 0; i < capteurConcernes.size(); ++i){
+		capteurCorreles[i] = new double[capteurConcernes.size()];
+	}
+	for(unsigned int i = 0; i < capteurConcernes.size() ; i++) {
+		for(unsigned int j = 0; j < capteurConcernes.size();j++){
+			capteurCorreles[i][j]=0;
+		}
+	}
 	
 	//Calcul des similitudes entre capteurs
 	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
 		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			if(algo.similitude(capteurConcernes[i],capteurConcernes[j],moments)){
-				capteurCorreles.push_back({*capteurConcernes[i],*capteurConcernes[j]});
+			double similitude = algo.similitude(capteurConcernes[i],capteurConcernes[j],moments);
+			capteurCorreles[i][j]=similitude;
+		}
+	}
+	
+	//Uniformisation de 0 à 100%
+	
+	//Determination du min et max
+	double min = pow(10,9);
+	double max = 0;
+	for(unsigned int i = 0; i< capteurConcernes.size(); i++){
+		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
+			double val = capteurCorreles[i][j];
+			if(val<min && val != -1){
+				min = val;
+			}
+			if (val>max){
+				max = val;
 			}
 		}
 	}
-	messages.afficherCapteursCorreles(capteurCorreles);
+	//Uniformisation
+	for(unsigned int i = 0; i< capteurConcernes.size(); i++){
+		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
+			double val = capteurCorreles[i][j];
+			if(val == -1){
+				val = 0;
+			} else {
+				capteurCorreles[i][j] = 100 - ((capteurCorreles[i][j] - min)/(max-min) * 100);
+			}
+		}
+	}
+	
+	
+	messages.afficherCapteursCorreles(capteurCorreles,capteurConcernes.size());
 
 }
 

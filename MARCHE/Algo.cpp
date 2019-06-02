@@ -243,13 +243,12 @@ vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
 }
 
 
-bool Algo::similitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
+double Algo::similitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
 
 	double ecartO3, ecartNO2,ecartSO2,ecartPM10,somme = 0,nbMesure = 0	;
 	
 	vector<MesureO3> c1MesuresO3 = *(c1->RecupererMesuresO3());
 	vector<MesureO3> c2MesuresO3 = *(c2->RecupererMesuresO3());
-	
 	for(unsigned int i = 0; i < min(c1MesuresO3.size(),c2MesuresO3.size()) ; i++)
 	{
 		if(c1MesuresO3[i].getDate() > intervaleTemps[0] && c1MesuresO3[i].getDate() < intervaleTemps[1])
@@ -331,23 +330,20 @@ bool Algo::similitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
     }
 	somme = 0;
 	nbMesure = 0;
+	const double vMaxO3 = 240;
+	const double vMaxNO2 = 400;
+	const double vMaxSO2 = 500;
+	const double vMaxPM10 = 80;
 	
-	//On prend un dixieme de la médiane des valeurs comme seuil d'erreur
-	const double seuilO3 = 240/2 * 0.05;
-	const double seuilNO2 = 400/2 * 0.05;
-	const double seuilSO2 = 500/2 * 0.05;
-	const double seuilPM10 = 80/2 * 0.05;
-	
-	cout << ecartNO2 << "|" << ecartSO2 << "|" << ecartPM10 << "|" << ecartO3 << endl;
-	
-	if(ecartO3 == -1 || ecartNO2 == -1 || ecartSO2 == -1 || ecartPM10 == -1 ){
-		return false;
-	}else if((ecartO3 <= seuilO3) && (ecartNO2 <= seuilNO2) && (ecartSO2 <= seuilSO2)  && (ecartPM10 <= seuilPM10)){
-		return true;
+	double similitude;
+	if(ecartO3!=-1 && ecartNO2 != -1 && ecartSO2 != -1 && ecartPM10 != -1){
+		similitude = ecartO3*1000/vMaxO3 + ecartNO2*1000/vMaxNO2 + ecartSO2*1000/vMaxSO2 + ecartPM10*1000/vMaxPM10;
+	} else {
+		similitude = -1;
 	}
-	else {
-		return false;
-	}
+	
+	//cout << "similitude : " << similitude << endl;
+	return similitude;
 }
 
 /*
