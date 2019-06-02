@@ -226,7 +226,10 @@ void Messages::AfficherCapteursDefaillants(vector<Capteur*> capteurs) {
 
 void Messages::AfficherQualiteAir(vector<int> infos)
 {
-    if (infos[2] == 1) {
+    if (infos[2] == 0) {
+        cout << "Il n'y a pas de capteurs dans un rayon de 90 km autour de l'endroit selectionné." << endl;
+    }
+    else if (infos[2] == 1) {
     cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteur dans un rayon de " << infos[1] << " km." << endl;
     } else cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteurs dans un rayon de " << infos[1] << " km." << endl;
 }
