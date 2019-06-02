@@ -29,8 +29,20 @@ void Service::CalculMoyenneLocalise()
 {
   vector<double> coords = messages.RecupererLocalisation();
   double radius = messages.RecupererRadius();
-  vector<Moment> moments = messages.RecupererIntervalleTemps();
-  vector<double> moyenne = algo.Moyenne(moments, radius, coords, capteurs);
+
+  vector<double> moyenne;
+  //on fait le choix entre une durée et un instant
+  if(messages.ChoixTemporel() )
+  {
+    vector<Moment> moments = messages.RecupererIntervalleTemps();
+    moyenne = algo.MoyenneDuree(moments, radius, coords, capteurs);
+  }
+  else
+  {
+    Moment moment = messages.RecupererMoment();
+    moyenne = algo.MoyenneInstant(moment, radius, coords, capteurs);
+  }
+  messages.AfficherMoyenne(moyenne);
 } //----- Fin de Méthode
 
 void Service::QualiteAir()
@@ -54,9 +66,9 @@ void Service::CapteursSimilaires() {
             capteurConcernes.push_back(c);
         }
     }
-    
+
 	vector<Moment> moments = messages.RecupererIntervalleTemps();
-	
+
     //On stockera ici les capteurs ayant des similitudes
 	double** capteurCorreles = new double*[capteurConcernes.size()];
 	for (unsigned int i = 0; i < capteurConcernes.size(); ++i){

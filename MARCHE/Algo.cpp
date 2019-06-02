@@ -24,7 +24,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-vector<double> Algo::Moyenne(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs)
+vector<double> Algo::MoyenneDuree(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs)
 // Algorithme : Fait la moyenne des moyenne des capteurs.
 {
   vector<double> somme;
@@ -70,6 +70,50 @@ vector<double> Algo::Moyenne(vector<Moment> intervaleTemps, double radius, vecto
   return moyenne;
 }
 
+vector<double> Algo::MoyenneInstant(Moment instant, double radius, vector<double> coordonees, vector<Capteur*>* capteurs)
+{
+  vector<double> somme;
+  vector<double> nbValeurs;
+  vector<double> moyenne;
+  //initialisation des vecteurs moyenne et somme à 4 valeurs à 0
+  for( unsigned i(0); i < 4; i++)
+  {
+    somme.push_back(0);
+    nbValeurs.push_back(0);
+  }
+
+//on parcours tous les capteurs
+  for(Capteur* capteur : CapteurTerritoire(capteurs, radius, coordonees))
+  {
+    vector<double> mesureCapt = valeursCapteurInstant(capteur, instant);
+
+    //pour toutes les valeurs (O3/NO2/SO2/PM10) donc 4
+    for(unsigned i(0); i < 4; i++)
+    {
+        // si aucune valeur => -1
+        if(mesureCapt[i] > 0)
+        {
+          somme[i] += mesureCapt[i];
+          ++nbValeurs[i];
+        }
+    }
+  }
+  //calcul de moyenne
+  for(unsigned i(0); i < 4; i++)
+  {
+      //on regarde si il y a eu des valeurs
+      if(nbValeurs[i] > 0 )
+      {
+        moyenne[i] = somme[i]/nbValeurs[i];
+      }
+      //sinon on met la valeur à -1, pour aucune valeurs
+      else
+      {
+        moyenne[i] = -1;
+      }
+  }
+  return moyenne;
+}
 
 vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
 {
@@ -163,13 +207,13 @@ vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double
                                 distanceMini3,
 
                                 nbCapteur);
-    
+
     if (nbCapteur == 1) {
         distanceMax = distanceMini1;
     } else if (nbCapteur == 2) {
         distanceMax = distanceMini2;
     } else distanceMax = distanceMini3;
-    
+
     vector<int> infos;
     infos.push_back(atmo);
     infos.push_back(distanceMax);
@@ -223,7 +267,7 @@ vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
         }
 		isIn = false;
     }
-	
+
     return capteursDefaillants;
 }
 
@@ -236,9 +280,9 @@ double** Algo::CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> 
             capteurCorreles[i][j] = similitude;
         }
     }
-    
+
     // Uniformisation de 0 à 100%
-    
+
     // Determination du min et max
     double min = pow(10,9);
     double max = 0;
@@ -449,9 +493,9 @@ int Algo::calculAtmo(double valeur, string type)
 }
 
 double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
-    
+
     double ecartO3, ecartNO2,ecartSO2,ecartPM10,somme = 0,nbMesure = 0    ;
-    
+
     vector<MesureO3> c1MesuresO3 = *(c1->RecupererMesuresO3());
     vector<MesureO3> c2MesuresO3 = *(c2->RecupererMesuresO3());
     for(unsigned int i = 0; i < min(c1MesuresO3.size(),c2MesuresO3.size()) ; i++)
@@ -472,7 +516,7 @@ double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleT
     }
     somme = 0;
     nbMesure = 0;
-    
+
     vector<MesureSO2> c1MesuresSO2 = *(c1->RecupererMesuresSO2());
     vector<MesureSO2> c2MesuresSO2 = *(c2->RecupererMesuresSO2());
     for(unsigned int i = 0; i < min(c1MesuresSO2.size(),c2MesuresSO2.size()) ; i++)
@@ -493,7 +537,7 @@ double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleT
     }
     somme = 0;
     nbMesure = 0;
-    
+
     vector<MesureNO2> c1MesuresNO2 = *(c1->RecupererMesuresNO2());
     vector<MesureNO2> c2MesuresNO2 = *(c2->RecupererMesuresNO2());
     for(unsigned int i = 0; i < min(c1MesuresNO2.size(),c2MesuresNO2.size()) ; i++)
@@ -514,7 +558,7 @@ double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleT
     }
     somme = 0;
     nbMesure = 0;
-    
+
     vector<MesurePM10> c1MesuresPM10 = *(c1->RecupererMesuresPM10());
     vector<MesurePM10> c2MesuresPM10 = *(c2->RecupererMesuresPM10());
     for(unsigned int i = 0; i < min(c1MesuresPM10.size(),c2MesuresPM10.size()) ; i++)
@@ -539,14 +583,14 @@ double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleT
     const double vMaxNO2 = 400;
     const double vMaxSO2 = 500;
     const double vMaxPM10 = 80;
-    
+
     double similitude;
     if(ecartO3!=-1 && ecartNO2 != -1 && ecartSO2 != -1 && ecartPM10 != -1){
         similitude = ecartO3*1000/vMaxO3 + ecartNO2*1000/vMaxNO2 + ecartSO2*1000/vMaxSO2 + ecartPM10*1000/vMaxPM10;
     } else {
         similitude = -1;
     }
-    
+
     //cout << "similitude : " << similitude << endl;
     return similitude;
 }
@@ -557,8 +601,7 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     double moyO3, moyNO2, moySO2, moyPM10;
     double somme(0);
     double nbMesure(0);
-    
-    
+
     // calcul moyenne O3
     for(MesureO3 mesure : *capteur->RecupererMesuresO3())
     {
@@ -576,7 +619,7 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     {
         moyO3 = -1;
     }
-    
+
     // calcul moyenne NO2
     somme = 0;
     nbMesure = 0;
@@ -596,7 +639,7 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     {
         moyNO2 = -1;
     }
-    
+
     // calcul moyenne SO2
     somme = 0;
     nbMesure = 0;
@@ -616,8 +659,8 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     {
         moySO2 = -1;
     }
-    
-    // calcul moyenne SO2
+
+    // calcul moyenne PM10
     somme = 0;
     nbMesure = 0;
     for(MesurePM10 mesure : *capteur->RecupererMesuresPM10())
@@ -636,12 +679,228 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     {
         moyPM10 = -1;
     }
-    
+
     resultatMoyenne.push_back(moyO3);
     resultatMoyenne.push_back(moyNO2);
     resultatMoyenne.push_back(moySO2);
     resultatMoyenne.push_back(moyPM10);
-    
+
     return resultatMoyenne;
-    
+}
+
+vector<double> Algo::valeursCapteurInstant(Capteur* capteur, Moment instant)
+{
+  vector<double> resultatMoyenne;
+  double moyO3, moyNO2, moySO2, moyPM10;
+
+  Moment momentSuivant;
+  Moment momentPrecedent;
+  double valeurSuivant;
+  double valeurPrecedent;
+  bool predecesseur = false;
+  bool successeur = false;
+
+  //  recherche des mesures suivante et précédentes chrnologiquement pour O3
+  for(MesureO3 mesure : *capteur->RecupererMesuresO3())
+  {
+
+      if(!predecesseur && mesure.getDate() < instant)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+        predecesseur = true;
+      }
+      else if( mesure.getDate() < instant && mesure.getDate() > momentPrecedent)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+      }
+
+      if(!successeur && mesure.getDate() > instant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+        successeur = true;
+      }
+      else if( mesure.getDate() > instant && mesure.getDate() < momentSuivant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+      }
+  }
+
+  // moyenne des deux
+  if (predecesseur && successeur)
+  {
+    moyO3 = (valeurSuivant + valeurPrecedent) / 2.;
+  }
+  else if (predecesseur && ! successeur)
+  {
+    moyO3 = valeurPrecedent;
+  }
+  else if (!predecesseur &&  successeur)
+  {
+    moyO3 = valeurSuivant;
+  }
+  else
+  {
+    moyO3 = -1;
+  }
+
+  predecesseur = false;
+  successeur = false;
+  //  recherche des mesures suivante et précédentes chrnologiquement pour NO2
+  for(MesureNO2 mesure : *capteur->RecupererMesuresNO2())
+  {
+      if(!predecesseur && mesure.getDate() < instant)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+        predecesseur = true;
+      }
+      else if( mesure.getDate() < instant && mesure.getDate() > momentPrecedent)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+      }
+
+      if(!successeur && mesure.getDate() > instant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+        successeur = true;
+      }
+      else if( mesure.getDate() > instant && mesure.getDate() < momentSuivant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+      }
+  }
+
+    // moyenne des deux
+    if (predecesseur && successeur)
+    {
+      moyNO2 = (valeurSuivant + valeurPrecedent) / 2.;
+    }
+    else if (predecesseur && ! successeur)
+    {
+      moyNO2 = valeurPrecedent;
+    }
+    else if (!predecesseur &&  successeur)
+    {
+      moyNO2 = valeurSuivant;
+    }
+    else
+    {
+      moyNO2 = -1;
+    }
+
+    predecesseur = false;
+    successeur = false;
+  //  recherche des mesures suivante et précédentes chrnologiquement pour SO2
+  for(MesureSO2 mesure : *capteur->RecupererMesuresSO2())
+  {
+      if(!predecesseur && mesure.getDate() < instant)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+        predecesseur = true;
+      }
+      else if( mesure.getDate() < instant && mesure.getDate() > momentPrecedent)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+      }
+
+      if(!successeur && mesure.getDate() > instant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+        successeur = true;
+      }
+      else if( mesure.getDate() > instant && mesure.getDate() < momentSuivant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+      }
+    }
+
+    // moyenne des deux
+    if (predecesseur && successeur)
+    {
+      moySO2 = (valeurSuivant + valeurPrecedent) / 2.;
+    }
+    else if (predecesseur && ! successeur)
+    {
+      moySO2 = valeurPrecedent;
+    }
+    else if (!predecesseur &&  successeur)
+    {
+      moySO2 = valeurSuivant;
+    }
+    else
+    {
+      moySO2 = -1;
+    }
+
+    predecesseur = false;
+    successeur = false;
+
+    predecesseur = false;
+    successeur = false;
+    //  recherche des mesures suivante et précédentes chrnologiquement pour PM10
+    for(MesurePM10 mesure : *capteur->RecupererMesuresPM10())
+    {
+      if(!predecesseur && mesure.getDate() < instant)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+        predecesseur = true;
+      }
+      else if( mesure.getDate() < instant && mesure.getDate() > momentPrecedent)
+      {
+        valeurPrecedent = mesure.Valeur();
+        momentPrecedent = mesure.getDate();
+      }
+
+      if(!successeur && mesure.getDate() > instant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+        successeur = true;
+      }
+      else if( mesure.getDate() > instant && mesure.getDate() < momentSuivant)
+      {
+        valeurSuivant = mesure.Valeur();
+        momentSuivant = mesure.getDate();
+      }
+  }
+
+  // moyenne des deux
+  if (predecesseur && successeur)
+  {
+    moyPM10 = (valeurSuivant + valeurPrecedent) / 2.;
+  }
+  else if (predecesseur && ! successeur)
+  {
+    moyPM10 = valeurPrecedent;
+  }
+  else if (!predecesseur &&  successeur)
+  {
+    moyPM10 = valeurSuivant;
+  }
+  else
+  {
+    moyPM10 = -1;
+  }
+
+  predecesseur = false;
+  successeur = false;
+
+  resultatMoyenne.push_back(moyO3);
+  resultatMoyenne.push_back(moyNO2);
+  resultatMoyenne.push_back(moySO2);
+  resultatMoyenne.push_back(moyPM10);
+
+  return resultatMoyenne;
 }

@@ -95,6 +95,22 @@ bool Messages::ChoixZone()
 	}
 }
 
+bool Messages::ChoixTemporel()
+{
+	string tmp;
+	do
+    {
+        cout << "1 - Effectuer la requête sur une durée (entre deux instant de temps)." << endl;
+		    cout << "2 - Effectuer la requête sur un instant." << endl;
+        getline(cin,tmp);
+    } while (tmp.compare("1") != 0 && tmp.compare("2") != 0);
+	if (tmp.compare("1") == 0) {
+		return true;
+	}else{
+		return false;
+	}
+}
+
 double Messages::RecupererRadius()
 {
     double radius;
@@ -234,6 +250,22 @@ void Messages::AfficherQualiteAir(vector<int> infos)
     } else cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteurs dans un rayon de " << infos[1] << " km." << endl;
 }
 
+
+void Messages::AfficherMoyenne(vector<double> moyennes)
+{
+  string nomMesure [4] = {"O3","NO2","SO2","PM10"};
+  for (int i(0); i < 4; i++)
+  {
+    if (moyennes[i] > 0)
+    {
+      cout << "Moyenne de " << nomMesure[i] << " sur le territoire est de : " << moyennes[i] << "µg/m3" << endl;
+    }
+    else
+    {
+      cout << "Aucunes mesures de " << nomMesure[i] << "trouvée." << endl;
+    }
+  }
+}
 
 //------------------------------------------------- Surcharge d'opérateurs
 // Messages & Messages::operator = ( const Messages & desMessages )

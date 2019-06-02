@@ -81,6 +81,8 @@ Moment& Moment::operator = (const Moment& m)
     seconde = m.getSeconde();
     return *this;
 }
+
+
 //-------------------------------------------- Constructeurs - destructeur
 Moment::Moment(){}
 

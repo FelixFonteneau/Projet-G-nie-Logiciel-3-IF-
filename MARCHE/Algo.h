@@ -34,13 +34,19 @@ class Algo
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    vector<double> Moyenne(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
+    vector<double> MoyenneDuree(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
     // Mode d'emploi :
     // Prend tous les capteurs dans la zone et un interval de temps
     //  retourne la moyenne des mesures sous forme de tableau de Double.
     // L'ordre est O3/NO2/SO2/PM10.
     // Si il n'y a aucune mesure, elle retourne -1 dans la case du tableau.
     //
+    // Contrat :
+    //
+
+    vector<double> MoyenneInstant(Moment instant, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
+    // Mode d'emploi :
+
     // Contrat :
     //
 
@@ -92,18 +98,18 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     double enRadians(double latitude);
-    
+
     double obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d);
-    
+
     int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
                                 double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
-    
+
     int calculAtmo(double valeur, string type);
-    
+
     double calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps);
-    
+
     vector<double> moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTemps);
     // Mode d'emploi :
     // Prend un capteur et un interval de temps et retourne la moyenne des mesures
@@ -113,7 +119,7 @@ protected:
     //
     // Contrat :
     //
-    
+    vector<double> valeursCapteurInstant(Capteur* capteur, Moment instant);
     //---------------------------------------------------- Attributs protégés
 
 };

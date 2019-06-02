@@ -11,7 +11,7 @@
 //---------- Interface de la classe <Moment> (fichier Moment.h) ----------------
 #if ! defined ( MOMENT_H )
 #define MOMENT_H
- 
+
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -75,12 +75,13 @@ public:
     {
         return (!(*this<m) && !(*this>m));
     }
+    
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
 	Moment();
-	
+
     Moment ( const Moment & unMoment );
     // Mode d'emploi (constructeur de copie) :
     //

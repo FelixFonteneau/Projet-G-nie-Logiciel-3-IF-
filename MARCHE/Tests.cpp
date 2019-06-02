@@ -79,7 +79,8 @@ void testMessages()
 void testService()
 {
     Service unService;
-    unService.QualiteAir();
+    //unService.QualiteAir();
+    unService.CalculMoyenneLocalise();
 }
 
 void testMoyenneeCapteur()
@@ -174,7 +175,7 @@ int main()
             unService.CalculMoyenneLocalise();
             break;
         }
-            
+
         case 3:
         {
             unService.CapteursSimilaires();
