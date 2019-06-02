@@ -73,13 +73,13 @@ void testFactory()
 void testMessages()
 {
     Messages unMessage;
-    unMessage.messageMenu();
+    unMessage.MessageMenu();
 }
 
 void testService()
 {
     Service unService;
-    unService.qualiteAir();
+    unService.QualiteAir();
 }
 
 void testMoyenneeCapteur()
@@ -91,7 +91,7 @@ void testMoyenneeCapteur()
 void testCapteurDefaillant()
 {
 	Service unService;
-	unService.capteursSimilaires();
+	unService.CapteursSimilaires();
 }
 
 
@@ -152,13 +152,52 @@ void testMessage2()
   Messages unMessage;
   while (1)
   {
-    vector<Moment> a = unMessage.recupererIntervalleTemps();
+    vector<Moment> a = unMessage.RecupererIntervalleTemps();
     cout << a[0] << "," <<a[1] << endl;
   }
 }
 
 int main()
 {
+    /*switch (num)
+    {
+            
+        case 1:
+        {
+            recupererLocalisation();
+            recupererRadius();
+            recupererMoment();
+            break;
+        }
+        case 2:
+        {
+            recupererLocalisation();
+            recupererRadius();
+            recupererIntervalleTemps();
+            break;
+        }
+            
+        case 3:
+        {
+            recupererLocalisation();
+            recupererRadius();
+            recupererIntervalleTemps();
+            break;
+        }
+        case 4:
+        {
+            recupererLocalisation();
+            break;
+        }
+        case 5:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }*/
     /* cout << endl << "******" << endl;
     cout << "Voici les tests Moments";
     cout << endl << "******" << endl << endl;
@@ -175,11 +214,11 @@ int main()
     // bool a = "SO2".compare("SO2");
     // cout << a << endl;
 
-    testService();
+    // testService();
     //testMoyenneeCapteur();
 
     //testMessage2();
-	// testCapteurDefaillant();
+	testCapteurDefaillant();
 	//testFactory();
     return 0;
 }

@@ -27,96 +27,53 @@ void Service::CalculMoyenneLocalise()
 // Algorithme :
 //
 {
-  vector<double> coords = messages.recupererLocalisation();
-  double radius = messages.recupererRadius();
-  vector<Moment> moments = messages.recupererIntervalleTemps();
+  vector<double> coords = messages.RecupererLocalisation();
+  double radius = messages.RecupererRadius();
+  vector<Moment> moments = messages.RecupererIntervalleTemps();
   vector<double> moyenne = algo.Moyenne(moments, radius, coords, capteurs);
 } //----- Fin de Méthode
 
-
-
-
-
-void Service::qualiteAir()
+void Service::QualiteAir()
 {
 
-    vector<double> coords = messages.recupererLocalisation();
+    vector<double> coords = messages.RecupererLocalisation();
     vector<int> atmoInfos = algo.QualiteAir(capteurs, coords[0], coords[1]);
-    messages.afficherQualiteAir(atmoInfos);
+    messages.AfficherQualiteAir(atmoInfos);
 }
 
+void Service::CapteursSimilaires() {
 
-
-void Service::capteursSimilaires() {
-
-	bool choixZone = messages.choixZone();
+	bool choixZone = messages.ChoixZone();
 	vector<Capteur*> capteurConcernes;
 	if(choixZone){
-		vector<double> coords = messages.recupererLocalisation();
-		double radius = messages.recupererRadius();
-		capteurConcernes = algo.capteurTerritoire(capteurs,radius,coords);
+		vector<double> coords = messages.RecupererLocalisation();
+		double radius = messages.RecupererRadius();
+		capteurConcernes = algo.CapteurTerritoire(capteurs,radius,coords);
 	} else {
 		for(Capteur* c : *capteurs) {
             capteurConcernes.push_back(c);
         }
-		
     }
-	vector<Moment> moments = messages.recupererIntervalleTemps();
-	//On stockera ici les capteurs ayant des similitudes
+    
+	vector<Moment> moments = messages.RecupererIntervalleTemps();
 	
+    //On stockera ici les capteurs ayant des similitudes
 	double** capteurCorreles = new double*[capteurConcernes.size()];
-	for(unsigned int i = 0; i < capteurConcernes.size(); ++i){
+	for (unsigned int i = 0; i < capteurConcernes.size(); ++i){
 		capteurCorreles[i] = new double[capteurConcernes.size()];
 	}
-	for(unsigned int i = 0; i < capteurConcernes.size() ; i++) {
-		for(unsigned int j = 0; j < capteurConcernes.size();j++){
+	for (unsigned int i = 0; i < capteurConcernes.size() ; i++) {
+		for (unsigned int j = 0; j < capteurConcernes.size();j++) {
 			capteurCorreles[i][j]=0;
 		}
 	}
-	
-	//Calcul des similitudes entre capteurs
-	for(unsigned int i = 0; i < capteurConcernes.size() ; i++){
-		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			double similitude = algo.similitude(capteurConcernes[i],capteurConcernes[j],moments);
-			capteurCorreles[i][j]=similitude;
-		}
-	}
-	
-	//Uniformisation de 0 à 100%
-	
-	//Determination du min et max
-	double min = pow(10,9);
-	double max = 0;
-	for(unsigned int i = 0; i< capteurConcernes.size(); i++){
-		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			double val = capteurCorreles[i][j];
-			if(val<min && val != -1){
-				min = val;
-			}
-			if (val>max){
-				max = val;
-			}
-		}
-	}
-	//Uniformisation
-	for(unsigned int i = 0; i< capteurConcernes.size(); i++){
-		for(unsigned int j = i+1; j < capteurConcernes.size() ; j++){
-			double val = capteurCorreles[i][j];
-			if(val == -1){
-				val = 0;
-			} else {
-				capteurCorreles[i][j] = 100 - ((capteurCorreles[i][j] - min)/(max-min) * 100);
-			}
-		}
-	}
-	
-	
-	messages.afficherCapteursCorreles(capteurCorreles,capteurConcernes.size());
+    capteurCorreles = algo.CalculCapteurCorreles(capteurCorreles, capteurConcernes, moments);
+	messages.AfficherCapteursCorreles(capteurCorreles,capteurConcernes.size());
 
 }
 
-void Service::capteursDefaillants() {
-	messages.afficherCapteursDefaillants(algo.CapteursDefaillants(*capteurs));
+void Service::CapteursDefaillants() {
+	messages.AfficherCapteursDefaillants(algo.CapteursDefaillants(*capteurs));
 }
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )

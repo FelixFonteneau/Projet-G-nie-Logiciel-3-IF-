@@ -39,11 +39,11 @@ public:
     // Contrat :
     //
 
-    void qualiteAir();
+    void QualiteAir();
 
-    void capteursSimilaires();
+    void CapteursSimilaires();
 
-    void capteursDefaillants();
+    void CapteursDefaillants();
 
 //------------------------------------------------- Surcharge d'opérateurs
     // Service & operator = (const Service & unService);

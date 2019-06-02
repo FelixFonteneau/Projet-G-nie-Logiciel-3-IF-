@@ -36,7 +36,7 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-int Messages::messageMenu()
+int Messages::MessageMenu()
 {
     cout << "Bonjour. Vous souhaitez :" << endl;
     cout << "1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise" << endl;
@@ -47,11 +47,10 @@ int Messages::messageMenu()
     cout << "6 - Quitter" << endl;
     int num;
     cin >> num;
-
     return num;
 }
 
-vector<double> Messages::recupererLocalisation()
+vector<double> Messages::RecupererLocalisation()
 {
     double latitude;
     double longitude;
@@ -80,7 +79,7 @@ vector<double> Messages::recupererLocalisation()
     return coord;
 }
 
-bool Messages::choixZone()
+bool Messages::ChoixZone()
 {
 	string tmp;
 	do
@@ -96,7 +95,7 @@ bool Messages::choixZone()
 	}
 }
 
-double Messages::recupererRadius()
+double Messages::RecupererRadius()
 {
     double radius;
     string tmp;
@@ -111,7 +110,7 @@ double Messages::recupererRadius()
     return radius;
 }
 
-vector<Moment> Messages::recupererIntervalleTemps()
+vector<Moment> Messages::RecupererIntervalleTemps()
 {
     // Au format JJ/MM/AAAA HH:MM
     string dateDebut = "01/01/2019 10:10";
@@ -140,7 +139,7 @@ vector<Moment> Messages::recupererIntervalleTemps()
     int anneeDebut = stoi(dateDebut.substr(6, 4));
     int heureDebut = stoi(dateDebut.substr(11, 2));
     int minuteDebut = stoi(dateDebut.substr(14, 2));
-    // 01/01/2019 10:10
+
     int jourFin = stoi(dateFin.substr(0, 2));
     int moisFin = stoi(dateFin.substr(3, 2));
     int anneeFin = stoi(dateFin.substr(6, 4));
@@ -154,7 +153,7 @@ vector<Moment> Messages::recupererIntervalleTemps()
     return intervalleTempsDemande;
 }
 
-Moment Messages::recupererMoment()
+Moment Messages::RecupererMoment()
 {
     string dateDemande;
 
@@ -178,10 +177,10 @@ Moment Messages::recupererMoment()
 }
 
 
-void Messages::afficherCapteursCorreles(double** similitudes,int size)
+void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 {
     int pourcentage;
-    cout << "            ";
+    cout << "           | ";
     for (int i = 0; i< size; i++) {
 		cout << "Capteur " << i <<  " | " ;
 	}
@@ -202,7 +201,7 @@ void Messages::afficherCapteursCorreles(double** similitudes,int size)
                 if (pourcentage < 10) {
                     cout << "       " << pourcentage << "%   ";
                 } else if (pourcentage == 100) {
-                    cout << "     100%  ";
+                    cout << "     100%   ";
                 } else cout << "      " << pourcentage << "%   ";
 			}
 		}
@@ -212,19 +211,9 @@ void Messages::afficherCapteursCorreles(double** similitudes,int size)
 		}
 		cout << endl;
 	}
-	/*vector<int> capteurId;
-	for(pair<pair<Capteur,Capteur>,double> p : capteurCorreles){
-		Capteur c1 = p.first.first;
-		Capteur c2 = p.first.second;
-		string id1 = c1.RecupererId();
-		string id2 = c2.RecupererId();
-		
-		
-		cout << "Capteur " << id1 << " et capteur " << id2 << " : " << (int)p.second << "%" <<  endl;
-	}*/
 }
 
-void Messages::afficherCapteursDefaillants(vector<Capteur*> capteurs) {
+void Messages::AfficherCapteursDefaillants(vector<Capteur*> capteurs) {
 	if(capteurs.size() == 0) {
 		cout << "Il n'y a pas de capteur défaillant." << endl;
 	} else {
@@ -235,7 +224,7 @@ void Messages::afficherCapteursDefaillants(vector<Capteur*> capteurs) {
 	}
 }
 
-void Messages::afficherQualiteAir(vector<int> infos)
+void Messages::AfficherQualiteAir(vector<int> infos)
 {
     if (infos[2] == 1) {
     cout << "L\'indice Atmo pour l\'endroit selectionné vaut " << infos[0] << " et a été calculé à l'aide de " << infos[2] << " capteur dans un rayon de " << infos[1] << " km." << endl;

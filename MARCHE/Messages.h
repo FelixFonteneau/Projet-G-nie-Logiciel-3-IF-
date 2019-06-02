@@ -37,32 +37,32 @@ public:
     //
     // Contrat :
     //
-    int messageMenu();
+    int MessageMenu();
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    vector<double> recupererLocalisation();
+    vector<double> RecupererLocalisation();
 	
-    double recupererRadius();
+    double RecupererRadius();
 	
-    double recupererCapteur();
+    double RecupererCapteur();
 	
-    vector<Moment> recupererIntervalleTemps();
+    vector<Moment> RecupererIntervalleTemps();
 	
-    Moment recupererMoment();
+    Moment RecupererMoment();
 	
-	bool choixZone();
+	bool ChoixZone();
 	
-    void afficherCapteursCorreles(double** similitude, int size);
+    void AfficherCapteursCorreles(double** similitude, int size);
 	
-    void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
+    void AfficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
 	
-    void afficherCapteursDefaillants(vector<Capteur*> capteurs);
+    void AfficherCapteursDefaillants(vector<Capteur*> capteurs);
     
-    void afficherQualiteAir(vector<int> infos);
+    void AfficherQualiteAir(vector<int> infos);
 	
 	// Chaque méthode sert au traitement des messages affichées dans lors des appels aux services
 
