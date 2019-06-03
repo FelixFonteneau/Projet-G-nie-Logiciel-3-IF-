@@ -312,6 +312,8 @@ double** Algo::CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> 
 }
 
 
+
+
 //-------------------------------------------- Constructeurs - destructeur
 Algo::Algo(const Algo & unAlgo)
 // Algorithme :
@@ -398,99 +400,26 @@ int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double 
 
 }
 
-int Algo::calculAtmo(double valeur, string type)
-{
-    int result = 0;
-    if (type.compare("NO2") == 0)
-    {
-        if (0 <= valeur && valeur <= 29) {
-            result = 1;
-        } else if (30 <= valeur && valeur <= 54) {
-            result = 2;
-        } else if (55 <= valeur && valeur <= 84) {
-            result = 3;
-        } else if (85 <= valeur && valeur <= 109) {
-            result = 4;
-        } else if (110 <= valeur && valeur <= 134) {
-            result = 5;
-        } else if (135 <= valeur && valeur <= 164) {
-            result = 6;
-        } else if (165 <= valeur && valeur <= 199) {
-            result = 7;
-        } else if (200 <= valeur && valeur <= 274) {
-            result = 8;
-        } else if (275 <= valeur && valeur <= 399) {
-            result = 9;
-        } else result = 10;
-    }
-    else if (type.compare("O3") == 0)
-    {
-        if (0 <= valeur && valeur <= 29) {
-            result = 1;
-        } else if (30 <= valeur && valeur <= 54) {
-            result = 2;
-        } else if (55 <= valeur && valeur <= 79) {
-            result = 3;
-        } else if (80 <= valeur && valeur <= 104) {
-            result = 4;
-        } else if (105 <= valeur && valeur <= 129) {
-            result = 5;
-        } else if (130 <= valeur && valeur <= 149) {
-            result = 6;
-        } else if (150 <= valeur && valeur <= 179) {
-            result = 7;
-        } else if (180 <= valeur && valeur <= 209) {
-            result = 8;
-        } else if (210 <= valeur && valeur <= 239) {
-            result = 9;
-        } else result = 10;
-    }
-    else if (type.compare("PM10") == 0)
-    {
-        if (0 <= valeur && valeur <= 6) {
-            result = 1;
-        } else if (7 <= valeur && valeur <= 13) {
-            result = 2;
-        } else if (14 <= valeur && valeur <= 20) {
-            result = 3;
-        } else if (21 <= valeur && valeur <= 27) {
-            result = 4;
-        } else if (28 <= valeur && valeur <= 34) {
-            result = 5;
-        } else if (35 <= valeur && valeur <= 41) {
-            result = 6;
-        } else if (42 <= valeur && valeur <= 49) {
-            result = 7;
-        } else if (50 <= valeur && valeur <= 64) {
-            result = 8;
-        } else if (65 <= valeur && valeur <= 79) {
-            result = 9;
-        } else result = 10;
-    }
-    else if (type.compare("SO2") == 0)
-    {
-        if (0 <= valeur && valeur <= 39) {
-            result = 1;
-        } else if (40 <= valeur && valeur <= 79) {
-            result = 2;
-        } else if (80 <= valeur && valeur <= 119) {
-            result = 3;
-        } else if (120 <= valeur && valeur <= 159) {
-            result = 4;
-        } else if (160 <= valeur && valeur <= 199) {
-            result = 5;
-        } else if (200 <= valeur && valeur <= 249) {
-            result = 6;
-        } else if (250 <= valeur && valeur <= 299) {
-            result = 7;
-        } else if (300 <= valeur && valeur <= 399) {
-            result = 8;
-        } else if (400 <= valeur && valeur <= 499) {
-            result = 9;
-        } else result = 10;
-    }
-    return result;
+
+int Algo::calculAtmoMoyen(vector<double> moyenne){
+	
+	vector<int> atmos;
+	atmos.push_back(calculAtmo(moyenne[0],"O3"));
+	atmos.push_back(calculAtmo(moyenne[1],"NO2"));
+	atmos.push_back(calculAtmo(moyenne[2],"SO2"));
+	atmos.push_back(calculAtmo(moyenne[3],"PM10"));
+	int atmo = 0;
+	for(int val : atmos){
+		if(val>atmo){
+			atmo = val;
+		}
+	}
+	return atmo;
 }
+
+
+
+
 
 double Algo::calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps) {
 
@@ -686,6 +615,108 @@ vector<double> Algo::moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTe
     resultatMoyenne.push_back(moyPM10);
 
     return resultatMoyenne;
+}
+
+int Algo::calculAtmo(double valeur, string type)
+{
+    int result = 0;
+    if (type.compare("NO2") == 0)
+    {
+        if(valeur == -1){
+			result = 11;
+		} else if (0 <= valeur && valeur <= 29) {
+            result = 1;
+        } else if (30 <= valeur && valeur <= 54) {
+            result = 2;
+        } else if (55 <= valeur && valeur <= 84) {
+            result = 3;
+        } else if (85 <= valeur && valeur <= 109) {
+            result = 4;
+        } else if (110 <= valeur && valeur <= 134) {
+            result = 5;
+        } else if (135 <= valeur && valeur <= 164) {
+            result = 6;
+        } else if (165 <= valeur && valeur <= 199) {
+            result = 7;
+        } else if (200 <= valeur && valeur <= 274) {
+            result = 8;
+        } else if (275 <= valeur && valeur <= 399) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("O3") == 0)
+    {
+        if(valeur == -1){
+			result = 11;
+		} else if (0 <= valeur && valeur <= 29) {
+            result = 1;
+        } else if (30 <= valeur && valeur <= 54) {
+            result = 2;
+        } else if (55 <= valeur && valeur <= 79) {
+            result = 3;
+        } else if (80 <= valeur && valeur <= 104) {
+            result = 4;
+        } else if (105 <= valeur && valeur <= 129) {
+            result = 5;
+        } else if (130 <= valeur && valeur <= 149) {
+            result = 6;
+        } else if (150 <= valeur && valeur <= 179) {
+            result = 7;
+        } else if (180 <= valeur && valeur <= 209) {
+            result = 8;
+        } else if (210 <= valeur && valeur <= 239) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("PM10") == 0)
+    {
+        if(valeur == -1){
+			result = 11;
+		} else if (0 <= valeur && valeur <= 6) {
+            result = 1;
+        } else if (7 <= valeur && valeur <= 13) {
+            result = 2;
+        } else if (14 <= valeur && valeur <= 20) {
+            result = 3;
+        } else if (21 <= valeur && valeur <= 27) {
+            result = 4;
+        } else if (28 <= valeur && valeur <= 34) {
+            result = 5;
+        } else if (35 <= valeur && valeur <= 41) {
+            result = 6;
+        } else if (42 <= valeur && valeur <= 49) {
+            result = 7;
+        } else if (50 <= valeur && valeur <= 64) {
+            result = 8;
+        } else if (65 <= valeur && valeur <= 79) {
+            result = 9;
+        } else result = 10;
+    }
+    else if (type.compare("SO2") == 0)
+    {
+        if(valeur == -1){
+			result = 11;
+		} else if (0 <= valeur && valeur <= 39) {
+            result = 1;
+        } else if (40 <= valeur && valeur <= 79) {
+            result = 2;
+        } else if (80 <= valeur && valeur <= 119) {
+            result = 3;
+        } else if (120 <= valeur && valeur <= 159) {
+            result = 4;
+        } else if (160 <= valeur && valeur <= 199) {
+            result = 5;
+        } else if (200 <= valeur && valeur <= 249) {
+            result = 6;
+        } else if (250 <= valeur && valeur <= 299) {
+            result = 7;
+        } else if (300 <= valeur && valeur <= 399) {
+            result = 8;
+        } else if (400 <= valeur && valeur <= 499) {
+            result = 9;
+        } else result = 10;
+    }
+    return result;
 }
 
 vector<double> Algo::valeursCapteurInstant(Capteur* capteur, Moment instant)

@@ -4,7 +4,7 @@ LD=g++
 ECHO=echo
 
 #Options
-CPPFLAGS=-ansi -pedantic -Wall -std=c++11 -g -DMAP2
+CPPFLAGS=-ansi -pedantic -o3 -Wall -std=c++11 -g
 RMFLAGS=-rf
 RM=rm
 

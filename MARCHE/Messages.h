@@ -43,6 +43,10 @@ public:
     //
     // Contrat :
     //
+	
+	void Initialisation();
+
+	void Quitter();
 
     vector<double> RecupererLocalisation();
 
@@ -73,7 +77,7 @@ public:
 
 	// Chaque méthode sert au traitement des messages affichées dans lors des appels aux services
 
-    void AfficherMoyenne(vector<double> moyennes);
+    void AfficherMoyenne(vector<double> moyennes, int atmo);
 
 
     //------------------------------------------------- Surcharge d'opérateurs

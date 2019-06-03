@@ -33,7 +33,7 @@ class Service
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void CalculMoyenneLocalise();
+    void CalculMoyenneLocalise(int choix);
     // Mode d'emploi :
     //
     // Contrat :

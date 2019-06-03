@@ -138,7 +138,7 @@ void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
 		latitude = stod(sLatitude);
 		longitude = stod(sLongitude);
 		
-		cout << "idcapt : " << idCapt << " latitude : " << latitude << " longitude : " << longitude << endl;
+		
 		Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
         
         
@@ -314,7 +314,6 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 	} else {
 		cout << "Impossible d'ouvrir le fichier" << endl;
 	}
-#ifdef MAP2
-    cout << "nombre de mesures analysees : " << i << endl;
-#endif
+	cout << "Nombre de mesures analysées : " << i << endl << endl;;
+
 }

@@ -66,6 +66,10 @@ public:
     //
 
     double** CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> capteurConcernes, vector<Moment> moments);
+	
+	
+	int calculAtmoMoyen(vector<double> moyenne );
+	
 
     //------------------------------------------------- Surcharge d'opérateurs
     // Algo & operator = ( const Algo & unAlgo );
@@ -106,9 +110,12 @@ protected:
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
 
-    int calculAtmo(double valeur, string type);
+    
 
     double calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps);
+	
+	int calculAtmo(double valeur, string type);
+	
 
     vector<double> moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTemps);
     // Mode d'emploi :

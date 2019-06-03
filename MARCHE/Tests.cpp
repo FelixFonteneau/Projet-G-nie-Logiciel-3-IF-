@@ -80,13 +80,13 @@ void testService()
 {
     Service unService;
     //unService.QualiteAir();
-    unService.CalculMoyenneLocalise();
+    //unService.CalculMoyenneLocalise();
 }
 
 void testMoyenneeCapteur()
 {
   Service unService;
-  unService.CalculMoyenneLocalise();
+  //unService.CalculMoyenneLocalise();
 }
 
 void testCapteurDefaillant()
@@ -158,9 +158,9 @@ void testMessage2()
   }
 }
 
-int main()
+/*int main()
 {
-    /*Messages unMessage;
+    Messages unMessage;
     int choix = unMessage.MessageMenu();
     Service unService = Service();
     switch (choix)
@@ -195,7 +195,7 @@ int main()
         {
             break;
         }
-    }*/
+    }
     testService();
     return 0;
-}
+}*/

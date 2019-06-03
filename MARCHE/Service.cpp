@@ -23,7 +23,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Service::CalculMoyenneLocalise()
+void Service::CalculMoyenneLocalise(int choix)
 // Algorithme :
 //
 {
@@ -32,7 +32,7 @@ void Service::CalculMoyenneLocalise()
 
   vector<double> moyenne;
   //on fait le choix entre une durée et un instant
-  if(messages.ChoixTemporel() )
+  if(choix==2)
   {
     vector<Moment> moments = messages.RecupererIntervalleTemps();
     moyenne = algo.MoyenneDuree(moments, radius, coords, capteurs);
@@ -42,7 +42,10 @@ void Service::CalculMoyenneLocalise()
     Moment moment = messages.RecupererMoment();
     moyenne = algo.MoyenneInstant(moment, radius, coords, capteurs);
   }
-  messages.AfficherMoyenne(moyenne);
+  
+  int atmo = algo.calculAtmoMoyen(moyenne);
+  
+  messages.AfficherMoyenne(moyenne, atmo);
 } //----- Fin de Méthode
 
 void Service::QualiteAir()
