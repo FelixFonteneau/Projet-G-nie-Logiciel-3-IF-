@@ -71,7 +71,7 @@ public:
 
     void AfficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
 
-    void AfficherCapteursDefaillants(vector<Capteur*> capteurs);
+    void AfficherCapteursDefaillants(vector<pair<Capteur*,int>> capteurs);
 
     void AfficherQualiteAir(vector<int> infos);
 

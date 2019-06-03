@@ -284,13 +284,21 @@ void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 	cout << endl << "(Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)" << endl << endl;
 }
 
-void Messages::AfficherCapteursDefaillants(vector<Capteur*> capteurs) {
+void Messages::AfficherCapteursDefaillants(vector<pair<Capteur*,int>> capteurs) {
 	if(capteurs.size() == 0) {
 		cout << "Il n'y a pas de capteur défaillant." << endl;
 	} else {
-		cout << "Les capteurs défaillants sont les capteurs : " << endl;
-		for(Capteur* c : capteurs) {
-			cout << c->RecupererId() << endl;
+		for(pair<Capteur* , int> c : capteurs) {
+            cout << "Le capteur " << c.first->RecupererId();
+            if (c.second == 0) {
+                cout << " a affectué des mesures dont les valeurs sont négatives." << endl;
+            }
+            else if (c.second == 1) {
+                cout << " a affectué des mesures dont les valeurs sont anormalement elevées." << endl;
+            }
+            else if (c.second == 2) {
+                cout << " a affectué des mesures dont certaines valeurs sont négatives et d'autres pour lesquelles les valeurs sont anormalement elevées." << endl;
+            }
 		}
 	}
 	cout << endl;

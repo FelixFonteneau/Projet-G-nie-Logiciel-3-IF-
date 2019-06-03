@@ -88,7 +88,8 @@ void Service::CapteursSimilaires() {
 }
 
 void Service::CapteursDefaillants() {
-	messages.AfficherCapteursDefaillants(algo.CapteursDefaillants(*capteurs));
+    vector<pair<Capteur*,int>> capteursDefaillants = algo.CapteursDefaillants(*capteurs);
+	messages.AfficherCapteursDefaillants(capteursDefaillants);
 }
 //------------------------------------------------- Surcharge d'opérateurs
 // Service & Service::operator = ( const Service & unXxx )
