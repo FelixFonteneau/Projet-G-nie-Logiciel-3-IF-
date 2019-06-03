@@ -233,39 +233,74 @@ vector<Capteur*> Algo::CapteurTerritoire(vector<Capteur*>* capteurs, double radi
     return captTerritoire;
 }
 
-vector<Capteur*> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
+vector<pair<Capteur*, int>> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
 	bool isIn = false;
-    vector<Capteur*> capteursDefaillants;
+    bool valNeg = false, valGrde = false;
+    vector<pair<Capteur*, int>> capteursDefaillants;
     for(Capteur* c : capteurs) {
         for(MesureO3 m : *c->RecupererMesuresO3()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
+            if (isIn == false && m.Valeur() < 0) {
+                capteursDefaillants.push_back(make_pair(c, 0));
 				isIn = true;
-				break;
-			}
+                valNeg = true;
+            }
+            if (isIn == false && m.Valeur() >= 5*240) {
+                capteursDefaillants.push_back(make_pair(c, 1));
+                isIn = true;
+                valGrde = true;
+            }
+            if ((isIn == true && valNeg && m.Valeur() >= 5*240) || (isIn == true && valGrde && m.Valeur() < 0)) {
+                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
+            }
 		}
         for(MesureNO2 m : *c->RecupererMesuresNO2()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
+            if(isIn == false && m.Valeur() < 0){
+                capteursDefaillants.push_back(make_pair(c, 0));
 				isIn = true;
-				break;
+                valNeg = true;
+            }
+            if(isIn == false && m.Valeur() >= 5*400){
+                capteursDefaillants.push_back(make_pair(c, 1));
+                isIn = true;
+                valGrde = true;
+            }
+            if ((isIn == true && valNeg && m.Valeur() >= 5*400) || (isIn == true && valGrde && m.Valeur() < 0)) {
+                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
             }
         }
         for(MesureSO2 m : *c->RecupererMesuresSO2()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
+            if(isIn == false && m.Valeur() < 0) {
+                capteursDefaillants.push_back(make_pair(c, 0));
 				isIn = true;
-				break;
+                valNeg = true;
+            }
+            if(isIn == false && m.Valeur() >= 5*500){
+                capteursDefaillants.push_back(make_pair(c, 1));
+                isIn = true;
+                valGrde = true;
+            }
+            if ((isIn == true && valNeg && m.Valeur() >= 5*500) || (isIn == true && valGrde && m.Valeur() < 0)) {
+                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
             }
         }
         for(MesurePM10 m : *c->RecupererMesuresPM10()) {
-            if(isIn == false && (m.Valeur() < 0 || m.Valeur() >= pow(10,3))){
-                capteursDefaillants.push_back(c);
+            if(isIn == false && m.Valeur() < 0){
+                capteursDefaillants.push_back(make_pair(c, 0));
 				isIn = true;
-				break;
+                valNeg = true;
+            }
+            if(isIn == false && m.Valeur() >= 5*80){
+                capteursDefaillants.push_back(make_pair(c, 1));
+                isIn = true;
+                valGrde = true;
+            }
+            if ((isIn == true && valNeg && m.Valeur() >= 5*80) || (isIn == true && valGrde && m.Valeur() < 0)) {
+                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
             }
         }
 		isIn = false;
+        valNeg = false;
+        valGrde = false;
     }
 
     return capteursDefaillants;

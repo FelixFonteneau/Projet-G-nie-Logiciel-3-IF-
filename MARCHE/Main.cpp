@@ -64,11 +64,6 @@ int main()
 				unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2]);
 				break;
 			}
-			case 7:
-			{
-				unMessage.Quitter();
-				break;
-			}
 			default:
 			{
 				break;
@@ -76,5 +71,6 @@ int main()
 		}
 		choix = unMessage.MessageMenu();
 	}
+	unMessage.Quitter();
     return 0;
 }
