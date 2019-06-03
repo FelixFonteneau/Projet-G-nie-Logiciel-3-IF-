@@ -70,26 +70,41 @@ void Messages::Quitter()
 
 vector<double> Messages::RecupererLocalisation()
 {
-    double latitude;
-    double longitude;
+    double latitude(0);
+    double longitude(0);
     string tmp;
     const regex txt_regex("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
-
+    cout << "Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -90 et 90." << endl << endl;
+    getline(cin, tmp);
+    cout << endl;
     do
     {
-        cout << "Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -90 et 90." << endl << endl;
-        getline(cin, tmp);
-		cout << endl;
+        while(! regex_match(tmp, txt_regex) ) {
+          cout << "Mauvais format," << endl;
+          cout << "Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -90 et 90." << endl << endl;
+          getline(cin, tmp);
+          cout << endl;
+        }
         latitude = stod(tmp);
-    } while (! regex_match(tmp, txt_regex) || latitude > 90 || latitude < -90 );
+        tmp = "";
+    } while ( latitude > 90 || latitude < -90 );
 
+    cout << "Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180." << endl << endl;
+    getline(cin, tmp);
+    cout << endl;
     do
     {
-        cout << "Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180." << endl << endl;
-        getline(cin, tmp);
-		cout << endl;
+
+        while(! regex_match(tmp, txt_regex))
+        {
+          cout << "Mauvais format," << endl;
+          cout << "Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180." << endl << endl;
+          getline(cin, tmp);
+          cout << endl;
+        }
         longitude = stod(tmp);
-    } while (! regex_match(tmp, txt_regex) || longitude > 180 || longitude < -180 );
+        tmp = "";
+    } while (longitude > 180 || longitude < -180 );
 
 
     vector<double> coord;
@@ -104,10 +119,10 @@ bool Messages::ChoixZone()
 	string tmp;
 	do
     {
-        cout << "1 - Effectuer la requête sur tous les capteurs" << endl;
-		cout << "2 - Effectuer la requête sur les capteurs d'un territoire délimité" << endl << endl;
-        getline(cin,tmp);
-		cout << endl;
+      cout << "1 - Effectuer la requête sur tous les capteurs" << endl;
+      cout << "2 - Effectuer la requête sur les capteurs d'un territoire délimité" << endl << endl;
+      getline(cin,tmp);
+      cout << endl;
     } while (tmp.compare("1") != 0 && tmp.compare("2") != 0);
 	if (tmp.compare("1") == 0) {
 		return false;
@@ -119,12 +134,11 @@ bool Messages::ChoixZone()
 bool Messages::ChoixTemporel()
 {
 	string tmp;
-	do
-    {
-        cout << "1 - Effectuer la requête sur une durée (entre deux instant de temps)." << endl;
-		cout << "2 - Effectuer la requête sur un instant." << endl << endl;
-        getline(cin,tmp);
-		cout << endl;
+	do{
+      cout << "1 - Effectuer la requête sur une durée (entre deux instant de temps)." << endl;
+      cout << "2 - Effectuer la requête sur un instant." << endl << endl;
+      getline(cin,tmp);
+      cout << endl;
     } while (tmp.compare("1") != 0 && tmp.compare("2") != 0);
 	if (tmp.compare("1") == 0) {
 		return true;
@@ -163,7 +177,7 @@ vector<Moment> Messages::RecupererIntervalleTemps()
         cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl;
         getline(cin, dateDebut);
     }
-	
+
 	int jourDebut = stoi(dateDebut.substr(0, 2));
     int moisDebut = stoi(dateDebut.substr(3, 2));
     int anneeDebut = stoi(dateDebut.substr(6, 4));
@@ -198,9 +212,9 @@ vector<Moment> Messages::RecupererIntervalleTemps()
 	}
 	while(momentFin<momentDebut);
     vector<Moment> intervalleTempsDemande;
-    
 
-    
+
+
     intervalleTempsDemande.push_back(momentDebut);
     intervalleTempsDemande.push_back(momentFin);
 
@@ -255,7 +269,7 @@ void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 			} else {
                 pourcentage = (int)similitudes[i][j];
                 if (pourcentage < 10 && pourcentage != -1) {
-                    cout << "       " << pourcentage << "%   "; 
+                    cout << "       " << pourcentage << "%   ";
 				}else if (pourcentage == 100) {
                     cout << "     100%   ";
                 } else cout << "      " << pourcentage << "%   ";
