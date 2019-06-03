@@ -55,10 +55,12 @@ public:
     double RecupererCapteur();
 
     vector<Moment> RecupererIntervalleTemps();
+	
+	vector<string> RecupererNomsFichiers();
 
     Moment RecupererMoment();
 
-	  bool ChoixZone();
+	bool ChoixZone();
 
     bool ChoixTemporel();
     // Mode d'emploi : Demande à l'utilisateur si il veut faire un choix sur

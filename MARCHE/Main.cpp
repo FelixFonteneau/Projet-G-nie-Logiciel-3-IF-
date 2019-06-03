@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <regex>
+#include <vector>
 
 
 using namespace std;
@@ -25,38 +26,45 @@ int main()
 {
     Messages unMessage;
 	unMessage.Initialisation(); 
-    Service unService = Service();
+    Service* unService = new Service("donnees/descriptionCapteurs.csv","donnees/donneesCapteurs.csv","N");
     int choix = unMessage.MessageMenu();
-	while(choix!=6){
+	while(choix!=7){
 		switch (choix)
 		{
 			case 1:
 			{
-				unService.CalculMoyenneLocalise(choix);
+				unService->CalculMoyenneLocalise(choix);
 				break;
 			}
 			case 2:
 			{
-				unService.CalculMoyenneLocalise(choix);
+				unService->CalculMoyenneLocalise(choix);
 				break;
 			}
 
 			case 3:
 			{
-				unService.CapteursSimilaires();
+				unService->CapteursSimilaires();
 				break;
 			}
 			case 4:
 			{
-				unService.QualiteAir();
+				unService->QualiteAir();
 				break;
 			}
 			case 5:
 			{
-				unService.CapteursDefaillants();
+				unService->CapteursDefaillants();
 				break;
 			}
 			case 6:
+			{
+				vector<string> nomsFichiers = unMessage.RecupererNomsFichiers();
+				delete unService;
+				unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2]);
+				break;
+			}
+			case 7:
 			{
 				unMessage.Quitter();
 				break;

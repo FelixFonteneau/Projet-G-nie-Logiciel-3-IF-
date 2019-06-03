@@ -54,7 +54,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service();
+    Service(string nomFichierCapteur, string nomFichierDonnees, string utf8);
     // Mode d'emploi :
     //
     // Contrat :

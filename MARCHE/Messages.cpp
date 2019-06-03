@@ -20,6 +20,7 @@ using namespace std;
 #include <regex>
 #include <string>
 #include <algorithm>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Messages.h"
@@ -44,12 +45,13 @@ int Messages::MessageMenu()
     cout << "3 - Trouver les capteurs ayant un comportement similaire" << endl;
     cout << "4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis" << endl;
     cout << "5 - Obtenir la liste des capteurs qui ne fonctionnent pas" << endl;
-    cout << "6 - Quitter" << endl << endl;
+	cout << "6 - Charger un autre fichier que celui par défaut" << endl;
+    cout << "7 - Quitter" << endl << endl;
     string tmp;
     getline(cin,tmp);
 	cout << endl;
-	while(tmp.size() != 1 || !isdigit(tmp[0]) || !tmp.compare("7") || !tmp.compare("8") || !tmp.compare("9")) {
-		cout << "Vous devez renseigner un chiffre entre 0 et 6" << endl;
+	while(tmp.size() != 1 || !isdigit(tmp[0]) || !tmp.compare("8") || !tmp.compare("9")) {
+		cout << "Vous devez renseigner un chiffre entre 0 et 7" << endl;
 		getline(cin,tmp);
 		cout << endl;
 	}
@@ -112,6 +114,57 @@ vector<double> Messages::RecupererLocalisation()
     coord.push_back(longitude);
 
     return coord;
+}
+
+vector<string> Messages::RecupererNomsFichiers()
+{
+	vector<string> nomsFichiers;
+	
+	cout << "Veuillez entrer le chemin d'accès du fichier de description des capteurs (absolu ou relatif)" << endl << endl;
+	string nomFichierDescription;
+	getline(cin,nomFichierDescription);
+	cout << endl;
+	ifstream testExiste (nomFichierDescription);
+	while(!testExiste.is_open()){
+		cout << "Fichier introuvable. Réessayez" << endl << endl;
+		getline(cin,nomFichierDescription);
+		cout << endl;
+		testExiste.open(nomFichierDescription);
+	}
+	testExiste.close();
+	nomsFichiers.push_back(nomFichierDescription);
+	
+	cout << "Veuillez entrer le chemin d'accès du fichier de mesures (absolu ou relatif)" << endl << endl;
+	string nomFichierDonnes;
+	getline(cin,nomFichierDonnes);
+	cout << endl;
+	testExiste.open(nomFichierDonnes);
+	while(!testExiste.is_open()){
+		cout << "Fichier introuvable. Réessayez" << endl << endl;
+		getline(cin,nomFichierDonnes);
+		cout << endl;
+		testExiste.open(nomFichierDonnes);
+	}
+	testExiste.close();
+	nomsFichiers.push_back(nomFichierDonnes);
+	
+	cout << "Veuillez maintenant préciser si le fichier est encodé en utf8 ou non (Y/N)" << endl << endl;
+	string utf8;
+	getline(cin,utf8);
+	cout << endl;
+	while(!utf8.compare("Y")==0 && !utf8.compare("N")==0){
+		cout << "Veuillez entrer uniquement 'Y' ou 'N' " << endl << endl;
+		getline(cin,utf8);
+		cout << endl;
+	}
+	nomsFichiers.push_back(utf8);
+	
+	cout << "Chargement des données en cours.." << endl << endl;
+	
+	
+	
+	return nomsFichiers;
+	
 }
 
 bool Messages::ChoixZone()

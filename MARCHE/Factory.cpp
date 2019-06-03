@@ -33,12 +33,12 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-vector<Capteur*>* Factory::AnalyserMesure()
+vector<Capteur*>* Factory::AnalyserMesure(string nomFichierCapteur, string nomFichierDonnees,string utf8)
 {
     vector<Capteur*>* listeCapteur = new vector<Capteur*>;
     recupererType();
-    analyserCapteurs(listeCapteur);
-    remplirCapteurs(listeCapteur);
+    analyserCapteurs(listeCapteur,nomFichierCapteur);
+    remplirCapteurs(listeCapteur,nomFichierDonnees,utf8);
     //retourne une référence vers la liste de capteur stockée dans le tas
     return listeCapteur;
 }
@@ -106,10 +106,13 @@ void Factory::recupererType()
 
 
 
-void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs)
+void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierCapteur)
 {
-    // Sensor0;-8.15758888291083;-34.7692487876719;;
-    ifstream file ("donnees/descriptionCapteurs.csv");
+    string cheminAcces = "donnees/descriptionCapteurs.csv";
+	if(nomFichierCapteur.compare("")!=0){
+		cheminAcces = nomFichierCapteur;
+	}
+    ifstream file (cheminAcces);
     string ligne;
 	
 	getline(file,ligne);
@@ -166,7 +169,7 @@ string Factory::decompose(char const sep, string uneLigne)
     return retour;
 }
 
-Mesure* Factory::analyserLigne(string ligne)
+Mesure* Factory::analyserLigne(string ligne, string utf8)
 {
     // Important : le string ligne que l'on obtient
     // ci-dessus a une structure extrêmement bizzare :
@@ -180,8 +183,11 @@ Mesure* Factory::analyserLigne(string ligne)
     int annee, mois, jour, heure, minute, seconde;
 	string uneAnnee, unMois, unJour, uneHeure, uneMinute, uneSeconde, idCapt, typeMesure;
 	double valeur;
-	bool utf8 = 0;
-	if(utf8){
+	bool b_utf8 = 1;
+	if(utf8.compare("N")==0){
+		b_utf8 = 0;
+	}
+	if(b_utf8){
 		uneAnnee = ligne.substr (0,4);
 		annee = stoi(uneAnnee);
 		unMois = ligne.substr (5,2);
@@ -275,10 +281,14 @@ Mesure* Factory::analyserLigne(string ligne)
 }
 
 
-void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
+void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierDonnees,string utf8)
 {
-
-    ifstream file ("donnees/donneesCapteurs.csv");
+	string cheminAcces = "donnees/donneesCapteurs.csv";
+	if(nomFichierDonnees.compare("")!=0){
+		cheminAcces = nomFichierDonnees;
+	}
+	
+    ifstream file (cheminAcces);
     string ligne;
 
 	unsigned i = 0;
@@ -295,7 +305,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs)
 		{
 			try {
 				++i;
-				Mesure *mesure = analyserLigne(ligne);
+				Mesure *mesure = analyserLigne(ligne,utf8);
 				for (Capteur* capteur : *listeCapteurs)
 				{
 					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)

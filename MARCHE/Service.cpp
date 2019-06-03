@@ -88,18 +88,14 @@ void Service::CapteursSimilaires() {
 }
 
 void Service::CapteursDefaillants() {
+	
 	messages.AfficherCapteursDefaillants(algo.CapteursDefaillants(*capteurs));
+	
 }
-//------------------------------------------------- Surcharge d'opérateurs
-// Service & Service::operator = ( const Service & unXxx )
-// Algorithme :
-//
-// {
-// } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service()
+Service::Service(string nomFichierCapteur, string nomFichierDonnees, string utf8)
 // Algorithme :
 //
 {
@@ -109,8 +105,7 @@ Service::Service()
   // Messages messages;
   // Algo algo;
   // Factory factory;
-  capteurs = factory.AnalyserMesure();
-
+  capteurs = factory.AnalyserMesure(nomFichierCapteur, nomFichierDonnees,utf8);
 } //----- Fin de Service
 
 

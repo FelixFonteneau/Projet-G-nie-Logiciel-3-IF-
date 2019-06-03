@@ -28,7 +28,7 @@ void testFactory()
 {
     unsigned i = 0;
     Factory uneFactory;
-    vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure();
+    vector<Capteur*>* listCapteur = uneFactory.AnalyserMesure("","","");
     for(Capteur * capteur : *listCapteur)
     {
         cout << "\n\n\n-- valeurs capteur : " << capteur->RecupererId() << endl;
@@ -78,20 +78,20 @@ void testMessages()
 
 void testService()
 {
-    Service unService;
+    Service unService("","","");
     //unService.QualiteAir();
     //unService.CalculMoyenneLocalise();
 }
 
 void testMoyenneeCapteur()
 {
-  Service unService;
+  Service unService("","","");
   //unService.CalculMoyenneLocalise();
 }
 
 void testCapteurDefaillant()
 {
-	Service unService;
+	Service unService("","","");
 	unService.CapteursSimilaires();
 }
 

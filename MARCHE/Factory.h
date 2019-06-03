@@ -45,7 +45,7 @@ public:
     //
 
 
-    vector<Capteur*>* AnalyserMesure();
+    vector<Capteur*>* AnalyserMesure(string nomFichierCapteur, string nomFichierDonnees, string utf8);
     // Mode d'emploi :
     //
     // Contrat :
@@ -84,7 +84,7 @@ protected:
     // Contrat :
     //
 
-    void analyserCapteurs(vector<Capteur*>* listeCapteurs);
+    void analyserCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierCapteur);
     // Mode d'emploi :
     //
     // Contrat :
@@ -97,13 +97,13 @@ protected:
     //
 
 
-    Mesure* analyserLigne(string ligne);
+    Mesure* analyserLigne(string ligne, string utf8);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    void remplirCapteurs(vector<Capteur*>* listeCapteurs);
+    void remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierDonnees,string utf8);
     // Mode d'emploi :
     //
     // Contrat : doit etre appelee apres analyseCapteurs
