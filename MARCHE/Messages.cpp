@@ -152,7 +152,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	string utf8;
 	getline(cin,utf8);
 	cout << endl;
-	while(!utf8.compare("Y")==0 && !utf8.compare("N")==0){
+	while(!(utf8.compare("Y")==0) && !(utf8.compare("N")==0)){
 		cout << "Veuillez entrer uniquement 'Y' ou 'N' " << endl << endl;
 		getline(cin,utf8);
 		cout << endl;
@@ -337,21 +337,22 @@ void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 	cout << endl << "(Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)" << endl << endl;
 }
 
-void Messages::AfficherCapteursDefaillants(vector<pair<Capteur*,int>> capteurs) {
+void Messages::AfficherCapteursDefaillants(vector<tuple<Capteur*, int, Moment>> capteurs) {
 	if(capteurs.size() == 0) {
 		cout << "Il n'y a pas de capteur défaillant." << endl;
 	} else {
-		for(pair<Capteur* , int> c : capteurs) {
-            cout << "Le capteur " << c.first->RecupererId();
-            if (c.second == 0) {
-                cout << " a affectué des mesures dont les valeurs sont négatives." << endl;
+		for(tuple<Capteur* , int, Moment> c : capteurs) {
+            cout << "Le capteur " << get<0>(c)->RecupererId();
+            if (get<1>(c) == 0) {
+                cout << " a affectué des mesures dont les valeurs sont négatives";
             }
-            else if (c.second == 1) {
-                cout << " a affectué des mesures dont les valeurs sont anormalement elevées." << endl;
+            else if (get<1>(c) == 1) {
+                cout << " a affectué des mesures dont les valeurs sont anormalement elevées";
             }
-            else if (c.second == 2) {
-                cout << " a affectué des mesures dont certaines valeurs sont négatives et d'autres pour lesquelles les valeurs sont anormalement elevées." << endl;
+            else if (get<1>(c) == 2) {
+                cout << " a affectué des mesures dont certaines valeurs sont négatives et d'autres pour lesquelles les valeurs sont anormalement elevées";
             }
+            cout << " ; date et heure du premier dysfonctionnement : " << get<2>(c) << "." << endl;
 		}
 	}
 	cout << endl;

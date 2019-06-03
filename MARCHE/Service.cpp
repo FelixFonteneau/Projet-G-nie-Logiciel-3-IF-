@@ -88,7 +88,7 @@ void Service::CapteursSimilaires() {
 }
 
 void Service::CapteursDefaillants() {
-    vector<pair<Capteur*,int>> capteursDefaillants = algo.CapteursDefaillants(*capteurs);
+    vector<tuple<Capteur*, int, Moment>> capteursDefaillants = algo.CapteursDefaillants(*capteurs);
 	messages.AfficherCapteursDefaillants(capteursDefaillants);
 }
 

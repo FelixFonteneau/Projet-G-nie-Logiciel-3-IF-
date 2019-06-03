@@ -54,7 +54,7 @@ public:
 
     vector<Capteur*> CapteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees);
 
-    vector<pair<Capteur*,int>> CapteursDefaillants(vector<Capteur*> capteurs);
+    vector<tuple<Capteur*, int, Moment>> CapteursDefaillants(vector<Capteur*> capteurs);
   	// Mode d'emploi :
   	//
   	//	Prend une liste de capteurs en paramètre et la parcours afin de

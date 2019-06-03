@@ -233,69 +233,69 @@ vector<Capteur*> Algo::CapteurTerritoire(vector<Capteur*>* capteurs, double radi
     return captTerritoire;
 }
 
-vector<pair<Capteur*, int>> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
+vector<tuple<Capteur*, int, Moment>> Algo::CapteursDefaillants(vector<Capteur*> capteurs) {
 	bool isIn = false;
     bool valNeg = false, valGrde = false;
-    vector<pair<Capteur*, int>> capteursDefaillants;
+    vector<tuple<Capteur*, int, Moment>> capteursDefaillants;
     for(Capteur* c : capteurs) {
         for(MesureO3 m : *c->RecupererMesuresO3()) {
             if (isIn == false && m.Valeur() < 0) {
-                capteursDefaillants.push_back(make_pair(c, 0));
+                capteursDefaillants.push_back(make_tuple(c, 0, m.getDate()));
 				isIn = true;
                 valNeg = true;
             }
             if (isIn == false && m.Valeur() >= 5*240) {
-                capteursDefaillants.push_back(make_pair(c, 1));
+                capteursDefaillants.push_back(make_tuple(c, 1, m.getDate()));
                 isIn = true;
                 valGrde = true;
             }
             if ((isIn == true && valNeg && m.Valeur() >= 5*240) || (isIn == true && valGrde && m.Valeur() < 0)) {
-                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
+                get<1>(capteursDefaillants[capteursDefaillants.size() - 1]) = 2;
             }
 		}
         for(MesureNO2 m : *c->RecupererMesuresNO2()) {
             if(isIn == false && m.Valeur() < 0){
-                capteursDefaillants.push_back(make_pair(c, 0));
+                capteursDefaillants.push_back(make_tuple(c, 0, m.getDate()));
 				isIn = true;
                 valNeg = true;
             }
             if(isIn == false && m.Valeur() >= 5*400){
-                capteursDefaillants.push_back(make_pair(c, 1));
+                capteursDefaillants.push_back(make_tuple(c, 1, m.getDate()));
                 isIn = true;
                 valGrde = true;
             }
             if ((isIn == true && valNeg && m.Valeur() >= 5*400) || (isIn == true && valGrde && m.Valeur() < 0)) {
-                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
+                get<1>(capteursDefaillants[capteursDefaillants.size() - 1]) = 2;
             }
         }
         for(MesureSO2 m : *c->RecupererMesuresSO2()) {
             if(isIn == false && m.Valeur() < 0) {
-                capteursDefaillants.push_back(make_pair(c, 0));
+                capteursDefaillants.push_back(make_tuple(c, 0, m.getDate()));
 				isIn = true;
                 valNeg = true;
             }
             if(isIn == false && m.Valeur() >= 5*500){
-                capteursDefaillants.push_back(make_pair(c, 1));
+                capteursDefaillants.push_back(make_tuple(c, 1, m.getDate()));
                 isIn = true;
                 valGrde = true;
             }
             if ((isIn == true && valNeg && m.Valeur() >= 5*500) || (isIn == true && valGrde && m.Valeur() < 0)) {
-                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
+                get<1>(capteursDefaillants[capteursDefaillants.size() - 1]) = 2;
             }
         }
         for(MesurePM10 m : *c->RecupererMesuresPM10()) {
             if(isIn == false && m.Valeur() < 0){
-                capteursDefaillants.push_back(make_pair(c, 0));
+                capteursDefaillants.push_back(make_tuple(c, 0, m.getDate()));
 				isIn = true;
                 valNeg = true;
             }
             if(isIn == false && m.Valeur() >= 5*80){
-                capteursDefaillants.push_back(make_pair(c, 1));
+                capteursDefaillants.push_back(make_tuple(c, 1, m.getDate()));
                 isIn = true;
                 valGrde = true;
             }
             if ((isIn == true && valNeg && m.Valeur() >= 5*80) || (isIn == true && valGrde && m.Valeur() < 0)) {
-                capteursDefaillants[capteursDefaillants.size() - 1].second = 2;
+                get<1>(capteursDefaillants[capteursDefaillants.size() - 1]) = 2;
             }
         }
 		isIn = false;
