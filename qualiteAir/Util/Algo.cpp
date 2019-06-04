@@ -443,8 +443,8 @@ int Algo::calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double 
 }
 
 
-int Algo::calculAtmoMoyen(vector<double> moyenne){
-	
+int Algo::CalculAtmoMoyen(vector<double> moyenne){
+
 	vector<int> atmos;
 	atmos.push_back(calculAtmo(moyenne[0],"O3"));
 	atmos.push_back(calculAtmo(moyenne[1],"NO2"));

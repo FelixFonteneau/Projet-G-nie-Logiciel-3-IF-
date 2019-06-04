@@ -42,9 +42,9 @@ void Service::CalculMoyenneLocalise(int choix)
     Moment moment = messages.RecupererMoment();
     moyenne = algo.MoyenneInstant(moment, radius, coords, capteurs);
   }
-  
-  int atmo = algo.calculAtmoMoyen(moyenne);
-  
+
+  int atmo = algo.CalculAtmoMoyen(moyenne);
+
   messages.AfficherMoyenne(moyenne, atmo);
 } //----- Fin de Méthode
 
@@ -130,3 +130,4 @@ Service::~Service()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+CalculAtmoMoyen

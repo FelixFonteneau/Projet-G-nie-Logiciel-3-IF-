@@ -43,10 +43,10 @@ public:
     //
     // Contrat :
     //
-	
-	void Initialisation();
 
-	void Quitter();
+	  void Initialisation();
+
+	  void Quitter();
 
     vector<double> RecupererLocalisation();
 
@@ -55,12 +55,12 @@ public:
     double RecupererCapteur();
 
     vector<Moment> RecupererIntervalleTemps();
-	
-	vector<string> RecupererNomsFichiers();
+
+	  vector<string> RecupererNomsFichiers();
 
     Moment RecupererMoment();
 
-	bool ChoixZone();
+	  bool ChoixZone();
 
     bool ChoixTemporel();
     // Mode d'emploi : Demande à l'utilisateur si il veut faire un choix sur
