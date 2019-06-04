@@ -27,7 +27,7 @@ int main()
 {
     Messages unMessage;
 	unMessage.Initialisation(); 
-    Service* unService = new Service("../donnees/descriptionCapteurs.csv","../donnees/donneesCapteurs.csv","N");
+    Service* unService = new Service("donnees/descriptionCapteurs.csv","donnees/donneesCapteurs.csv","N");
     int choix = unMessage.MessageMenu();
 	while(choix!=7){
 		switch (choix)

@@ -50,8 +50,8 @@ int Messages::MessageMenu()
     string tmp;
     getline(cin,tmp);
 	cout << endl;
-	while(tmp.size() != 1 || !isdigit(tmp[0]) || !tmp.compare("8") || !tmp.compare("9")) {
-		cout << "Vous devez renseigner un chiffre entre 0 et 7" << endl;
+	while(tmp.size() != 1 || !isdigit(tmp[0]) || !tmp.compare("8") || !tmp.compare("9") || !tmp.compare("0")) {
+		cout << "Vous devez renseigner un chiffre entre 1 et 7" << endl << endl;
 		getline(cin,tmp);
 		cout << endl;
 	}
@@ -82,7 +82,7 @@ vector<double> Messages::RecupererLocalisation()
     do
     {
         while(! regex_match(tmp, txt_regex) ) {
-          cout << "Mauvais format," << endl;
+          cout << "Mauvais format," << endl ;
           cout << "Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -90 et 90." << endl << endl;
           getline(cin, tmp);
           cout << endl;
@@ -170,13 +170,15 @@ vector<string> Messages::RecupererNomsFichiers()
 bool Messages::ChoixZone()
 {
 	string tmp;
-	do
-    {
       cout << "1 - Effectuer la requête sur tous les capteurs" << endl;
       cout << "2 - Effectuer la requête sur les capteurs d'un territoire délimité" << endl << endl;
       getline(cin,tmp);
       cout << endl;
-    } while (tmp.compare("1") != 0 && tmp.compare("2") != 0);
+    while (tmp.compare("1") != 0 && tmp.compare("2") != 0){
+		cout << "Vous devez renseigner 1 ou 2" << endl << endl;
+		getline(cin,tmp);
+		cout << endl;
+	}
 	if (tmp.compare("1") == 0) {
 		return false;
 	}else{
@@ -227,8 +229,9 @@ vector<Moment> Messages::RecupererIntervalleTemps()
     const regex txt_regex("^[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}$");
     while (! regex_match(dateDebut, txt_regex))
     {
-        cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl;
+        cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl << endl;
         getline(cin, dateDebut);
+		cout << endl;
     }
 
 	int jourDebut = stoi(dateDebut.substr(0, 2));
@@ -302,39 +305,43 @@ Moment Messages::RecupererMoment()
 
 void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 {
-    int pourcentage;
-    cout << "           | ";
-    for (int i = 0; i< size; i++) {
-		cout << "Capteur " << i <<  " | " ;
-	}
-    cout << endl;
-    for(int l = 0 ; l < size + 1; l++){
-        cout << "------------";
-    }
-    cout << endl;
-	for (int i = 0 ; i < size ; i++) {
-		cout << "Capteur " << i << "  ";
-		for (int k = 0; k < i; k++)
-			cout << "            ";
-		for (int j = i; j < size; j++) {
-			if (i == j){
-				cout << "    100%   ";
-			} else {
-                pourcentage = (int)similitudes[i][j];
-                if (pourcentage < 10 && pourcentage != -1) {
-                    cout << "       " << pourcentage << "%   ";
-				}else if (pourcentage == 100) {
-                    cout << "     100%   ";
-                } else cout << "      " << pourcentage << "%   ";
-			}
+	if(size>0){
+		int pourcentage;
+		cout << "           | ";
+		for (int i = 0; i< size; i++) {
+			cout << "Capteur " << i <<  " | " ;
 		}
 		cout << endl;
 		for(int l = 0 ; l < size + 1; l++){
 			cout << "------------";
 		}
-		cout << endl ;
+		cout << endl;
+		for (int i = 0 ; i < size ; i++) {
+			cout << "Capteur " << i << "  ";
+			for (int k = 0; k < i; k++)
+				cout << "            ";
+			for (int j = i; j < size; j++) {
+				if (i == j){
+					cout << "    100%   ";
+				} else {
+					pourcentage = (int)similitudes[i][j];
+					if (pourcentage < 10 && pourcentage != -1) {
+						cout << "       " << pourcentage << "%   ";
+					}else if (pourcentage == 100) {
+						cout << "     100%   ";
+					} else cout << "      " << pourcentage << "%   ";
+				}
+			}
+			cout << endl;
+			for(int l = 0 ; l < size + 1; l++){
+				cout << "------------";
+			}
+			cout << endl ;
+		}
+		cout << endl << "(Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)" << endl << endl;
+	} else {
+		cout << "Aucune donnée capteur trouvée sur ce territoire" << endl << endl;
 	}
-	cout << endl << "(Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)" << endl << endl;
 }
 
 void Messages::AfficherCapteursDefaillants(vector<tuple<Capteur*, int, Moment>> capteurs) {

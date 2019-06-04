@@ -14,6 +14,8 @@
 #include <iostream>
 #include <cmath>
 #include <float.h>
+#include <tuple>
+#include <functional>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -240,7 +242,7 @@ vector<tuple<Capteur*, int, Moment>> Algo::CapteursDefaillants(vector<Capteur*> 
     for(Capteur* c : capteurs) {
         for(MesureO3 m : *c->RecupererMesuresO3()) {
             if (isIn == false && m.Valeur() < 0) {
-                capteursDefaillants.push_back(make_tuple(c, 0, m.getDate()));
+                capteursDefaillants.push_back(std::make_tuple(c, 0, m.getDate()));
 				isIn = true;
                 valNeg = true;
             }

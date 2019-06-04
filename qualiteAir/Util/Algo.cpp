@@ -14,6 +14,8 @@
 #include <iostream>
 #include <cmath>
 #include <float.h>
+#include <tuple>
+#include <functional>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -339,7 +341,12 @@ double** Algo::CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> 
             if(val == -1){
                 val = 0;
             } else {
-                capteurCorreles[i][j] = 100 - ((capteurCorreles[i][j] - min)/(max-min) * 100);
+				if(min == max){
+					capteurCorreles[i][j] = 100;
+				}
+                else {
+					capteurCorreles[i][j] = 100 - ((capteurCorreles[i][j] - min)/(max-min) * 100);
+				}
             }
         }
     }
