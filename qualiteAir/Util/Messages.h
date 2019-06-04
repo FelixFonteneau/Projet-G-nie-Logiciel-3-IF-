@@ -46,6 +46,12 @@ public:
 	
 	void Initialisation();
 
+	bool VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string utf8);
+
+	void ErreurNbArguments();
+
+	void ErreurArguments();
+
 	void Quitter();
 
     vector<double> RecupererLocalisation();

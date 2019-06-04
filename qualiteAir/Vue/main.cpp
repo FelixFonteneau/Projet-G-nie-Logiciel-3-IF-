@@ -23,55 +23,69 @@ using namespace std;
 
 
 
-int main()
+int main(int argc, char* argv[])
 {
     Messages unMessage;
-	unMessage.Initialisation(); 
-    Service* unService = new Service("donnees/descriptionCapteurs.csv","donnees/donneesCapteurs.csv","N");
-    int choix = unMessage.MessageMenu();
-	while(choix!=7){
-		switch (choix)
-		{
-			case 1:
-			{
-				unService->CalculMoyenneLocalise(choix);
-				break;
-			}
-			case 2:
-			{
-				unService->CalculMoyenneLocalise(choix);
-				break;
-			}
+    if(argc < 4){
+        unMessage.ErreurNbArguments();
+    } else {
+        string nomFichierDescription (argv[1]);
+        string nomFichierDonnees (argv[2]);
+        string utf8 (argv[3]);
+        if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees,utf8)){
+            unMessage.Initialisation();
+            cout << "coucou";
+            Service* unService = new Service(nomFichierDescription,nomFichierDonnees,utf8);
+            int choix = unMessage.MessageMenu();
+            while(choix!=7){
+                switch (choix)
+                {
+                    case 1:
+                    {
+                        unService->CalculMoyenneLocalise(choix);
+                        break;
+                    }
+                    case 2:
+                    {
+                        unService->CalculMoyenneLocalise(choix);
+                        break;
+                    }
 
-			case 3:
-			{
-				unService->CapteursSimilaires();
-				break;
-			}
-			case 4:
-			{
-				unService->QualiteAir();
-				break;
-			}
-			case 5:
-			{
-				unService->CapteursDefaillants();
-				break;
-			}
-			case 6:
-			{
-				vector<string> nomsFichiers = unMessage.RecupererNomsFichiers();
-				delete unService;
-				unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2]);
-				break;
-			}
-			default:
-			{
-				break;
-			}
-		}
-		choix = unMessage.MessageMenu();
-	}
-	unMessage.Quitter();
+                    case 3:
+                    {
+                        unService->CapteursSimilaires();
+                        break;
+                    }
+                    case 4:
+                    {
+                        unService->QualiteAir();
+                        break;
+                    }
+                    case 5:
+                    {
+                        unService->CapteursDefaillants();
+                        break;
+                    }
+                    case 6:
+                    {
+                        vector<string> nomsFichiers = unMessage.RecupererNomsFichiers();
+                        delete unService;
+                        unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2]);
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                choix = unMessage.MessageMenu();
+            }
+            unMessage.Quitter();
+        } else {
+            unMessage.ErreurArguments();
+        }
+
+    }
+
     return 0;
 }

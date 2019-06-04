@@ -59,6 +59,36 @@ int Messages::MessageMenu()
     return num;
 }
 
+bool Messages::VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string utf8)
+{
+    bool correct = true;
+    if(utf8.compare("Y")!=0 && utf8.compare("N")!=0){
+        correct = false;
+    }
+    ifstream testExisteDescription (nomFichierDescription);
+    ifstream testExisteDonnees (nomFichierDonnes);
+    if(!testExisteDescription.is_open()){
+        correct = false;
+    } else {
+        testExisteDescription.close();
+    }
+    if(!testExisteDonnees.is_open()){
+        correct = false;
+    } else {
+        testExisteDonnees.close();
+    }
+    return correct;
+
+}
+
+void Messages::ErreurNbArguments(){
+    cerr << "Pas assez d'arguments. Veuillez renseigner le nom des fichiers de description et données, ainsi que l'encodage utf8 (Y/N)" << endl;
+}
+
+void Messages::ErreurArguments(){
+    cerr << "Les arguments sont incorrects. Vérifiez les chemins des fichiers et la casse pour (Y/N)" << endl;
+}
+
 void Messages::Initialisation()
 {
 	cout << "Bonjour, et bienvenue dans cette application de surveillance de la qualité de l'air." << endl ;

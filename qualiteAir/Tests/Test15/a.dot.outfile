@@ -1,0 +1,5 @@
+digraph {
+ranksep = 3
+"http://www.google.fr/" -> "/temps/" [label="2"];
+"/temps/" [color = red]
+}

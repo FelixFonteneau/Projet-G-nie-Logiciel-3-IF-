@@ -1,0 +1,2 @@
+Permet de tester l'option -g qui construit le .dot de la selection
+et le graphe au format svg correspondant
