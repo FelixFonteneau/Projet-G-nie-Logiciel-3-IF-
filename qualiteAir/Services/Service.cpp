@@ -92,9 +92,9 @@ void Service::CapteursSimilaires() {
   delete[] capteurCorreles;
 }
 
-void Service::CapteursDefaillants() {
+void Service::CapteursDefectueux() {
     vector<tuple<Capteur*, int, Moment>> capteursDefaillants = algo.CapteursDefaillants(*capteurs);
-	messages.AfficherCapteursDefaillants(capteursDefaillants);
+	messages.AfficherCapteursDefectueux(capteursDefaillants);
 }
 
 
@@ -109,7 +109,7 @@ Service::Service(string nomFichierCapteur, string nomFichierDonnees, string utf8
   // Messages messages;
   // Algo algo;
   // Factory factory;
-  capteurs = factory.AnalyserMesure(nomFichierCapteur, nomFichierDonnees,utf8);
+  capteurs = factory.RecupererInfos(nomFichierCapteur, nomFichierDonnees,utf8);
 } //----- Fin de Service
 
 

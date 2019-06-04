@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
                     }
                     case 5:
                     {
-                        unService->CapteursDefaillants();
+                        unService->CapteursDefectueux();
                         break;
                     }
                     case 6:

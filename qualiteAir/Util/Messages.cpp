@@ -30,13 +30,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Messages::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
 int Messages::MessageMenu()
 {
     cout << "Vous souhaitez :" << endl;
@@ -149,7 +142,7 @@ vector<double> Messages::RecupererLocalisation()
 vector<string> Messages::RecupererNomsFichiers()
 {
 	vector<string> nomsFichiers;
-	
+
 	cout << "Veuillez entrer le chemin d'accès du fichier de description des capteurs (absolu ou relatif)" << endl << endl;
 	string nomFichierDescription;
 	getline(cin,nomFichierDescription);
@@ -163,7 +156,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	}
 	testExiste.close();
 	nomsFichiers.push_back(nomFichierDescription);
-	
+
 	cout << "Veuillez entrer le chemin d'accès du fichier de mesures (absolu ou relatif)" << endl << endl;
 	string nomFichierDonnes;
 	getline(cin,nomFichierDonnes);
@@ -177,7 +170,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	}
 	testExiste.close();
 	nomsFichiers.push_back(nomFichierDonnes);
-	
+
 	cout << "Veuillez maintenant préciser si le fichier est encodé en utf8 ou non (Y/N)" << endl << endl;
 	string utf8;
 	getline(cin,utf8);
@@ -188,13 +181,13 @@ vector<string> Messages::RecupererNomsFichiers()
 		cout << endl;
 	}
 	nomsFichiers.push_back(utf8);
-	
+
 	cout << "Chargement des données en cours.." << endl << endl;
-	
-	
-	
+
+
+
 	return nomsFichiers;
-	
+
 }
 
 bool Messages::ChoixZone()
@@ -374,7 +367,7 @@ void Messages::AfficherCapteursCorreles(double** similitudes,int size)
 	}
 }
 
-void Messages::AfficherCapteursDefaillants(vector<tuple<Capteur*, int, Moment>> capteurs) {
+void Messages::AfficherCapteursDefectueux(vector<tuple<Capteur*, int, Moment>> capteurs) {
 	if(capteurs.size() == 0) {
 		cout << "Il n'y a pas de capteur défaillant." << endl;
 	} else {
@@ -442,24 +435,8 @@ void Messages::AfficherMoyenne(vector<double> moyennes, int atmo)
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-// Messages & Messages::operator = ( const Messages & desMessages )
-// Algorithme :
-//
-// {
-// } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-/* Messages::Messages ( const Messages & desMessages )
- // Algorithme :
- //
- {
- #ifdef MAP
- cout << "Appel au constructeur de copie de <Messages>" << endl;
- #endif
- } //----- Fin de Messages (constructeur de copie) */
-
-
 Messages::Messages ( )
 // Algorithme :
 //

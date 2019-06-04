@@ -21,11 +21,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Capteur::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 string Capteur::RecupererId() const
 {
   return idCapteur;
@@ -51,33 +46,8 @@ vector<double> Capteur::getCoords()
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-// Capteur & Capteur::operator = ( const Capteur & unCapteur )
-// Algorithme :
-//
-// {
-	
-
-// } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-/*Capteur::Capteur ( const Capteur & unCapteur ) :  description(unCapteur.description),
-longitude(unCapteur.longitude),
-latitude(unCapteur.latitude),
-idCapteur(unCapteur.idCapteur),
-mesuresPM10(unCapteur.mesuresPM10),
-mesuresSO2(unCapteur.mesuresSO2),
-mesuresNO2(unCapteur.mesuresNO2),
-mesuresO3(unCapteur.mesuresO3),
-// Algorithme
-//
-{
-    
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Capteur>" << endl;
-#endif
-} //----- Fin de Capteur (constructeur de copie) */
-
 
 Capteur::Capteur(const string idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
 // Algorithme :

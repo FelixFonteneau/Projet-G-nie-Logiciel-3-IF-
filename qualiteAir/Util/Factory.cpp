@@ -24,14 +24,8 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Factory::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
-
-vector<Capteur*>* Factory::AnalyserMesure(string nomFichierCapteur, string nomFichierDonnees,string utf8)
+vector<Capteur*>* Factory::RecupererInfos(string nomFichierCapteur, string nomFichierDonnees,string utf8)
 {
     vector<Capteur*>* listeCapteur = new vector<Capteur*>;
     recupererType();
@@ -42,13 +36,6 @@ vector<Capteur*>* Factory::AnalyserMesure(string nomFichierCapteur, string nomFi
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-// Factory & Factory::operator = ( const Factory & uneFactory )
-// Algorithme :
-//
-// {
-// } //----- Fin de operator =
-
-
 
 //-------------------------------------------- Constructeurs - destructeur
 Factory::Factory ( )
@@ -112,16 +99,16 @@ void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs,string nomFichier
 	}
     ifstream file (cheminAcces);
     string ligne;
-	
+
 	getline(file,ligne);
     // Premiere ligne inutile
-    
+
 
     while (getline(file,ligne))
     {
 		double latitude, longitude;
 		string idCapt;
-		
+
 		idCapt = ligne.substr(6,1);
 		string sLatitude = "";
 		string sLongitude = "";
@@ -138,11 +125,11 @@ void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs,string nomFichier
 		}
 		latitude = stod(sLatitude);
 		longitude = stod(sLongitude);
-		
-		
+
+
 		Capteur *capteur = new Capteur(idCapt, latitude, longitude, "une description");
-        
-        
+
+
 #ifdef MAP
         cout << idCapt << " " << longitude << " " << latitude << endl;
 #endif
@@ -243,8 +230,8 @@ Mesure* Factory::analyserLigne(string ligne, string utf8)
 
 		valeur = stod(decompose(';', ligne));
 	}
-	
-	
+
+
 
     Moment moment = Moment(jour, mois, annee, heure, minute, seconde);
 
@@ -265,10 +252,10 @@ Mesure* Factory::analyserLigne(string ligne, string utf8)
 	} else if(typeMesure.compare("NO2")==0){
 		MesureNO2 *mesure = new MesureNO2(valeur, moment, description, unite, idCapt);
 		return mesure;
-	} else if(typeMesure.compare("SO2")==0){	
+	} else if(typeMesure.compare("SO2")==0){
 		MesureSO2 *mesure = new MesureSO2(valeur, moment, description, unite, idCapt);
 		return mesure;
-	} else if(typeMesure.compare("PM10")==0){	
+	} else if(typeMesure.compare("PM10")==0){
 		MesurePM10 *mesure = new MesurePM10(valeur, moment, description, unite, idCapt);
 		return mesure;
 	} else {
@@ -285,7 +272,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 	if(nomFichierDonnees.compare("")!=0){
 		cheminAcces = nomFichierDonnees;
 	}
-	
+
     ifstream file (cheminAcces);
     string ligne;
 
@@ -298,7 +285,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 		}
 
 		// puis on analyse toutes les lignes
-		
+
 		while(getline(file,ligne))
 		{
 			try {
@@ -316,8 +303,8 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 			{
 				std::cerr << "Exception caught " << exc.what() << "\n";
 			}
-			
-			
+
+
 		}
 	} else {
 		cout << "Impossible d'ouvrir le fichier" << endl;

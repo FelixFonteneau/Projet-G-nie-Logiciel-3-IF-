@@ -23,27 +23,25 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
 //
+// Cette classe correspond a l'objet represetant toues les informations d'un
+// capteur. Elle contient toutes les donnees possibles d'un capteur.
 //
 //------------------------------------------------------------------------
-
-
-
 class Capteur
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
     void AjouterMesure(Mesure *mesure);
     // Mode d'emploi :
     //
-    // Contrat :
+    // Cette methode permet d'ajouter une mesure aux structures de donnees du
+    // capteur.
     //
+    // Contrat :
+    // Le poiteur doit pointer sur une mesure valide.
 
     string RecupererId() const;
     // Mode d'emploi :
@@ -74,16 +72,22 @@ public:
 
 
 	string getDescription() const;
+  // Mode d'emploi :
+  //
+  // retourne la description du cpateur.
+  //
+  // Contrat :
+  //
 
-    vector<double> getCoords();
+  vector<double> getCoords();
+  // Mode d'emploi :
+  //
+  // Retourne les coordonnees du capteur (lattitude,longitude)
+  //
+  // Contrat :
+  //
 
 //------------------------------------------------- Surcharge d'opérateurs
-    // Capteur & operator = (const Capteur & unCapteur);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     // Capteur (const Capteur & unCapteur);
@@ -94,10 +98,6 @@ public:
     //
 
     virtual ~Capteur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 

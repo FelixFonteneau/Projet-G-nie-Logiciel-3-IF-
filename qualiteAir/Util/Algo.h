@@ -37,7 +37,8 @@ class Algo
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    vector<double> MoyenneDuree(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
+    vector<double> MoyenneDuree(vector<Moment> intervaleTemps, double radius,
+                                vector<double> coordonees, vector<Capteur*>* capteurs);
     // Mode d'emploi :
     //
     // Prend tous les capteurs dans la zone et un interval de temps
@@ -51,7 +52,8 @@ public:
     // les coordonees doivent etre valides
     //
 
-    vector<double> MoyenneInstant(Moment instant, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
+    vector<double> MoyenneInstant(Moment instant, double radius, vector<double> coordonees,
+                                  vector<Capteur*>* capteurs);
     // Mode d'emploi :
     //
     // Meme fonctionnement que MoyenneDuree mais prend qu'un seul instant
@@ -62,11 +64,13 @@ public:
     // les coordonees doivent etre valides
     //
 
-    vector<int> QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
+    vector<int> QualiteAir(vector<Capteur*>* capteurs, double latitude,
+                          double longitude);
     // Mode d'emploi :
     //
     // Prend en entree tous les capteurs et une latitude/longitude.
-    // Puis calcul l'indice ATMO sur les 3 capteurs les plus proches, s'ils sont dans un rayon de moins de 90km.
+    // Puis calcul l'indice ATMO sur les 3 capteurs les plus proches,
+    // s'ils sont dans un rayon de moins de 90km.
     // Sinon en prend 1, le plus proche. (Triangulation pas possible)
     // L'incide atmo est calcule avec les mesures les plus recentes
     //
@@ -76,7 +80,8 @@ public:
     // les coordonees doivent etre valides
     //
 
-    vector<Capteur*> CapteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees);
+    vector<Capteur*> CapteurTerritoire(vector<Capteur*>* capteurs, double radius,
+                                       vector<double> coordonees);
     // Mode d'emploi :
     //
     // Prend en entree tous les catpeur, puis une zone delimitee par des coordonees et radius
@@ -99,14 +104,16 @@ public:
     // Contrat :
     //
 
-    double** CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> capteurConcernes, vector<Moment> moments);
+    double** CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> capteurConcernes,
+                                   vector<Moment> moments);
     // Mode d'emploi :
     //
     // Calcul la corelation de chaques capteurssur une periode.
     // Renvoie un tableau avec les pourcentage de correspondance de chaques capteurs.
     //
     // Contrat :
-    // il faut que (double**) capteurCorreles soit deja aloue avec en dimension taille(capteurConcernes)xtaille(capteurConcernes)
+    // il faut que (double**) capteurCorreles soit deja aloue avec en dimension
+    //  taille(capteurConcernes) x taille(capteurConcernes)
     //
 
 	  int CalculAtmoMoyen(vector<double> moyenne );
@@ -156,8 +163,8 @@ protected:
     // les coordonees doivent etre valides (comprises entre -90/90 et -180/180)
 
     int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
-                                double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
-                                double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
+                          double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
+                          double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
     // Mode d'emploi :
     //

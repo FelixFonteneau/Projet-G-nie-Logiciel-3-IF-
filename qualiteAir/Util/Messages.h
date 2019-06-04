@@ -18,7 +18,6 @@
 
 //------------------------------------------------------------------ Types
 #include <list>
-#include <map>
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Messages>
@@ -43,7 +42,7 @@ public:
     //
     // Contrat :
     //
-	
+
 	void Initialisation();
 
 	bool VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string utf8);
@@ -61,7 +60,7 @@ public:
     double RecupererCapteur();
 
     vector<Moment> RecupererIntervalleTemps();
-	
+
 	vector<string> RecupererNomsFichiers();
 
     Moment RecupererMoment();
@@ -79,7 +78,7 @@ public:
 
     void AfficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
 
-    void AfficherCapteursDefaillants(vector<tuple<Capteur*, int, Moment>> capteurs);
+    void AfficherCapteursDefectueux(vector<tuple<Capteur*, int, Moment>> capteurs);
 
     void AfficherQualiteAir(vector<int> infos);
 

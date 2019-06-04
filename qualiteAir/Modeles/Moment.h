@@ -21,6 +21,8 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <Moment>
 //
+// Cette classe permet de specifier une date precise a la seconde
+// ainsi que d'effectuer des operations dessus.
 //
 //------------------------------------------------------------------------
 
@@ -30,12 +32,6 @@ class Moment
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     unsigned int getJour() const
     {
         return jour;
@@ -64,7 +60,13 @@ public:
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator<<(ostream &strm, const Moment &m);
+    // Mode d'emploi (constructeur de copie) :
+    // Operateur de flux, permet d'afficher la date.
+    //
+    // Contrat :
+    //
 
+    // operateur de comparaison de date
     bool operator > (const Moment &m);
 
     Moment& operator = (const Moment &m);
@@ -75,7 +77,7 @@ public:
     {
         return (!(*this<m) && !(*this>m));
     }
-    
+
 
 
 //-------------------------------------------- Constructeurs - destructeur

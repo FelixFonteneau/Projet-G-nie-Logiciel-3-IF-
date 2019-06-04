@@ -25,17 +25,10 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Mesure::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 double Mesure::Valeur () const
 {
   return value;
 }
-
-
 
 string Mesure::Capteur() const
 {

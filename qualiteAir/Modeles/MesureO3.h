@@ -28,34 +28,14 @@ class MesureO3 : public Mesure
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    // double Valeur () const;
-    // Mode d'emploi :
-    //
-    // Contrat :
 
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
-	
+
 	virtual string type () const;
 
     //------------------------------------------------- Surcharge d'opérateurs
-    // friend ostream& operator <<(ostream& out, const Mesure& mesure);
-    //
-    // Contrat :
-    //
-
 
     //-------------------------------------------- Constructeurs - destructeur
-    // MesureO3 ( const MesureO3 & uneMesureO3 );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     MesureO3 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
 

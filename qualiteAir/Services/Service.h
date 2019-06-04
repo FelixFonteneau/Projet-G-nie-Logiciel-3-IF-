@@ -24,6 +24,9 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <Service>
 //
+// Cette classe sert de point d'entre aux Main afin de choisir les differents
+// services que propose notre application. La classe sert donc d'interface
+// pour acceder aux differents algoritmes.
 //
 //------------------------------------------------------------------------
 
@@ -36,7 +39,8 @@ public:
     void CalculMoyenneLocalise(int choix);
     // Mode d'emploi :
     //
-    // methode faisant le Calcul de la moyenne sur un territoire.
+    // Methode faisant le Calcul de la moyenne sur un territoire, et sur
+    //  un intervalle ou un instant de temps donne.
     //
     // Contrat :
     //
@@ -44,17 +48,25 @@ public:
     void QualiteAir();
     // Mode d'emploi :
     //
+    // Effectuer un calcul d'indice ATMO sur un point precis.
+    // Recupere les capteurs les plus proches et utilise leurs dernieres mesures.
+    //
     // Contrat :
     //
 
     void CapteursSimilaires();
     // Mode d'emploi :
     //
+    // Cherche la correlation entre des capteurs durant un interval de temps.
+    //
     // Contrat :
     //
 
-    void CapteursDefaillants();
+    void CapteursDefectueux();
     // Mode d'emploi :
+    //
+    //  Recherche dans tous les capteurs, si des mesures sont erronees
+    // (valeur negative) ou aberante puis affiche les capteurs ayant ce defaut.
     //
     // Contrat :
     //

@@ -28,31 +28,14 @@ class MesureSO2 : public Mesure
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
-	
+
 	virtual string type () const;
 
 
     //------------------------------------------------- Surcharge d'opérateurs
-    // MesureSO2 & operator = ( const MesureSO2 & uneMesureSO2 );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
     //-------------------------------------------- Constructeurs - destructeur
-    // MesureSO2 ( const MesureSO2 & uneMesureSO2 );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     MesureSO2 ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid );
     //

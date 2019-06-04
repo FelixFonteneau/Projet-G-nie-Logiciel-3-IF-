@@ -23,14 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type MesureO3::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-
 void MesureO3::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10){
 	mesuresO3->push_back(*this);
 }
@@ -39,22 +31,8 @@ string MesureO3::type() const{
 	return "O3";
 }
 //------------------------------------------------- Surcharge d'opérateurs
-// MesureO3 & MesureO3::operator = ( const MesureO3 & uneMesureO3 )
-// Algorithme :
-//
-// {
-// } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
-/* MesureO3::MesureO3 ( const MesureO3 & uneMesureO3 )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <MesureO3>" << endl;
-#endif
-} //----- Fin de MesureO3 (constructeur de copie) */
 
 MesureO3::MesureO3 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
 Mesure(uneValue, uneDate, uneDescription, uneUnite, unCapteurid)

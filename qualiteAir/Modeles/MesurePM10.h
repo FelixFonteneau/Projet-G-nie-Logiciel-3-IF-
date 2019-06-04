@@ -29,30 +29,13 @@ class MesurePM10 : public Mesure
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
 
 	virtual string type () const;
     //------------------------------------------------- Surcharge d'opérateurs
-    // MesurePM10 & operator = ( const MesurePM10 & uneMesurePM10 );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
     //-------------------------------------------- Constructeurs - destructeur
-    // MesurePM10 ( const MesurePM10 & uneMesurePM10 );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
     // Mode d'emploi :
     //
