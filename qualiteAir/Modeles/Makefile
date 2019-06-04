@@ -36,4 +36,3 @@ $(CLEAN):
 %.o: %.cpp %.h
 	@$(ECHO) "Compilation de $<"
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
-

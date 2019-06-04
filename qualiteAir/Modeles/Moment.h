@@ -36,6 +36,30 @@ public:
     // Contrat :
     //
 
+    unsigned int getJour() const
+    {
+        return jour;
+    }
+    unsigned int getMois() const
+    {
+        return mois;
+    }
+    unsigned int getAnnee() const
+    {
+        return annee;
+    }
+    unsigned int getHeure() const
+    {
+        return heure;
+    }
+    unsigned int getMinute() const
+    {
+        return minute;
+    }
+    unsigned int getSeconde() const
+    {
+        return seconde;
+    }
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -43,14 +67,21 @@ public:
 
     bool operator > (const Moment &m);
 
+    Moment& operator = (const Moment &m);
+
     bool operator < (const Moment &m);
 
     bool operator == (const Moment &m)
     {
         return (!(*this<m) && !(*this>m));
     }
+    
+
 
 //-------------------------------------------- Constructeurs - destructeur
+
+	Moment();
+
     Moment ( const Moment & unMoment );
     // Mode d'emploi (constructeur de copie) :
     //

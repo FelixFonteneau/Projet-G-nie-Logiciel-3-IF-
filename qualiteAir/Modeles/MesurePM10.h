@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -25,7 +26,7 @@
 class MesurePM10 : public Mesure
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -33,45 +34,46 @@ public:
     //
     // Contrat :
     //
-    
-    
+
+	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
+
+	virtual string type () const;
     //------------------------------------------------- Surcharge d'opérateurs
     // MesurePM10 & operator = ( const MesurePM10 & uneMesurePM10 );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
+
+
     //-------------------------------------------- Constructeurs - destructeur
     // MesurePM10 ( const MesurePM10 & uneMesurePM10 );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
-    
-    MesurePM10 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
+
+    MesurePM10 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~MesurePM10 ( ) = default;
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+
     //----------------------------------------------------- Attributs protégés
-    
+
 };
 
 //-------------------------------- Autres définitions dépendantes de <MesurePM10>
 
 #endif // MESUREPM10_H
-

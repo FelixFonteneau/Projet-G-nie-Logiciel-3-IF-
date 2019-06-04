@@ -1,13 +1,2 @@
-ECHO=@echo
-COMP=g++
-CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11 -D MAP
-INT=
-REAL=$(INT:.h=.cpp)
-BINAIRE=$(INT:.h=.o)
-
-main.o: main.cpp
-	$(ECHO) "Compilation du fichier <main>"
-	$(COMP) -c  $(CPPFLAGS) $<
-
-clean:
-	@rm -rf *.o run test
+all:
+	g++ -ansi -pedantic -o3 -Wall -std=c++11 -g   -c -o Main.o Main.cpp

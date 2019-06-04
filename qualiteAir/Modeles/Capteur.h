@@ -12,15 +12,21 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Mesure.h"
+#include "MesureNO2.h"
+#include "MesureO3.h"
+#include "MesureSO2.h"
+#include "MesurePM10.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-#include <set>
+#include <vector>
 //------------------------------------------------------------------------
 // Rôle de la classe <Capteur>
 //
 //
 //------------------------------------------------------------------------
+
+
 
 class Capteur
 {
@@ -33,10 +39,46 @@ public:
     //
     // Contrat :
     //
+    void AjouterMesure(Mesure *mesure);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
+    string RecupererId() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<MesureO3>* RecupererMesuresO3()
+    {
+        return & mesuresO3;
+    }
+
+    vector<MesureNO2>* RecupererMesuresNO2()
+    {
+        return & mesuresNO2;
+    }
+
+    vector<MesureSO2>* RecupererMesuresSO2()
+    {
+        return & mesuresSO2;
+    }
+
+    vector<MesurePM10>* RecupererMesuresPM10()
+    {
+        return & mesuresPM10;
+    }
+
+
+
+	string getDescription() const;
+
+    vector<double> getCoords();
 
 //------------------------------------------------- Surcharge d'opérateurs
-    // Capteur & operator = ( const Capteur & unCapteur );
+    // Capteur & operator = (const Capteur & unCapteur);
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,7 +86,8 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const unsigned int idCapt, const double lat, const double lon, const string description);
+    // Capteur (const Capteur & unCapteur);
+    Capteur (const string idCapt, const double lat, const double lon, const string description);
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,8 +105,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    set<Mesure>* mesures;
-	const unsigned int idCapteur;
+	vector<MesureO3> mesuresO3;
+	vector<MesureNO2> mesuresNO2;
+	vector<MesureSO2> mesuresSO2;
+	vector<MesurePM10> mesuresPM10;
+	const string idCapteur;
 	double latitude;
 	double longitude;
 	string description;

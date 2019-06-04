@@ -36,6 +36,9 @@ public:
     // Contrat :
     //
 
+	virtual void ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10);
+	
+	virtual string type () const;
 
     //------------------------------------------------- Surcharge d'opérateurs
     // MesureNO2 & operator = ( const MesureNO2 & uneMesureNO2 );
@@ -52,9 +55,8 @@ public:
     //
     // Contrat :
     //
-    
-    MesureNO2 (double uneValue, Moment uneDate, string uneDescription,
-                       string unType, string uneUnite);
+
+    MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid );
 
     virtual ~MesureNO2 ( ) {};
     // Mode d'emploi :

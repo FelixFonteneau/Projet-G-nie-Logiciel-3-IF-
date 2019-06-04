@@ -1,7 +1,7 @@
 ECHO=@echo
 COMP=g++
 CPPFLAGS=-g -Wall -ansi -pedantic -std=c++11
-INT= Modeles/Mesure.h Modeles/MesureO2.h Modeles/MesureSO2.h Modeles/MesureNO2.h Modeles/MesurePM10.h  Modeles/Capteur.h  Modeles/Moment.h  Services/Service.h Util/Algo.h Util/Messages.h Util/Factory.h 
+INT= Modeles/Mesure.h Modeles/MesureO3.h Modeles/MesureSO2.h Modeles/MesureNO2.h Modeles/MesurePM10.h  Modeles/Capteur.h  Modeles/Moment.h  Services/Service.h Util/Algo.h Util/Messages.h Util/Factory.h 
 REAL=$(INT:.h=.cpp)
 BINAIRE= $(INT:.h=.o)
 EXE= qualiteAir
@@ -21,5 +21,3 @@ clean:
 	make clean -C Services
 	make clean -C Util
 	make clean -C Vue
-
-

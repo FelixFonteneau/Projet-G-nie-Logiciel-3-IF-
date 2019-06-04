@@ -29,6 +29,16 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
+
+void MesureNO2::ajout( vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10){
+	mesuresNO2->push_back(*this);
+}
+
+string MesureNO2::type() const{
+	return "NO2";
+}
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 // MesureNO2 & MesureNO2::operator = ( const MesureNO2 & uneMesureNO2 )
 // Algorithme :
@@ -48,8 +58,8 @@ using namespace std;
 } //----- Fin de MesureNO2 (constructeur de copie) */
 
 
-MesureNO2::MesureNO2 (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
-Mesure (uneValue, uneDate, uneDescription, unType, uneUnite)
+MesureNO2::MesureNO2 ( double uneValue, Moment& uneDate, string uneDescription, string uneUnite, string unCapteurid ) :
+Mesure (uneValue, uneDate, uneDescription, uneUnite, unCapteurid)
 // Algorithme :
 //
 {
@@ -73,4 +83,3 @@ Mesure (uneValue, uneDate, uneDescription, unType, uneUnite)
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-

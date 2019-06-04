@@ -27,24 +27,24 @@
 //
 //------------------------------------------------------------------------
 
-class Service 
+class Service
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    /* int calculMoyenneLocalise();
+    void CalculMoyenneLocalise(int choix);
     // Mode d'emploi :
     //
     // Contrat :
     //
-	
-    int qualiteAir();
-	
-    list<Capteur> capteursSimilaires();
-	
-    list<Capteur> capteursDefectueux(); */
-	
+
+    void QualiteAir();
+
+    void CapteursSimilaires();
+
+    void CapteursDefaillants();
+
 //------------------------------------------------- Surcharge d'opérateurs
     // Service & operator = (const Service & unService);
     // Mode d'emploi :
@@ -54,13 +54,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service(const Service & unService);
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Service();
+    Service(string nomFichierCapteur, string nomFichierDonnees, string utf8);
     // Mode d'emploi :
     //
     // Contrat :
@@ -78,7 +72,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	list<Capteur> capteurs;
+	
+	vector<Capteur*>* capteurs;
 	Algo algo;
 	Messages messages;
 	Factory factory;

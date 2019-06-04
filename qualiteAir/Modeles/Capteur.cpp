@@ -6,7 +6,7 @@
  e-mail               : $EMAIL$
  *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Capteur> (fichier Capteur.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -16,21 +16,38 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Capteur.h"
-
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type Capteur::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
-
-void AjouterMesure(Mesure & mesure)
+string Capteur::RecupererId() const
 {
+  return idCapteur;
+}
 
+
+void Capteur::AjouterMesure(Mesure *mesure)
+{
+	mesure->ajout(&mesuresO3,&mesuresNO2,&mesuresSO2,&mesuresPM10);
+}
+
+string Capteur::getDescription() const
+{
+	return description;
+}
+
+vector<double> Capteur::getCoords()
+{
+    vector<double> coords;
+    coords.push_back(latitude);
+    coords.push_back(longitude);
+    return coords;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -38,39 +55,48 @@ void AjouterMesure(Mesure & mesure)
 // Algorithme :
 //
 // {
+	
+
 // } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Capteur::Capteur ( const Capteur & unCapteur )
-// Algorithme :
+/*Capteur::Capteur ( const Capteur & unCapteur ) :  description(unCapteur.description),
+longitude(unCapteur.longitude),
+latitude(unCapteur.latitude),
+idCapteur(unCapteur.idCapteur),
+mesuresPM10(unCapteur.mesuresPM10),
+mesuresSO2(unCapteur.mesuresSO2),
+mesuresNO2(unCapteur.mesuresNO2),
+mesuresO3(unCapteur.mesuresO3),
+// Algorithme
 //
-// {
-// #ifdef MAP
-//    cout << "Appel au constructeur de copie de <Xxx>" << endl;
-// #endif
-// } //----- Fin de Capteur (constructeur de copie)
+{
+    
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Capteur>" << endl;
+#endif
+} //----- Fin de Capteur (constructeur de copie) */
 
 
-Capteur::Capteur(const unsigned int idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
+Capteur::Capteur(const string idCapt, const double lat, const double lon, const string description) : idCapteur(idCapt), latitude(lat), longitude(lon), description(description)
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Capteur>" << endl;
-#endif
-
-  mesures = new set<Mesure>[4];
-} //----- Fin de Xxx
+    #ifdef MAP
+        cout << "Appel au constructeur de <Capteur>" << endl;
+    #endif
+} //----- Fin de Capteur
 
 
 Capteur::~Capteur()
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Capteur>" << endl;
-#endif
+    #ifdef MAP
+        cout << "Appel au destructeur de <Capteur>" << endl;
+    #endif
+
 } //----- Fin de ~Capteur
 
 

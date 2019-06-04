@@ -7,16 +7,16 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( MESURE_H )
-#define MESURE_H
+	#if ! defined ( MESURE_H )
+	#define MESURE_H
 
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Moment.h"
 #include <string>
+#include "Moment.h"
+#include <vector>
 using namespace std;
 //------------------------------------------------------------- Constantes
-
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
@@ -24,6 +24,12 @@ using namespace std;
 //
 //
 //------------------------------------------------------------------------
+
+class MesureO3;
+class MesureSO2;
+class MesureNO2;
+class MesurePM10;
+
 
 class Mesure
 {
@@ -38,16 +44,28 @@ public:
     //
 
     double Valeur () const;
+    // Mode d'emploi : retourne la valeur de la mesure
+    //
+    // Contrat :
+
+    
+    
+
+    string Capteur() const;
     // Mode d'emploi :
     //
     // Contrat :
 
-    string Type () const;
-    // Mode d'emploi :
-    //
-    // Contrat :
-
-
+    Moment getDate() const
+    {
+        return date;
+    }
+	
+	virtual string type () const;
+	
+	virtual void ajout(vector<MesureO3>* mesuresO3, vector<MesureNO2>* mesuresNO2, vector<MesureSO2>* mesuresSO2, vector<MesurePM10>* mesuresPM10)=0;
+	
+	
 
 //------------------------------------------------- Surcharge d'opérateurs
     friend ostream& operator <<(ostream& out, const Mesure& mesure);
@@ -78,7 +96,6 @@ public:
     }
 
 
-
     //Mesure & operator = ( const Mesure & uneMesure );
     // Mode d'emploi :
     //
@@ -86,14 +103,17 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Mesure ( const Mesure & unMesure );
+	Mesure();
+    Mesure ( double uneValue, Moment& uneDate, string uneDescription,string uneUnite, string unCapteurid );
+
+
+    Mesure ( const Mesure & uneMesure );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
 
-    Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite);
 
 
     virtual ~Mesure ( );
@@ -111,8 +131,8 @@ protected:
     double value;
     Moment date;
     string description;
-    string type;
     string unite;
+    string capteurid;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Xxx>

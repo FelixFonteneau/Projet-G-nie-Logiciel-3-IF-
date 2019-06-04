@@ -13,12 +13,13 @@
 //--------------------------------------------------- Interfaces utilisées
 #include "../Modeles/Moment.h"
 #include "../Modeles/Capteur.h"
-//#include "../Modeles/Mesure.h"
+#include "../Modeles/Mesure.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 #include <list>
 #include <map>
+
 //------------------------------------------------------------------------
 // Rôle de la classe <Messages>
 //
@@ -28,7 +29,7 @@
 class Messages
 {
     //----------------------------------------------------------------- PUBLIC
-    
+
 public:
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
@@ -36,55 +37,75 @@ public:
     //
     // Contrat :
     //
-    void messageMenu();
-    double* recupererLocalisation();
-    double recupererRadius();
-    double recupererCapteur();
-    Moment* recupererIntervalleTemps();
-    Moment recupererMoment();
-    void afficherCapteursCorreles(map<Capteur,Capteur> capteurs);
-    void afficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
-    //void afficherDefaillance(Capteur capteur, list<Mesure> mesures);
-    
-    
-    
-    //------------------------------------------------- Surcharge d'opérateurs
-    Messages & operator = ( const Messages & desMessages );
+    int MessageMenu();
+    // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
-    
-    //-------------------------------------------- Constructeurs - destructeur
-    Messages ( const Messages & desMessages );
-    // Mode d'emploi (constructeur de copie) :
-    //
+	
+	void Initialisation();
+
+	void Quitter();
+
+    vector<double> RecupererLocalisation();
+
+    double RecupererRadius();
+
+    double RecupererCapteur();
+
+    vector<Moment> RecupererIntervalleTemps();
+	
+	vector<string> RecupererNomsFichiers();
+
+    Moment RecupererMoment();
+
+	bool ChoixZone();
+
+    bool ChoixTemporel();
+    // Mode d'emploi : Demande à l'utilisateur si il veut faire un choix sur
+    // un intervalle de temps ou sur un moment direct.
+    // Renvoie true si Intervalle / false si Instant
     // Contrat :
     //
-    
+
+    void AfficherCapteursCorreles(double** similitude, int size);
+
+    void AfficherMoyenne(Mesure* mesuresMoyennes, double indiceATMO);
+
+    void AfficherCapteursDefaillants(vector<tuple<Capteur*, int, Moment>> capteurs);
+
+    void AfficherQualiteAir(vector<int> infos);
+
+	// Chaque méthode sert au traitement des messages affichées dans lors des appels aux services
+
+    void AfficherMoyenne(vector<double> moyennes, int atmo);
+
+
+    //------------------------------------------------- Surcharge d'opérateurs
+
+    //-------------------------------------------- Constructeurs - destructeur
+
     Messages ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     virtual ~Messages ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    
+
     //------------------------------------------------------------------ PRIVE
-    
+
 protected:
     //----------------------------------------------------- Méthodes protégées
-    
+
     //----------------------------------------------------- Attributs protégés
-    
 };
 
 //-------------------------------- Autres définitions dépendantes de <Messages>
 
 #endif // MESSAGES_H
-

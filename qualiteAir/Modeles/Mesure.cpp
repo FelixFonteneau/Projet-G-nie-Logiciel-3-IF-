@@ -1,4 +1,4 @@
-/*************************************************************************
+ /*************************************************************************
                            Mesure  -  description
                              -------------------
     début                : $DATE$
@@ -15,8 +15,10 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
+
 #include "Mesure.h"
 #include "Moment.h"
+#include "Capteur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -33,42 +35,57 @@ double Mesure::Valeur () const
   return value;
 }
 
-string Mesure::Type () const
+
+
+string Mesure::Capteur() const
 {
-  return type;
+  return capteurid;
 }
+
+string Mesure::type () const
+{
+	return "noType";
+}
+
+
+
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator <<(ostream& out, const Mesure& uneMesure)
 {
-    out << "Le "<< uneMesure.date <<" : " << uneMesure.value << uneMesure.unite
-    << " "<< typeid(uneMesure).name();
+    out << "Le " << uneMesure.date << " : " << uneMesure.value << " " << uneMesure.unite
+    << " " << uneMesure.type() << "; capteur : " << uneMesure.capteurid/*<< typeid(uneMesure).name()*/;
     return out; // N'oubliez pas de renvoyer le flux, afin de pouvoir chaîner les appels
 }
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-// Le constructeur de copie présenté ici ne fonctionne pas, il faudrait rajouter les getters
-/* Mesure::Mesure ( const Mesure & unMesure ) :
- description(unMesure.description), unite(unMesure.unite),
- type(unMesure.type), value(unMesure.value), date(unMesure.date)
+Mesure::Mesure(){}
+
+Mesure::Mesure ( const Mesure & uneMesure ) : value(uneMesure.value), date(uneMesure.date),
+        description(uneMesure.description),
+        unite(uneMesure.unite), capteurid(uneMesure.capteurid)
+
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Mesure>" << endl;
 #endif
-} //----- Fin de Mesure (constructeur de copie) */
+
+} //----- Fin de Mesure (constructeur de copie)
 
 
-Mesure::Mesure (double uneValue, Moment uneDate, string uneDescription, string unType, string uneUnite) :
-       value(uneValue), date(uneDate), description(uneDescription), type(unType), unite(uneUnite)
+Mesure::Mesure (double uneValue, Moment& uneDate, string uneDescription,
+   string uneUnite, string unCapteurid) :
+       value(uneValue), date(uneDate), description(uneDescription), unite(uneUnite), capteurid(unCapteurid)
 {
   #ifdef MAP
       cout << "Appel au constructeur de <Mesure>" << endl;
   #endif
-};
+}
 
 
 
