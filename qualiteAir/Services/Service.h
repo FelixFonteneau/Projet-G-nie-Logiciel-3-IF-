@@ -36,29 +36,44 @@ public:
     void CalculMoyenneLocalise(int choix);
     // Mode d'emploi :
     //
+    // methode faisant le Calcul de la moyenne sur un territoire.
+    //
     // Contrat :
     //
 
     void QualiteAir();
-
-    void CapteursSimilaires();
-
-    void CapteursDefaillants();
-
-//------------------------------------------------- Surcharge d'opérateurs
-    // Service & operator = (const Service & unService);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    void CapteursSimilaires();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void CapteursDefaillants();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+//------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
     Service(string nomFichierCapteur, string nomFichierDonnees, string utf8);
     // Mode d'emploi :
     //
-    // Contrat :
+    // prend un nom de fichier de description des capteurs (au format csv)
+    // prend un nom de fichier des donnees des capteurs (au format csv)
+    // prend un parametre si les fichiers sont au format utf8
+    // Puis construit l'objet service en analysant les fichiers et en creant les
+    // structures de donnees.
     //
+    // Contrat :
+    // Les strings doivent designer des nom de fichier valides et ces fichiers
+    // doivent correspondrent au format fixe.
 
     virtual ~Service();
     // Mode d'emploi :
@@ -72,7 +87,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-	
+
 	vector<Capteur*>* capteurs;
 	Algo algo;
 	Messages messages;

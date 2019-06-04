@@ -122,7 +122,6 @@ public:
 
     //------------------------------------------------- Surcharge d'opérateurs
 
-
     //-------------------------------------------- Constructeurs - destructeur
     Algo();
     // Mode d'emploi :
@@ -141,31 +140,70 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     double enRadians(double latitude);
+    // Mode d'emploi :
+    //
+    // Calcul la ltitude en radiant depuis une latitude en degree
+    //
+    // Contrat :
+    //
 
     double obtenirDistance(double lat1d, double lon1d, double lat2d, double lon2d);
+    // Mode d'emploi :
+    //
+    // renvoie la distance entre deux coordonees
+    //
+    // Contrat :
+    // les coordonees doivent etre valides (comprises entre -90/90 et -180/180)
 
     int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
                                 double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
                                 double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
                           double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
-
+    // Mode d'emploi :
+    //
+    // Calcule l'indiceATMO en fonction de valeurs de tous les gaz de trois capteurs.
+    // Pour cela, les valeurss sont ponderees en fonction des distances.
+    //
+    // Contrat :
+    //
 
 
     double calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps);
+    // Mode d'emploi :
+    //
+    // Prend deux capteurs en entree et retourne le pourcentage de correlation
+    // entre ces deux capteurs durant un intervalle de temps.
+    //
+    // Contrat :
+    // c1 et c2 doivent pointer vers des capteurs valides.
 
 	  int calculAtmo(double valeur, string type);
-
+    // Mode d'emploi :
+    //
+    // Calcule la l'indice d'un gaz en fonction de son type.
+    // retourne 11 si la valeur n'est pas correcte / inexistante.
+    //
+    // Contrat :
+    //
 
     vector<double> moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTemps);
     // Mode d'emploi :
+    //
     // Prend un capteur et un interval de temps et retourne la moyenne des mesures
     // dans l'interval de temps sous forme de tableau de Double.
     // L'ordre est O3/NO2/SO2/PM10.
     // Si il n'y a aucune mesure, elle retourne -1 dans la case du tableau.
     //
     // Contrat :
-    //
+    // le pointeur sur capteur doit pointer sur un capteur valide.
     vector<double> valeursCapteurInstant(Capteur* capteur, Moment instant);
+    // Mode d'emploi :
+    //
+    // Meme fonctionnement que MoyenneDuree mais prend qu'un seul instant
+    //
+    // Contrat :
+    //
+
     //---------------------------------------------------- Attributs protégés
 
 };
