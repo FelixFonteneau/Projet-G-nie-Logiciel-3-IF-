@@ -357,16 +357,6 @@ double** Algo::CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Algo::Algo(const Algo & unAlgo)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Algo>" << endl;
-#endif
-} //----- Fin de Algo (constructeur de copie)
-
-
 Algo::Algo()
 // Algorithme :
 //

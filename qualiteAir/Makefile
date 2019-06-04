@@ -25,4 +25,4 @@ clean:
 	make clean -C Services
 	make clean -C Util
 	make clean -C Vue
-	rm bin/*
+	rm bin/qualiteAir

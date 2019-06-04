@@ -82,9 +82,14 @@ void Service::CapteursSimilaires() {
 			capteurCorreles[i][j]=0;
 		}
 	}
-    capteurCorreles = algo.CalculCapteurCorreles(capteurCorreles, capteurConcernes, moments);
-	messages.AfficherCapteursCorreles(capteurCorreles,capteurConcernes.size());
+  capteurCorreles = algo.CalculCapteurCorreles(capteurCorreles, capteurConcernes, moments);
+  messages.AfficherCapteursCorreles(capteurCorreles,capteurConcernes.size());
 
+  //destruction de capteurCorreles
+  for (unsigned int i = 0; i < capteurConcernes.size(); ++i){
+    delete[] capteurCorreles[i];
+  }
+  delete[] capteurCorreles;
 }
 
 void Service::CapteursDefaillants() {
@@ -130,4 +135,3 @@ Service::~Service()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-CalculAtmoMoyen

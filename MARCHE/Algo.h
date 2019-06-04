@@ -36,23 +36,54 @@ public:
     //----------------------------------------------------- Méthodes publiques
     vector<double> MoyenneDuree(vector<Moment> intervaleTemps, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
     // Mode d'emploi :
+    //
     // Prend tous les capteurs dans la zone et un interval de temps
     //  retourne la moyenne des mesures sous forme de tableau de Double.
     // L'ordre est O3/NO2/SO2/PM10.
     // Si il n'y a aucune mesure, elle retourne -1 dans la case du tableau.
     //
     // Contrat :
+    // toutes les variables doivent etre initialisees.
+    // radius doit etre positif
+    // les coordonees doivent etre valides
     //
 
     vector<double> MoyenneInstant(Moment instant, double radius, vector<double> coordonees, vector<Capteur*>* capteurs);
     // Mode d'emploi :
-
+    //
+    // Meme fonctionnement que MoyenneDuree mais prend qu'un seul instant
+    //
     // Contrat :
+    // toutes les variables doivent etre initialisees.
+    // radius doit etre positif
+    // les coordonees doivent etre valides
     //
 
     vector<int> QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude);
+    // Mode d'emploi :
+    //
+    // Prend en entree tous les capteurs et une latitude/longitude.
+    // Puis calcul l'indice ATMO sur les 3 capteurs les plus proches, s'ils sont dans un rayon de moins de 90km.
+    // Sinon en prend 1, le plus proche. (Triangulation pas possible)
+    // L'incide atmo est calcule avec les mesures les plus recentes
+    //
+    // Contrat :
+    // toutes les variables doivent etre initialisees.
+    // radius doit etre positif
+    // les coordonees doivent etre valides
+    //
 
     vector<Capteur*> CapteurTerritoire(vector<Capteur*>* capteurs, double radius, vector<double> coordonees);
+    // Mode d'emploi :
+    //
+    // Prend en entree tous les catpeur, puis une zone delimitee par des coordonees et radius
+    // Retourne un vecteur de tous les capteurs se trouvant dans la zone.
+    //
+    // Contrat :
+    // toutes les variables doivent etre initialisees.
+    // radius doit etre positif
+    // les coordonees doivent etre valides
+    //
 
     vector<tuple<Capteur*, int, Moment>> CapteursDefaillants(vector<Capteur*> capteurs);
   	// Mode d'emploi :
@@ -66,25 +97,30 @@ public:
     //
 
     double** CalculCapteurCorreles(double** capteurCorreles, vector<Capteur*> capteurConcernes, vector<Moment> moments);
-
-
-	int CalculAtmoMoyen(vector<double> moyenne );
-
-
-    //------------------------------------------------- Surcharge d'opérateurs
-    // Algo & operator = ( const Algo & unAlgo );
     // Mode d'emploi :
     //
-    // Contrat :
+    // Calcul la corelation de chaques capteurssur une periode.
+    // Renvoie un tableau avec les pourcentage de correspondance de chaques capteurs.
     //
+    // Contrat :
+    // il faut que (double**) capteurCorreles soit deja aloue avec en dimension taille(capteurConcernes)xtaille(capteurConcernes)
+    //
+
+	  int CalculAtmoMoyen(vector<double> moyenne );
+    // Mode d'emploi :
+    //
+    // Calcul l'indice ATMO en fonction des valeur des gaz.
+    // Retourne l'indice atmo correspodant.
+    // Retourne 11 si l'indice ATMO n'est pas calculable
+    //
+    // Contrat :
+    // Le vector doit etre de taille 4 avec des valeurs positives
+    // L'ordre des valeurs est O3/NO2/SO2/PM10.
+
+    //------------------------------------------------- Surcharge d'opérateurs
+
 
     //-------------------------------------------- Constructeurs - destructeur
-    Algo(const Algo & unAlgo);
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
     Algo();
     // Mode d'emploi :
     //
@@ -114,7 +150,7 @@ protected:
 
     double calculSimilitude(Capteur* c1, Capteur* c2,vector<Moment> intervaleTemps);
 
-	int calculAtmo(double valeur, string type);
+	  int calculAtmo(double valeur, string type);
 
 
     vector<double> moyenneCapteur(Capteur* capteur, vector<Moment> intervaleTemps);
