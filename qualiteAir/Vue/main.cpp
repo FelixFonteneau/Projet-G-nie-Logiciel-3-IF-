@@ -26,15 +26,30 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     Messages unMessage;
-    if(argc < 4){
+    if(argc < 5 && argc != 1){
         unMessage.ErreurNbArguments();
     } else {
-        string nomFichierDescription (argv[1]);
-        string nomFichierDonnees (argv[2]);
-        string utf8 (argv[3]);
-        if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees,utf8)){
+        string nomFichierDescription;
+        string nomFichierDonnees;
+        string nomCheminType;
+        string utf8;
+        if (argc == 1)
+        {
+          nomFichierDescription = "donnees/descriptionCapteurs.csv";
+          nomFichierDonnees = "donnees/donneesCapteurs.csv";
+          nomCheminType = "donnees/AttributeType.csv";
+          utf8 = "N";
+        }
+        else
+        {
+          nomFichierDescription = (argv[1]);
+          nomFichierDonnees = (argv[2]);
+          nomCheminType = (argv[3]);
+          utf8 = (argv[4]);
+        }
+        if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees, nomCheminType, utf8)){
             unMessage.Initialisation();
-            Service* unService = new Service(nomFichierDescription,nomFichierDonnees,utf8);
+            Service* unService = new Service(nomFichierDescription,nomFichierDonnees, nomCheminType, utf8);
             int choix = unMessage.MessageMenu();
             while(choix!=7){
                 switch (choix)
@@ -69,7 +84,7 @@ int main(int argc, char* argv[])
                     {
                         vector<string> nomsFichiers = unMessage.RecupererNomsFichiers();
                         delete unService;
-                        unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2]);
+                        unService = new Service(nomsFichiers[0],nomsFichiers[1],nomsFichiers[2],nomsFichiers[3]);
                         break;
                     }
                     default:

@@ -45,7 +45,8 @@ public:
 
 	void Initialisation();
 
-	bool VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string utf8);
+	bool VerifierEntree(string nomFichierDescription, string nomFichierDonnes,
+                      string nomCheminType, string utf8);
 
 	void ErreurNbArguments();
 

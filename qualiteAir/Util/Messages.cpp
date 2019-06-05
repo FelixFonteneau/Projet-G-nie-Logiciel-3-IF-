@@ -34,7 +34,7 @@ int Messages::MessageMenu()
 {
     cout << "Vous souhaitez :" << endl;
     cout << "1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise" << endl;
-    cout << "2 - Obtenir la qualité de l'air moyenne sur un terrotoire précis sur une période précise" << endl;
+    cout << "2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise" << endl;
     cout << "3 - Trouver les capteurs ayant un comportement similaire" << endl;
     cout << "4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis" << endl;
     cout << "5 - Obtenir la liste des capteurs qui ne fonctionnent pas" << endl;
@@ -52,23 +52,34 @@ int Messages::MessageMenu()
     return num;
 }
 
-bool Messages::VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string utf8)
+bool Messages::VerifierEntree(string nomFichierDescription, string nomFichierDonnes, string nomCheminType, string utf8)
 {
     bool correct = true;
-    if(utf8.compare("Y")!=0 && utf8.compare("N")!=0){
+    if(utf8.compare("Y")!=0 && utf8.compare("N")!=0)
+    {
         correct = false;
     }
     ifstream testExisteDescription (nomFichierDescription);
     ifstream testExisteDonnees (nomFichierDonnes);
-    if(!testExisteDescription.is_open()){
+    ifstream testExistType (nomCheminType);
+
+    if(!testExisteDescription.is_open())
+    {
         correct = false;
     } else {
         testExisteDescription.close();
     }
-    if(!testExisteDonnees.is_open()){
+    if(!testExisteDonnees.is_open())
+    {
         correct = false;
     } else {
         testExisteDonnees.close();
+    }
+    if(!testExistType.is_open())
+    {
+      correct = false;
+    } else {
+        testExistType.close();
     }
     return correct;
 }
@@ -169,6 +180,20 @@ vector<string> Messages::RecupererNomsFichiers()
 	}
 	testExiste.close();
 	nomsFichiers.push_back(nomFichierDonnes);
+
+  cout << "Veuillez entrer le chemin d'accès du fichier de description des types (absolu ou relatif)" << endl << endl;
+  string nomFichierType;
+  getline(cin,nomFichierType);
+  cout << endl;
+  testExiste.open(nomFichierType);
+  while(!testExiste.is_open()){
+    cout << "Fichier introuvable. Réessayez" << endl << endl;
+    getline(cin,nomFichierType);
+    cout << endl;
+    testExiste.open(nomFichierType);
+  }
+  testExiste.close();
+  nomsFichiers.push_back(nomFichierType);
 
 	cout << "Veuillez maintenant préciser si le fichier est encodé en utf8 ou non (Y/N)" << endl << endl;
 	string utf8;
@@ -411,10 +436,10 @@ void Messages::AfficherMoyenne(vector<double> moyennes, int atmo)
     }
     else
     {
-      cout << "Aucune mesures de " << nomMesure[i] << "trouvée." << endl;
+      cout << "Aucune mesure de " << nomMesure[i] << " trouvée." << endl;
     }
   }
-  if(atmo!=0){
+  if(atmo!=0 && atmo < 11){
 	  cout << "Indice ATMO : " << atmo << " " ;
 	  if( atmo == 1 || atmo == 2 ){
 		  cout << "(Très bon)" << endl;

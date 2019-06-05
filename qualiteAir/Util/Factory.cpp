@@ -25,12 +25,11 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-vector<Capteur*>* Factory::RecupererInfos(string nomFichierCapteur, string nomFichierDonnees, string utf8)
+vector<Capteur*>* Factory::RecupererInfos(string nomFichierCapteur, string nomFichierDonnees,
+                                          string nomCheminType, string utf8)
 {
     vector<Capteur*>* listeCapteur = new vector<Capteur*>;
-
-    string repertoire = recupererRepertoire(nomFichierCapteur);
-    recupererType(repertoire);
+    recupererType(nomCheminType);
     analyserCapteurs(listeCapteur,nomFichierCapteur);
     remplirCapteurs(listeCapteur,nomFichierDonnees,utf8);
     //retourne une référence vers la liste de capteur stockée dans le tas
@@ -65,9 +64,9 @@ Factory::~Factory ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-void Factory::recupererType(string accesRepertoire)
+void Factory::recupererType(string nomCheminType)
 {
-  ifstream file (accesRepertoire+"donnees/AttributeType.csv");
+  ifstream file (nomCheminType);
   string ligne;
 
   // Premiere ligne inutile
@@ -164,7 +163,6 @@ Mesure* Factory::analyserLigne(string ligne, string utf8)
     // ce qui fait qu'un string de taille n à l'écran a en réalité
     // une taille (2*n + 1). Le problème est corrigé avec la fonction décompose,
     // indispensable pour pouvoir utiliser stoi.
-
 
     // 2017-01-01T00:01:20.6090000;Sensor0;O3;17.8902017543936;
     int annee, mois, jour, heure, minute, seconde;
@@ -275,12 +273,13 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 
 	unsigned i = 0;
 	if(file){
+  /*
 		// on passe les premières 14 lignes inutiles
 		for (int i = 1; i < 13; i++)
 		{
 			getline(file,ligne);
 		}
-
+  */
 		// puis on analyse toutes les lignes
 
 		while(getline(file,ligne))
@@ -300,34 +299,10 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 			{
 				std::cerr << "Exception caught " << exc.what() << "\n";
 			}
-
-
 		}
 	} else {
 		cout << "Impossible d'ouvrir le fichier" << endl;
 	}
 	cout << "Nombre de mesures analysées : " << i << endl << endl;;
 
-}
-
-string Factory::recupererRepertoire(string nomFichierCapteur)
-{
-  string retour = "";
-  string delimiter = "/";
-  size_t pos = 0;
-  string token;
-  while ((pos = nomFichierCapteur.find(delimiter)) != string::npos) {
-      token = nomFichierCapteur.substr(0, pos);
-      cout << token << endl;
-      if (token.compare("..") == 0)
-      {
-        retour += "../";
-      }
-      else
-      {
-        break;
-      }
-      nomFichierCapteur.erase(0, pos + delimiter.length());
-  }
-  return retour;
 }

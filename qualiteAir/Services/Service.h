@@ -74,7 +74,8 @@ public:
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service(string nomFichierCapteur, string nomFichierDonnees, string utf8);
+    Service(string nomFichierCapteur, string nomFichierDonnees,
+            string nomCheminType, string utf8);
     // Mode d'emploi :
     //
     // prend un nom de fichier de description des capteurs (au format csv)

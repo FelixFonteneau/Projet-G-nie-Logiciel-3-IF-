@@ -45,7 +45,8 @@ class Factory
 public:
     //----------------------------------------------------- Méthodes publiques
     vector<Capteur*>* RecupererInfos(string nomFichierCapteur,
-                                     string nomFichierDonnees, string utf8);
+                                     string nomFichierDonnees,
+                                     string nomCheminType, string utf8);
     // Mode d'emploi :
     //
     // Prend en entree le nom du fichier de la description des capteur,
@@ -68,7 +69,7 @@ public:
     //------------------------------------------------------------------ PRIVE
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void recupererType(string accesRepertoire);
+    void recupererType(string nomCheminType);
     // Mode d'emploi :
     //
     // Analyse le fichier contenant les differentes informations des mesures
@@ -111,14 +112,6 @@ protected:
     // Mode d'emploi :
     //
     // Remplis le vector de capteurs. Necessite que le vector soit deja rempli.
-    //
-    // Contrat : doit etre appelee apres analyseCapteurs
-    // car la liste de capteurs doit etre initialisee
-
-    string recupererRepertoire(string nomFichierCapteur);
-    // Mode d'emploi :
-    //
-    // récupere le chemin d'acces 
     //
     // Contrat : doit etre appelee apres analyseCapteurs
     // car la liste de capteurs doit etre initialisee

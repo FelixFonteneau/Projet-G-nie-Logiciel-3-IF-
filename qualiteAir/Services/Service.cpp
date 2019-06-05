@@ -99,7 +99,8 @@ void Service::CapteursDefectueux() {
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service(string nomFichierCapteur, string nomFichierDonnees, string utf8)
+Service::Service(string nomFichierCapteur, string nomFichierDonnees,
+                 string nomCheminType, string utf8)
 // Algorithme :
 //
 {
@@ -109,7 +110,7 @@ Service::Service(string nomFichierCapteur, string nomFichierDonnees, string utf8
   // Messages messages;
   // Algo algo;
   // Factory factory;
-  capteurs = factory.RecupererInfos(nomFichierCapteur, nomFichierDonnees,utf8);
+  capteurs = factory.RecupererInfos(nomFichierCapteur, nomFichierDonnees, nomCheminType, utf8);
 } //----- Fin de Service
 
 
