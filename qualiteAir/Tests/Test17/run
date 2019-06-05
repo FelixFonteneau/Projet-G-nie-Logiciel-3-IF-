@@ -1,1 +1,1 @@
-./../../bin/qualiteAir descriptionCapteurs.csv donneesCapteurs.csv ../../donnees/AttributeType.csv N
+../../bin/qualiteAir descriptionCapteurs.csv donneesCapteurs.csv ../../donnees/AttributeType.csv N
