@@ -1,1 +1,1 @@
-../../bin/analog ../../log/test2.log
+./../../bin/qualiteAir descriptionCapteurs.csv donneesCapteurs.csv ../../donnees/AttributeType.csv N
