@@ -68,7 +68,7 @@ public:
     //------------------------------------------------------------------ PRIVE
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void recupererType();
+    void recupererType(string accesRepertoire);
     // Mode d'emploi :
     //
     // Analyse le fichier contenant les differentes informations des mesures
@@ -111,6 +111,14 @@ protected:
     // Mode d'emploi :
     //
     // Remplis le vector de capteurs. Necessite que le vector soit deja rempli.
+    //
+    // Contrat : doit etre appelee apres analyseCapteurs
+    // car la liste de capteurs doit etre initialisee
+
+    string recupererRepertoire(string nomFichierCapteur);
+    // Mode d'emploi :
+    //
+    // récupere le chemin d'acces 
     //
     // Contrat : doit etre appelee apres analyseCapteurs
     // car la liste de capteurs doit etre initialisee

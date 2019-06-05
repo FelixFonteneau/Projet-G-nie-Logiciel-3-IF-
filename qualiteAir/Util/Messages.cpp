@@ -38,7 +38,7 @@ int Messages::MessageMenu()
     cout << "3 - Trouver les capteurs ayant un comportement similaire" << endl;
     cout << "4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis" << endl;
     cout << "5 - Obtenir la liste des capteurs qui ne fonctionnent pas" << endl;
-	cout << "6 - Charger un autre fichier que celui par défaut" << endl;
+	  cout << "6 - Charger un autre fichier que celui par défaut" << endl;
     cout << "7 - Quitter" << endl << endl;
     string tmp;
     getline(cin,tmp);
@@ -71,7 +71,6 @@ bool Messages::VerifierEntree(string nomFichierDescription, string nomFichierDon
         testExisteDonnees.close();
     }
     return correct;
-
 }
 
 void Messages::ErreurNbArguments(){
@@ -412,10 +411,10 @@ void Messages::AfficherMoyenne(vector<double> moyennes, int atmo)
     }
     else
     {
-      cout << "Aucune mesure de " << nomMesure[i] << " trouvée." << endl;
+      cout << "Aucune mesures de " << nomMesure[i] << "trouvée." << endl;
     }
   }
-  if(atmo!=0 && atmo!=11){
+  if(atmo!=0){
 	  cout << "Indice ATMO : " << atmo << " " ;
 	  if( atmo == 1 || atmo == 2 ){
 		  cout << "(Très bon)" << endl;

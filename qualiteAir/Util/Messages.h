@@ -53,21 +53,21 @@ public:
 
 	void Quitter();
 
-    vector<double> RecupererLocalisation();
+  vector<double> RecupererLocalisation();
 
-    double RecupererRadius();
+  double RecupererRadius();
 
-    double RecupererCapteur();
+  double RecupererCapteur();
 
-    vector<Moment> RecupererIntervalleTemps();
+  vector<Moment> RecupererIntervalleTemps();
 
 	vector<string> RecupererNomsFichiers();
 
-    Moment RecupererMoment();
+  Moment RecupererMoment();
 
 	bool ChoixZone();
 
-    bool ChoixTemporel();
+  bool ChoixTemporel();
     // Mode d'emploi : Demande à l'utilisateur si il veut faire un choix sur
     // un intervalle de temps ou sur un moment direct.
     // Renvoie true si Intervalle / false si Instant

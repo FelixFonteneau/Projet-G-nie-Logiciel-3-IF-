@@ -34,7 +34,6 @@ int main(int argc, char* argv[])
         string utf8 (argv[3]);
         if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees,utf8)){
             unMessage.Initialisation();
-            cout << "coucou";
             Service* unService = new Service(nomFichierDescription,nomFichierDonnees,utf8);
             int choix = unMessage.MessageMenu();
             while(choix!=7){

@@ -25,10 +25,12 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-vector<Capteur*>* Factory::RecupererInfos(string nomFichierCapteur, string nomFichierDonnees,string utf8)
+vector<Capteur*>* Factory::RecupererInfos(string nomFichierCapteur, string nomFichierDonnees, string utf8)
 {
     vector<Capteur*>* listeCapteur = new vector<Capteur*>;
-    recupererType();
+
+    string repertoire = recupererRepertoire(nomFichierCapteur);
+    recupererType(repertoire);
     analyserCapteurs(listeCapteur,nomFichierCapteur);
     remplirCapteurs(listeCapteur,nomFichierDonnees,utf8);
     //retourne une référence vers la liste de capteur stockée dans le tas
@@ -63,9 +65,9 @@ Factory::~Factory ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-void Factory::recupererType()
+void Factory::recupererType(string accesRepertoire)
 {
-  ifstream file ("donnees/AttributeType.csv");
+  ifstream file (accesRepertoire+"donnees/AttributeType.csv");
   string ligne;
 
   // Premiere ligne inutile
@@ -93,11 +95,11 @@ void Factory::recupererType()
 
 void Factory::analyserCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierCapteur)
 {
-    string cheminAcces = "donnees/descriptionCapteurs.csv";
+/*    string cheminAcces = "donnees/descriptionCapteurs.csv";
 	if(nomFichierCapteur.compare("")!=0){
 		cheminAcces = nomFichierCapteur;
-	}
-    ifstream file (cheminAcces);
+	}*/
+    ifstream file (nomFichierCapteur);
     string ligne;
 
 	getline(file,ligne);
@@ -268,12 +270,7 @@ Mesure* Factory::analyserLigne(string ligne, string utf8)
 
 void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierDonnees,string utf8)
 {
-	string cheminAcces = "donnees/donneesCapteurs.csv";
-	if(nomFichierDonnees.compare("")!=0){
-		cheminAcces = nomFichierDonnees;
-	}
-
-    ifstream file (cheminAcces);
+    ifstream file(nomFichierDonnees);
     string ligne;
 
 	unsigned i = 0;
@@ -311,4 +308,26 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 	}
 	cout << "Nombre de mesures analysées : " << i << endl << endl;;
 
+}
+
+string Factory::recupererRepertoire(string nomFichierCapteur)
+{
+  string retour = "";
+  string delimiter = "/";
+  size_t pos = 0;
+  string token;
+  while ((pos = nomFichierCapteur.find(delimiter)) != string::npos) {
+      token = nomFichierCapteur.substr(0, pos);
+      cout << token << endl;
+      if (token.compare("..") == 0)
+      {
+        retour += "../";
+      }
+      else
+      {
+        break;
+      }
+      nomFichierCapteur.erase(0, pos + delimiter.length());
+  }
+  return retour;
 }
