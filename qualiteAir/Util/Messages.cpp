@@ -412,10 +412,10 @@ void Messages::AfficherMoyenne(vector<double> moyennes, int atmo)
     }
     else
     {
-      cout << "Aucune mesures de " << nomMesure[i] << "trouvée." << endl;
+      cout << "Aucune mesure de " << nomMesure[i] << " trouvée." << endl;
     }
   }
-  if(atmo!=0){
+  if(atmo!=0 && atmo!=11){
 	  cout << "Indice ATMO : " << atmo << " " ;
 	  if( atmo == 1 || atmo == 2 ){
 		  cout << "(Très bon)" << endl;
