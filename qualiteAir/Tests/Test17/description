@@ -1,5 +1,2 @@
-Permet de tester la fonction top10 sur un grand jeu d'essai (anonyme.log)
-/!\ Bien prendre en compte que notre résultat sera différent de celui des autres,
-car nous avons fait le choix de ne pas considerer les informations après les extensions
-des URL.
-
+Test d'integration,
+verifie si l'execution de toutes les fonctionalites à la suite ne pose pas de problemes
