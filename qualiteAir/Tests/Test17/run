@@ -1,1 +1,1 @@
-../../bin/analog /tmp/anonyme.log
+./../../bin/qualiteAir descriptionCapteurs.csv donneesCapteurs.csv ../../donnees/AttributeType.csv N
