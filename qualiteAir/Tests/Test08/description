@@ -1,1 +1,1 @@
-Permet de capter l'erreur ou l'utilisateur renseigne le mauvais format d'heure (XXhXX au lieu de XX:XX)
+Ce test permet de verifier la fonctionnalite 1 "Obtenir la qualite de l'air moyenne sur un territoire precis a une date precise" quand une valeur entrée est fausse (exemple ici longitude fausse)

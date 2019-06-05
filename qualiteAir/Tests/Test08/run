@@ -1,1 +1,1 @@
-../../bin/analog -t 23h30 test8.log
+./../../bin/qualiteAir ../../donnees/descriptionCapteursTest01.csv ../../donnees/donneesCapteursTest01.csv N

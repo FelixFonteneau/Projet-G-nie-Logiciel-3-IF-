@@ -1,1 +1,1 @@
-../../bin/analog -t test7.log
+./../../bin/qualiteAir ../../donnees/descriptionCapteursTest01.csv ../../donnees/donneesCapteursTest01.csv ../../donnees/AttributeType.csv N

@@ -1,1 +1,1 @@
-Permet de capter l'erreur ou l'utilisateur renseigne une heure non comprise entre 0 et 23
+Ce test permet de verifier la fonctionnalite 2 "Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise" quand il n'y a pas de retour correct, c'est à dire aucun capteur correspondant

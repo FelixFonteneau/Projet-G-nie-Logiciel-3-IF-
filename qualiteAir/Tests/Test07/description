@@ -1,1 +1,1 @@
-Permet de capter l'erreur ou l'utilisateur ne renseigne pas l'heure avec l'option -t
+Ce test permet de verifier la fonctionnalite 1 "Obtenir la qualite de l'air moyenne sur un territoire precis a une date precise" quand il n'y a pas de retour correct, c'est à dire aucun capteur correspondant
