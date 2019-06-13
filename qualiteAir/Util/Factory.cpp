@@ -297,7 +297,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 				delete mesure;
 			} catch (std::exception const &exc)
 			{
-				std::cerr << "Exception caught " << exc.what() << "\n";
+				std::cerr << "Exception caught " << exc.what() << ". Ligne " << i << "\n";
 			}
 		}
 	} else {

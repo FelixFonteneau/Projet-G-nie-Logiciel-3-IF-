@@ -1,1 +1,2 @@
-Ce test permet de verifier la fonctionnalite 1 "Obtenir la qualite de l'air moyenne sur un territoire precis a une date precise" quand une valeur entrée est fausse (exemple ici longitude fausse)
+Test d'integration,
+verifie si l'execution de toutes les fonctionalites à la suite ne pose pas de problemes

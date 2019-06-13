@@ -1,0 +1,51 @@
+Bonjour, et bienvenue dans cette application de surveillance de la qualité de l'air.
+Le service est en cours d'initialisation, veuillez patientez...
+
+Nombre de mesures analysées : 41
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+1 - Effectuer la requête sur tous les capteurs
+2 - Effectuer la requête sur les capteurs d'un territoire délimité
+
+
+Quelle est la date de début (Au format JJ/MM/AAAA HH:MM) ?
+
+
+Quelle est la date de fin (Au format JJ/MM/AAAA HH:MM) ?
+
+
+           | Capteur 0 | Capteur 1 | Capteur 2 | Capteur 3 | Capteur 4 |
+------------------------------------------------------------------------
+Capteur 0      100%         50%         54%         36%        100%
+------------------------------------------------------------------------
+Capteur 1                  100%         40%          0%         49%
+------------------------------------------------------------------------
+Capteur 2                              100%         49%         70%
+------------------------------------------------------------------------
+Capteur 3                                          100%         48%
+------------------------------------------------------------------------
+Capteur 4                                                      100%
+------------------------------------------------------------------------
+
+(Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+Merci et à bientôt !
