@@ -1,1 +1,21 @@
-Test de la fonctionnalité 2 - "Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise" - avec des valeurs qui donnent un retour
+
+		    - Test de la fonctionnalité 2 -
+Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+- Avec des entrées valides
+
+Test réalisé pour les deux cas :
+
+	- cas avec des valeurs moyennes retournées
+		Première exécution de la fonctionnalité
+		avec des entrées qui permettent d'obtenir
+		des moyennes en retour, on attend donc que
+		l'application nous retourne ces moyennes ainsi
+		que l'indice ATMO calculé.
+
+	- cas avec aucune valeurs correspondantes
+		Seconde	exécution de la fonctionnalité
+		avec des entrées qui ne permettent pas
+		d'obtenir des moyennes, on attend donc
+		que l'application nous affiche qu'aucune
+		mesure n'a été trouvée pour chaque type (O3, NO2, SO2, PM10).
+
