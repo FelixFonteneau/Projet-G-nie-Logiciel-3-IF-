@@ -1,14 +1,13 @@
-Test 1 : Fonctionnalité 1 (ok)
-Test 2 : Fonctionnalité 2 (ok)
+Test 1 : Fonctionnalité 1 avec et sans capteurs correspondants (ok)
+Test 2 : Fonctionnalité 2 avec et sans capteurs correspondants (ok)
 Test 3-1 : Fonctionnalité 3 sur tous capteurs (ok)
 Test 3-2 : Fonctionnalité 3 sur qlq capteurs (ok)
 Test 4 : Fonctionnalité 4
 Test 5_1 : Fonctionnalité 5 sans capteurs défaillants (ok)
 Test 5_2 : Fonctionnalité 5 avec capteurs défaillants (ok)
 Test 6 : Fonctionnalité 6 
-Test 8 : Test d'intégration (ok)
-Test 9 : Fonctionnalité 1 ou 2 quand pas de capteurs correspondant (ok) -> dans 1 et 2 respectivement -> à modifier test 9 du coup sera autre chose
-Test 10 : Fonctionnalité 1 ou 2 quand entrée coordonnées incorrecte
+Test 7 : Test d'intégration (PAS ok, tu t'es arrêté à 4?, et pourquoi y'a un return code?)
+Test 8 : Fonctionnalité 1 ou 2 quand entrée coordonnées incorrecte
 Test 11 : Fonctionnalité 1 ou 2 quand entrée coordonnées incorrecte
 Test 12 : Fonctionnalité 2 avec moment2 < moment 1
 Test 13 : Fonctionnalité 3 avec données manquantes (pour afficher des -1%)
