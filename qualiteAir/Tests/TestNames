@@ -1,17 +1,18 @@
 Test 1 : Fonctionnalité 1 (ok)
 Test 2 : Fonctionnalité 2 (ok)
-Test 3-1 : Fonctionnalité 3 sur tous capteurs (ok)
-Test 3-2 : Fonctionnalité 3 sur qlq capteurs (ok)
-Test 4 : Fonctionnalité 4
+Test 3 : Fonctionnalité 3 (ok)
+  - Etape 1 sur tous capteurs
+  - Etape 2 sur un territoire précis
+  - Etape 3 avec données manquantes.
+Test 4 : Fonctionnalité 4 /!\
 Test 5_1 : Fonctionnalité 5 sans capteurs défaillants (ok)
 Test 5_2 : Fonctionnalité 5 avec capteurs défaillants (ok)
-Test 6 : Fonctionnalité 6 
+Test 6 : Fonctionnalité 6
 Test 8 : Test d'intégration (ok)
 Test 9 : Fonctionnalité 1 ou 2 quand pas de capteurs correspondant (ok) -> dans 1 et 2 respectivement -> à modifier test 9 du coup sera autre chose
 Test 10 : Fonctionnalité 1 ou 2 quand entrée coordonnées incorrecte
 Test 11 : Fonctionnalité 1 ou 2 quand entrée coordonnées incorrecte
 Test 12 : Fonctionnalité 2 avec moment2 < moment 1
-Test 13 : Fonctionnalité 3 avec données manquantes (pour afficher des -1%)
 Test 14 : Fonctionnalité 4 quand pas de capteurs à proximité
 Test 15 : Fonctionnalité 6 quand mauvais chemins fichiers
 Test 16 : Lancement de l'exec avec mauvais chemins fichier ou pas assez arg
