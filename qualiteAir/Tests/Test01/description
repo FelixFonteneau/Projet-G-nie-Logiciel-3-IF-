@@ -15,3 +15,4 @@ Test réalisé pour les deux cas :
 		d'obtenir des moyennes, on attend donc
 		que l'application nous affiche qu'aucune
 		mesure n'a été trouvée pour chaque type (O3, NO2, SO2, PM10).
+
