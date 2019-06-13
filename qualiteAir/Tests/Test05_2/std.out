@@ -1,0 +1,31 @@
+Bonjour, et bienvenue dans cette application de surveillance de la qualité de l'air.
+Le service est en cours d'initialisation, veuillez patientez...
+
+Nombre de mesures analysées : 20
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+Le capteur 0 a affectué des mesures dont les valeurs sont négatives ; date et heure du premier dysfonctionnement : 01/01/2017 00:01:20.
+Le capteur 2 a affectué des mesures dont les valeurs sont négatives ; date et heure du premier dysfonctionnement : 01/01/2017 00:00:24.
+Le capteur 3 a affectué des mesures dont les valeurs sont négatives ; date et heure du premier dysfonctionnement : 01/01/2017 00:00:54.
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+Merci et à bientôt !
+

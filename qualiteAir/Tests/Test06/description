@@ -1,1 +1,14 @@
-Permet de tester l'option [-t XX:XX] dans un cas particulier ou l heure vaut 23:30 
+
+		  - Test de la fonctionnalité 6 -
+	   Charger un autre fichier que celui par défaut
+
+- Entrées valides
+
+	On charge bien d'autres fichiers même si on utilise pas
+	ceux par défaut lors du lancement de l'application.
+	Pas d'attente de retour particulier, l'application nous
+	indique juste qu'elle charge les fichiers, puis le nombre
+	de mesures analysées, comme au lancement de celle-ci.
+
+
+

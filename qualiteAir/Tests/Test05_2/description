@@ -1,0 +1,17 @@
+
+		  - Test de la fonctionnalité 5 -
+	Obtenir la liste des capteurs qui ne fonctionnent pas
+- Pas d'entrées
+
+Test réalisé pour les deux cas :
+
+	- Test05_1 : cas sans capteurs défaillants
+		On s'attend à ce que l'application nous retourne
+		qu'il n'y a pas de capteurs défaillants.
+
+	- Test05_2 : cas avec des capteurs défaillants
+		On s'attend à ce que l'application retourne
+		la liste des id des capteurs défaillants.
+
+ - Ici : Test05_2
+

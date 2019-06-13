@@ -1,0 +1,43 @@
+Bonjour, et bienvenue dans cette application de surveillance de la qualité de l'air.
+Le service est en cours d'initialisation, veuillez patientez...
+
+Nombre de mesures analysées : 20
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+Veuillez entrer le chemin d'accès du fichier de description des capteurs (absolu ou relatif)
+
+
+Veuillez entrer le chemin d'accès du fichier de mesures (absolu ou relatif)
+
+
+Veuillez entrer le chemin d'accès du fichier de description des types (absolu ou relatif)
+
+
+Veuillez maintenant préciser si le fichier est encodé en utf8 ou non (Y/N)
+
+
+Chargement des données en cours..
+
+Nombre de mesures analysées : 20
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
+Merci et à bientôt !
+

@@ -2,17 +2,3 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 Test01;2;1;2;2;1
 Test02;2;1;2;2;1
 Test03;1;1;2;2;1
-Test04;0;2;2;2;0
-Test05;0;2;2;2;0
-Test06;0;2;2;2;0
-Test08;1;1;2;2;1
-Test09;2;1;2;2;1
-Test10;0;2;2;2;0
-Test11;0;2;2;0;0
-Test12;0;2;2;0;0
-Test13;0;2;2;2;0
-Test14;0;2;2;2;0
-Test15;0;2;2;0;0
-Test16;0;2;2;2;0
-Test17;1;1;2;2;1
-Test18;0;2;2;2;0
