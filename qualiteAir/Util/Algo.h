@@ -21,6 +21,7 @@
 //------------------------------------------------------------------ Types
 #include <vector>
 #include <list>
+#include <map>
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Algo>
@@ -162,14 +163,11 @@ protected:
     // Contrat :
     // les coordonees doivent etre valides (comprises entre -90/90 et -180/180)
 
-    int calculAtmoPondere(double valeurNO2Capt1, double valeurO3Capt1, double valeurPM10Capt1, double valeurSO2Capt1,
-                          double valeurNO2Capt2, double valeurO3Capt2, double valeurPM10Capt2, double valeurSO2Capt2,
-                          double valeurNO2Capt3, double valeurO3Capt3, double valeurPM10Capt3, double valeurSO2Capt3,
-                          double distanceMini1, double distanceMini2, double distanceMini3, int nbCapteur);
+    int calculAtmoPondere(const multimap <double, Capteur*> & capteursProches);
     // Mode d'emploi :
     //
     // Calcule l'indiceATMO en fonction de valeurs de tous les gaz de trois capteurs.
-    // Pour cela, les valeurss sont ponderees en fonction des distances.
+    // Pour cela, les valeurs sont ponderees en fonction des distances.
     //
     // Contrat :
     //

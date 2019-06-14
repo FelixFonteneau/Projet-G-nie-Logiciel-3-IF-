@@ -272,16 +272,8 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
     string ligne;
 
 	unsigned i = 0;
-	if(file){
-  /*
-		// on passe les premières 14 lignes inutiles
-		for (int i = 1; i < 13; i++)
-		{
-			getline(file,ligne);
-		}
-  */
-		// puis on analyse toutes les lignes
-
+	if(file)
+  {
 		while(getline(file,ligne))
 		{
 			try {
@@ -296,6 +288,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 					}
 				}
 				delete mesure;
+<<<<<<< HEAD
 			} catch (std::exception const &exc)
 =======
         if (mesure != NULL)
@@ -311,11 +304,15 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
         }
 			} catch (exception const &exc)
 >>>>>>> Stashed changes
+=======
+			} catch (exception const &exc)
+>>>>>>> fix-qualitair
 			{
-				std::cerr << "Exception caught " << exc.what() << ". Ligne " << i << "\n";
-			}
+				cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << " à la ligne " << i  << " : "<< endl;
+        cerr << "   "<< exc.what() << endl;
 		}
-	} else {
+	}
+} else {
 		cout << "Impossible d'ouvrir le fichier" << endl;
 	}
 	cout << "Nombre de mesures analysées : " << i << endl << endl;;

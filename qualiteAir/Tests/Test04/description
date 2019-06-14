@@ -1,3 +1,11 @@
 
 Test de la fonctionnalité 4 - " Obtenir les valeurs caractérisant la qualité de
-l'air à un point précis"
+l'air à un point précis".
+Ce test s'execute en 5 étapes :
+  - Le premier cherche l'indice en -8 -34 avec 4 capteurs à proximité.
+    Doit prendre les 3 les plus proches pour effectuer une  triangulation.
+  - Le deuxième cherche l'indice en -10 87 avec 3 capteurs à proximité.
+  - Le troisième cherche l'indice en 16 52 avec 2 capteurs à proximité.
+  - Le quatrième cherche l'indice en 1 4 avec 1 capteur à proximité.
+  - Le cinquième cherche l'indice en 0 0 avec aucun capteur à proximité.
+  

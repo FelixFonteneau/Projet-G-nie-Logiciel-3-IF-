@@ -26,7 +26,8 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     Messages unMessage;
-    if(argc < 5 && argc != 1){
+    if(argc < 5 && argc != 1)
+    {
         unMessage.ErreurNbArguments();
     } else {
         string nomFichierDescription;
@@ -47,11 +48,13 @@ int main(int argc, char* argv[])
           nomCheminType = (argv[3]);
           utf8 = (argv[4]);
         }
-        if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees, nomCheminType, utf8)){
+        if(unMessage.VerifierEntree(nomFichierDescription,nomFichierDonnees, nomCheminType, utf8))
+        {
             unMessage.Initialisation();
             Service* unService = new Service(nomFichierDescription,nomFichierDonnees, nomCheminType, utf8);
             int choix = unMessage.MessageMenu();
-            while(choix!=7){
+            while(choix!=7)
+            {
                 switch (choix)
                 {
                     case 1:
@@ -95,7 +98,10 @@ int main(int argc, char* argv[])
                 choix = unMessage.MessageMenu();
             }
             unMessage.Quitter();
-        } else {
+            delete unService;
+        }
+        else 
+        {
             unMessage.ErreurArguments();
         }
 
