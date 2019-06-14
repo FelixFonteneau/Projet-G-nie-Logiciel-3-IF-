@@ -1,2 +1,0 @@
-Permet de tester l'option graphe total (-g a.dot -a) sur un fichier log important (5000 lignes)
-/!\ Ce test prend environ 30 secondes

@@ -16,9 +16,8 @@ Test 7 : Test d'intégration (ok)
 Test 8 : Fonctionnalité 1 quand entrée coordonnées et date incorrecte (ok)
 
 Test 9 : Fonctionnalité 2 avec moment2 < moment 1 (ok)
-Test 10 : Fonctionnalité 4 quand pas de capteurs à proximité
-Test 11 : Fonctionnalité 6 quand mauvais chemins fichiers
-Test 12 : Lancement de l'exec avec mauvais chemins fichier ou pas assez arg
+Test 10 : Fonctionnalité 6 quand mauvais chemins fichiers (ok)
+Test 11 : Lancement de l'exec avec mauvais chemins fichier ou pas assez arg
 
 Hors script : Test de performance
 
