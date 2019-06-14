@@ -287,6 +287,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 			try {
 				++i;
 				Mesure *mesure = analyserLigne(ligne,utf8);
+<<<<<<< Updated upstream
 				for (Capteur* capteur : *listeCapteurs)
 				{
 					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
@@ -296,6 +297,20 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 				}
 				delete mesure;
 			} catch (std::exception const &exc)
+=======
+        if (mesure != NULL)
+        {
+          for (Capteur* capteur : *listeCapteurs)
+  				{
+  					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
+  					{
+  						capteur->AjouterMesure(mesure);
+  					}
+  				}
+  				delete mesure;          
+        }
+			} catch (exception const &exc)
+>>>>>>> Stashed changes
 			{
 				std::cerr << "Exception caught " << exc.what() << ". Ligne " << i << "\n";
 			}
