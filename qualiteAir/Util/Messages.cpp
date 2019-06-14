@@ -251,22 +251,22 @@ bool Messages::ChoixTemporel()
 
 double Messages::RecupererRadius()
 {
-    double radius;
-    string tmp;
-	cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
-    getline(cin, tmp);
-	cout << endl;
-    const regex txt_regex("^(0|([1-9][0-9]*))(\\.[0-9]+)?$");
-    do
-    {	
-		cerr << "Radius invalide" << endl;
-        cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
-        getline(cin, tmp);
-		cout << endl;
-    } while (! regex_match(tmp, txt_regex));
-    radius = stod(tmp);
+  double radius;
+  string tmp;
+  cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
+  getline(cin, tmp);
+  cout << endl;
+  const regex txt_regex("^(0|([1-9][0-9]*))(\\.[0-9]+)?$");
+  while (! regex_match(tmp, txt_regex))
+  {
+  cerr << "Radius invalide" << endl;
+      cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
+      getline(cin, tmp);
+  cout << endl;
+  }
+  radius = stod(tmp);
 
-    return radius;
+  return radius;
 }
 
 vector<Moment> Messages::RecupererIntervalleTemps()
