@@ -123,8 +123,6 @@ vector<double> Algo::MoyenneInstant(Moment instant, double radius, vector<double
 vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
 {
     double rayonMax = 90;
-    int distanceMax = 0;
-    int nbCapteur = 0;
 
     //conteneur ayant les capteurs les plus proches compris dans le rayonMax.
     //ces capteurs sont triés (en clef) par leur distance par rapport au coordonees
@@ -138,10 +136,8 @@ vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double
         // si le capteur est dans le rayon de 90km on prend le capteur en compte
         if (distanceCourante < rayonMax)
         {
-          distanceMax = distanceCourante > distanceMax ? distanceCourante : distanceMax;
           // ajoute le capteur dans la map
           capteursProches.insert(pair<double, Capteur*> (distanceCourante, capteur));
-          ++nbCapteur;
         }
     }
 
@@ -149,6 +145,10 @@ vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double
     atmo = calculAtmoPondere(capteursProches);
 
     vector<int> infos;
+    int nbCapteur = min((int) capteursProches.size(), 3);
+    auto iterateur = capteursProches.begin();
+    advance(iterateur, nbCapteur-1);
+    int distanceMax =  iterateur->first;
     infos.push_back(atmo);
     infos.push_back(distanceMax);
     infos.push_back(nbCapteur);

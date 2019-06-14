@@ -297,8 +297,8 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 				delete mesure;
 			} catch (exception const &exc)
 			{
-				cerr << "Erreur d'analyse à la ligne " << i << endl;
-        cerr << exc.what() << endl;
+				cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << " à la ligne " << i  << " : "<< endl;
+        cerr << "   "<< exc.what() << endl;
 		}
 	}
 } else {
