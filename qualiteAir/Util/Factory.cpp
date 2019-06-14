@@ -295,12 +295,13 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
 					}
 				}
 				delete mesure;
-			} catch (std::exception const &exc)
+			} catch (exception const &exc)
 			{
-				std::cerr << "Exception caught " << exc.what() << ". Ligne " << i << "\n";
-			}
+				cerr << "Erreur d'analyse à la ligne " << i << endl;
+        cerr << exc.what() << endl;
 		}
-	} else {
+	}
+} else {
 		cout << "Impossible d'ouvrir le fichier" << endl;
 	}
 	cout << "Nombre de mesures analysées : " << i << endl << endl;;

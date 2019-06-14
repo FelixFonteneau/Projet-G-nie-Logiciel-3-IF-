@@ -52,8 +52,17 @@ void Service::QualiteAir()
 {
 
     vector<double> coords = messages.RecupererLocalisation();
-    vector<int> atmoInfos = algo.QualiteAir(capteurs, coords[0], coords[1]);
-    messages.AfficherQualiteAir(atmoInfos);
+    vector<int> atmoInfos;
+    try
+    {
+      atmoInfos = algo.QualiteAir(capteurs, coords[0], coords[1]);
+      messages.AfficherQualiteAir(atmoInfos);
+    }
+    catch (const length_error &e)
+    {
+      cerr << "Erreur," << endl;
+      cerr << e.what() << endl;
+    }
 }
 
 void Service::CapteursSimilaires() {
