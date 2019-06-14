@@ -115,7 +115,7 @@ vector<double> Messages::RecupererLocalisation()
     do
     {
         while(! regex_match(tmp, txt_regex) ) {
-          cout << "Mauvais format," << endl ;
+          cerr << "Mauvais format" << endl ;
           cout << "Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -90 et 90." << endl << endl;
           getline(cin, tmp);
           cout << endl;
@@ -132,7 +132,7 @@ vector<double> Messages::RecupererLocalisation()
 
         while(! regex_match(tmp, txt_regex))
         {
-          cout << "Mauvais format," << endl;
+          cerr << "Mauvais format" << endl;
           cout << "Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180." << endl << endl;
           getline(cin, tmp);
           cout << endl;
@@ -159,7 +159,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	cout << endl;
 	ifstream testExiste (nomFichierDescription);
 	while(!testExiste.is_open()){
-		cout << "Fichier introuvable. Réessayez" << endl << endl;
+		cerr << "Fichier introuvable. Réessayez" << endl << endl;
 		getline(cin,nomFichierDescription);
 		cout << endl;
 		testExiste.open(nomFichierDescription);
@@ -173,7 +173,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	cout << endl;
 	testExiste.open(nomFichierDonnes);
 	while(!testExiste.is_open()){
-		cout << "Fichier introuvable. Réessayez" << endl << endl;
+		cerr << "Fichier introuvable. Réessayez" << endl << endl;
 		getline(cin,nomFichierDonnes);
 		cout << endl;
 		testExiste.open(nomFichierDonnes);
@@ -187,7 +187,7 @@ vector<string> Messages::RecupererNomsFichiers()
   cout << endl;
   testExiste.open(nomFichierType);
   while(!testExiste.is_open()){
-    cout << "Fichier introuvable. Réessayez" << endl << endl;
+    cerr << "Fichier introuvable. Réessayez" << endl << endl;
     getline(cin,nomFichierType);
     cout << endl;
     testExiste.open(nomFichierType);
@@ -200,7 +200,7 @@ vector<string> Messages::RecupererNomsFichiers()
 	getline(cin,utf8);
 	cout << endl;
 	while(!(utf8.compare("Y")==0) && !(utf8.compare("N")==0)){
-		cout << "Veuillez entrer uniquement 'Y' ou 'N' " << endl << endl;
+		cerr << "Veuillez entrer uniquement 'Y' ou 'N' " << endl << endl;
 		getline(cin,utf8);
 		cout << endl;
 	}
@@ -222,7 +222,7 @@ bool Messages::ChoixZone()
       getline(cin,tmp);
       cout << endl;
     while (tmp.compare("1") != 0 && tmp.compare("2") != 0){
-		cout << "Vous devez renseigner 1 ou 2" << endl << endl;
+		cerr << "Vous devez renseigner 1 ou 2" << endl << endl;
 		getline(cin,tmp);
 		cout << endl;
 	}
@@ -253,9 +253,13 @@ double Messages::RecupererRadius()
 {
     double radius;
     string tmp;
+	cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
+    getline(cin, tmp);
+	cout << endl;
     const regex txt_regex("^(0|([1-9][0-9]*))(\\.[0-9]+)?$");
     do
-    {
+    {	
+		cerr << "Radius invalide" << endl;
         cout << "Quel est le rayon (en km) ? Format : 'nombres' et '.' seulement acceptés et radius > 0." << endl << endl;
         getline(cin, tmp);
 		cout << endl;
@@ -276,7 +280,8 @@ vector<Moment> Messages::RecupererIntervalleTemps()
     const regex txt_regex("^[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}$");
     while (! regex_match(dateDebut, txt_regex))
     {
-        cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl << endl;
+        cerr << "Mauvais format (JJ/MM/AAAA HH:MM demandé)." << endl;
+		cout << "Quelle est la date ?" << endl << endl;
         getline(cin, dateDebut);
 		cout << endl;
     }
@@ -296,7 +301,8 @@ vector<Moment> Messages::RecupererIntervalleTemps()
 	{
 		while (! regex_match(dateFin, txt_regex))
 		{
-			cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl << endl;
+			cerr << "Mauvais format (JJ/MM/AAAA HH:MM demandé)." << endl;
+			cout << "Quelle est la date ?" << endl << endl;
 			getline(cin, dateFin);
 			cout << endl;
 		}
@@ -307,7 +313,7 @@ vector<Moment> Messages::RecupererIntervalleTemps()
 		int minuteFin = stoi(dateFin.substr(14, 2));
 		momentFin = Moment(jourFin, moisFin, anneeFin, heureFin, minuteFin, 0);
 		if(momentFin<momentDebut){
-			cout << "La date de fin doit être postérieure à la date de début" << endl ;
+			cerr << "La date de fin doit être postérieure à la date de début" << endl ;
 			cout << "Quelle est la date de fin (Au format JJ/MM/AAAA HH:MM) ?" << endl << endl;
 			getline(cin, dateFin);
 			cout << endl;
@@ -334,7 +340,8 @@ Moment Messages::RecupererMoment()
     const regex txt_regex("^[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}$");
     while (! regex_match(dateDemande, txt_regex))
     {
-        cout << "Mauvais format (JJ/MM/AAAA HH:MM demandé). Quelle est la date ?" << endl << endl;
+        cerr << "Mauvais format (JJ/MM/AAAA HH:MM demandé)." << endl;
+		cout << "Quelle est la date ?" << endl << endl;
         getline(cin, dateDemande);
 		cout << endl;
     }
