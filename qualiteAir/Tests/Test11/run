@@ -1,1 +1,1 @@
-../../bin/analog -g ../../log/test13.log
+../../bin/qualiteAir descriptionCapteurs.csv donneesCapteurs.csv ../../donnees/salut.csv N
