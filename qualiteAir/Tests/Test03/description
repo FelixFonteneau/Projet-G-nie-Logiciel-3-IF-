@@ -1,10 +1,22 @@
 
-Test de la fonctionnalité 3 - "Trouver les capteurs ayant un comportement
-similaire" -
-  - La première étape de ce test est de comparer tous les capteurs avec des
-    données valides pour chaque capteurs.
-  - La deuxième étape est de comparer certains capteurs sur un territoire donné
-    avec des données valides pour chaque capteurs.
-  - La troisème étape est de comparer des capteurs avec certains capteurs
-    n'ayant pas de données.
-    
+		  - Test de la fonctionnalité 3 - 
+	Trouver les capteurs ayant un comportement similaire 
+- Pas d'entrées
+
+Test réalisé pour les trois cas :
+
+	- cas avec tout les capteurs
+		La première étape de ce test est de comparer
+		tous les capteurs avec des données valides
+		pour chaque capteurs.
+
+	- cas avec une partie des capteurs
+		La deuxième étape est de comparer certains
+		capteurs sur un territoire donné avec des
+		données valides pour chaque capteurs.
+
+	- cas avec des capteurs sans données
+		La troisème étape est de comparer
+		des capteurs avec certains capteurs
+		n'ayant pas de données.
+

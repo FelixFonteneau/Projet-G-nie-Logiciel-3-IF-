@@ -87,17 +87,17 @@ Quelle est la date de début (Au format JJ/MM/AAAA HH:MM) ?
 Quelle est la date de fin (Au format JJ/MM/AAAA HH:MM) ?
 
 
-           | Capteur 0 | Capteur 1 | Capteur 2 | Capteur 3 | Capteur 4 |
+           | Capteur 0 | Capteur 1 | Capteur 2 | Capteur 3 | Capteur 4 | 
 ------------------------------------------------------------------------
-Capteur 0      100%         -1%         -1%         -1%         -1%
+Capteur 0      100%         -1%         -1%         -1%         -1%   
 ------------------------------------------------------------------------
-Capteur 1                  100%         -1%         -1%         -1%
+Capteur 1                  100%         -1%         -1%         -1%   
 ------------------------------------------------------------------------
-Capteur 2                              100%         -1%         -1%
+Capteur 2                              100%         -1%         -1%   
 ------------------------------------------------------------------------
-Capteur 3                                          100%         -1%
+Capteur 3                                          100%         -1%   
 ------------------------------------------------------------------------
-Capteur 4                                                      100%
+Capteur 4                                                      100%   
 ------------------------------------------------------------------------
 
 (Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)
@@ -131,11 +131,11 @@ Quelle est la date de début (Au format JJ/MM/AAAA HH:MM) ?
 Quelle est la date de fin (Au format JJ/MM/AAAA HH:MM) ?
 
 
-           | Capteur 0 | Capteur 1 |
+           | Capteur 0 | Capteur 1 | 
 ------------------------------------
-Capteur 0      100%        100%
+Capteur 0      100%        100%   
 ------------------------------------
-Capteur 1                  100%
+Capteur 1                  100%   
 ------------------------------------
 
 (Un score de -1% signifie qu'aucune donnée n'a été trouvée sur cette periode là)
@@ -184,4 +184,31 @@ Vous souhaitez :
 7 - Quitter
 
 
+Veuillez entrer le chemin d'accès du fichier de description des capteurs (absolu ou relatif)
+
+
+Veuillez entrer le chemin d'accès du fichier de mesures (absolu ou relatif)
+
+
+Veuillez entrer le chemin d'accès du fichier de description des types (absolu ou relatif)
+
+
+Veuillez maintenant préciser si le fichier est encodé en utf8 ou non (Y/N)
+
+
+Chargement des données en cours..
+
+Nombre de mesures analysées : 20
+
+Vous souhaitez :
+1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
+2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
+3 - Trouver les capteurs ayant un comportement similaire
+4 - Obtenir les valeurs caractérisant la qualité de l'air à un point précis
+5 - Obtenir la liste des capteurs qui ne fonctionnent pas
+6 - Charger un autre fichier que celui par défaut
+7 - Quitter
+
+
 Merci et à bientôt !
+
