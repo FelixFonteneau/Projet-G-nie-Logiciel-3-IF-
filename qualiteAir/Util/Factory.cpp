@@ -272,16 +272,8 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
     string ligne;
 
 	unsigned i = 0;
-	if(file){
-  /*
-		// on passe les premières 14 lignes inutiles
-		for (int i = 1; i < 13; i++)
-		{
-			getline(file,ligne);
-		}
-  */
-		// puis on analyse toutes les lignes
-
+	if(file)
+  {
 		while(getline(file,ligne))
 		{
 			try {
