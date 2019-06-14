@@ -1,4 +1,6 @@
 
 		  - Test de retour d'erreur - 
-Mauvaises entrées de latitude, longitude et/ou date dans la fonctionnalité 1
+Mauvaises entrées de latitude, longitude et/ou date,
+ici avec la fonctionnalité 1 mais les mêmes fonctions de lecture
+d'entrées est appelée dans les fonctionnalités qui en ont besoin.
 
