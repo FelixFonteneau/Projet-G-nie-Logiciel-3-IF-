@@ -272,8 +272,16 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
     string ligne;
 
 	unsigned i = 0;
-	if(file)
-  {
+	if(file){
+  /*
+		// on passe les premières 14 lignes inutiles
+		for (int i = 1; i < 13; i++)
+		{
+			getline(file,ligne);
+		}
+  */
+		// puis on analyse toutes les lignes
+
 		while(getline(file,ligne))
 		{
 			try {
@@ -282,24 +290,23 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
         if (mesure != NULL)
         {
           for (Capteur* capteur : *listeCapteurs)
-  				{
-  					if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
-  					{
-  						capteur->AjouterMesure(mesure);
-  					}
-  				}
-  				delete mesure;
+          {
+            if(capteur->RecupererId().compare( mesure->Capteur()) == 0)
+            {
+              capteur->AjouterMesure(mesure);
+            }
+          }
         }
+				delete mesure;
 			} catch (exception const &exc)
-			{
-				cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << " à la ligne " << i  << " : "<< endl;
-        cerr << "   "<< exc.what() << endl;
-		  }
-	  }
-  }
-  else
-  {
-  	cout << "Impossible d'ouvrir le fichier" << endl;
-  }
-  cout << "Nombre de mesures analysées : " << i << endl << endl;;
+      {
+        cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << endl
+             << "   verifiez la synthaxe de la ligne " << i  << "."<< endl;
+      }
+		}
+	} else {
+		cout << "Impossible d'ouvrir le fichier" << endl;
+	}
+	cout << "Nombre de mesures analysées : " << i << endl << endl;;
+
 }
