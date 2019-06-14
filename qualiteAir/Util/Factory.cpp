@@ -292,8 +292,7 @@ void Factory::remplirCapteurs(vector<Capteur*>* listeCapteurs,string nomFichierD
         }
 			} catch (exception const &exc)
 			{
-				cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << " à la ligne " << i  << " : "<< endl;
-        cerr << "   "<< exc.what() << endl;
+				cerr << "Erreur d'analyse du fichier " << nomFichierDonnees << ", verifiez la synthaxe de la ligne " << i  << "."<< endl;
 		  }
 	  }
   }
