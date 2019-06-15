@@ -1,5 +1,5 @@
 
-	- Test d'erreur lors du lancement de l'app - 
+	    - Test d'erreur lors du lancement de l'app - 
 Mauvaise entrée : soit des chemins de fichier (1er)
 		  soit pas assez d'arguments (2nd)
 
