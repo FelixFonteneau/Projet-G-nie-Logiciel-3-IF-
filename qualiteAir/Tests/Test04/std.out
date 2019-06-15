@@ -19,7 +19,7 @@ Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seu
 Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180.
 
 
-L'indice ATMO pour l'endroit selectionné vaut 4 et a été calculé à l'aide de 3 capteurs dans un rayon de 31 km.
+L'indice ATMO pour l'endroit selectionné vaut 10 et a été calculé à l'aide de 3 capteurs dans un rayon de 38 km.
 
 Vous souhaitez :
 1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
@@ -37,7 +37,7 @@ Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seu
 Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180.
 
 
-L'indice ATMO pour l'endroit selectionné vaut 10 et a été calculé à l'aide de 3 capteurs dans un rayon de 60 km.
+L'indice ATMO pour l'endroit selectionné vaut 3 et a été calculé à l'aide de 3 capteurs dans un rayon de 60 km.
 
 Vous souhaitez :
 1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
@@ -55,7 +55,7 @@ Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seu
 Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180.
 
 
-L'indice ATMO pour l'endroit selectionné vaut 10 et a été calculé à l'aide de 2 capteurs dans un rayon de 39 km.
+L'indice ATMO pour l'endroit selectionné vaut 3 et a été calculé à l'aide de 2 capteurs dans un rayon de 39 km.
 
 Vous souhaitez :
 1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
@@ -91,6 +91,8 @@ Quelle est la latitude centrale du lieu souhaité ? Format : 'nombre' et '.' seu
 Quelle est la longitude centrale du lieu souhaité ? Format : 'nombre' et '.' seulement acceptés, doit etre compris entre -180 et 180.
 
 
+Il n'y a pas de capteurs dans un rayon de 90 km autour de l'endroit selectionné.
+
 Vous souhaitez :
 1 - Obtenir la qualité de l'air moyenne sur un territoire précis à une date précise
 2 - Obtenir la qualité de l'air moyenne sur un territoire précis sur une période précise
@@ -102,3 +104,4 @@ Vous souhaitez :
 
 
 Merci et à bientôt !
+

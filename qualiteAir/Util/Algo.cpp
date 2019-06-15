@@ -123,11 +123,12 @@ vector<double> Algo::MoyenneInstant(Moment instant, double radius, vector<double
 vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double longitude)
 {
     double rayonMax = 90;
+    int distanceMax = 0;
 
     //conteneur ayant les capteurs les plus proches compris dans le rayonMax.
     //ces capteurs sont triés (en clef) par leur distance par rapport au coordonees
     multimap <double, Capteur*> capteursProches;
-
+    
     for (Capteur* capteur : *capteurs)
     {
         vector<double> coordsCapteur = capteur->getCoords();
@@ -136,19 +137,19 @@ vector<int> Algo::QualiteAir(vector<Capteur*>* capteurs, double latitude, double
         // si le capteur est dans le rayon de 90km on prend le capteur en compte
         if (distanceCourante < rayonMax)
         {
-          // ajoute le capteur dans la map
-          capteursProches.insert(pair<double, Capteur*> (distanceCourante, capteur));
+            // ajoute le capteur dans la map
+            capteursProches.insert(pair<double, Capteur*> (distanceCourante, capteur));
+            if (distanceCourante > distanceMax) distanceMax = distanceCourante;
         }
+        
     }
-
     int atmo = 0;
-    atmo = calculAtmoPondere(capteursProches);
-
+    if ((int) capteursProches.size() != 0)
+    {
+        atmo = calculAtmoPondere(capteursProches);
+    }
     vector<int> infos;
     int nbCapteur = min((int) capteursProches.size(), 3);
-    auto iterateur = capteursProches.begin();
-    advance(iterateur, nbCapteur-1);
-    int distanceMax =  iterateur->first;
     infos.push_back(atmo);
     infos.push_back(distanceMax);
     infos.push_back(nbCapteur);
@@ -344,31 +345,26 @@ int Algo::calculAtmoPondere(const multimap <double, Capteur*> & capteursProches)
     int nbCapteur = 0;
     for(auto itr = capteursProches.begin(); (itr != capteursProches.end()) && nbCapteur < maxCapteurs; itr++)
     {
-      // on recupere la derniere valeur du ieme capteur
-      vector<MesureNO2>* mesuresNO2 = itr->second->RecupererMesuresNO2();
+        // on recupere la derniere valeur du ieme capteur
+        vector<MesureNO2>* mesuresNO2 = itr->second->RecupererMesuresNO2();
 
-      // si il n'y a pas de mesures on passe au capteur suivant
-      if ((*mesuresNO2).size()  == 0)
-      {
-        break;
-      }
-
-      double derniereValeurCapteur = mesuresNO2->at((*mesuresNO2).size() - 1).Valeur();
-
-      // on l'ajoute avec un coefficient
-      atmoNO2 += (pow(itr->first, -1)) * derniereValeurCapteur;
-
-      //puis on somme les coefficients
-      sommeCoefficient += pow(itr->first, -1);
-      ++nbCapteur;
+        double derniereValeurCapteur;
+        // si il n'y a pas de mesures on passe au capteur suivant
+        if ((*mesuresNO2).size()  != 0)
+        {
+            derniereValeurCapteur = mesuresNO2->at((*mesuresNO2).size() - 1).Valeur();
+            
+            // on l'ajoute avec un coefficient
+            atmoNO2 += (pow(itr->first, -1)) * derniereValeurCapteur;
+            
+            // puis on somme les coefficients
+            sommeCoefficient += pow(itr->first, -1);
+            ++nbCapteur;
+        }
     }
-    if( nbCapteur == 0 )
+    if (sommeCoefficient != 0)
     {
-      throw length_error("Pas de mesure NO2 dans les capteurs à proximité.");
-    }
-    else
-    {
-      atmoNO2 = calculAtmo(atmoNO2/sommeCoefficient,"NO2");
+        atmoNO2 = calculAtmo(atmoNO2/sommeCoefficient,"NO2");
     }
 
   // --- calcul AtmoO3 ---
@@ -376,31 +372,27 @@ int Algo::calculAtmoPondere(const multimap <double, Capteur*> & capteursProches)
     nbCapteur = 0;
     for(auto itr = capteursProches.begin(); (itr != capteursProches.end()) && nbCapteur < maxCapteurs; itr++)
     {
-      // on recupere la derniere valeur du ieme capteur
-      vector<MesureO3>* mesuresO3 = itr->second->RecupererMesuresO3();
+        // on recupere la derniere valeur du ieme capteur
+        vector<MesureO3>* mesuresO3 = itr->second->RecupererMesuresO3();
 
-      // si il n'y a pas de mesures on passe au capteur suivant
-      if ((*mesuresO3).size()  == 0)
-      {
-        break;
-      }
+        double derniereValeurCapteur;
 
-      double derniereValeurCapteur = mesuresO3->at((*mesuresO3).size() - 1).Valeur();
-
-      // on l'ajoute avec un coefficient
-      atmoO3 += (pow(itr->first, -1)) * derniereValeurCapteur;
-
-      //puis on somme les coefficients
-      sommeCoefficient += pow(itr->first, -1);
-      ++nbCapteur;
+        // si il n'y a pas de mesures on passe au capteur suivant
+        if ((*mesuresO3).size()  == 0)
+        {
+            derniereValeurCapteur = mesuresO3->at((*mesuresO3).size() - 1).Valeur();
+            
+            // on l'ajoute avec un coefficient
+            atmoO3 += (pow(itr->first, -1)) * derniereValeurCapteur;
+            
+            //puis on somme les coefficients
+            sommeCoefficient += pow(itr->first, -1);
+            ++nbCapteur;
+        }
     }
-    if( nbCapteur == 0 )
+    if (sommeCoefficient != 0)
     {
-      throw length_error("Pas de mesure O3 dans les capteurs à proximité.");
-    }
-    else
-    {
-      atmoPM10 = calculAtmo(atmoO3/sommeCoefficient,"O3");
+    atmoPM10 = calculAtmo(atmoO3/sommeCoefficient,"O3");
     }
 
   // --- calcul AtmoPM10 ---
@@ -408,31 +400,26 @@ int Algo::calculAtmoPondere(const multimap <double, Capteur*> & capteursProches)
     nbCapteur = 0;
     for(auto itr = capteursProches.begin(); (itr != capteursProches.end()) && nbCapteur < maxCapteurs; itr++)
     {
-      // on recupere la derniere valeur du ieme capteur
-      vector<MesurePM10>* mesuresPM10 = itr->second->RecupererMesuresPM10();
+        // on recupere la derniere valeur du ieme capteur
+        vector<MesurePM10>* mesuresPM10 = itr->second->RecupererMesuresPM10();
 
-      // si il n'y a pas de mesures on passe au capteur suivant
-      if ((*mesuresPM10).size()  == 0)
-      {
-        break;
-      }
-
-      double derniereValeurCapteur = mesuresPM10->at((*mesuresPM10).size() - 1).Valeur();
-
-      // on l'ajoute avec un coefficient
-      atmoPM10 += (pow(itr->first, -1)) * derniereValeurCapteur;
-
-      //puis on somme les coefficients
-      sommeCoefficient += pow(itr->first, -1);
-      ++nbCapteur;
+        double derniereValeurCapteur;
+        // si il n'y a pas de mesures on passe au capteur suivant
+        if ((*mesuresPM10).size()  != 0)
+        {
+            derniereValeurCapteur = mesuresPM10->at((*mesuresPM10).size() - 1).Valeur();
+            
+            // on l'ajoute avec un coefficient
+            atmoPM10 += (pow(itr->first, -1)) * derniereValeurCapteur;
+            
+            //puis on somme les coefficients
+            sommeCoefficient += pow(itr->first, -1);
+            ++nbCapteur;
+        }
     }
-    if( nbCapteur == 0 )
+    if (sommeCoefficient != 0)
     {
-      throw length_error("Pas de mesure PM10 dans les capteurs à proximité.");
-    }
-    else
-    {
-      atmoPM10 = calculAtmo(atmoPM10/sommeCoefficient,"PM10");
+    atmoPM10 = calculAtmo(atmoPM10/sommeCoefficient,"PM10");
     }
 
   // --- calcul AtmoSO2 ---
@@ -440,33 +427,29 @@ int Algo::calculAtmoPondere(const multimap <double, Capteur*> & capteursProches)
     nbCapteur = 0;
     for(auto itr = capteursProches.begin(); (itr != capteursProches.end()) && nbCapteur < maxCapteurs; itr++)
     {
-      // on recupere la derniere valeur du ieme capteur
-      vector<MesureSO2>* mesuresSO2 = itr->second->RecupererMesuresSO2();
+        // on recupere la derniere valeur du ieme capteur
+        vector<MesureSO2>* mesuresSO2 = itr->second->RecupererMesuresSO2();
 
-      // si il n'y a pas de mesures on passe au capteur suivant
-      if ((*mesuresSO2).size()  == 0)
-      {
-        break;
-      }
+        double derniereValeurCapteur;
+        // si il n'y a pas de mesures on passe au capteur suivant
+        if ((*mesuresSO2).size()  != 0)
+        {
+            derniereValeurCapteur = mesuresSO2->at((*mesuresSO2).size() - 1).Valeur();
+            
+            // on l'ajoute avec un coefficient
+            atmoSO2 += (pow(itr->first, -1)) * derniereValeurCapteur;
+            
+            //puis on somme les coefficients
+            sommeCoefficient += pow(itr->first, -1);
+            ++nbCapteur;
+        }
 
-      double derniereValeurCapteur = mesuresSO2->at((*mesuresSO2).size() - 1).Valeur();
-
-      // on l'ajoute avec un coefficient
-      atmoSO2 += (pow(itr->first, -1)) * derniereValeurCapteur;
-
-      //puis on somme les coefficients
-      sommeCoefficient += pow(itr->first, -1);
-      ++nbCapteur;
     }
-    if( nbCapteur == 0 )
+    if (sommeCoefficient != 0)
     {
-      throw length_error("Pas de mesure SO2 dans les capteurs à proximité.");
+    atmoSO2 = calculAtmo(atmoSO2/sommeCoefficient,"SO2");
     }
-    else
-    {
-      atmoSO2 = calculAtmo(atmoSO2/sommeCoefficient,"SO2");
-    }
-
+    
     // on retourne le max de ces calculs.
     return max( max(int(atmoNO2),int(atmoO3)),
                 max(int(atmoPM10),int(atmoSO2)));

@@ -2,7 +2,7 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 Test01;2;1;2;2;1
 Test02;2;1;2;2;1
 Test03;2;1;2;2;1
-Test04;2;1;1;2;1
+Test04;2;1;2;2;1
 Test05_1;2;1;2;2;1
 Test05_2;2;1;2;2;1
 Test06;2;1;2;2;1
